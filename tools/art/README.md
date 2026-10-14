@@ -48,3 +48,11 @@ pk.save_png(c, "out.png")
 - Capul ocupă ~60% din înălțime; lumina vine mereu din stânga-sus.
 - Profilul privește spre dreapta (inamicii stau în dreapta). Lovitura se face aplecând corpul,
   picioarele rămân pe loc.
+
+## Inamici și boss-i
+
+```bash
+python3 tools/art/enemies.py   # 16 inamici + planșele enemies.png și enemies-in-context.png
+python3 tools/art/bosses.py    # Monstro, Gurdy, Mom (picior, mână, ochi) + bosses.png
+```
+`bosses.py` importă ajutoarele din `enemies.py`; mock-ul în context citește și sprite-urile eroilor și texturile podelei.

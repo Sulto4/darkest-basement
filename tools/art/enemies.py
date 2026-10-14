@@ -90,7 +90,8 @@ def fin(c):
 
 
 def sphere(c, m, ramp, box=None, cuts=CUTS, light=LIGHT):
-    pk.shade_sphere(c, m, ramp, cuts=cuts, light=light, box=box)
+    if m:                                                # o mască goală (tăiată de margine) nu are ce umbri
+        pk.shade_sphere(c, m, ramp, cuts=cuts, light=light, box=box)
 
 
 def stack(w, h, layers):
@@ -509,8 +510,8 @@ def dead_fly(pose):
 # Cheagul: o grămadă de sânge închegat din mai mulți „bulgări”, fiecare cu luciul lui,
 # cu ochi mici și negri. Bulgării se umbresc separat, din spate spre față, ca să apară cutele.
 
-CLOT_LUMPS = [(24, 27, 5), (17, 31, 5.5), (31, 31, 5.5), (12, 38, 5.5), (36, 38, 5.5),
-              (24, 35, 8), (18, 41, 6.5), (30, 41, 6.5)]
+CLOT_LUMPS = [(25, 26, 5.5), (16, 32, 4.5), (32, 30, 6), (11, 39, 5), (37, 38, 5.5),
+              (23, 35, 8.5), (17, 41, 6), (31, 41, 6.5)]
 
 
 def clotty_lumps(sq=0, puff=0):
@@ -540,7 +541,7 @@ def draw_clotty(pose):
     # pete de sânge închegat (mai închise), în model fix
     for (bx, by) in [(x0 + 15, y0 + 6), (x1 - 6, y0 + 13), (x0 + 4, y1 - 5), (x1 - 12, y1 - 3)]:
         body.fill({p for p in pk.ellipse(bx, by, bx + 2, by + 1) if p in whole}, mx(BLOOD[2], DEPTHS_FLESH, 0.5))
-    body.fill([(x0 + 10, y0 + 2), (x0 + 11, y0 + 2)], WHITE)
+    body.fill({(x0 + 9, y0 + 3), (x0 + 10, y0 + 3)} & whole, WHITE)
     # fața, pe bulgărele din față
     k = key()
     ex, ey = x0 + 7, y0 + 11 - puff
@@ -606,21 +607,24 @@ def horf_head(box, pose):
         pk.stamp(c, fx, ey + 1, ["..K", "KK.", "..K"], k)
         pk.stamp(c, mxp, my - 4, [".KKK.", "KkrkK", "KkRkK", ".KKK."], k)
         return fin(c)
-    # sprâncene groase, încruntate (în V spre nas)
-    c.fill(pk.line(nx, ey - 3, nx + 5, ey - 1), HORF_LINE)
-    c.fill(pk.line(fx - 1, ey - 1, fx + 2, ey - 2), HORF_LINE)
-    # ochi mici, injectați, cu cearcăne
-    eye = ["WWWE.", "WREEL", ".LLL."] if ph != "wind" else ["WWWWE", "WRWEE", "WWWWL", ".LLL."]
-    pk.stamp(c, nx + 1, ey, eye, {**k, "R": BLOOD[0]})
-    pk.stamp(c, fx, ey, ["WE", "EE", "L."], k)
+    # sprâncene groase, încruntate: coboară spre mijlocul feței (între ochi)
+    for d in (0, 1):
+        c.fill(pk.line(nx - 1, ey - 2 + d, nx + 6, ey - 5 + d), HORF_LINE)
+        c.fill(pk.line(fx - 1, ey - 4 + d, fx + 2, ey - 2 + d), HORF_LINE)
+    # ochi injectați, cu irisul mic spre stânga și pungi vinete dedesubt
+    big = ph == "wind"
+    pk.stamp(c, nx, ey, [".KKKK.", "KEEWWK", "KEEWRK", ".KKKK."] if not big else
+             [".KKKK.", "KWWWWK", "KEEWRK", "KEEWWK", ".KKKK."], {**k, "R": BLOOD[0]})
+    pk.stamp(c, fx, ey, ["KK", "EK", "EK", "K."], k)
+    c.fill([(nx + i, ey + (5 if big else 4)) for i in range(1, 5)], HORF_R[2])
     if ph == "strike":
         pk.stamp(c, mxp - 1, my - 6, GAPE_WIDE, k)
     elif ph == "wind":
-        c.fill(pk.line(mxp, my - 2, mxp + 4, my - 2), HORF_LINE)          # buze strânse, pline
-        c.fill([(mxp + 1, my - 1), (mxp + 2, my - 1), (mxp + 3, my - 1)], HORF_R[2])
-    else:
-        pk.stamp(c, mxp, my - 3, [".KKK.", "KkrkK", "KkRkK", ".KKK."], k)   # gura deschisă, horcăie
-        drip(c, mxp + 2, my + 1, 1 + (t % 2), t, drop=False)
+        c.fill(pk.line(mxp, my - 2, mxp + 5, my - 2), HORF_LINE)          # buze strânse, obraji plini
+        c.fill([(mxp + 1 + i, my - 1) for i in range(4)], HORF_R[2])
+    else:                                                 # gura strâmbă, deschisă, cu dinți: horcăie
+        pk.stamp(c, mxp - 1, my - 5, [".KKKKK.", "KFkFkFK", "KkkrkkK", "KkrRrkK", ".KKKKK."], k)
+        drip(c, mxp + 2, my, 2 + (t % 2), t, drop=False)
     # cicatricea gâtului retezat, jos
     return fin(c)
 
@@ -679,58 +683,79 @@ def dead_horf(pose):
 
 
 # ───────────────────────────── POOTER ─────────────────────────────
-# Musca-grăsană: corp rotund, palid-vânăt, ochi mari cu pleoape grele, buze roșii țuguiate.
+# Musca-grăsană: corp rotund, vânăt-cenușiu, cu dungi de muscă pe spate, ochi mari, negri și
+# lucioși (ies din siluetă) și buze roșii țuguiate cu care scuipă sânge. Aripi mici care bat.
 
-POOTER_R = [mx(SKIN[0], DEPTHS[0], 0.2), mx(SKIN[1], DEPTHS[0], 0.45), mx(SKIN[2], DEPTHS[1], 0.55),
-            mx(SKIN[3], DEPTHS[2], 0.6)]
-POOTER_LINE = mx(POOTER_R[3], O, 0.4)
+POOTER_R = [mx(SKIN[1], DEPTHS[0], 0.25), mx(SKIN[2], DEPTHS[0], 0.5), mx(SKIN[3], DEPTHS[0], 0.62), DEPTHS[2]]
+POOTER_LINE = DEPTHS[3]
+POOTER_EYE = mx(O, DEPTHS[0], 0.3)
+
+
+def small_wings(w, h, cx, cy, up):
+    """Aripile mici ale lui Pooter (aceeași construcție ca la muscă, scurtate)."""
+    out = L(w, h)
+    for k, (ox, oy) in enumerate([(3, -1), (0, 0)]):
+        if up:
+            wm = pk.ellipse(cx - 1 + ox, cy - 9 + oy, cx + 4 + ox, cy + oy)
+        else:
+            wm = pk.ellipse(cx + 1 + ox, cy - 4 + oy, cx + 9 + ox, cy + 1 + oy)
+        r = WING_R if k == 1 else [WING_R[1], WING_R[2], WING_R[2], WING_R[3]]
+        lay = L(w, h)
+        pk.shade_flat(lay, wm, r, shadow=(1, 1), deep=None, light_rim=(-1, -1))
+        x0, y0, x1, y1 = pk.bbox(wm)
+        lay.fill(pk.line(x0 + 1, y1 - 1, x1 - 1, y0 + 1), r[2])
+        out.paste(fin(lay))
+    return out
 
 
 def draw_pooter(pose):
     c = L(32, 32)
     ph, t, sq = pose.ph, pose.t, pose.sq
     ground_shadow(c, 16, 12)
-    cx, cy = 17, 13 + pose.bob
+    cx, cy = 16, 15 + pose.bob
     if ph == "wind":
-        cx, cy = 19, 12
-    elif ph == "strike":
-        cx = 16
-    elif ph == "hurt":
         cx, cy = 18, 14
-    c.paste(wing_pair(32, 32, cx + 1, cy - 3, up=(t % 2 == 0) and ph not in ("strike", "hurt")))
+    elif ph == "strike":
+        cx = 15
+    elif ph == "hurt":
+        cx, cy = 17, 16
+    c.paste(small_wings(32, 32, cx + 2, cy - 6, up=(t % 2 == 0) and ph not in ("strike", "hurt")))
     legs = L(32, 32)
     for lx, ln in ((cx - 3, 3), (cx + 1, 4), (cx + 4, 3)):
-        legs.fill(pk.line(lx, cy + 6, lx - 1 + (t % 2), cy + 6 + ln), POOTER_R[3])
+        legs.fill(pk.line(lx, cy + 7, lx - 1 + (t % 2), cy + 7 + ln), POOTER_R[3])
     c.paste(legs)
     body = L(32, 32)
-    bb = (cx - 7 - sq, cy - 6 + sq, cx + 7 + sq, cy + 7)
+    bb = (cx - 8 - sq, cy - 7 + sq, cx + 8 + sq, cy + 8)
     bm = pk.ellipse(*bb)
     if ph == "wind":                                      # obrajii umflați: ține scuipatul în gură
-        bm |= pk.ellipse(cx - 9, cy, cx - 1, cy + 7)
+        bm |= pk.ellipse(cx - 9, cy + 1, cx - 2, cy + 7)
     sphere(body, bm, POOTER_R, bb)
-    for yy in (cy + 2, cy + 4):                           # dungile de muscă pe abdomen
-        body.fill([(x, yy) for x in range(cx + 3, cx + 8) if (x, yy) in bm and (x + 1, yy) in bm],
+    for yy in (cy + 1, cy + 3, cy + 5):                   # dungile de muscă pe abdomen
+        body.fill([(x, yy) for x in range(cx + 2, cx + 8) if (x, yy) in bm and (x + 1, yy) in bm],
                   POOTER_R[3])
-    k = {**key(POOTER_LINE), "l": POOTER_R[2]}
+    k = {**key(POOTER_LINE), "E": POOTER_EYE, "l": POOTER_R[2]}
     if ph == "hurt":
-        pk.stamp(body, cx - 5, cy - 2, ["KK...", "..KKK", "KK..."], k)
-        pk.stamp(body, cx - 8, cy + 3, [".KK.", "KrrK", ".KK."], k)
+        pk.stamp(body, cx - 6, cy - 3, ["KK...", "..KKK", "KK..."], k)
+        pk.stamp(body, cx - 9, cy - 2, ["..", "KK", ".."], k)
+        pk.stamp(body, cx - 8, cy + 2, [".KK.", "KrrK", ".KK."], k)
     else:
-        wide = ph in ("wind", "strike")
-        pk.stamp(body, cx - 5, cy - 5, [".KKKK.",
-                                         "KllllK" if not wide else "KWWWWK",
-                                         "KEEWWK",
-                                         "KEEWWK",
-                                         "KWWWWK",
+        pk.stamp(body, cx - 6, cy - 6, [".KKKK.",
+                                         "KEEEEK",
+                                         "KWWEEK",
+                                         "KWEEEK",
+                                         "KEEEwK",
                                          ".KKKK."], k)
-        pk.stamp(body, cx - 8, cy - 4, ["KK", "EK", "EK", "KK"], k)
+        pk.stamp(body, cx - 9, cy - 5, [".K", "KK", "WK", "EK", "EK", ".K"], k)
+        if ph != "strike":                                # pleoapa grea, plictisită
+            body.fill([(cx - 5 + i, cy - 5) for i in range(4)], POOTER_R[2])
+        lips = {"R": BLOOD[1], "H": BLOOD[0]}
         if ph == "wind":
-            pk.stamp(body, cx - 9, cy + 3, [".RR", "RHR", ".RR"], {"R": BLOOD[1], "H": BLOOD[0]})
+            pk.stamp(body, cx - 9, cy + 3, [".HR", "RRR", ".RR"], {**k, **lips})
         elif ph == "strike":
-            pk.stamp(body, cx - 9, cy + 1, [".RRR.", "RkkkR", "RkrkR", ".RRR."], {**k, "R": BLOOD[1]})
+            pk.stamp(body, cx - 9, cy + 1, [".HRR.", "RkkkR", "RkrkR", ".RRR."], {**k, **lips})
         else:
-            pk.stamp(body, cx - 8, cy + 2, [".HR.", "RkkR", ".RR."], {**k, "R": BLOOD[1]})
-            drip(body, cx - 6, cy + 5, 1 + t % 2, t, drop=False)
+            pk.stamp(body, cx - 8, cy + 2, [".HR.", "RkkR", ".RR."], {**k, **lips})
+            drip(body, cx - 7, cy + 5, 1 + t % 2, t, drop=False)
     c.paste(fin(body))
     if ph == "strike":
         c.paste(fx_shot(32, 32, 0, cy - 1, 5))
@@ -753,80 +778,106 @@ def dead_pooter(pose):
     pk.stamp(b, 10, 23, EYE_X, k)
     pk.stamp(b, 7, 24, EYE_X_SMALL, k)
     pk.stamp(b, 8, 28, ["HH"], k)
+    for yy in (25, 27):
+        b.fill([(x, yy) for x in range(16, 20)], POOTER_R[3])
     c.paste(fin(b))
     return c
 
 
 # ───────────────────────────── MULLIGAN ─────────────────────────────
-# Sacul umflat, palid-gălbui, plin de găuri din care ies muște; fața mică și tristă, sus.
+# Un gaper umflat: burta enormă, palidă, cu vânătăi și vene, plină de răni-găuri din care ies
+# muște; capul gras stă înfipt deasupra, cu fața mică și tristă. Când moare scapă muștele.
 
-MULL_R = [mx(SKIN[0], UI["parchment"][0], 0.5), mx(SKIN[1], UI["parchment"][1], 0.45),
-          mx(SKIN[2], POOP[1], 0.25), mx(SKIN[3], POOP[2], 0.35)]
-MULL_LINE = mx(MULL_R[3], O, 0.4)
-MULL_VEIN = mx(TEAR[2], MULL_R[2], 0.5)
-BRUISE = mx(DEPTHS[0], MULL_R[2], 0.45)
+MULL_R = [mx(WHITE, SKIN[0], 0.5), mx(SKIN[1], UI["parchment"][0], 0.35), mx(SKIN[2], CAVES[1], 0.25),
+          mx(SKIN[3], DEPTHS[0], 0.45)]
+MULL_LINE = mx(MULL_R[3], O, 0.45)
+MULL_VEIN = mx(TEAR[2], MULL_R[2], 0.35)
+BRUISE = mx(DEPTHS[0], MULL_R[2], 0.35)
+WOUND = [".rrr.", "rkkkr", "rkkkr", ".rRr."]              # gaură cu marginea de carne crudă
 
 
 def mini_fly(w, h, x, y, t):
-    """Muscă mică (iese din Mulligan sau zboară în jurul lui): corp de 3×2, ochi roșu, aripă."""
+    """Muscă mică (iese din Mulligan sau roiește): corp 4×3, ochi roșu, aripă palidă care bate."""
     c = L(w, h)
-    c.fill([(x, y), (x + 1, y), (x + 2, y), (x + 1, y + 1), (x + 2, y + 1)], FLY_R[1])
-    c.set(x, y, BLOOD[0])
-    c.fill([(x + 1, y - 1), (x + 2, y - 2)] if t % 2 == 0 else [(x + 2, y - 1), (x + 3, y - 1)], WING_R[0])
+    wm = pk.ellipse(x + 1, y - 2, x + 2, y - 1) if t % 2 == 0 else pk.ellipse(x + 3, y - 1, x + 5, y)
+    c.fill(wm, WING_R[2])
+    c.fill(pk.ellipse(x, y, x + 3, y + 2), FLY_R[1])
+    c.set(x + 3, y + 2, FLY_R[2])
+    c.set(x, y + 1, BLOOD[0])
     return fin(c)
 
 
 def draw_mulligan(pose):
     ph, t, sq = pose.ph, pose.t, pose.sq
-    lean = {"wind": 2, "strike": -3, "hurt": 2}.get(ph, 0)
+    lean = {"wind": 2, "strike": -3, "hurt": 3}.get(ph, 0)
     puff = 2 if ph == "wind" else 0
-    far, near, body, arm = L(), L(), L(), L()
-    fl = pk.rect(27, 41, 30, 46) | pk.rect(26, 45, 29, 46)
-    nl = pk.rect(18, 41, 21, 46) | pk.rect(17, 45, 20, 46)
+    far, near, body, arm, farm = L(), L(), L(), L(), L()
+    fl = pk.rect(29, 41, 32, 46) | pk.rect(28, 45, 31, 46)
+    nl = pk.rect(17, 41, 20, 46) | pk.rect(16, 45, 19, 46)
     if ph == "strike":
         nl = pk.shift(nl, -2, 0)
-    pk.shade_flat(far, fl, [MULL_R[2], MULL_R[2], MULL_R[3], MULL_R[3]], shadow=(1, 1), deep=None)
+    dim = [MULL_R[2], MULL_R[2], MULL_R[3], MULL_R[3]]
+    pk.shade_flat(far, fl, dim, shadow=(1, 1), deep=None)
     pk.shade_flat(near, nl, MULL_R, shadow=(1, 1), deep=None)
-    bb = sqbox((10 + lean - puff, 7 - puff * 2 + pose.bob, 37 + lean + puff, 44), sq, ground=44)
-    bm = pk.ellipse(*bb, fat=0.08) | pk.ellipse(bb[0] + 1, bb[1] + 12, bb[2], bb[3] + 1)
-    sphere(body, bm, MULL_R, bb)
+    fin(far)
+    fin(near)
+    # burta: un sac mare, lăsat în față
+    bb = sqbox((10 + lean - puff, 16 - puff + pose.bob, 39 + lean + puff, 43), sq, ground=43)
     x0, y0, x1, y1 = bb
-    # vene albăstrui și vânătăi: pielea întinsă la maximum
-    body.fill(pk.polyline([(x1 - 6, y0 + 8), (x1 - 8, y0 + 12), (x1 - 7, y0 + 16), (x1 - 9, y0 + 19)]), MULL_VEIN)
-    body.fill(pk.polyline([(x0 + 13, y1 - 8), (x0 + 15, y1 - 5), (x0 + 14, y1 - 2)]), MULL_VEIN)
-    for (bx, by) in [(x1 - 9, y1 - 12), (x0 + 4, y0 + 22)]:
-        pk.dither_fill(body, pk.ellipse(bx, by, bx + 4, by + 3) & bm, BRUISE, 0.5)
-    # găurile din care ies muștele
-    holes = [(x0 + 15, y0 + 16), (x0 + 20, y0 + 7), (x0 + 9, y0 + 26), (x0 + 19, y0 + 27)]
-    for i, (hx, hy) in enumerate(holes):
-        pk.stamp(body, hx, hy, [".bb.", "bkkb", ".bb."], {"b": MULL_R[3], "k": HOLE})
-    # o muscă își scoate capul dintr-o gaură (alternează între cadre)
-    hx, hy = holes[t % 2]
-    body.fill([(hx + 1, hy + 1), (hx + 2, hy + 1)], FLY_R[1])
-    body.set(hx + 1, hy + 1, BLOOD[0])
-    # fața: mică, tristă, sus în stânga
-    k = key(MULL_LINE)
-    fx, fy = x0 + 4, y0 + 8
-    if ph == "hurt":
-        pk.stamp(body, fx, fy, ["KK..KK.", "..K...K", "KK..KK."], k)
-        pk.stamp(body, fx + 1, fy + 5, [".KK.", "KrrK", ".KK."], k)
-    else:
-        pk.stamp(body, fx, fy - 2, ["LL..LL", "......", "KK..KK", "KW..KW", "KK..KK"], k)
-        mouth = {"wind": ["LLL"], "strike": [".KK.", "KrrK", ".KK."]}.get(ph, [".K.", "KrK", ".K."])
-        pk.stamp(body, fx + 1, fy + 5, mouth, k)
-        if ph == "idle":
-            drip(body, fx + 1, fy + 3, 2 + t % 2, t, ramp=[TEAR[0], TEAR[1], TEAR[2]], drop=False)
+    bm = pk.ellipse(*bb, fat=0.05) | pk.ellipse(x0 - 2, y0 + 9, x1 - 6, y1 + 1)
+    sphere(body, bm, MULL_R, (x0 - 2, y0, x1, y1 + 1))
+    body.fill([p for p in pk.polyline([(x1 - 6, y0 + 3), (x1 - 8, y0 + 8), (x1 - 6, y0 + 12), (x1 - 8, y0 + 16)]) if p in bm], MULL_VEIN)
+    body.fill([p for p in pk.polyline([(x0 + 12, y1 - 8), (x0 + 14, y1 - 5), (x0 + 12, y1 - 2)]) if p in bm], MULL_VEIN)
+    for (bx, by) in [(x1 - 11, y1 - 10), (x0 + 1, y0 + 6)]:
+        pk.dither_fill(body, pk.ellipse(bx, by, bx + 5, by + 3) & bm, BRUISE, 0.5)
+    body.fill([p for p in pk.polyline([(x0 + 1, y1 - 6), (x0 + 7, y1 - 3), (x0 + 15, y1 - 3), (x0 + 20, y1 - 5)]) if p in bm], MULL_R[2])
+    body.set(x0 + 8, y1 - 9, MULL_R[3])                    # buricul
+    holes = [(x0 + 14, y0 + 7), (x0 + 6, y0 + 13), (x0 + 20, y0 + 15), (x0 + 22, y0 + 3)]
+    for hx, hy in holes:
+        pk.stamp(body, hx, hy, WOUND, {"r": BLOOD[1], "R": BLOOD[0], "k": HOLE})
+    for hx, hy in (holes[t % 2], holes[2 + (t + 1) % 2]):  # o muscă își scoate capul din rană
+        body.fill([(hx + 1, hy + 1), (hx + 2, hy + 1), (hx + 2, hy + 2)], FLY_R[1])
+        body.set(hx + 1, hy + 1, BLOOD[0])
     fin(body)
-    # brațul-ciot din față
-    am = pk.ellipse(x0 + 2, y0 + 19 + (t % 2), x0 + 7, y0 + 25 + (t % 2))
+    # capul gras, fără gât, înfipt în burtă (strat separat: linia de contur face bărbia dublă)
+    head = L()
+    hb = (12 + lean - puff // 2, 3 + pose.bob + sq + puff, 32 + lean + puff // 2, 22 + pose.bob + sq)
     if ph == "strike":
-        am = pk.ellipse(x0 - 3, y0 + 18, x0 + 4, y0 + 23)
-    pk.shade_flat(arm, am, MULL_R, shadow=(1, 1), deep=None, light_rim=(-1, -1))
-    c = stack(48, 48, [far, body, near, fin(arm)])
-    # muștele care roiesc în jur
-    flies = [(4, 10), (40, 6)] if t % 2 == 0 else [(6, 7), (41, 10)]
+        hb = mbox(hb, -2, 2)
+    hx0, hy0, hx1, hy1 = hb
+    hm = head_mask_left(hb)
+    sphere(head, hm, MULL_R, hb)
+    k = key(MULL_LINE)
+    f = face_left(hb)
+    nx, fx, ey = f["nx"], f["fx"], f["ey"] - 1
+    if ph == "hurt":
+        pk.stamp(head, nx, ey + 1, ["KK...", "..KKK", "KK..."], k)
+        pk.stamp(head, fx, ey + 1, ["..K", "KK.", "..K"], k)
+        pk.stamp(head, f["mx"], f["my"] - 4, [".KKK.", "KkrkK", "KkRkK", ".KKK."], k)
+    else:
+        head.fill(pk.line(nx, ey - 1, nx + 4, ey - 3), MULL_LINE)                 # sprâncene triste
+        head.fill([(fx, ey - 2), (fx + 1, ey - 2)], MULL_LINE)
+        pk.stamp(head, nx, ey, [".KKK.", "KWKKK", "KKKKK", ".LLL."], k)
+        pk.stamp(head, fx, ey, ["KK", "WK", "KK", "L."], k)
+        mouth = {"wind": ["LLLL"], "strike": [".KKK.", "KkrkK", "KkRkK", ".KKK."]}.get(ph, [".LLL.", "L...L"])
+        pk.stamp(head, f["mx"], f["my"] - 3, mouth, k)
+        if ph == "idle":
+            drip(head, nx + 2, ey + 4, 2 + t % 2, t, ramp=[TEAR[0], TEAR[1], TEAR[2]], drop=False)
+    head.fill([(hx0 + 5 + i, hy1 - 1) for i in range(6) if (hx0 + 5 + i, hy1 - 1) in hm], MULL_R[2])   # bărbia dublă
+    fin(head)
+    # brațele-ciot care atârnă pe lângă burtă
+    for lay, (ax, ay), r in ((farm, (x1 - 6, y0 + 4), dim), (arm, (x0 + 1, y0 + 4), MULL_R)):
+        am = pk.ellipse(ax, ay + (t % 2), ax + 5, ay + 9 + (t % 2))
+        if ph == "strike" and lay is arm:
+            am = pk.ellipse(x0 - 5, y0 + 2, x0 + 3, y0 + 7)
+        pk.shade_flat(lay, am, r, shadow=(1, 1), deep=None, light_rim=(-1, -1))
+        fin(lay)
+    c = stack(48, 48, [farm, far, body, near, head, arm])
+    # muștele care roiesc în jur (una tocmai iese dintr-o rană)
+    hx, hy = holes[3]
+    flies = [(3, 12), (40, 5), (hx + 3, hy - 5)] if t % 2 == 0 else [(5, 9), (41, 9), (hx + 5, hy - 7)]
     if ph == "strike":
-        flies = [(1, 12), (8, 4), (42, 8)]
+        flies = [(1, 14), (6, 4), (42, 8)]
     for i, (fx_, fy_) in enumerate(flies):
         c.paste(mini_fly(48, 48, fx_, fy_, t + i))
     return c
@@ -840,11 +891,17 @@ def dead_mulligan(pose):
     sk = L()                                              # pielea goală, dezumflată
     m = pk.polygon([(7, 46), (10, 38), (16, 35), (22, 38), (27, 33), (34, 36), (40, 41), (42, 46)])
     pk.shade_flat(sk, m, MULL_R, shadow=(2, 1), deep=(1, 1), light_rim=(-1, -1))
-    pk.stamp(sk, 17, 40, [".bb.", "bkkb", ".bb."], {"b": MULL_R[3], "k": HOLE})
-    pk.stamp(sk, 29, 38, [".bb.", "bkkb", ".bb."], {"b": MULL_R[3], "k": HOLE})
-    pk.stamp(sk, 10, 41, EYE_X_SMALL, key())
+    pk.stamp(sk, 16, 39, WOUND, {"r": BLOOD[1], "R": BLOOD[0], "k": HOLE})
+    pk.stamp(sk, 28, 38, WOUND, {"r": BLOOD[1], "R": BLOOD[0], "k": HOLE})
     c.paste(fin(sk))
-    for (fx_, fy_) in [(20, 30), (31, 27), (36, 32)]:    # muștele scapă din sac
+    h = L()                                               # capul, căzut pe o parte
+    hb = (3, 33, 17, 46)
+    sphere(h, pk.ellipse(*hb), MULL_R, hb)
+    pk.stamp(h, 5, 37, EYE_X_SMALL, key())
+    pk.stamp(h, 10, 37, EYE_X_SMALL, key())
+    pk.stamp(h, 7, 42, ["KKK", ".H."], key())
+    c.paste(fin(h))
+    for (fx_, fy_) in [(20, 29), (31, 26), (37, 31)]:     # muștele scapă din sac
         c.paste(mini_fly(48, 48, fx_, fy_, fx_))
     return c
 
@@ -893,26 +950,29 @@ def draw_hopper(pose):
         drip(body, mxp + 3, my + 2, 1 + t % 2, t, drop=False)
     fin(body)
     # ochii bulbucați: două cupole pe creștet (silueta lui Hopper)
-    if ph != "hurt":
-        for (ex, ey, w_, near_) in [(x0 + 3, y0 - 3, 8, True), (x0 + 11, y0 - 4, 6, False)]:
-            em = pk.ellipse(ex, ey, ex + w_ - 1, ey + 6)
-            pk.shade_flat(eyes, em, HOP_R if near_ else dim, shadow=(1, 1), deep=None, light_rim=(-1, -1))
-            ix, iy = ex + 1, ey + 2
-            if near_:
-                pk.stamp(eyes, ix, iy, ["WWWWW", "EEWWW", "EEWWW"], k)
-            else:
-                pk.stamp(eyes, ix, iy, ["WWW", "EWW", "EWW"], k)
-        fin(eyes)
-    else:
-        pk.stamp(body, x0 + 4, y0 + 3, ["KK...", "..KKK", "KK..."], k)
+    for (ex, ey, w_, near_) in [(x0 + 3, y0 - 3, 8, True), (x0 + 11, y0 - 4, 6, False)]:
+        if ph == "hurt":
+            ey += 2
+        em = pk.ellipse(ex, ey, ex + w_ - 1, ey + 6)
+        pk.shade_flat(eyes, em, HOP_R if near_ else dim, shadow=(1, 1), deep=None, light_rim=(-1, -1))
+        ix, iy = ex + 1, ey + 2
+        if ph == "hurt":                                  # ochii strânși de durere
+            pk.stamp(eyes, ix, iy + 1, ["KKKKK"[:w_ - 2], ".LLL."[:w_ - 2]], k)
+        elif near_:
+            pk.stamp(eyes, ix, iy, ["WWWWW", "EEWWW", "EEWWW"], k)
+        else:
+            pk.stamp(eyes, ix, iy, ["WWW", "EWW", "EWW"], k)
+    fin(eyes)
     # brațul din față, sprijinit pe sol (sau ridicat în salt)
     if air:
         am = pk.polygon([(14, 30 + oy), (18, 30 + oy), (10, 22 + oy), (7, 23 + oy)])
         hm = pk.ellipse(5, 19 + oy, 10, 24 + oy)
     else:
-        am = pk.polygon([(13, 33 + oy), (17, 33 + oy), (14, 44), (11, 44)])
-        hm = pk.ellipse(8, 43, 14, 46)
-    pk.shade_flat(arm, am | hm, HOP_R, shadow=(1, 1), deep=None, light_rim=(-1, -1))
+        am = pk.polygon([(11.5, 32 + oy), (18.5, 32 + oy), (16, 44), (10.5, 44)])
+        hm = pk.ellipse(7, 42, 16, 46) & pk.rect(0, 0, 47, 46)
+    pk.shade_flat(arm, am | hm, HOP_R, shadow=(2, 1), deep=(1, 1), light_rim=None)
+    if not air:
+        arm.fill([(9, 45), (12, 45)], HOP_R[3])          # degetele lipite de podea
     c.paste(stack(48, 48, [fin(farleg), fin(nearleg), body, eyes, fin(arm)]))
     if ph == "wind":
         dust(c, [(8, 45), (38, 45)])
@@ -1042,6 +1102,7 @@ def dead_maw(pose):
 
 # ───────────────────────────── GLOBIN ─────────────────────────────
 # Grămada de carne vie: un gaper jupuit, roșu-vișiniu, cu mușchii la vedere și pumni grei.
+# Când „moare” prima dată se topește într-o baltă de carne care se ridică din nou (regen_0).
 
 MEAT_R = [mx(BLOOD[0], SKIN[1], 0.45), mx(BLOOD[0], DEPTHS_FLESH, 0.45), DEPTHS_FLESH,
           mx(DEPTHS_FLESH, O, 0.45)]
@@ -1052,20 +1113,20 @@ def globin_body(pose):
     ph, t, sq = pose.ph, pose.t, pose.sq
     lean = {"wind": 2, "strike": -3, "hurt": 3}.get(ph, 0)
     far, near, torso = L(), L(), L()
-    fl = pk.rect(27, 40, 31, 46) | pk.rect(25, 44, 30, 46)
-    nl = pk.rect(18, 40, 22, 46) | pk.rect(16, 44, 21, 46)
+    fl = pk.rect(28, 40, 32, 46) | pk.rect(26, 44, 31, 46)
+    nl = pk.rect(19, 40, 23, 46) | pk.rect(17, 44, 22, 46)
     pk.shade_flat(far, fl, [MEAT_R[2], MEAT_R[2], MEAT_R[3], MEAT_R[3]], shadow=(1, 1), deep=None)
     pk.shade_flat(near, nl, MEAT_R, shadow=(1, 1), deep=None, light_rim=(-1, -1))
     tb = sqbox((15 + lean, 19 + pose.bob, 38 + lean, 43), sq, ground=43)
     tm = pk.ellipse(*tb, fat=0.15) | pk.ellipse(tb[0] + 8, tb[1] - 3, tb[2], tb[1] + 12)   # gheb
     sphere(torso, tm, MEAT_R, (tb[0], tb[1] - 3, tb[2], tb[3]))
     x0, y0, x1, y1 = tb
-    # fibrele mușchilor: arcuri deschise sus, închise jos
-    for i, sx in enumerate((x0 + 9, x0 + 14, x0 + 19)):
-        torso.fill([p for p in pk.line(sx, y0 + 2, sx - 2, y1 - 4) if p in tm], MEAT_R[3])
-        torso.fill([p for p in pk.line(sx - 1, y0 + 3, sx - 3, y0 + 9) if p in tm], SINEW)
-    torso.fill([p for p in pk.line(x0 + 4, y1 - 6, x0 + 12, y1 - 4) if p in tm], MEAT_R[3])
-    drip(torso, x0 + 6, y1 - 3, 2 + t % 2, t, ramp=MEAT_R, drop=False)
+    # fibrele mușchilor: arcuri pe spate, luminate pe muchia de sus
+    for i, sx in enumerate((x0 + 11, x0 + 16, x0 + 21)):
+        torso.fill([p for p in pk.line(sx, y0, sx - 3, y1 - 5) if p in tm], MEAT_R[3])
+        torso.fill([p for p in pk.line(sx - 1, y0 + 1, sx - 3, y0 + 7) if p in tm], SINEW)
+    torso.fill([p for p in pk.line(x0 + 3, y1 - 6, x0 + 13, y1 - 3) if p in tm], MEAT_R[3])
+    drip(torso, x0 + 7, y1 - 2, 2 + t % 2, t, ramp=MEAT_R, drop=False)
     return fin(far), fin(torso), fin(near), lean
 
 
@@ -1076,19 +1137,17 @@ def globin_head(box, pose):
     m = head_mask_left(box)
     sphere(c, m, MEAT_R, box)
     k = key(MEAT_R[3])
-    # fibre pe creștet
-    for sx in (x0 + 9, x0 + 13):
+    for sx in (x0 + 9, x0 + 13):                         # fibre pe creștet
         c.fill([p for p in pk.line(sx, y0 + 1, sx + 2, y0 + 6) if p in m], MEAT_R[3])
     nx, fx, ey = x0 + 6, x0 + 1, y1 - 13
-    # sprânceana încruntată
-    c.fill(pk.line(nx - 1, ey - 2, nx + 5, ey), MEAT_R[3])
+    c.fill(pk.line(nx - 1, ey - 2, nx + 5, ey), MEAT_R[3])        # sprânceana încruntată
     if ph == "hurt":
         pk.stamp(c, nx, ey + 1, ["KK...", "..KKK", "KK..."], k)
         pk.stamp(c, x0 + 3, y1 - 6, [".KKKK.", "KkFFkK", ".KKKK."], k)
         return fin(c)
     pk.stamp(c, nx, ey, ["KKKKK", "KkkkK", "KkkkK", ".KRK."], k)
     pk.stamp(c, fx, ey + 1, ["KK", "kK", "kK", "R."], k)
-    if ph == "strike":
+    if ph == "strike" or ph == "wind":
         pk.stamp(c, x0 + 2, y1 - 7, ["KKKKKKK", "KFkFkFK", "KkkrkkK", "KFkFkFK", ".KKKKK."], k)
     else:
         pk.stamp(c, x0 + 2, y1 - 6, ["KKKKKK.", "KFkFkK.", "KkFkFK.", ".KKKK.."], k)
@@ -1100,18 +1159,18 @@ def globin_arm(pose, lean, which):
     c = L()
     ph = pose.ph
     oy = pose.bob + pose.sq
-    if ph == "wind":
-        sh, hand = (22 + lean, 24 + oy), (20 + lean, 5)
-    elif ph == "strike":
-        sh, hand = (19 + lean, 25 + oy), (9, 42)
+    if ph == "wind":                                      # pumnii trași înapoi-sus, gata de izbit
+        sh, hand = (24 + lean, 29 + oy), (39, 15)
+    elif ph == "strike":                                  # Slam: pumnii izbiți în podea
+        sh, hand = (21 + lean, 31 + oy), (9, 42)
     elif ph == "hurt":
-        sh, hand = (24 + lean, 27 + oy), (36, 22)
+        sh, hand = (25 + lean, 31 + oy), (38, 25)
     else:
-        sh, hand = (19 + lean, 25 + oy), (11, 39 + pose.t % 2)
+        sh, hand = (22 + lean, 31 + oy), (14, 39 + pose.t % 2)
     if which == "far":
-        sh, hand = (sh[0] + 7, sh[1] - 1), (hand[0] + 6, hand[1] - (1 if ph != "wind" else 0))
+        sh, hand = (sh[0] + 7, sh[1] - 2), (hand[0] + 6, hand[1] - 1)
     m = set()
-    for i in range(-1, 3):
+    for i in range(-2, 3):
         m |= set(pk.line(sh[0] + i, sh[1], hand[0] + i, hand[1]))
     hm = pk.ellipse(hand[0] - 3, hand[1] - 3, hand[0] + 3, hand[1] + 3)
     r = MEAT_R if which == "near" else [MEAT_R[2], MEAT_R[2], MEAT_R[3], MEAT_R[3]]
@@ -1125,56 +1184,61 @@ def globin_arm(pose, lean, which):
 def draw_globin(pose):
     far, torso, near, lean = globin_body(pose)
     ph = pose.ph
-    hb = (10 + lean, 9 + pose.bob + pose.sq, 30 + lean, 29 + pose.bob + pose.sq)
+    hb = (11 + lean, 9 + pose.bob + pose.sq, 30 + lean, 28 + pose.bob + pose.sq)
     if ph == "strike":
         hb = mbox(hb, -2, 4)
-    c = stack(48, 48, [globin_arm(pose, lean, "far"), far, torso, near, globin_head(hb, pose),
-                       globin_arm(pose, lean, "near")])
-    if ph == "strike":                                     # Slam: stropi și praf la impact
+    elif ph == "wind":
+        hb = mbox(hb, 2, 2)
+    head = globin_head(hb, pose)
+    na, fa = globin_arm(pose, lean, "near"), globin_arm(pose, lean, "far")
+    layers = [fa, far, torso, near, head, na]
+    c = stack(48, 48, layers)
+    if ph == "strike":                                    # Slam: stropi și praf la impact
         c.paste(fx_drops(48, 48, [(2, 36), (5, 31), (16, 36)], MEAT_R))
         dust(c, [(3, 45), (17, 45)])
     return c
 
 
-def globin_goo(c, cx, y1, w, h, mound, t, eyes=True, dead=False):
-    """Balta de carne topită; `mound` = cât de mult s-a ridicat la loc (regenerare)."""
+def goo_puddle(c, cx, y1, w, h):
     pud = L()
     m = pk.ellipse(cx - w // 2, y1 - h + 1, cx + w // 2, y1) | pk.ellipse(cx - w // 2 - 4, y1 - 3, cx - w // 2 + 6, y1)
     pud.fill(m, MEAT_R[2])
     pud.fill(pk.edge_band(m, 0, 1) | pk.edge_band(m, 1, 1), MEAT_R[3])
     pud.fill(pk.edge_band(m, 0, -1) & pk.edge_band(m, -1, -1), MEAT_R[1])
     c.paste(fin(pud))
-    if mound:
-        mm = L()
-        mb = (cx - 9, y1 - mound - 4, cx + 8, y1 - 1)
-        mmask = pk.ellipse(*mb)
-        sphere(mm, mmask, MEAT_R, mb)
-        for bx, by in [(cx - 6, y1 - mound), (cx + 4, y1 - mound + 1)]:            # bule care se sparg
-            mm.set(bx, by, SINEW)
-        if eyes:
-            k = key(MEAT_R[3])
-            ex, ey = cx - 6, y1 - mound + 1
-            pk.stamp(mm, ex, ey, ["KkK.KkK"] if not dead else ["K.K.K.K"], k)
-        c.paste(fin(mm))
-    for i, (bx, by) in enumerate([(cx - 14, y1 - 6 - t % 2), (cx + 12, y1 - 5)]):      # bule în aer
-        b = L()
-        b.fill(pk.ellipse(bx, by, bx + 1, by + 1), MEAT_R[1])
-        c.paste(fin(b))
 
 
 def regen_globin(pose):
+    """Balta de carne care se reface: o movilă pe jumătate formată, cu capul ieșind din ea."""
     c = L()
-    globin_goo(c, 24, 46, 34, 6, 7, 0)
-    for (x, y) in [(12, 35), (35, 33)]:                    # bucăți care se târăsc înapoi
-        c.paste(gib(48, 48, x, y, 4, 3, MEAT_R))
+    goo_puddle(c, 24, 46, 38, 6)
+    mound = L()
+    mm = pk.blob([(24, 41, 7), (17, 43, 5), (31, 42, 5)], threshold=1.4)
+    mm = {p for p in mm if p[1] <= 45}
+    sphere(mound, mm, MEAT_R, pk.bbox(mm))
+    for i, sx in enumerate((22, 27)):
+        mound.fill([p for p in pk.line(sx, 36, sx - 2, 43) if p in mm], MEAT_R[3])
+    fin(mound)
+    c.paste(mound)
+    c.paste(globin_head((12, 23, 27, 38), Pose(ph="idle", t=1)))
+    arm = L()                                             # un braț care încă se formează
+    am = tube([(33, 42, 2.2), (37, 36, 1.8), (36, 31, 2.4)])
+    pk.shade_flat(arm, am, MEAT_R, shadow=(1, 1), deep=None, light_rim=(-1, -1))
+    c.paste(fin(arm))
+    for (bx, by) in [(8, 37), (40, 27), (14, 19)]:        # bulele și stropii care se adună înapoi
+        b = L()
+        b.fill(pk.ellipse(bx, by, bx + 1, by + 1), MEAT_R[1])
+        b.set(bx, by, MEAT_R[0])
+        c.paste(fin(b))
     return c
 
 
 def dead_globin(pose):
     c = L()
-    globin_goo(c, 24, 46, 40, 7, 4, 0, eyes=True, dead=True)
-    for (x, y, w_, h_) in [(8, 39, 6, 4), (33, 38, 7, 5), (26, 34, 5, 4)]:
+    goo_puddle(c, 24, 46, 42, 7)
+    for (x, y, w_, h_) in [(8, 39, 6, 4), (33, 38, 7, 5), (25, 36, 5, 4), (16, 40, 7, 5)]:
         c.paste(gib(48, 48, x, y, w_, h_, MEAT_R, bone=UI["parchment"][0]))
+    pk.stamp(c, 18, 41, ["K.K", ".K.", "K.K"], key())
     return c
 
 
@@ -1271,25 +1335,27 @@ def dead_charger(pose):
 
 
 # ───────────────────────────── SPIDER ─────────────────────────────
-# Păianjenul mic: corp maroniu-negru, ochi roșii, opt picioare subțiri ca firul de contur.
+# Păianjenul mic: abdomen mare și rotund, maroniu-negru, cu semn roșu; ochi roșii; opt picioare
+# subțiri, de grosimea conturului (ca firul).
 
-SPIDER_R = [mx(POOP[3], WHITE, 0.3), mx(POOP[3], DEPTHS[1], 0.25), mx(BASEMENT[4], DEPTHS[2], 0.5),
-            mx(DEPTHS[3], O, 0.4)]
+SPIDER_R = [mx(POOP[2], WHITE, 0.3), mx(POOP[3], POOP[2], 0.35), mx(POOP[3], O, 0.3), mx(O, POOP[3], 0.25)]
+SPIDER_LEG = mx(O, POOP[3], 0.15)
 
 
 def spider_legs(ph, t, dx=0, dy=0, rear=0):
     """Picioarele apropiate (4): (prindere, genunchi, laba). Cele îndepărtate sunt aceleași, decalate."""
     j = 1 if t % 2 else 0
-    legs = [((10, 19), (5, 13 - j), (1, 30)), ((12, 20), (9, 12 + j), (7, 30)),
-            ((15, 20), (19, 12 - j), (21, 30)), ((16, 20), (24, 13 + j), (28, 30))]
-    if ph == "wind":                                       # se ridică pe spate, picioarele din față sus
-        legs[0] = ((10, 17), (6, 8), (2, 5))
-        legs[1] = ((12, 18), (8, 7), (6, 3))
+    legs = [((10, 21), (5, 15 - j), (1, 31)), ((12, 21), (9, 14 + j), (7, 31)),
+            ((15, 22), (20, 14 - j), (22, 31)), ((17, 22), (25, 15 + j), (28, 31))]
+    if ph == "wind":                                       # se ridică: picioarele din față în aer
+        legs[0] = ((10, 19), (4, 13), (2, 8))
+        legs[1] = ((12, 20), (7, 12), (6, 7))
     if ph == "strike":
-        legs[0] = ((10, 19), (3, 15), (0, 24))
+        legs[0] = ((10, 21), (3, 17), (0, 25))
     out = []
     for (a, k_, f) in legs:
-        out.append([(a[0] + dx, a[1] + dy - rear), (k_[0] + dx, k_[1] + dy - rear), (f[0] + (dx if f[1] < 30 else dx // 2), f[1] if f[1] == 30 else f[1] + dy - rear)])
+        foot = (f[0] + dx // 2, 31) if f[1] == 31 else (f[0] + dx, f[1] + dy - rear)
+        out.append([(a[0] + dx, a[1] + dy - rear), (k_[0] + dx, k_[1] + dy - rear), foot])
     return out
 
 
@@ -1299,47 +1365,45 @@ def draw_spider(pose):
     dx = {"strike": -3, "wind": 2, "hurt": 2}.get(ph, 0)
     rear = 3 if ph == "wind" else 0
     dy = pose.sq
-    leg_col = O
-    knee_col = SPIDER_R[2]
     farl = L(32, 32)
     for pts in spider_legs(ph, t + 1, dx + 2, dy - 1, rear):
-        farl.fill(pk.polyline(pts), mx(O, SPIDER_R[2], 0.35))
+        farl.fill(pk.polyline(pts), mx(SPIDER_LEG, SPIDER_R[2], 0.5))
     c.paste(farl)
     body = L(32, 32)
-    ab = (15 + dx, 12 + dy - rear // 2, 27 + dx, 22 + dy)
+    ab = (14 + dx, 9 + dy, 29 + dx, 23 + dy)
     am = pk.ellipse(*ab)
     sphere(body, am, SPIDER_R, ab)
-    # semnul roșu de pe spate (clepsidra) + perișori
-    pk.stamp(body, ab[0] + 6, ab[1] + 3, ["RR.", ".R.", ".RR"], {"R": BLOOD[1]})
+    # semnul roșu de pe spate (clepsidra) + dungile
+    pk.stamp(body, ab[0] + 6, ab[1] + 4, ["RRR", ".R.", "RRR"], {"R": BLOOD[1]})
+    body.set(ab[0] + 6, ab[1] + 4, BLOOD[0])
     fin(body)
     head = L(32, 32)
-    hb = (7 + dx, 15 + dy - rear, 16 + dx, 22 + dy - rear)
+    hb = (7 + dx, 15 + dy - rear, 17 + dx, 23 + dy - rear)
     hm = pk.ellipse(*hb)
     sphere(head, hm, SPIDER_R, hb)
-    ek = {"R": BLOOD[0], "W": WHITE, "r": BLOOD[1], "K": O}
+    ek = {"R": BLOOD[0], "W": WHITE, "r": BLOOD[1], "K": O, "H": tn(BLOOD[0], 1.5)}
     if ph == "hurt":
         pk.stamp(head, hb[0] + 1, hb[1] + 2, ["RR.", "..R", "RR."], ek)
     else:
-        pk.stamp(head, hb[0] + 1, hb[1] + 2, ["WR.R", "RR.r"], ek)                 # 2 ochi mari + 2 mici
+        pk.stamp(head, hb[0] + 1, hb[1] + 1, ["WR.H.", "RR.Rr", "...r."], ek)        # 2 ochi mari + 2 mici
     fin(head)
-    # colții (chelicerele): albi, deschiși la mușcătură
     fang = [(hb[0] + 1, hb[3] + 1), (hb[0] + 3, hb[3] + 1)]
-    if ph == "strike":
+    if ph == "strike":                                     # colții deschiși la mușcătură
         fang = [(hb[0], hb[3] + 1), (hb[0] - 1, hb[3] + 2), (hb[0] + 3, hb[3] + 1), (hb[0] + 3, hb[3] + 2)]
     c.paste(body)
     c.paste(head)
     c.fill(fang, UI["parchment"][0])
     nearl = L(32, 32)
     for pts in spider_legs(ph, t, dx, dy, rear):
-        nearl.fill(pk.polyline(pts), leg_col)
-        nearl.set(pts[1][0], pts[1][1], knee_col)
+        nearl.fill(pk.polyline(pts), SPIDER_LEG)
+        nearl.set(pts[1][0], pts[1][1], SPIDER_R[1])
     c.paste(nearl)
     if ph == "strike":                                     # venin verde care picură din colți
         c.fill([(hb[0] - 1, hb[3] + 3), (hb[0] - 1, hb[3] + 4)], STATUS["poison"])
         c.set(hb[0] - 1, hb[3] + 6, mx(STATUS["poison"], O, 0.3))
         lines = L(32, 32)
-        for (x0, y0, n) in [(27, 14, 4), (28, 18, 4)]:
-            lines.fill([(x0 + i, y0) for i in range(n)], mx(SPIDER_R[1], WHITE, 0.2))
+        for (x0, y0, n) in [(28, 12, 3), (29, 16, 3)]:
+            lines.fill([(x0 + i, y0) for i in range(n)], mx(SPIDER_R[1], WHITE, 0.25))
         c.paste(lines)
     return c
 
@@ -1351,13 +1415,12 @@ def dead_spider(pose):
                                        mx(STATUS["poison"], O, 0.4), mx(STATUS["poison"], O, 0.65)])
     c.paste(fin(pud))
     b = L(32, 32)
-    ab = (9, 21, 22, 29)
+    ab = (8, 20, 23, 29)
     sphere(b, pk.ellipse(*ab), SPIDER_R, ab)
     c.paste(fin(b))
-    # pe spate, cu picioarele strânse în sus
-    for (x0, x1) in [(10, 8), (13, 12), (17, 18), (20, 23)]:
-        c.fill(pk.polyline([(x0, 22), (x1, 17), (x1 + (1 if x1 > 15 else -1), 15)]), O)
-    pk.stamp(c, 11, 24, ["R.R", ".R.", "R.R"], {"R": BLOOD[0]})
+    for (x0, x1) in [(10, 8), (13, 12), (17, 18), (20, 23)]:     # pe spate, picioarele strânse în sus
+        c.fill(pk.polyline([(x0, 21), (x1, 16), (x1 + (1 if x1 > 15 else -1), 14)]), SPIDER_LEG)
+    pk.stamp(c, 10, 23, ["R.R", ".R.", "R.R"], {"R": BLOOD[0]})
     return c
 
 
@@ -1383,6 +1446,8 @@ def draw_knight(pose):
         fl, nl = pk.shift(fl, 2, 0), pk.shift(nl, -2, 0)
     pk.shade_flat(far, fl, [KLEG_R[2], KLEG_R[2], KLEG_R[3], KLEG_R[3]], shadow=(1, 1), deep=None)
     pk.shade_flat(near, nl, KLEG_R, shadow=(1, 1), deep=None)
+    fin(far)
+    fin(near)
     box = sqbox((11 + lean, 7 + low + pose.bob, 37 + lean, 40), sq, ground=40)
     x0, y0, x1, y1 = box
     # creierul: iese prin spatele coifului (strat sub coif)
@@ -1648,7 +1713,7 @@ def draw_leaper(pose):
     elif ph == "hurt":
         a_sh, a_hand = (21 + lean, 26 + oy), (34, 23 + oy)
     else:
-        a_sh, a_hand = (19 + lean, 26 + oy), (10, 44)
+        a_sh, a_hand = (22 + lean, 30 + oy), (11, 44)
     for lay, (sh, hand), r in ((farm, ((a_sh[0] + 6, a_sh[1] - 1), (a_hand[0] + 6, a_hand[1] - (2 if air else 0))), dim),
                                (arm, (a_sh, a_hand), LEAP_R)):
         m = set()
@@ -1658,7 +1723,9 @@ def draw_leaper(pose):
         pk.shade_flat(lay, m | hm, r, shadow=(1, 1), deep=None, light_rim=(-1, -1))
         fin(lay)
     head = leaper_head((5 + lean, 17 + oy, 25 + lean, 36 + oy), ph, t)
-    return stack(48, 48, [c, farleg, farm, fin(torso), fin(nearleg), head, arm])
+    if air or ph == "hurt":
+        return stack(48, 48, [c, fin(farleg), farm, fin(torso), fin(nearleg), head, arm])
+    return stack(48, 48, [c, fin(farleg), farm, fin(torso), fin(nearleg), arm, head])
 
 
 def leaper_head(box, ph, t):
@@ -1710,55 +1777,61 @@ def dead_leaper(pose):
 
 
 # ───────────────────────────── HOST ─────────────────────────────
-# Craniul-capac: stă închis (invulnerabil), apoi își ridică țeasta și arată fața de carne vie.
+# Craniul-capac: stă închis pe podea (invulnerabil), apoi își ridică țeasta și arată fața de
+# carne vie de dedesubt, care scuipă trei proiectile.
 
 FLESH_R = [mx(BLOOD[0], SKIN[1], 0.4), BLOOD[0], BLOOD[1], BLOOD[2]]
+HOST_BOX = (8, 21, 39, 56)                                 # domul craniului (tăiat jos, la margine)
 
 
 def host_skull(lift, ph, t, cracked=False):
     c = L()
     y1 = 46 - lift
-    box = (9, y1 - 30, 38, y1 + 8)
+    x0, by0, x1, by1 = HOST_BOX
+    box = (x0, by0 - lift, x1, by1 - lift)
     m = {p for p in pk.ellipse(*box) if p[1] <= y1}
     sphere(c, m, BONE_R, box)
     k = key(BONE_LINE)
-    x0 = box[0]
-    # orbitele (goale) + nasul + dinții de sus pe marginea capacului
-    ey = y1 - 14
-    pk.stamp(c, x0 + 7, ey, [".KKKK.", "KkkkkK", "KkkkkK", "KkkkkK", "KkkkkK", ".KKKK."], k)
-    pk.stamp(c, x0 + 1, ey + 1, ["KK", "kK", "kK", "kK", "K."], k)
+    # orbitele goale (mari, ca la un craniu de copil) + nasul + dinții pe marginea capacului
+    ey = y1 - 13
+    pk.stamp(c, x0 + 7, ey, [".KKKKK.", "KkkkkkK", "KkkkkkK", "KkkkkkK", "KkkkkkK", ".KKKKK."], k)
+    pk.stamp(c, x0 + 1, ey + 1, ["KKK", "kkK", "kkK", "kkK", "KK."], k)
     pk.stamp(c, x0 + 4, ey + 7, [".K", "KK"], k)
-    for i in range(0, 14):
+    for i in range(0, 16):
         xx = x0 + 2 + i
         if (xx, y1) in m:
             c.set(xx, y1, O if i % 2 else BONE_R[0])
             c.set(xx, y1 - 1, BONE_R[2] if i % 2 else BONE_R[1])
-    c.fill(pk.polyline([(x0 + 18, y1 - 28), (x0 + 17, y1 - 24), (x0 + 20, y1 - 21), (x0 + 19, y1 - 18)]), BONE_LINE)
+    c.fill([p for p in pk.polyline([(x0 + 19, y1 - 24), (x0 + 18, y1 - 20), (x0 + 21, y1 - 17), (x0 + 20, y1 - 14)]) if p in m], BONE_LINE)
     if cracked:
-        c.fill(pk.polyline([(x0 + 12, y1 - 29), (x0 + 13, y1 - 22), (x0 + 10, y1 - 17), (x0 + 12, y1 - 12)]), O)
-    if ph in ("closed", "idle") and lift == 0:
-        c.set(x0 + 9, ey + 3, BLOOD[1] if t % 2 == 0 else BLOOD[2])   # o luminiță roșie în orbită
+        c.fill([p for p in pk.polyline([(x0 + 13, y1 - 25), (x0 + 14, y1 - 19), (x0 + 11, y1 - 15), (x0 + 13, y1 - 10)]) if p in m], O)
+    if lift == 0 and ph != "dead":
+        c.set(x0 + 10, ey + 3, BLOOD[1] if t % 2 == 0 else BLOOD[0])   # luminița roșie din orbită
     return fin(c)
 
 
 def host_face(lift, ph, t):
     """Fața de carne de sub craniu (se vede doar când capacul e ridicat)."""
     c = L()
-    box = (11, 46 - max(lift, 2) - 3, 36, 46 + 6)
+    box = (10, 46 - max(lift, 2) - 4, 37, 46 + 10)
     m = {p for p in pk.ellipse(*box) if p[1] <= 46}
     sphere(c, m, FLESH_R, box)
     k = key(BLOOD[2])
-    if lift >= 6:
-        ey = 46 - lift + 2
+    if lift >= 8:
+        ey = 46 - lift + 1
         if ph == "hurt":
-            pk.stamp(c, 15, ey, ["KK...", "..KKK", "KK..."], k)
+            pk.stamp(c, 16, ey, ["KK...", "..KKK", "KK..."], k)
+            pk.stamp(c, 12, ey, ["K.", ".K", "K."], k)
             pk.stamp(c, 15, ey + 4, [".KKK.", "KkrkK", ".KKK."], k)
         else:
-            pk.stamp(c, 16, ey, ["KKK", "KWK"], k)
-            pk.stamp(c, 12, ey, ["KK", "WK"], k)
-            if lift >= 8:
-                op = ph in ("strike", "open1")
-                pk.stamp(c, 13, ey + 4, [".KKKK.", "KkrrkK", "KkrRkK", ".KKKK."] if op else [".KKK.", "KkrkK", ".KKK."], k)
+            pk.stamp(c, 16, ey, ["KKK", "KWK", "KKK"], k)
+            pk.stamp(c, 12, ey, ["KK", "WK", "KK"], k)
+            c.fill(pk.line(15, ey - 1, 19, ey - 2), BLOOD[2])                       # sprânceana
+            if ph in ("strike", "open1"):
+                pk.stamp(c, 13, ey + 4, [".KKKK.", "KkrrkK", "KkrRkK", "KkkkkK", ".KKKK."], k)
+            else:
+                pk.stamp(c, 14, ey + 4, [".KKK.", "KkrkK", ".KKK."], k)
+            drip(c, 15, ey + 8, 1 + t % 2, t, drop=False)
     return fin(c)
 
 
@@ -1769,9 +1842,10 @@ def draw_host_state(lift, ph, t, shots=False):
     sk = host_skull(lift, ph, t)
     c.paste(pk.shifted(sk, jitter, 0) if jitter else sk)
     if lift == 0:                                          # sânge care se prelinge de sub capac
-        drip(c, 13, 44, 1 + t % 2, t, drop=False)
+        drip(c, 13, 45, 1 + t % 2, t, drop=False)
+        drip(c, 33, 45, 1 + (t + 1) % 2, t, drop=False)
     if shots:                                              # Triple Shot: trei proiectile în evantai
-        for (x, y) in [(0, 25), (3, 33), (0, 41)]:
+        for (x, y) in [(1, 24), (0, 32), (3, 40)]:
             c.paste(fx_shot(48, 48, x, y, 5))
     return c
 
@@ -1781,10 +1855,10 @@ def draw_host(pose):
     if ph == "idle":
         return draw_host_state(0, "idle", t)
     if ph == "wind":
-        return draw_host_state(7, "open0", t)
+        return draw_host_state(9, "open0", t)
     if ph == "strike":
-        return draw_host_state(10, "strike", t, shots=True)
-    if ph == "hurt":
+        return draw_host_state(12, "strike", t, shots=True)
+    if ph == "hurt":                                       # lovit cât e deschis: capacul trântit pe jumătate
         return draw_host_state(8, "hurt", t)
     raise ValueError(ph)
 
@@ -1794,11 +1868,11 @@ def dead_host(pose):
     pud = L()
     puddle(pud, 24, 46, 44, 7, lobes=[(10, 12, 5), (38, 12, 6)])
     c.paste(fin(pud))
-    for (x, y, w_, h_) in [(30, 39, 7, 5), (7, 41, 5, 4)]:
+    for (x, y, w_, h_) in [(31, 39, 7, 5), (6, 41, 5, 4)]:
         c.paste(gib(48, 48, x, y, w_, h_, FLESH_R))
-    sk = host_skull(0, "dead", 0, cracked=True)            # craniul crăpat, înclinat pe o parte
-    sk = squash_canvas(sk, 0.78)
-    c.paste(pk.shifted(sk, -3, 0))
+    sk = host_skull(0, "dead", 0, cracked=True)            # craniul crăpat, turtit în baltă
+    sk = squash_canvas(sk, 0.72)
+    c.paste(pk.shifted(sk, -2, 0))
     return c
 
 
@@ -1816,13 +1890,15 @@ def squash_canvas(c, k):
 
 
 # ───────────────────────────── NERVE ENDING ─────────────────────────────
-# Terminația nervoasă: o tulpină de carne care crește din podea și se leagănă; nu atacă, doar blochează.
+# Terminația nervoasă: o tulpină de carne vânătă, noduroasă, care crește din podea și se leagănă;
+# în vârf are un bulb cu dendrite care zvâcnesc. Nu atacă: doar blochează (Taunt).
 
-NERVE_R = [mx(SKIN[0], BLOOD[0], 0.3), mx(SKIN[1], BLOOD[0], 0.48), mx(SKIN[2], BLOOD[1], 0.55),
-           mx(DEPTHS_FLESH, O, 0.2)]
+NERVE_R = [mx(SKIN[1], BLOOD[0], 0.42), mx(BLOOD[0], DEPTHS_FLESH, 0.4), DEPTHS_FLESH,
+           mx(DEPTHS_FLESH, O, 0.5)]
+NERVE_HI = mx(SKIN[0], BLOOD[0], 0.25)
 
 
-def shade_tube(c, mask, ramp, cuts=(0.75, 0.25, -0.15)):
+def shade_tube(c, mask, ramp, cuts=(0.78, 0.3, -0.1)):
     """Umbrire de cilindru vertical: pe fiecare rând, stânga e luminată, dreapta în umbră."""
     rows = {}
     for x, y in mask:
@@ -1843,55 +1919,63 @@ def shade_tube(c, mask, ramp, cuts=(0.75, 0.25, -0.15)):
 def nerve_path(ph, t):
     """Punctele tulpinii (x, y, rază), de la bază spre vârf."""
     if ph == "wind":                                       # se strânge înapoi, ca un arc
-        return [(24, 45, 3.5), (25, 38, 3), (29, 30, 2.6), (31, 22, 2.4), (28, 16, 2.6)]
+        return [(24, 45, 4.2), (25, 38, 3.4), (29, 31, 2.8), (31, 24, 2.5), (28, 18, 2.6)]
     if ph == "strike":                                     # biciuie spre stânga
-        return [(24, 45, 3.5), (23, 38, 3), (19, 31, 2.6), (13, 27, 2.4), (7, 27, 2.6)]
+        return [(24, 45, 4.2), (23, 38, 3.4), (19, 32, 2.8), (13, 28, 2.5), (8, 28, 2.6)]
     if ph == "hurt":
-        return [(24, 45, 3.6), (26, 39, 3.2), (28, 33, 3), (30, 28, 2.8), (31, 23, 2.9)]
+        return [(24, 45, 4.4), (26, 39, 3.6), (28, 34, 3.2), (30, 29, 2.9), (31, 24, 3)]
     s = [0, 1][t % 2]
-    return [(24, 45, 3.5), (23, 38, 3), (23 + s, 30, 2.6), (25 + s, 22, 2.4), (24 + 2 * s, 13, 2.6)]
+    return [(24, 45, 4.2), (23, 38, 3.4), (23 + s, 31, 2.8), (25 + s, 23, 2.5), (24 + 2 * s, 15, 2.6)]
 
 
 def draw_nerve_ending(pose):
     ph, t = pose.ph, pose.t
     c = L()
     roots = L()
-    rm = pk.ellipse(15, 41, 33, 47) & pk.rect(0, 0, 47, 46)
-    rm |= tube([(17, 44, 1.5), (11, 45, 1.2), (6, 46, 0.8)]) | tube([(31, 44, 1.5), (37, 45, 1.2), (42, 46, 0.8)])
+    rm = pk.ellipse(15, 40, 33, 49)
+    rm |= tube([(17, 44, 1.6), (11, 45, 1.2), (6, 46, 0.8)]) | tube([(31, 44, 1.6), (37, 45, 1.2), (42, 46, 0.8)])
     rm = {p for p in rm if p[1] <= 46}
-    sphere(roots, rm, NERVE_R, (15, 39, 33, 50))
+    sphere(roots, rm, NERVE_R, (15, 38, 33, 52))
     c.paste(fin(roots))
     stalk = L()
     path = nerve_path(ph, t)
     sm = tube(path)
-    # nodurile de-a lungul tulpinii (umflături)
-    for i in (1, 2, 3):
+    # nodurile de-a lungul tulpinii, alternativ stânga/dreapta (o tulpină noduroasă, nu o țeavă)
+    knots = []
+    for i, side in ((1, 1), (2, -1), (3, 1)):
         x, y, r = path[i]
-        sm |= disc(x, y, r + 1.2)
+        kx, ky = x + side * (r * 0.6), y + 1
+        sm |= disc(kx, ky, r * 0.85)
+        knots.append((kx, ky, r * 0.85))
     tip = path[-1]
-    bulb = disc(tip[0], tip[1] - 2, 4.2) | disc(tip[0] - 2, tip[1] - 4, 2.6) | disc(tip[0] + 2, tip[1] - 5, 2.4)
+    tx, ty = tip[0], tip[1]
+    bulb = disc(tx, ty - 3, 4.2) | disc(tx - 2.5, ty - 5, 2.6) | disc(tx + 2, ty - 6, 2.4)
     sm |= bulb
     sm = {p for p in sm if p[1] <= 44}
     shade_tube(stalk, sm, NERVE_R)
-    # nervura întunecată care urcă pe tulpină + luciul de pe noduri
+    # nervura întunecată care urcă pe tulpină + luciul de pe noduri și de pe bulb
     for (a, b) in zip(path, path[1:]):
         stalk.fill([p for p in pk.line(int(a[0] + 1), int(a[1]), int(b[0] + 1), int(b[1])) if p in sm], NERVE_R[3])
-    for i in (1, 2, 3):
-        x, y, r = path[i]
-        stalk.set(int(x - r), int(y - 1), NERVE_R[0])
-    bx, by = tip[0] - 3, tip[1] - 6
-    stalk.fill([(bx, by), (bx + 1, by), (bx, by + 1)], WHITE)
-    if ph == "hurt":
-        pass
+    for (kx, ky, r) in knots:
+        stalk.set(int(kx - r + 1), int(ky - r + 1), NERVE_HI)
+    stalk.fill([(int(tx) - 3, int(ty) - 7), (int(tx) - 2, int(ty) - 7), (int(tx) - 3, int(ty) - 6)], NERVE_HI)
+    stalk.set(int(tx) - 3, int(ty) - 7, WHITE)
     fin(stalk)
+    # dendritele din vârf: fire subțiri care zvâcnesc (alternează între cadre)
+    tw = 1 if t % 2 else 0
+    den = L()
+    for (dx_, dy_, ex, ey) in [(-3, -7, -6 - tw, -11), (1, -8, 2 + tw, -13), (3, -6, 6, -9 + tw)]:
+        den.fill(pk.line(int(tx + dx_), int(ty + dy_), int(tx + ex), int(ty + ey)), NERVE_R[2])
+        den.set(int(tx + ex), int(ty + ey), NERVE_R[1])
+    c.paste(fin(den))
     c.paste(stalk)
-    drip(c, int(tip[0]) + 2, int(tip[1]) + 2, 2 + t % 2, t)
+    drip(c, int(tx) + 3, int(ty) - 1, 2 + t % 2, t)
     if ph == "strike":                                     # arcul loviturii
         arc = L()
-        arc.fill([(9, 17), (12, 14), (16, 13), (20, 14), (5, 21)], mx(NERVE_R[1], WHITE, 0.3))
+        arc.fill([(9, 17), (12, 14), (16, 13), (20, 14), (5, 21)], mx(NERVE_R[1], WHITE, 0.35))
         c.paste(arc)
-    if ph == "wind":                                       # Taunt: semnul „taunt” (zvâcnire)
-        c.fill([(14, 12), (14, 13), (13, 15), (16, 9), (17, 8)], STATUS["taunt"])
+    if ph == "wind":                                       # Taunt: zvâcnete în culoarea statusului
+        c.fill([(13, 14), (13, 15), (12, 17), (16, 11), (17, 10), (10, 20)], STATUS["taunt"])
     return c
 
 
@@ -1901,16 +1985,17 @@ def dead_nerve_ending(pose):
     puddle(pud, 24, 46, 44, 5, lobes=[(10, 12, 4)])
     c.paste(fin(pud))
     roots = L()
-    rm = {p for p in pk.ellipse(17, 40, 31, 47) if p[1] <= 46}
-    sphere(roots, rm, NERVE_R, (17, 39, 31, 50))
-    stub = disc(24, 39, 2.8)
+    rm = {p for p in pk.ellipse(16, 40, 32, 49) if p[1] <= 46}
+    sphere(roots, rm, NERVE_R, (16, 38, 32, 52))
+    stub = disc(24, 39, 3.4)
     sphere(roots, stub, NERVE_R, None)
     roots.fill(pk.ellipse(22, 37, 26, 39), BLOOD[1])
     c.paste(fin(roots))
-    st = L()                                              # tulpina căzută la stânga
-    sm = tube([(18, 44, 2.4), (11, 43, 2.2), (5, 44, 2.2)]) | disc(4, 42, 3.4)
+    st = L()                                              # tulpina retezată, căzută la stânga
+    sm = tube([(18, 44, 2.6), (11, 43, 2.4), (5, 44, 2.4)]) | disc(4, 41, 3.6)
     sm = {p for p in sm if p[1] <= 46}
     sphere(st, sm, NERVE_R, None)
+    st.fill([(18, 43), (18, 44), (19, 44)], BLOOD[1])
     c.paste(fin(st))
     return c
 
@@ -1945,11 +2030,27 @@ ENEMIES = {
     "nerve_ending": (48, draw_nerve_ending, dead_nerve_ending),
 }
 
-# portretul = o fereastră de 24×24 din idle_0 (x, y = colțul stânga-sus)
-PORTRAIT_WIN = {"fly": (3, 2), "gaper": (11, 6), "pooter": (4, 2), "horf": (11, 8), "clotty": (12, 22),
-                "mulligan": (8, 6), "hopper": (9, 12), "maw": (11, 5), "globin": (9, 8), "charger": (2, 24),
-                "spider": (4, 6), "knight": (8, 8), "bony": (11, 4), "leaper": (4, 16), "host": (8, 16),
-                "nerve_ending": (12, 4)}
+# Portretul (24×24, pentru bara de ture). Cine are un cap desenat separat îl primește întreg,
+# redesenat într-o cutie care încape în 24×24 (ca portretele eroilor). Restul = o fereastră din idle_0.
+PORTRAIT_WIN = {"fly": (3, 2), "pooter": (4, 3), "clotty": (4, 20), "mulligan": (10, 1), "hopper": (9, 11),
+                "charger": (2, 24), "spider": (4, 6), "knight": (5, 9), "host": (8, 20), "nerve_ending": (12, 4)}
+
+
+def _head_portrait(layers):
+    out = L(24, 24)
+    for lay in layers:
+        out.paste(lay)
+    return out
+
+
+PORTRAIT_HEAD = {
+    "gaper": lambda: _head_portrait([gaper_head((1, 1, 22, 22), Pose())]),
+    "horf": lambda: _head_portrait([horf_head((1, 1, 22, 22), Pose())]),
+    "maw": lambda: _head_portrait([maw_head((1, -5, 22, 22), Pose())]),
+    "globin": lambda: _head_portrait([globin_head((2, 1, 21, 22), Pose())]),
+    "bony": lambda: _head_portrait([bony_jaw((1, 0, 22, 19), "idle"), bony_skull((1, 0, 22, 19), "idle", 0)]),
+    "leaper": lambda: _head_portrait([leaper_head((2, 2, 22, 21), "idle", 0)]),
+}
 
 
 def portrait_from(c, x, y):
@@ -1969,12 +2070,14 @@ def build_enemy(eid):
     frames["dead_0"] = dead(Pose(ph="dead"))
     if eid == "host":                                      # capacul închis / ridicat
         frames["closed_0"] = draw_host_state(0, "closed", 0)
-        frames["open_0"] = draw_host_state(8, "open0", 0)
-        frames["open_1"] = draw_host_state(10, "open1", 1)
+        frames["open_0"] = draw_host_state(10, "open0", 0)
+        frames["open_1"] = draw_host_state(12, "open1", 1)
     if eid == "globin":
         frames["regen_0"] = regen_globin(Pose(ph="regen"))
-    px, py = PORTRAIT_WIN[eid]
-    frames["portrait"] = portrait_from(frames["idle_0"], px, py)
+    if eid in PORTRAIT_HEAD:
+        frames["portrait"] = PORTRAIT_HEAD[eid]()
+    else:
+        frames["portrait"] = portrait_from(frames["idle_0"], *PORTRAIT_WIN[eid])
     return frames
 
 
@@ -1995,16 +2098,130 @@ def review_sheet(enemies, path=None):
                      title="Darkest Basement - enemies (x6), all facing left")
 
 
+# ───────────────────────────── macheta în context ─────────────────────────────
+# Pentru fiecare etaj: două întâlniri (toți inamicii etajului, pe rangurile permise în GDD)
+# și boss-ul, față în față cu eroii (rangurile 4-3-2-1 la stânga, 1-2-3-4 la dreapta).
+
+ENV = os.path.join(ROOT, "Assets", "_Game", "Resources", "Textures", "Env")
+HEROES_DIR = os.path.join(ROOT, "Assets", "_Game", "Resources", "Sprites", "Heroes")
+FLOORS = [
+    ("basement", "Basement (etajul 1)", [["gaper", "clotty", "horf", "pooter"], ["mulligan", "gaper", "fly", "fly"]]),
+    ("caves", "Caves (etajul 2)", [["globin", "charger", "maw", "hopper"], ["charger", "spider", "hopper", "spider"]]),
+    ("depths", "Depths (etajul 3)", [["nerve_ending", "knight", "host", "bony"], ["knight", "leaper", "bony", "host"]]),
+]
+SLOT = 46                                              # distanța dintre ranguri, în px
+
+
+def _img(cv):
+    return cv.to_image()
+
+
+def _backdrop(floor, w, h, ground_top):
+    """Peretele etajului (întunecat, ca să iasă personajele în față) + banda de podea."""
+    from PIL import Image
+    wall = Image.open(os.path.join(ENV, floor, "wall.png")).convert("RGBA")
+    flo = Image.open(os.path.join(ENV, floor, "floor.png")).convert("RGBA")
+    out = Image.new("RGBA", (w, h))
+    for y in range(0, ground_top, wall.height):
+        for x in range(0, w, wall.width):
+            out.alpha_composite(wall, (x, y - (wall.height - ground_top % wall.height) % wall.height))
+    dark = Image.new("RGBA", (w, ground_top), (20, 14, 14, 150))
+    out.alpha_composite(dark, (0, 0))
+    for y in range(ground_top, h, flo.height // 2):
+        for x in range(0, w, flo.width):
+            out.paste(flo.crop((0, 0, flo.width, flo.height // 2)), (x, y))
+    fdark = Image.new("RGBA", (w, h - ground_top), (20, 14, 14, 90))
+    out.alpha_composite(fdark, (0, ground_top))
+    shade = Image.new("RGBA", (w, 2), pk.rgba(pk.tint(BASEMENT[4], 0.55)))
+    out.alpha_composite(shade, (0, ground_top))
+    return out
+
+
+def _heroes(img, ground, x0=4):
+    from PIL import Image
+    for i, h in enumerate(["lilith", "isaac", "cain", "azazel"]):
+        im = Image.open(os.path.join(HEROES_DIR, h, "side_idle_0.png")).convert("RGBA")
+        img.alpha_composite(im, (x0 + i * SLOT, ground - 47))
+    fam = os.path.join(ROOT, "Assets", "_Game", "Resources", "Sprites", "Familiars", "incubus", "idle_0.png")
+    if os.path.exists(fam):
+        img.alpha_composite(Image.open(fam).convert("RGBA"), (x0 + 34, ground - 60))
+
+
+def context_mock(enemies, bosses, path=None):
+    from PIL import Image, ImageDraw
+    scale, pad = 3, 24
+    W = 4 + 4 * SLOT + 24 + 4 * SLOT + 8
+    strips = []
+    for floor, title, encounters in FLOORS:
+        for n, line in enumerate(encounters):
+            h, g = 78, 66
+            img = _backdrop(floor, W, h, 56)
+            _heroes(img, g)
+            ex0 = 4 + 4 * SLOT + 24
+            for r, eid in enumerate(line):               # rangul 1 e cel mai aproape de eroi
+                frame = "closed_0" if (eid == "host" and n == 1) else ("idle_1" if r % 2 else "idle_0")
+                cv = enemies[eid][frame]
+                x = ex0 + r * SLOT + (48 - cv.w) // 2
+                img.alpha_composite(_img(cv), (x, g - (cv.h - 1)))
+            strips.append(("%s - intalnirea %d: rangurile 1-4 = %s" % (title, n + 1, ", ".join(line)), img))
+        if floor == "basement":
+            h, g = 122, 110
+            img = _backdrop(floor, W, h, 98)
+            _heroes(img, g)
+            img.alpha_composite(_img(bosses["monstro"]["idle_0"]), (4 + 4 * SLOT + 30, g - 95))
+            strips.append((title + " - boss: Monstro", img))
+        elif floor == "caves":
+            h, g = 152, 140
+            img = _backdrop(floor, W, h, 128)
+            _heroes(img, g)
+            img.alpha_composite(_img(bosses["gurdy"]["idle_0"]), (4 + 4 * SLOT + 40, g - 127))
+            img.alpha_composite(_img(enemies["pooter"]["idle_0"]), (4 + 4 * SLOT + 18, g - 31 - 34))
+            img.alpha_composite(_img(enemies["fly"]["idle_1"]), (4 + 4 * SLOT + 22, g - 31 - 4))
+            strips.append((title + " - boss: Gurdy (+ minionii chemati cu Spawn)", img))
+        else:
+            h, g = 176, 159
+            img = _backdrop(floor, W, h, 148)
+            img.alpha_composite(_img(bosses["mom"]["eye_0"]), (4 + 4 * SLOT + 58, 148 - 64))
+            _heroes(img, g)
+            img.alpha_composite(_img(bosses["mom"]["foot_stomp_1"]), (4 + 2 * SLOT + 10, 0))
+            img.alpha_composite(_img(bosses["mom"]["hand_0"]), (W - 96, 6))
+            strips.append((title + " - boss: Mom (piciorul calca rangurile 1-2, mana, ochiul din usa)", img))
+    wpx = W * scale + pad * 2
+    hpx = pad * 2 + 48 + sum(im.height * scale + 34 + pad for _, im in strips)
+    out = Image.new("RGB", (wpx, hpx), pk.rgba("#141011")[:3])
+    d = ImageDraw.Draw(out)
+    y = pad
+    d.text((pad, y), "Darkest Basement - inamicii in context (x3): eroii (rang 4-3-2-1) vs. inamicii (rang 1-2-3-4)",
+           fill=pk.rgba("#e8dcc4"), font=pk._font(26))
+    y += 48
+    for lab, im in strips:
+        d.text((pad, y), lab, fill=pk.rgba("#c8b89a"), font=pk._font(20))
+        y += 34
+        big = im.resize((im.width * scale, im.height * scale), Image.NEAREST)
+        out.paste(big, (pad, y), big)
+        y += big.height + pad
+    out.save(path or os.path.join(REVIEW, "enemies-in-context.png"), optimize=False)
+
+
 def main(argv):
     only = argv[1:] or None
-    enemies = build_all(only)
+    enemies = build_all(only) if only != ["context"] else None
+    if only == ["context"]:                              # doar macheta, într-un fișier de probă
+        sys.modules.setdefault("enemies", sys.modules[__name__])
+        import bosses
+        context_mock(build_all(), bosses.build_all(), os.environ.get("PREVIEW"))
+        return
     if only:
         review_sheet(enemies, os.environ.get("PREVIEW", "/tmp/enemies_preview.png"))
         return
     write_all(enemies)
     review_sheet(enemies)
+    # macheta are nevoie și de boși; bosses.py importă acest modul, deci îl înregistrăm o singură dată
+    sys.modules.setdefault("enemies", sys.modules[__name__])
+    import bosses
+    context_mock(enemies, bosses.build_all())
     n = sum(len(v) for v in enemies.values())
-    print("scrise %d sprite-uri în %s" % (n, os.path.relpath(OUT, ROOT)))
+    print("scrise %d sprite-uri + 2 planșe în %s" % (n, os.path.relpath(OUT, ROOT)))
 
 
 if __name__ == "__main__":
