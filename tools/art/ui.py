@@ -8,12 +8,15 @@ Rezoluția de referință e 640×360, afișată ×3. De aceea iconițele sunt de
 la 1× fiecare pixel contează, așa că iconițele mici sunt desenate pixel cu pixel (hărți ASCII).
 """
 import json
+import sys
 import math
 import os
 import random
 
+import numpy as np
 from PIL import Image
 
+sys.dont_write_bytecode = True  # nu lăsăm __pycache__ în tools/art
 from envkit import (CLEAR, OUTLINE, REVIEW_DIR, UI_DIR, BOTTOM_RIGHT, TOP_LEFT, TOP, C, Canvas, Sheet, dilate,
                     draw_text, edge, font, mix, on_checker, pts_ellipse, pts_line, pts_poly, pts_rect,
                     pts_rect_border, shade_bevel, shade_sphere, text_size, tile_noise, upscale, wrap_text)
@@ -113,81 +116,67 @@ ICONS["status_stun"] = ([
 ], lg(ramp4(P.STATUS["stun"])))
 
 ICONS["status_weak"] = ([
-    ".....oo.....",
+    "....oooo....",
     "....oLDo....",
     "..ooLLDDoo..",
-    "..oHHHHHHo..",
-    "...ooLDoo...",
-    "....oLDo....",
-    "....oLDo....",
-    "....oWBo....",
-    ".....oo.o...",
-    "......oLDo..",
+    ".oHHHHHHHHo.",
+    "..ooLLBDoo..",
+    "....oLBDo...",
+    "....oLBDo...",
+    "....oLBDo...",
+    "....oooooo..",
+    "......oLBDo.",
     ".......oLDo.",
     "........oo..",
 ], lg(ramp4(P.STATUS["weak"]), H=mix(P.STATUS["weak"], OUTLINE, 0.45)))
 
-ICONS["status_mark"] = ([
-    ".....oo.....",
-    "...ooBBoo...",
-    "..oBBooBBo..",
-    ".oBo.oo.oDo.",
-    ".oBo.oo.oDo.",
-    "oBooooooooDo",
-    "oBooooooooDo",
-    ".oBo.oo.oDo.",
-    ".oBo.oo.oDo.",
-    "..oDDooDDo..",
-    "...ooDDoo...",
-    ".....oo.....",
-], lg(ramp4(P.STATUS["mark"])))
-
+# forța: o halteră roșie (un braț încordat nu se citește la 12×12)
 ICONS["status_strength"] = ([
-    "......ooo...",
-    ".....oLLBo..",
-    ".....oLBBo..",
-    "......oLBo..",
-    "......oLBo..",
-    "..oooooLBo..",
-    ".oLLWLLBBDo.",
-    "oLLLLLBBBDo.",
-    "oBBBBBBBBDo.",
-    ".oDDDDDDDo..",
-    "..ooooooo...",
+    "............",
+    ".ooo....ooo.",
+    "oLLDo..oLLDo",
+    "oLWDooooLBDo",
+    "oLBDoLLoLBDo",
+    "oLBDoBDoLBDo",
+    "oLBDooooLBDo",
+    "oLBDo..oLBDo",
+    "oBDDo..oBDDo",
+    ".ooo....ooo.",
+    "............",
     "............",
 ], lg(ramp4(P.STATUS["strength"])))
 
 ICONS["status_taunt"] = ([
-    "..o..oo..o..",
-    "..oooLLooo..",
+    "...oooooo...",
+    "..oLLLLLBo..",
+    ".oLWLooLBBo.",
     ".oLLLooBBBo.",
-    "ooLLLooBBBoo",
-    ".oLLLooBBBo.",
-    "..oLLooBBo..",
     ".oLLLooBBDo.",
-    "ooLLLBBBBDoo",
     ".oLLLooBBDo.",
-    "..oDDooDDo..",
-    "..ooo..ooo..",
+    ".oLLBooBBDo.",
+    ".oLBBBBBBDo.",
+    ".oLBBooBBDo.",
+    "..oBBooBDo..",
+    "...oooooo...",
     "............",
 ], lg(ramp4(P.STATUS["taunt"])))
 
 # ---- intenții (deasupra inamicilor, pe fundal închis)
 STEEL = [METAL[1], METAL[3], METAL[4], METAL[5]]
 ICONS["intent_attack"] = ([
-    ".........ooo",
-    "........oWLo",
-    ".......oWLDo",
-    "......oWLDo.",
-    ".....oWLDo..",
-    "..o.oWLDo...",
-    "..ooWLDo....",
-    "...oLDo.....",
-    "..oHoooo....",
-    ".oHHo.......",
-    "oHHo........",
-    "ooo.........",
-], lg(STEEL, W="#ffffff", H=BLOOD[2]))
+    "....oooo....",
+    "...oLLDDo...",
+    "....oLDo....",
+    "..ooLLDDoo..",
+    ".oHHHHHHHHo.",
+    "..ooWLBDoo..",
+    "...oWLBDo...",
+    "...oWLBDo...",
+    "...oWLBDo...",
+    "....oLBo....",
+    ".....oo.....",
+    "............",
+], lg(STEEL, W="#ffffff", H=WOOD[2]))
 
 ICONS["intent_attack_aoe"] = ([
     ".......oo..o",
@@ -328,16 +317,16 @@ ICONS["map_unknown"] = ([
 ], {"o": OUTLINE, "B": mix("#9a9a9a", INK, 0.2)})
 
 ICONS["map_combat"] = ([
-    "oo........oo",
-    "oWo......oWo",
-    ".oWo....oWo.",
-    "..oWo..oWo..",
-    "...oWooWo...",
-    "....oWWo....",
-    "...oLooLo...",
-    "..oHoLLoHo..",
-    ".oHo.oo.oHo.",
-    "oHHo....oHHo",
+    "ooo......ooo",
+    "oWLo....oLWo",
+    "ooWLo..oLWoo",
+    ".ooWLooLWoo.",
+    "..ooWLLWoo..",
+    "...ooWWoo...",
+    "..ooLooLoo..",
+    ".oHoLWWLoHo.",
+    "oHHooooooHHo",
+    "oHo......oHo",
     "ooo......ooo",
     "............",
 ], {"o": OUTLINE, "W": METAL[5], "L": METAL[3], "H": BLOOD[1]})
@@ -510,19 +499,23 @@ def paper_fill(cv, rect, seed, stains=True):
 def card_frame(hero):
     h = HEROES[hero]
     r = h["ramp"]
-    rng = random.Random(hash(hero) % 1000 if False else sum(map(ord, hero)))
+    rng = random.Random(sum(map(ord, hero)))
     cv = Canvas(CARD_W, CARD_H)
     sil = card_silhouette()
     cv.fill(sil, r[2])
-    # textură discretă pe ramă
+    # textură pe ramă: firimituri și zgârieturi scurte (rama e „făcută de mână”, murdară)
     for p in sil:
-        if rng.random() < 0.08:
+        v = rng.random()
+        if v < 0.10:
             cv.put(*p, r[1])
+        elif v < 0.13:
+            cv.put(*p, r[3])
     # bizou exterior: lumină stânga-sus, umbră dreapta-jos, contur
-    inner1 = set(p for p in sil if p not in edge(sil, [(1, 0), (-1, 0), (0, 1), (0, -1)]))
+    ring1 = edge(sil, [(1, 0), (-1, 0), (0, 1), (0, -1)])
+    inner1 = set(p for p in sil if p not in ring1)
     cv.fill([p for p in edge(inner1, TOP_LEFT)], r[3])
     cv.fill([p for p in edge(inner1, BOTTOM_RIGHT)], r[1])
-    cv.fill(edge(sil, [(1, 0), (-1, 0), (0, 1), (0, -1)]), OUTLINE)
+    cv.fill(ring1, OUTLINE)
 
     def inset(rect, fill=None):
         """Locaș adâncit: margine stânga-sus în umbră, dreapta-jos luminată, linie închisă în jur."""
@@ -538,49 +531,75 @@ def card_frame(hero):
     inset(ART)
     cv.clear(pts_rect(*ART))                       # fereastra ilustrației e transparentă
     inset(PLATE, h["plate"])
-    # plăcuța de nume: o linie de lumină sus, ca o bandă de metal/piele
-    cv.line(PLATE[0], PLATE[1], PLATE[2], PLATE[1], mix(h["plate"], "#fff0e8", 0.18))
+    pl = mix(h["plate"], "#fff0e8", 0.18)
+    cv.line(PLATE[0], PLATE[1], PLATE[2], PLATE[1], pl)
+    cv.line(PLATE[0], PLATE[3], PLATE[2], PLATE[3], mix(h["plate"], OUTLINE, 0.4))
+    # capete de plăcuță: două nituri mici
+    for x in (PLATE[0] + 1, PLATE[2] - 1):
+        cv.put(x, PLATE[1] + 4, h["accent"])
+        cv.put(x, PLATE[1] + 5, mix(h["plate"], OUTLINE, 0.5))
     inset(TEXT)
     paper_fill(cv, TEXT, sum(map(ord, hero)) + 3)
-    # locașul bijuteriei, jos la mijloc
-    sock = set(pts_rect(GEM_AT[0] - 1, GEM_AT[1] - 1, GEM_AT[0] + 8, GEM_AT[1] + 7))
-    cv.fill(sock, OUTLINE)
-    cv.fill(edge(sock, TOP_LEFT), r[1])
-    # nituri în colțuri
-    for (x, y) in [(2, 2), (CARD_W - 4, 2), (2, CARD_H - 4), (CARD_W - 4, CARD_H - 4)]:
-        cv.fill([(x, y), (x + 1, y), (x, y + 1), (x + 1, y + 1)], h["accent"])
-        cv.put(x + 1, y + 1, r[1])
-        cv.put(x, y, mix(h["accent"], "#ffffff", 0.4))
+    # umbra interioară a hârtiei (e puțin adâncită în ramă)
+    cv.line(TEXT[0], TEXT[1], TEXT[2], TEXT[1], PAPER[1])
+    cv.line(TEXT[0], TEXT[1], TEXT[0], TEXT[3], PAPER[2])
+    # locașul bijuteriei: forma bijuteriei mărită cu 1 px, adâncită
+    gem_shape = [(x + GEM_AT[0], y + GEM_AT[1]) for y, row in enumerate(GEM_ROWS) for x, ch in enumerate(row) if ch != "."]
+    sock = dilate(gem_shape, 1, diagonal=False)
+    cv.fill(sock, r[0])
+    cv.fill([p for p in edge(sock, BOTTOM_RIGHT)], r[3])
+    cv.fill([p for p in edge(sock, TOP_LEFT)], OUTLINE)
+    # colțare: un „L” de metal în fiecare colț, cu nit
+    acc = h["accent"]
+    acc_d = mix(acc, OUTLINE, 0.45)
+    for (cx, cy, dx, dy) in [(1, 1, 1, 1), (CARD_W - 2, 1, -1, 1), (1, CARD_H - 2, 1, -1), (CARD_W - 2, CARD_H - 2, -1, -1)]:
+        for k in range(1, 7):
+            cv.put(cx + dx * k, cy, acc if dy > 0 else acc_d)
+            cv.put(cx, cy + dy * k, acc if dx > 0 else acc_d)
+        cv.put(cx + dx, cy + dy, acc)
+        cv.put(cx + dx * 2, cy + dy * 2, mix(acc, "#ffffff", 0.45))
+        cv.put(cx, cy, acc_d)
     hero_motif(cv, hero, r, h)
     return cv
 
 
 def hero_motif(cv, hero, r, h):
-    """Un motiv mic pe rama de jos, ca să recunoști eroul și fără culoare."""
-    y = CARD_H - 5
-    xs = [7, 15, 22, 41, 48, 56]
-    if hero == "isaac":           # lacrimi
+    """Un motiv mic pe rama de jos (stânga și dreapta bijuteriei), ca să recunoști eroul și fără culoare."""
+    y = CARD_H - 4
+    xs = [10, 17, 24, 39, 46, 53]
+    if hero == "isaac":           # lacrimi albastre
         for x in xs:
-            cv.put(x, y - 1, P.TEAR[0])
-            cv.fill([(x - 1, y), (x, y), (x + 1, y)], P.TEAR[1])
+            cv.put(x, y - 2, OUTLINE)
+            cv.fill([(x, y - 1), (x - 1, y), (x, y), (x + 1, y)], P.TEAR[1])
+            cv.put(x - 1, y, P.TEAR[0])
             cv.put(x, y + 1, P.TEAR[2])
-    elif hero == "cain":          # cusături (ochiul cusut / haine peticite)
-        for x in range(6, 26, 3):
-            cv.put(x, y, r[0])
-            cv.put(x + 1, y - 1, h["accent"])
-        for x in range(39, 59, 3):
-            cv.put(x, y, r[0])
-            cv.put(x + 1, y - 1, h["accent"])
-    elif hero == "lilith":        # stele mici (pentagrame stilizate)
+    elif hero == "cain":          # cusături în cruce (haine peticite)
+        for x in xs:
+            cv.fill([(x - 1, y - 1), (x + 1, y - 1), (x, y), (x - 1, y + 1), (x + 1, y + 1)], P.CAIN["hair"][0])
+    elif hero == "lilith":        # stele mici, ca niște pentagrame
         for x in xs:
             cv.fill([(x, y - 1), (x - 1, y), (x, y), (x + 1, y), (x, y + 1)], h["accent"])
-    elif hero == "azazel":        # coarne în colțurile de sus și flăcări jos
-        for (x, d) in [(4, 1), (CARD_W - 5, -1)]:
-            cv.fill([(x, 3), (x + d, 2), (x + d, 1), (x + 2 * d, 0)], P.AZAZEL["horn"])
+            cv.put(x, y, "#fff0e8")
+    elif hero == "azazel":        # coarne pe colțurile de sus și ochi roșii jos
+        for (x, d) in [(5, 1), (CARD_W - 6, -1)]:
+            cv.fill([(x, 4), (x + d, 3), (x + d, 2), (x + 2 * d, 1)], P.AZAZEL["horn"])
+            cv.put(x + 2 * d, 1, mix(P.AZAZEL["horn"], "#fff0e8", 0.3))
         for x in xs:
-            cv.put(x, y, "#9e1b1b")
-            cv.put(x, y - 1, P.AZAZEL["eye"])
-            cv.put(x, y + 1, "#5c0d0d")
+            cv.fill([(x - 1, y), (x + 1, y)], P.AZAZEL["eye"])
+            cv.put(x - 1, y - 1, OUTLINE)
+            cv.put(x + 1, y - 1, OUTLINE)
+
+
+GEM_ROWS = [
+    "..oooo..",
+    ".oWLLDo.",
+    "oLWLBBDo",
+    "oLLBBBDo",
+    ".oLBBDo.",
+    "..oBDo..",
+    "...oo...",
+    "........",
+]
 
 
 def card_back():
@@ -646,19 +665,8 @@ def card_glow(color):
 
 
 def gem(rarity):
-    base = P.RARITY[rarity]
-    r = ramp4(base)
-    rows = [
-        "..oooo..",
-        ".oWLLDo.",
-        "oLWLBBDo",
-        "oLLBBBDo",
-        ".oLBBDo.",
-        "..oBDo..",
-        "...oo...",
-        "........",
-    ]
-    return from_ascii(rows, {"o": OUTLINE, "W": mix(r[3], "#ffffff", 0.6), "L": r[3], "B": r[2], "D": r[1]})
+    r = ramp4(P.RARITY[rarity])
+    return from_ascii(GEM_ROWS, {"o": OUTLINE, "W": mix(r[3], "#ffffff", 0.6), "L": r[3], "B": r[2], "D": r[1]})
 
 
 def cost_orb():
@@ -793,9 +801,9 @@ def tooltip_panel():
     cv.fill(edge(sil, [(1, 0), (-1, 0), (0, 1), (0, -1)]), INK)
     # umbra aruncată (1 px dreapta-jos)
     for (x, y) in sil:
-        for q in ((x + 1, y + 1),):
-            if q not in sil and 0 <= q[0] < W and 0 <= q[1] < H:
-                cv.put(*q, OUTLINE[:7] if isinstance(OUTLINE, str) else OUTLINE)
+        q = (x + 1, y + 1)
+        if q not in sil and 0 <= q[0] < W and 0 <= q[1] < H:
+            cv.put(*q, OUTLINE)
     register("tooltip", B, B, B, B)
     return cv
 
@@ -812,24 +820,26 @@ def button(state):
     thick = set(pts_rect(1, top + face_h, W - 2, H - 2)) if not pressed else set()
     col = {"normal": PAPER[3], "hover": PAPER[4], "pressed": PAPER[2]}[state]
     cv.fill(body, col)
-    cv.fill([p for p in body if p[1] == top + 1], PAPER[4] if state != "pressed" else PAPER[2])
-    cv.fill([p for p in body if p[1] == top + face_h - 1], PAPER[2] if state != "pressed" else PAPER[1])
+    cv.fill([p for p in body if p[1] == top + 1], PAPER[4] if not pressed else PAPER[1])
+    cv.fill([p for p in body if p[1] == top + face_h - 1], PAPER[2] if not pressed else PAPER[2])
+    # colțuri ciupite de hârtie
+    for p in [(1, top + 1), (W - 2, top + 1)]:
+        cv.put(*p, PAPER[2])
     cv.fill(thick, PAPER[1])
     cv.fill([p for p in thick if p[1] == H - 2], PAPER[0])
     shape = body | thick
     outline_col = GOLD[1] if state == "hover" else INK
-    layer = Canvas(W, H)
-    layer.fill(shape, (0, 0, 0, 255))
     for (x, y) in pts_rect(0, 0, W - 1, H - 1):
         if (x, y) not in shape and any((x + dx, y + dy) in shape for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1))):
-            if not ((x in (0, W - 1)) and (y in (top, H - 1 if not pressed else top + face_h))):
+            corner = (x in (0, W - 1)) and (y in (top, (top + face_h) if pressed else H - 1))
+            if not corner:
                 cv.put(x, y, outline_col)
     if state == "hover":
-        # al doilea inel auriu, ca să se vadă clar care buton e selectat
-        for (x, y) in pts_rect(1, top + 1, W - 2, top + face_h - 1):
+        # al doilea inel auriu, ca să se vadă clar ce buton e selectat
+        for (x, y) in body:
             if x in (1, W - 2) or y == top + 1:
                 cv.put(x, y, GOLD[2])
-    register("button_" + state, B, B, B + (0 if pressed else 0), B)
+    register("button_" + state, B, B, B, B)
     return cv
 
 
@@ -838,7 +848,7 @@ def portrait_frame(active):
     cv = Canvas(28, 32)
     ring = set(pts_rect(0, 0, 27, 27)) - set(pts_rect(2, 2, 25, 25))
     ring -= {(0, 0), (27, 0), (0, 27), (27, 27)}
-    r = [GOLD[0], GOLD[1], GOLD[2], GOLD[3]] if active else [METAL[0], METAL[1], METAL[2], METAL[3]]
+    r = [GOLD[0], GOLD[1], GOLD[2], GOLD[3]] if active else [METAL[1], METAL[2], METAL[3], METAL[4]]
     cv.fill(ring, r[2])
     cv.fill([p for p in ring if p[0] == 1 or p[1] == 1], r[3])
     cv.fill([p for p in ring if p[0] == 26 or p[1] == 26], r[1])
@@ -847,26 +857,27 @@ def portrait_frame(active):
     # fundalul portretului: întuneric, ca să se vadă și o ramă goală
     cv.rect(3, 3, 24, 24, mix("#2a1f24", OUTLINE, 0.3))
     for (x, y) in [(1, 1), (26, 1), (1, 26), (26, 26)]:
-        cv.put(x, y, r[3] if active else METAL[4])
+        cv.put(x, y, mix(r[3], "#ffffff", 0.4))
     if active:
-        tri = [(10, 28), (17, 28), (13, 31), (14, 31)]
-        cv.fill(pts_poly([(10, 28), (17, 28), (13.5, 31.5)], 64, 64), GOLD[2])
-        cv.put(13, 28, GOLD[3])
-        lay = Canvas(28, 32)
-        lay.a = cv.a.copy()
-        cv.outline(OUTLINE)
-    else:
-        cv.outline(OUTLINE)
+        cv.fill(pts_poly([(9, 28), (18, 28), (13.5, 31.5)], 64, 64), GOLD[2])
+        cv.put(12, 28, GOLD[3])
+        cv.put(13, 29, GOLD[3])
+    cv.outline(OUTLINE)
     return cv
 
 
 def hp_parts():
-    """Bara de viață: rama (9-slice), umplerea roșie, umplerea „întârziată” deschisă și stratul albastru de block."""
-    frame = Canvas(16, 7)
-    frame.rect(1, 1, 14, 5, mix("#2a1b13", OUTLINE, 0.4))
-    frame.frame(0, 0, 15, 6, OUTLINE)
-    frame.line(1, 1, 14, 1, OUTLINE)            # umbra de sus în interior
-    for p in [(0, 0), (15, 0), (0, 6), (15, 6)]:
+    """Bara de viață: ramă cu margine de os (se vede pe fundal închis), umplere roșie, umplere „întârziată”
+    deschisă și stratul albastru de block (aceeași mărime ca rama, centrul transparent)."""
+    W, H = 16, 8
+    frame = Canvas(W, H)
+    frame.rect(1, 1, W - 2, H - 2, mix("#2a1b13", OUTLINE, 0.4))
+    frame.line(1, 1, W - 2, 1, BONE[2])
+    frame.line(1, 1, 1, H - 2, BONE[2])
+    frame.line(1, H - 2, W - 2, H - 2, BONE[0])
+    frame.line(W - 2, 1, W - 2, H - 2, BONE[0])
+    frame.frame(0, 0, W - 1, H - 1, OUTLINE)
+    for p in [(0, 0), (W - 1, 0), (0, H - 1), (W - 1, H - 1)]:
         frame.put(*p, CLEAR)
     register("hpbar_frame", 2, 2, 2, 2)
     fill = Canvas(4, 4)
@@ -875,20 +886,22 @@ def hp_parts():
         fill.put(x, 1, BLOOD[2])
         fill.put(x, 2, BLOOD[2])
         fill.put(x, 3, BLOOD[1])
-    fill.put(0, 0, BLOOD[4])
     register("hpbar_fill", 1, 1, 0, 0)
     lag = Canvas(4, 4)
     for x in range(4):
         for y in range(4):
             lag.put(x, y, "#e8dcc4" if y < 3 else "#c8b89a")
     register("hpbar_fill_lag", 1, 1, 0, 0)
-    block = Canvas(16, 7)
+    block = Canvas(W, H)
     bl = ramp4(P.STATUS["block"])
-    block.frame(0, 0, 15, 6, bl[2])
-    block.line(1, 0, 14, 0, bl[3])
-    block.line(1, 6, 14, 6, bl[1])
-    for p in [(0, 0), (15, 0), (0, 6), (15, 6)]:
-        block.put(*p, CLEAR)
+    block.line(1, 1, W - 2, 1, bl[3])
+    block.line(1, 1, 1, H - 2, bl[3])
+    block.line(1, H - 2, W - 2, H - 2, bl[1])
+    block.line(W - 2, 1, W - 2, H - 2, bl[2])
+    block.line(1, 0, W - 2, 0, bl[1])
+    block.line(1, H - 1, W - 2, H - 1, bl[0])
+    block.line(0, 1, 0, H - 2, bl[1])
+    block.line(W - 1, 1, W - 1, H - 2, bl[0])
     register("hpbar_block", 2, 2, 2, 2)
     return {"hpbar_frame": frame, "hpbar_fill": fill, "hpbar_fill_lag": lag, "hpbar_block": block}
 
@@ -910,89 +923,89 @@ GLYPHS = {
 
 
 def logo(text="DARKEST BASEMENT", W=300, H=60, seed=13):
-    """Titlul desenat de mână: litere zgâriate, umflate, cu contur gros și picături de sânge (stil Isaac)."""
+    """Titlul desenat de mână: litere groase, tremurate, zgâriate, cu contur dublu și picături de sânge (stil Isaac).
+    „DARKEST” e mai mic, „BASEMENT” mai mare (ierarhia din logo-urile Isaac)."""
     rng = random.Random(seed)
     letters = Canvas(W, H)
-    x = 6
-    gw, gh = 15, 30
-    base_y = 8
+    sizes = {0: (11, 26, 5), 1: (14, 35, 5)}       # (lățime, înălțime, spațiu) pe cuvânt
+    space = 14
+    words = text.split(" ")
+    total = sum(len(w_) * (sizes[i][0] + sizes[i][2]) - sizes[i][2] for i, w_ in enumerate(words)) + space
+    x = (W - total) // 2
     drips_from = []
-    for i, ch in enumerate(text):
-        if ch == " ":
-            x += 10
-            continue
-        strokes = GLYPHS[ch]
-        ang = math.radians(rng.uniform(-5, 5))
-        sx = gw / 10.0 * rng.uniform(0.92, 1.06)
-        sy = gh / 14.0 * rng.uniform(0.94, 1.06)
-        oy = base_y + rng.randint(-2, 2)
-        pts = set()
-        for st in strokes:
-            path = []
-            for (px, py) in st:
-                X = (px - 5) * sx
-                Y = (py - 7) * sy
-                Xr = X * math.cos(ang) - Y * math.sin(ang)
-                Yr = X * math.sin(ang) + Y * math.cos(ang)
-                path.append((x + gw / 2 + Xr, oy + gh / 2 + Yr))
-            # tremurul mâinii: subdivizăm și împingem puțin punctele
-            jit = []
-            for (a, b) in zip(path, path[1:]):
-                L = math.hypot(b[0] - a[0], b[1] - a[1])
-                n = max(1, int(L / 3))
-                for k in range(n):
-                    t = k / n
-                    jit.append((a[0] + (b[0] - a[0]) * t + rng.uniform(-0.6, 0.6),
-                                a[1] + (b[1] - a[1]) * t + rng.uniform(-0.6, 0.6)))
-            jit.append(path[-1])
-            for (a, b) in zip(jit, jit[1:]):
-                line = pts_line(a[0], a[1], b[0], b[1])
-                pts |= dilate(line, 1, diagonal=True)
-                if rng.random() < 0.5:
-                    pts |= dilate(line, 1, diagonal=False) | set((p[0] + 1, p[1] + 1) for p in line)
-        pts = set(p for p in pts if 0 <= p[0] < W and 0 <= p[1] < H)
-        # umplutura: os/pergament, jumătatea de jos mai închisă, lumină pe muchia stânga-sus
-        ys = [p[1] for p in pts]
-        mid = (min(ys) + max(ys)) / 2 + 3
-        for p in pts:
-            letters.put(*p, PAPER[3] if p[1] < mid else PAPER[2])
-        letters.fill(edge(pts, TOP_LEFT), PAPER[4])
-        letters.fill(edge(pts, BOTTOM_RIGHT), PAPER[1])
-        # zgârieturi: linii fine închise care taie litera
-        for _ in range(2):
-            p = rng.choice(sorted(pts))
-            for k in range(rng.randint(2, 4)):
-                q = (p[0] + k, p[1] + k // 2)
-                if q in pts:
-                    letters.put(*q, PAPER[0])
-        if ch in "AKSMNE" and rng.random() < 0.75:
-            bottom = max(pts, key=lambda p: (p[1], rng.random()))
-            drips_from.append(bottom)
-        x += gw + 4
-    # conturul gros: 1 px închis + încă 1 px închis-maro (ca o tușă de cerneală)
+    for wi, word in enumerate(words):
+        gw, gh, gap = sizes[wi]
+        base_y = 7 + (35 - gh)           # cuvintele stau pe aceeași linie de bază
+        for ch in word:
+            strokes = GLYPHS[ch]
+            ang = math.radians(rng.uniform(-5, 5))
+            sx = gw / 10.0 * rng.uniform(0.94, 1.05)
+            sy = gh / 14.0 * rng.uniform(0.93, 1.04)
+            oy = base_y + rng.randint(-2, 1)
+            pts = set()
+            for st in strokes:
+                path = []
+                for (px, py) in st:
+                    X = (px - 5) * sx
+                    Y = (py - 7) * sy
+                    Xr = X * math.cos(ang) - Y * math.sin(ang)
+                    Yr = X * math.sin(ang) + Y * math.cos(ang)
+                    path.append((x + gw / 2 + Xr, oy + gh / 2 + Yr))
+                # tremurul mâinii: subdivizăm și împingem puțin punctele
+                jit = []
+                for (a, b) in zip(path, path[1:]):
+                    L = math.hypot(b[0] - a[0], b[1] - a[1])
+                    n = max(1, int(L / 3))
+                    for k in range(n):
+                        t = k / n
+                        jit.append((a[0] + (b[0] - a[0]) * t + rng.uniform(-0.7, 0.7),
+                                    a[1] + (b[1] - a[1]) * t + rng.uniform(-0.7, 0.7)))
+                jit.append(path[-1])
+                for (a, b) in zip(jit, jit[1:]):
+                    line = pts_line(a[0], a[1], b[0], b[1])
+                    d1 = dilate(line, 1, diagonal=True)
+                    pts |= d1 | set((p[0] + 1, p[1] + 1) for p in d1)       # tușă de ~4 px
+                    if wi == 1 and rng.random() < 0.5:
+                        pts |= set((p[0] + 1, p[1]) for p in d1)            # „BASEMENT” apăsat mai tare
+            pts = set(p for p in pts if 0 <= p[0] < W and 0 <= p[1] < H)
+            ys = [p[1] for p in pts]
+            mid = min(ys) + (max(ys) - min(ys)) * 0.55
+            for p in pts:
+                letters.put(*p, PAPER[3] if p[1] < mid else PAPER[2])
+            letters.fill(edge(pts, TOP_LEFT), PAPER[4])
+            letters.fill(edge(pts, BOTTOM_RIGHT), PAPER[1])
+            for _ in range(3):
+                p = rng.choice(sorted(pts))
+                for k in range(rng.randint(2, 4)):
+                    q = (p[0] + k, p[1] + k // 2)
+                    if q in pts and q not in edge(pts, BOTTOM_RIGHT):
+                        letters.put(*q, PAPER[0])
+            if ch in "AKSMNR" and rng.random() < 0.7:
+                low = [p for p in pts if p[1] >= max(ys) - 1]
+                drips_from.append(rng.choice(sorted(low)))
+            x += gw + gap
+        x += space - gap
     letters.outline(OUTLINE, diagonal=True)
     letters.outline(OUTLINE)
-    # picături de sânge care curg din litere
+    # picături de sânge groase care curg din litere
     for (dx, dy) in drips_from:
-        ln = rng.randint(6, 16)
-        wide = rng.random() < 0.6
-        for y in range(dy - 1, min(H - 4, dy + ln)):
+        ln = rng.randint(5, 13)
+        for y in range(dy - 2, min(H - 5, dy + ln)):
             letters.put(dx, y, BLOOD[2])
-            if wide:
-                letters.put(dx + 1, y, BLOOD[1])
+            letters.put(dx + 1, y, BLOOD[1])
             letters.put(dx - 1, y, OUTLINE)
-            letters.put(dx + (2 if wide else 1), y, OUTLINE)
-        end = min(H - 4, dy + ln)
-        drop = set(pts_ellipse(dx + (0.5 if wide else 0), end + 1, 1.6, 1.8))
+            letters.put(dx + 2, y, OUTLINE)
+        end = min(H - 5, dy + ln)
+        drop = set(pts_ellipse(dx + 0.5, end + 1, 2, 2.2))
         for p in drop:
             letters.put(*p, BLOOD[2])
-        letters.put(dx, end, BLOOD[3])
-        for p in edge(drop, [(1, 0), (-1, 0), (0, 1)]):
-            pass
-        for q in [(p[0] + dx2, p[1] + dy2) for p in drop for dx2, dy2 in ((1, 0), (-1, 0), (0, 1))]:
+        for p in edge(drop, BOTTOM_RIGHT):
+            letters.put(*p, BLOOD[1])
+        letters.put(dx, end, BLOOD[4])
+        letters.put(dx, dy - 1, BLOOD[3])
+        for q in [(p[0] + a, p[1] + b) for p in drop for a, b in ((1, 0), (-1, 0), (0, 1))]:
             if q not in drop and letters.get(*q)[3] == 0:
                 letters.put(*q, OUTLINE)
-        letters.put(dx, dy, BLOOD[3])
     # umbra aruncată, ca să stea pe orice fundal
     out = Canvas(W, H)
     sh = letters.a[:, :, 3] > 0
@@ -1065,6 +1078,30 @@ INTENT_IDS = ["attack", "attack_aoe", "block", "debuff", "buff", "summon", "unkn
 MAP_IDS = ["unknown", "combat", "treasure", "bedroom", "curio", "boss", "start", "empty", "current"]
 
 
+def status_mark():
+    """Țintă portocalie: inel + patru liniuțe + punct (procedural, ca să fie perfect simetrică)."""
+    cv = Canvas(12, 12)
+    ring = set(pts_ellipse(5.5, 5.5, 5, 5)) - set(pts_ellipse(5.5, 5.5, 3.2, 3.2))
+    cross = set(pts_rect(5, 1, 6, 3)) | set(pts_rect(5, 8, 6, 10)) | set(pts_rect(1, 5, 3, 6)) | set(pts_rect(8, 5, 10, 6))
+    dot = set(pts_rect(5, 5, 6, 6))
+    shape = ring | cross | dot
+    r = ramp4(P.STATUS["mark"])
+    cv.fill(shape, r[2])
+    cv.fill([p for p in edge(shape, TOP_LEFT)], r[3])
+    cv.fill([p for p in edge(shape, BOTTOM_RIGHT)], r[1])
+    cv.put(5, 5, "#fff0e8")
+    cv.outline(OUTLINE)
+    return cv
+
+
+def sprite_or_none(path):
+    """Sprite-urile eroilor le face alt agent; dacă există, le folosim în mock, altfel desenăm un placeholder."""
+    try:
+        return Image.open(path).convert("RGBA")
+    except (FileNotFoundError, OSError):
+        return None
+
+
 def generate():
     out = {}
     for hero in ["isaac", "cain", "lilith", "azazel"]:
@@ -1080,7 +1117,7 @@ def generate():
     out["rank_pip_on"] = rank_pip(True)
     out["rank_pip_off"] = rank_pip(False)
     for s in STATUS_IDS:
-        out["status_" + s] = icon("status_" + s)
+        out["status_" + s] = status_mark() if s == "mark" else icon("status_" + s)
     for s in INTENT_IDS:
         out["intent_" + s] = icon("intent_" + s)
     out["energy_full"] = icon("energy_full")
@@ -1156,16 +1193,14 @@ def card_image(ui, hero, name, cost, rarity, text, art_seed=0):
     """O carte completă pentru mock: ilustrație-placeholder + ramă + nume + text + cost + bijuterie."""
     im = Image.new("RGBA", (CARD_W + 10, CARD_H + 10))
     ox, oy = 5, 5
-    # ilustrația: un placeholder desenat (gradient în trepte + o siluetă), stă sub ramă
-    art = Image.new("RGBA", (56, 36))
+    # ilustrația: un placeholder desenat (benzi în trepte + o siluetă), stă sub ramă
     rng = random.Random(art_seed)
     hr = HEROES[hero]["ramp"]
+    cvart = Canvas(56, 36)
     for y in range(36):
         for x in range(56):
             band = (y + (x // 7) % 2) // 9
-            art.putpixel((x, y), C([hr[0], hr[1], hr[0], OUTLINE][min(3, band)]))
-    cvart = Canvas(56, 36)
-    cvart.a[:] = __import__("numpy").array(art)
+            cvart.put(x, y, [hr[0], hr[1], hr[0], OUTLINE][min(3, band)])
     sil = set(pts_ellipse(28, 20, 9, 8)) | set(pts_rect(22, 24, 34, 35))
     cvart.fill(sil, mix(hr[2], OUTLINE, 0.2))
     cvart.fill(edge(sil, TOP_LEFT), hr[3])
@@ -1190,87 +1225,103 @@ def card_image(ui, hero, name, cost, rarity, text, art_seed=0):
 
 def mock(ui):
     """Cadru 640×360 (×3 = 1920×1080) cu mâna de 3 cărți, energie, bara de ture, tooltip și harta."""
-    import numpy as np
     W, H = 640, 360
-    env = os.path.join(os.path.dirname(UI_DIR), "..", "Textures", "Env", "basement")
+    res = os.path.dirname(os.path.dirname(UI_DIR))
+    env = os.path.join(res, "Textures", "Env", "basement")
     wall = Image.open(os.path.join(env, "wall.png"))
     floor = Image.open(os.path.join(env, "floor.png"))
     bg = Image.new("RGBA", (W, H))
-    for y in range(0, 230, 64):
+    horizon = 214
+    for y in range(horizon - 64 * 4, horizon, 64):
         for x in range(0, W, 64):
-            bg.paste(wall, (x, y - 26))
-    for y in range(230, H, 64):
+            bg.paste(wall, (x, y))
+    for y in range(horizon, H, 64):
         for x in range(0, W, 64):
             bg.paste(floor, (x, y))
     # întunecare în trepte + vinietă (ca post-procesarea din joc), fără gradient neted
     a = np.array(bg).astype(float)
     yy, xx = np.mgrid[0:H, 0:W]
     d = np.sqrt(((xx - W / 2) / (W / 2)) ** 2 + ((yy - H * 0.45) / (H / 2)) ** 2)
-    k = np.where(d < 0.6, 0.62, np.where(d < 0.85, 0.5, np.where(d < 1.05, 0.38, 0.26)))
+    k = np.where(d < 0.6, 0.6, np.where(d < 0.85, 0.48, np.where(d < 1.05, 0.36, 0.25)))
     a[:, :, :3] *= k[:, :, None]
     bg = Image.fromarray(a.astype(np.uint8), "RGBA")
-    props = os.path.join(os.path.dirname(UI_DIR), "Props")
-    for (n, x, by) in [("torch_0", 120, 150), ("torch_2", 520, 150), ("poop_0", 70, 300), ("rock_1", 586, 296),
-                       ("blood_decal_1", 330, 300)]:
+    props = os.path.join(res, "Sprites", "Props")
+    for (n, x, by) in [("torch_0", 160, 120), ("torch_2", 480, 120), ("blood_decal_1", 330, 236), ("poop_0", 16, 238)]:
         p = Image.open(os.path.join(props, n + ".png"))
         bg.alpha_composite(p, (x - p.width // 2, by - p.height))
 
-    sm = font("silk")
-    smb = font("silkb")
-    mic = font("micro")
+    sm, smb, mic = font("silk"), font("silkb"), font("micro")
+    feet = 214
 
-    # --- combatanți: placeholder (umbră + bară de viață + statusuri/intenții), eroii sunt desenați de alt agent
-    heroes = [(70, "ISAAC", 18, 24, ["block", "bleed"]), (130, "CAIN", 22, 30, ["strength"]),
-              (190, "LILITH", 9, 26, ["weak", "poison"]), (250, "AZAZEL", 30, 30, [])]
-    enemies = [(395, "GAPER", 14, 20, "attack", "7"), (455, "POOTER", 8, 8, "attack_aoe", "3x2"),
-               (515, "HORF", 12, 18, "debuff", ""), (575, "FLY", 4, 4, "summon", "")]
-    for (cx, nm, hp, mx, sts) in heroes:
-        shadow = Image.new("RGBA", (40, 6))
-        for p in pts_ellipse(19.5, 3, 18, 2.5):
+    def shadow(cx):
+        s = Image.new("RGBA", (40, 6))
+        for p in pts_ellipse(19.5, 3, 17, 2.5):
             if 0 <= p[0] < 40 and 0 <= p[1] < 6:
-                shadow.putpixel(p, (10, 6, 6, 150))
-        bg.alpha_composite(shadow, (cx - 20, 246))
-        hpbar(bg, ui, cx - 20, 252, 40, hp, mx, block=("block" in sts))
-        draw_text(bg, (cx, 261), "%d/%d" % (hp, mx), sm, "#e8dcc4", outline=OUTLINE, anchor="mt")
+                s.putpixel(p, (10, 6, 6, 150))
+        bg.alpha_composite(s, (cx - 20, feet - 4))
+
+    # --- eroii în stânga (sprite-urile laterale dacă există), inamicii în dreapta (siluete-placeholder)
+    heroes = [("azazel", 50, 30, 30, []), ("lilith", 108, 9, 26, ["weak", "poison"]),
+              ("cain", 166, 22, 30, ["strength"]), ("isaac", 224, 18, 24, ["block", "bleed"])]
+    for (hid, cx, hp, mx, sts) in heroes:
+        shadow(cx)
+        spr = sprite_or_none(os.path.join(res, "Sprites", "Heroes", hid, "side_idle_0.png"))
+        if spr is not None:
+            bg.alpha_composite(spr, (cx - spr.width // 2, feet - spr.height + 1))
+        else:
+            blob = Canvas(24, 30)
+            blob.fill(pts_ellipse(11.5, 10, 9, 9) + pts_rect(6, 16, 17, 29), "#2a1f24")
+            blob.outline(OUTLINE)
+            bg.alpha_composite(blob.image(), (cx - 12, feet - 30))
+            draw_text(bg, (cx, feet - 22), "?", smb, "#4a3a40", anchor="mt")
+        hpbar(bg, ui, cx - 20, feet + 4, 40, hp, mx, block=("block" in sts))
+        draw_text(bg, (cx, feet + 14), "%d/%d" % (hp, mx), sm, "#e8dcc4", outline=OUTLINE, anchor="mt")
         for i, s in enumerate(sts):
-            bg.alpha_composite(ui["status_" + s].image(), (cx - 20 + i * 14, 269))
-            draw_text(bg, (cx - 20 + i * 14 + 9, 276), "2", sm, "#ffffff", outline=OUTLINE)
-        draw_text(bg, (cx, 236), nm, sm, "#c8b89a", outline=OUTLINE, anchor="mt")
+            ix = cx - 20 + i * 18
+            bg.alpha_composite(ui["status_" + s].image(), (ix, feet + 23))
+            draw_text(bg, (ix + 12, feet + 29), "2", sm, "#ffffff", outline=OUTLINE)
+    enemies = [(410, "GAPER", 14, 20, "attack", "7"), (468, "POOTER", 8, 8, "attack_aoe", "3x2"),
+               (526, "HORF", 12, 18, "debuff", ""), (584, "FLY", 4, 4, "summon", "")]
     for (cx, nm, hp, mx, intent, num) in enemies:
-        shadow = Image.new("RGBA", (40, 6))
-        for p in pts_ellipse(19.5, 3, 18, 2.5):
-            if 0 <= p[0] < 40 and 0 <= p[1] < 6:
-                shadow.putpixel(p, (10, 6, 6, 150))
-        bg.alpha_composite(shadow, (cx - 20, 246))
-        hpbar(bg, ui, cx - 20, 252, 40, hp, mx)
-        draw_text(bg, (cx, 261), "%d/%d" % (hp, mx), sm, "#e8dcc4", outline=OUTLINE, anchor="mt")
-        bg.alpha_composite(upscale(ui["intent_" + intent].image(), 1), (cx - 6 - (6 if num else 0), 196))
+        shadow(cx)
+        blob = Canvas(26, 32)
+        blob.fill(pts_ellipse(12.5, 11, 10, 10) + pts_rect(6, 18, 19, 31), "#2a1f24")
+        blob.fill([(8, 9), (9, 9), (15, 9), (16, 9)], "#5c0d0d")
+        blob.outline(OUTLINE)
+        bg.alpha_composite(blob.image(), (cx - 13, feet - 32))
+        draw_text(bg, (cx, feet - 24), nm[0], smb, "#4a3a40", anchor="mt")
+        hpbar(bg, ui, cx - 20, feet + 4, 40, hp, mx)
+        draw_text(bg, (cx, feet + 14), "%d/%d" % (hp, mx), sm, "#e8dcc4", outline=OUTLINE, anchor="mt")
+        iw = 12 + (3 + text_size(num, smb)[0] if num else 0)
+        bg.alpha_composite(ui["intent_" + intent].image(), (cx - iw // 2, feet - 52))
         if num:
-            draw_text(bg, (cx + 2, 199), num, smb, "#ffffff", outline=OUTLINE)
-        draw_text(bg, (cx, 236), nm, sm, "#c8b89a", outline=OUTLINE, anchor="mt")
+            draw_text(bg, (cx - iw // 2 + 15, feet - 49), num, smb, "#ffffff", outline=OUTLINE)
+        draw_text(bg, (cx, feet + 24), nm, sm, "#c8b89a", outline=OUTLINE, anchor="mt")
 
     # --- bara de ture: 8 rame goale pe o placă închisă
     n, fw, gap = 8, 28, 3
     tw = n * fw + (n - 1) * gap
-    tx = (W - tw) // 2
-    bg.alpha_composite(nine(ui["panel_dark"], tw + 16, 48, "panel_dark"), (tx - 8, 4))
+    tx = (W - tw) // 2 - 40
+    bg.alpha_composite(nine(ui["panel_dark"], tw + 16, 46, "panel_dark"), (tx - 8, 4))
     for i in range(n):
         fr = ui["portrait_frame_active" if i == 0 else "portrait_frame"].image()
-        bg.alpha_composite(fr, (tx + i * (fw + gap), 12))
+        bg.alpha_composite(fr, (tx + i * (fw + gap), 11))
     draw_text(bg, (tx - 14, 10), "ROUND 1", smb, "#e0b04a", outline=OUTLINE, anchor="rt")
 
     # --- harta: panou de pergament cu celule și iconițe
-    mw, mh = 150, 120
-    mx0, my0 = W - mw - 6, 6
+    mw, mh = 132, 114
+    mx0, my0 = W - mw - 6, 4
     bg.alpha_composite(nine(ui["panel_paper"], mw, mh, "panel_paper"), (mx0, my0))
     draw_text(bg, (mx0 + mw // 2, my0 + 9), "BASEMENT I", smb, INK, anchor="mt")
     grid = {(0, 1): "start", (1, 1): "combat", (2, 1): "current", (2, 0): "curio", (3, 1): "unknown",
             (2, 2): "combat", (1, 2): "bedroom", (3, 2): "empty", (4, 2): "boss", (0, 2): "treasure",
-            (3, 0): "unknown"}
-    fog = {(3, 1), (3, 0), (4, 2)}
+            (3, 0): "unknown", (1, 3): "combat"}
+    fog = {(3, 1), (3, 0), (1, 3)}
     links = [((0, 1), (1, 1)), ((1, 1), (2, 1)), ((2, 1), (2, 0)), ((2, 1), (3, 1)), ((2, 1), (2, 2)),
-             ((2, 2), (1, 2)), ((2, 2), (3, 2)), ((3, 2), (4, 2)), ((1, 2), (0, 2)), ((2, 0), (3, 0))]
-    gx0, gy0, cs, ls = mx0 + 14, my0 + 24, 16, 6
+             ((2, 2), (1, 2)), ((2, 2), (3, 2)), ((3, 2), (4, 2)), ((1, 2), (0, 2)), ((2, 0), (3, 0)),
+             ((1, 2), (1, 3))]
+    cs, ls = 16, 6
+    gx0, gy0 = mx0 + (mw - (5 * cs + 4 * ls)) // 2, my0 + 20
     pos = lambda c: (gx0 + c[0] * (cs + ls), gy0 + c[1] * (cs + ls))
     for (a_, b_) in links:
         pa, pb = pos(a_), pos(b_)
@@ -1280,34 +1331,36 @@ def mock(ui):
             bg.alpha_composite(ui["map_link_v"].image(), (pa[0] + 6, min(pa[1], pb[1]) + cs))
     for c, kind in grid.items():
         px, py = pos(c)
-        bg.alpha_composite(ui["map_cell_fog" if c in fog and kind != "boss" else "map_cell"].image(), (px, py))
-        if kind:
-            bg.alpha_composite(ui["map_" + kind].image(), (px + 2, py + 2))
+        bg.alpha_composite(ui["map_cell_fog" if c in fog else "map_cell"].image(), (px, py))
+        bg.alpha_composite(ui["map_" + ("unknown" if c in fog else kind)].image(), (px + 2, py + 2))
 
-    # --- mâna: 3 cărți, cea din mijloc ridicată și selectată
+    # --- mâna: 3 cărți, cea din mijloc ridicată (hover) și selectată
     cards = [("isaac", "Tear Shot", 1, "common", "Deal 6 damage. Rank 1-3."),
              ("azazel", "Brimstone", 2, "rare", "Deal 12 damage to ALL enemies. Apply 1 Mark."),
              ("lilith", "Incubus Lash", 1, "uncommon", "Deal 4 damage twice. Apply 2 Weak.")]
     cx0 = (W - (3 * 64 + 2 * 8)) // 2
     for i, (hero, nm, cost, rar, txt) in enumerate(cards):
         x = cx0 + i * 72
-        y = H - 90 - 8 - (14 if i == 1 else 0)
+        y = H - 90 - 6 - (16 if i == 1 else 0)
         glow = ui["card_glow_selected" if i == 1 else "card_glow_playable"].image()
         bg.alpha_composite(glow, (x - 4, y - 4))
         bg.alpha_composite(card_image(ui, hero, nm, cost, rar, txt, art_seed=i), (x - 5, y - 5))
-    # pachetele: draw / discard
-    bg.alpha_composite(ui["card_back"].image().resize((32, 45), Image.NEAREST), (100, H - 54))
-    draw_text(bg, (116, H - 9), "DRAW 7", sm, "#e8dcc4", outline=OUTLINE, anchor="mt")
+        for r_ in range(4):
+            on = (i == 0 and r_ < 3) or (i == 1 and r_ in (0, 1)) or (i == 2 and r_ in (1, 2, 3))
+            bg.alpha_composite(ui["rank_pip_on" if on else "rank_pip_off"].image(), (x + 6 + r_ * 6, y + 34))
+    # pachetul de tras
+    bg.alpha_composite(ui["card_back"].image().resize((32, 45), Image.NEAREST), (108, H - 56))
+    draw_text(bg, (124, H - 9), "DRAW 7", sm, "#e8dcc4", outline=OUTLINE, anchor="mt")
 
     # --- energia: lacrimi pe o placă
-    bg.alpha_composite(nine(ui["panel_dark"], 74, 34, "panel_dark"), (10, H - 44))
-    draw_text(bg, (47, H - 39), "TEARS 1/2", sm, "#e8dcc4", outline=OUTLINE, anchor="mt")
-    bg.alpha_composite(ui["energy_full"].image(), (33, H - 28))
-    bg.alpha_composite(ui["energy_empty"].image(), (49, H - 28))
+    bg.alpha_composite(nine(ui["panel_dark"], 78, 36, "panel_dark"), (10, H - 46))
+    draw_text(bg, (49, H - 40), "TEARS 1/2", sm, "#e8dcc4", outline=OUTLINE, anchor="mt")
+    bg.alpha_composite(ui["energy_full"].image(), (35, H - 29))
+    bg.alpha_composite(ui["energy_empty"].image(), (51, H - 29))
 
     # --- tooltip de pergament lângă cartea selectată
-    tw_, th_ = 128, 44
-    tx_, ty_ = cx0 + 72 + 64 + 14, H - 90 - 8 - 14 - th_ + 4
+    tw_, th_ = 118, 42
+    tx_, ty_ = cx0 + 72 + 32 - tw_ // 2, H - 90 - 6 - 16 - th_ - 8
     bg.alpha_composite(nine(ui["tooltip"], tw_, th_, "tooltip"), (tx_, ty_))
     bg.alpha_composite(ui["status_mark"].image(), (tx_ + 6, ty_ + 5))
     draw_text(bg, (tx_ + 21, ty_ + 7), "MARK", smb, INK)
@@ -1318,10 +1371,10 @@ def mock(ui):
 
     # --- butonul End Turn
     bx, by, bw, bh = W - 82, H - 30, 72, 22
-    bg.alpha_composite(nine(ui["button_hover"], bw, bh, "button_hover"), (bx, by))
+    bg.alpha_composite(nine(ui["button_normal"], bw, bh, "button_normal"), (bx, by))
     draw_text(bg, (bx + bw // 2, by + 6), "END TURN", smb, INK, anchor="mt")
     # indiciul de tutorial (fără text lung)
-    draw_text(bg, (W // 2, 160), "Drag a card onto an enemy", mic, "#e8dcc4", outline=OUTLINE, anchor="mt")
+    draw_text(bg, (W // 2 - 40, 70), "Drag a card onto an enemy", mic, "#e8dcc4", outline=OUTLINE, anchor="mt")
     return bg
 
 
@@ -1344,13 +1397,13 @@ def review(ui):
     ck = lambda n, kk=k: (on_checker(ui[n].image(), kk), n)
     sheet.row([ck("card_frame_isaac"), ck("card_frame_cain"), ck("card_frame_lilith"), ck("card_frame_azazel"),
                ck("card_back")], heading="cards 64x90")
-    sheet.row([ck("card_glow_playable"), ck("card_glow_selected"), ck("card_art_mask"), ck("cost_orb", 4),
-               ck("gem_common", 4), ck("gem_uncommon", 4), ck("gem_rare", 4), ck("rank_pip_on", 4), ck("rank_pip_off", 4)])
-    sheet.row([ck("status_" + s, 4) for s in STATUS_IDS], heading="status icons 12x12 (x4)")
-    sheet.row([ck("intent_" + s, 4) for s in INTENT_IDS] + [ck("energy_full", 4), ck("energy_empty", 4)],
-              heading="intents + energy (x4)")
-    sheet.row([ck("map_" + s, 4) for s in MAP_IDS], heading="map icons (x4)")
-    sheet.row([ck("map_cell", 4), ck("map_cell_fog", 4), ck("map_link_h", 4), ck("map_link_v", 4),
+    sheet.row([ck("card_glow_playable"), ck("card_glow_selected"), ck("card_art_mask"), ck("cost_orb"),
+               ck("gem_common"), ck("gem_uncommon"), ck("gem_rare"), ck("rank_pip_on"), ck("rank_pip_off")])
+    sheet.row([ck("status_" + s) for s in STATUS_IDS], heading="status icons 12x12 (x3)")
+    sheet.row([ck("intent_" + s) for s in INTENT_IDS] + [ck("energy_full"), ck("energy_empty")],
+              heading="intents + energy (x3)")
+    sheet.row([ck("map_" + s) for s in MAP_IDS], heading="map icons (x3)")
+    sheet.row([ck("map_cell"), ck("map_cell_fog"), ck("map_link_h"), ck("map_link_v"),
                ck("panel_paper"), ck("panel_dark"), ck("tooltip"), ck("button_normal"), ck("button_hover"),
                ck("button_pressed")], heading="map cells, 9-slice panels, buttons")
     # panouri întinse la mărimi reale (verificăm 9-slice-ul)
@@ -1365,9 +1418,9 @@ def review(ui):
     hpbar(hp, ui, 12, 4, 60, 18, 24)
     hpbar(hp, ui, 12, 20, 60, 7, 24, block=True)
     stretched.alpha_composite(hp, (460, 5))
-    sheet.row([(upscale(stretched, 2), "9-slice stretched (x2): paper 200x110, dark, tooltip, buttons, hp bars")])
-    sheet.row([ck("portrait_frame"), ck("portrait_frame_active"), ck("hpbar_frame", 4), ck("hpbar_fill", 4),
-               ck("hpbar_fill_lag", 4), ck("hpbar_block", 4), ck("cursor_tear", 4)], heading="turn order, hp bar, cursor")
+    sheet.row([(upscale(stretched, 3), "9-slice stretched (x3): paper 200x110, dark, tooltip, buttons, hp bars")])
+    sheet.row([ck("portrait_frame"), ck("portrait_frame_active"), ck("hpbar_frame"), ck("hpbar_fill"),
+               ck("hpbar_fill_lag"), ck("hpbar_block"), ck("cursor_tear")], heading="turn order, hp bar, cursor")
     sheet.row([(on_checker(ui["title_logo"].image(), 3), "title_logo 300x60 (x3)")], heading="title")
     im = sheet.render()
     im.save(os.path.join(REVIEW_DIR, "ui.png"))

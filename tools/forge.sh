@@ -10,6 +10,12 @@
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd -P)"
+
+# Mai mulți agenți pot chema scriptul deodată: îi punem la coadă (sincronizare + Unity, unul câte unul).
+if [ -z "${FORGE_LOCKED:-}" ]; then
+  export FORGE_LOCKED=1
+  exec lockf -t 3600 /tmp/darkest-basement-forge.lock "$0" "$@"
+fi
 HOST="${FORGE_HOST:-hp-forge}"
 RDIR="${FORGE_DIR:-/home/radu/Projects/darkest-basement}"
 cmd="${1:-compile}"

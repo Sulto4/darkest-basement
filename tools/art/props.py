@@ -7,12 +7,14 @@ Fiecare sprite stă „pe podea”: ultimul rând de pixeli opaci e la baza pân
 deci pivotul jos-centru pune obiectul exact pe sol. Excepții: web_0 (colț de perete/tavan, pivot sus-stânga),
 chain_0 (se repetă pe verticală), blood_decal_* (pete văzute de sus, pivot centru), dust_mote (particulă).
 """
+import sys
 import math
 import os
 import random
 
 from PIL import Image
 
+sys.dont_write_bytecode = True  # nu lăsăm __pycache__ în tools/art
 from envkit import (OUTLINE, PROPS_DIR, REVIEW_DIR, BOTTOM_RIGHT, TOP_LEFT, TOP, Canvas, Sheet, dilate, edge,
                     mix, on_checker, pts_ellipse, pts_line, pts_poly, pts_rect, shade_bevel, shade_sphere,
                     tile_noise, upscale)
@@ -83,9 +85,7 @@ def torch(frame):
     cv.put(tip[0] + rng.choice([-1, 0, 1]), tip[1] - 1, FIRE[0])
     for _ in range(2):
         cv.put(rng.randint(4, 11), rng.randint(0, 3), FIRE[2] if rng.random() < 0.5 else FIRE[3])
-    finish(cv)
-    # scânteile nu primesc contur (sunt lumină)
-    return cv
+    return finish(cv)
 
 
 # ---------------------------------------------------------------- caca
@@ -491,10 +491,10 @@ def chain_prop():
     """Lanț vertical care se repetă perfect la 24 px (2 perechi de zale)."""
     cv = Canvas(10, 36)
     chain(cv, 5, -6, 48)
-    return Canvas_from(cv, 0, 6, 10, 24)
+    return crop_canvas(cv, 0, 6, 10, 24)
 
 
-def Canvas_from(cv, x, y, w, h):
+def crop_canvas(cv, x, y, w, h):
     out = Canvas(w, h)
     out.a = cv.a[y:y + h, x:x + w].copy()
     return out

@@ -9,6 +9,7 @@ De ce așa:
   așa că poți pune wall, wall_2, wall, wall_1 unul după altul pe hol și marginile se potrivesc.
 - Lumina vine din stânga-sus: muchia de sus/stânga a fiecărei pietre e mai deschisă, cea de jos/dreapta mai închisă.
 """
+import sys
 import math
 import os
 import random
@@ -16,6 +17,7 @@ import random
 import numpy as np
 from PIL import Image
 
+sys.dont_write_bytecode = True  # nu lăsăm __pycache__ în tools/art
 from envkit import (ENV_DIR, OUTLINE, REVIEW_DIR, BOTTOM_RIGHT, TOP_LEFT, TOP, RIGHT, C, Canvas, Sheet, cells_to_pts,
                     dilate, edge, mix, on_checker, pts_ellipse, pts_line, pts_poly, pts_rect, seam_score,
                     shade_bevel, shade_sphere, tile_grid, tile_noise, tile_voronoi, upscale, wrapped_edge)
@@ -216,7 +218,7 @@ def splat(rng, cx, cy, r, n_blobs=7, sat=10, drips=5, drip_len=(4, 16), bounds=(
     return clip(core), clip(drops - core), clip(runs - core)
 
 
-def paint_splat(cv, rng, core, drops, runs, ramp, keep_shadow=False):
+def paint_splat(cv, rng, core, drops, runs, ramp):
     """Umbrire plată, ca sângele din Isaac: bază, margine închisă dreapta-jos, lumină sus-stânga, un luciu."""
     allp = core | drops | runs
     cv.fill(allp, ramp[2])
@@ -291,23 +293,6 @@ def basement_wall_variant(base, kind, seed):
     return cv
 
 
-def web(cv, x0, y0, r, color, rng, flip=False):
-    """Pânză de păianjen într-un colț: raze + arce, linii de 1 px."""
-    sx = -1 if flip else 1
-    rays = [0, 22, 45, 68, 90]
-    for a in rays:
-        ang = math.radians(a)
-        cv.line(x0, y0, x0 + sx * round(math.cos(ang) * r), y0 + round(math.sin(ang) * r), color)
-    for k in (0.4, 0.7, 0.95):
-        prev = None
-        for a in rays:
-            ang = math.radians(a)
-            p = (x0 + sx * round(math.cos(ang) * r * k), y0 + round(math.sin(ang) * r * k + 1))
-            if prev:
-                cv.line(prev[0], prev[1], p[0], p[1], color)
-            prev = p
-
-
 def basement_floor(seed=21):
     rng = random.Random(seed)
     cv = Canvas(T, T, wrap=True)
@@ -326,7 +311,6 @@ def basement_floor(seed=21):
             if idx[y, (x + 1) % T] != me or idx[(y + 1) % T, x] != me:
                 cv.put(x, y, BS[1] if rng.random() < 0.8 else BS[2])
             elif idx[(y - 1) % T, x] != me or idx[y, (x - 1) % T] != me:
-                c = cv.get(x, y)
                 restep(cv, [(x, y)], BS, +1)
     # pietricele și firimituri
     for _ in range(9):
@@ -557,7 +541,7 @@ def caves_wall_variant(base, kind, seed):
             cv.put(rng.randint(14, 44), rng.randint(46, 52), SHROOM[3] if rng.random() < 0.3 else SHROOM[1])
     elif kind == "bones":
         # craniu și oase prinse în piatră
-        skull(cv, 22, 20, 1)
+        skull(cv, 22, 20)
         bone(cv, 36, 40, 52, 35)
         bone(cv, 12, 48, 25, 51)
         bone(cv, 40, 18, 44, 26)
@@ -583,7 +567,7 @@ def mushroom(cv, mx, my, r):
     cv.blit(layer, 0, 0)
 
 
-def skull(cv, x, y, scale=1):
+def skull(cv, x, y):
     """Craniu mic (12×11) în culori de os, cu orbite negre."""
     sk = Canvas(cv.w, cv.h)
     head = set(pts_ellipse(x + 5.5, y + 4.5, 5.5, 4.8))
@@ -620,24 +604,26 @@ def caves_floor(seed=51):
     cv = Canvas(T, T, wrap=True)
     idx, gap, _ = good_voronoi(T, T, 9, seed, min_dist=16, jitter_scale=1.2)
     stone_cells(cv, rng, idx, CV, [3, 4, 4, 3], 5, CV[2], CV[1], speck=0.14)
-    # bălți mici și închise: adâncituri cu apă, marginea stânga-sus în umbră, reflexii mici
-    n = tile_noise(T, T, 4, seed + 2, octaves=3)
-    pud = set((x, y) for y in range(T) for x in range(T) if n[y, x] > 0.74)
+    # apa stă în rosturile dintre pietre (bălți mari s-ar vedea ca un model care se repetă)
+    n = tile_noise(T, T, 3, seed + 2, octaves=2)
+    crev = crevice_mask(cv, CV[0:3])
+    pud = set()
+    for (x, y) in crev:
+        if n[y, x] > 0.45:
+            pud.add((x, y))
+    # câteva ochiuri mici de apă la întâlnirea rosturilor
+    for (x, y) in sorted(crev):
+        if n[y, x] > 0.8 and rng.random() < 0.08:
+            pud |= set(((x + dx) % T, (y + dy) % T) for (dx, dy) in [(0, 0), (1, 0), (0, 1), (1, 1), (-1, 0)])
     for (x, y) in pud:
-        cv.put(x, y, WATER[1] if n[y, x] < 0.86 else WATER[0])
+        cv.put(x, y, WATER[1])
     for (x, y) in pud:
-        if ((x - 1) % T, y) not in pud or (x, (y - 1) % T) not in pud:
-            cv.put(x, y, CV[1])
-        elif ((x + 1) % T, y) not in pud or (x, (y + 1) % T) not in pud:
+        if ((x + 1) % T, y) not in pud and rng.random() < 0.5:
             cv.put(x, y, WATER[2])
     pl = sorted(pud)
-    for _ in range(7):
-        if not pl:
-            break
+    for _ in range(9):
         x, y = rng.choice(pl)
-        for k in range(rng.randint(2, 3)):
-            if ((x + k) % T, y) in pud:
-                cv.put(x + k, y, WATER[3] if k else WATER[4])
+        cv.put(x, y, WATER[3] if rng.random() < 0.7 else WATER[4])
     for _ in range(14):
         p = (rng.randrange(T), rng.randrange(T))
         if p not in pud:
@@ -921,9 +907,7 @@ def arch_shape(x0, x1, top, bottom, r=None, cy=None):
 
 def door_geometry(kind):
     if kind == "bedroom":
-        outer = arch_shape(6, 57, 6, 63, r=26, cy=24)
-        inner = arch_shape(13, 50, 13, 63, r=19, cy=28)
-        # ușa de dormitor are colțurile de sus mai pătrate
+        # ușa de dormitor are colțurile de sus mai pătrate (silueta diferită ajută la citire)
         outer = set(p for p in pts_rect(6, 8, 57, 63)) | arch_shape(6, 57, 4, 30)
         inner = set(p for p in pts_rect(13, 16, 50, 63))
     else:
@@ -951,7 +935,7 @@ def frame_blocks(outer, inner, n_arch=9, side_rows=(34, 46, 56)):
     return blocks
 
 
-def draw_frame(cv, outer, inner, ramp, rng, mortar, keystone=None, speck=True):
+def draw_frame(cv, outer, inner, ramp, rng, mortar, speck=True):
     """Rama de piatră: fiecare bloc are lumină stânga-sus și umbră dreapta-jos, rosturi închise."""
     blocks = frame_blocks(outer, inner)
     for key, pts in blocks.items():
@@ -1045,7 +1029,7 @@ def make_door(floor, kind, seed, open_=False, frame_only=False):
             if rng.random() < 0.12:
                 cv.put(x, y, wood_ramp[1])
     if frame_only:
-        pass
+        pass   # doar rama: deschizătura rămâne transparentă
     elif open_:
         # deschizătura: întuneric, cu podeaua care se vede ușor jos
         for (x, y) in inner:
