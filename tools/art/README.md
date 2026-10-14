@@ -56,3 +56,10 @@ python3 tools/art/enemies.py   # 16 inamici + planșele enemies.png și enemies-
 python3 tools/art/bosses.py    # Monstro, Gurdy, Mom (picior, mână, ochi) + bosses.png
 ```
 `bosses.py` importă ajutoarele din `enemies.py`; mock-ul în context citește și sprite-urile eroilor și texturile podelei.
+
+## Ilustrațiile cărților
+
+```bash
+python3 tools/art/cards.py     # 40 ilustrații 56x36 în Sprites/Cards/<cardId>.png + cards.png, cards-framed.png
+```
+Lista de cărți se citește din `Model/Data/Databases.cs`; o carte nouă fără desen oprește scriptul cu eroare.
