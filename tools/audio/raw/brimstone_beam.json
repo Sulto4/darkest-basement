@@ -1,0 +1,15 @@
+{
+  "id": "brimstone_beam",
+  "type": "sfx",
+  "prompt": "A huge blood-red demonic laser beam firing, a roaring sizzling energy blast with heavy sub bass, intense, fading out at the end",
+  "duration": 2.5,
+  "prompt_influence": 0.45,
+  "model": "eleven_text_to_sound_v2",
+  "fallback": false,
+  "credits_est": 35,
+  "generated_at": "2026-10-14T22:40:07",
+  "process": {
+    "trimmed_lead_s": 0.0,
+    "gain_db": -9.9
+  }
+}

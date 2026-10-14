@@ -1,0 +1,15 @@
+{
+  "id": "block_hit",
+  "type": "sfx",
+  "prompt": "An attack blocked by a heavy shield, a dull metallic clang with a thud, short",
+  "duration": 0.6,
+  "prompt_influence": 0.45,
+  "model": "eleven_text_to_sound_v2",
+  "fallback": false,
+  "credits_est": 9,
+  "generated_at": "2026-10-14T22:40:17",
+  "process": {
+    "trimmed_lead_s": 0.0,
+    "gain_db": 11.2
+  }
+}

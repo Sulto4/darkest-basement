@@ -1,0 +1,128 @@
+{
+  "version": 1,
+  "note": "9-slice borders in px (left, right, top, bottom). drawMode: sliced = stretch centre/edges; tiled = repeat centre/edges (panel_paper has a 24 px period).",
+  "slices": [
+    {
+      "sprite": "button_hover",
+      "left": 5,
+      "right": 5,
+      "top": 5,
+      "bottom": 5,
+      "drawMode": "sliced"
+    },
+    {
+      "sprite": "button_normal",
+      "left": 5,
+      "right": 5,
+      "top": 5,
+      "bottom": 5,
+      "drawMode": "sliced"
+    },
+    {
+      "sprite": "button_pressed",
+      "left": 5,
+      "right": 5,
+      "top": 5,
+      "bottom": 5,
+      "drawMode": "sliced"
+    },
+    {
+      "sprite": "hpbar_block",
+      "left": 2,
+      "right": 2,
+      "top": 2,
+      "bottom": 2,
+      "drawMode": "sliced"
+    },
+    {
+      "sprite": "hpbar_fill",
+      "left": 1,
+      "right": 1,
+      "top": 0,
+      "bottom": 0,
+      "drawMode": "sliced"
+    },
+    {
+      "sprite": "hpbar_fill_lag",
+      "left": 1,
+      "right": 1,
+      "top": 0,
+      "bottom": 0,
+      "drawMode": "sliced"
+    },
+    {
+      "sprite": "hpbar_frame",
+      "left": 2,
+      "right": 2,
+      "top": 2,
+      "bottom": 2,
+      "drawMode": "sliced"
+    },
+    {
+      "sprite": "panel_dark",
+      "left": 8,
+      "right": 8,
+      "top": 8,
+      "bottom": 8,
+      "drawMode": "sliced"
+    },
+    {
+      "sprite": "panel_paper",
+      "left": 12,
+      "right": 12,
+      "top": 12,
+      "bottom": 12,
+      "drawMode": "tiled"
+    },
+    {
+      "sprite": "tooltip",
+      "left": 6,
+      "right": 6,
+      "top": 6,
+      "bottom": 6,
+      "drawMode": "sliced"
+    }
+  ],
+  "cursor": {
+    "sprite": "cursor_tear",
+    "hotspotX": 1,
+    "hotspotY": 1
+  },
+  "card": {
+    "size": [
+      64,
+      90
+    ],
+    "artRect": [
+      4,
+      4,
+      56,
+      36
+    ],
+    "nameRect": [
+      4,
+      42,
+      56,
+      9
+    ],
+    "textRect": [
+      4,
+      53,
+      56,
+      31
+    ],
+    "gemPos": [
+      28,
+      82
+    ],
+    "costOrbPos": [
+      -5,
+      -5
+    ],
+    "glowOffset": [
+      -4,
+      -4
+    ],
+    "coordinates": "px from the card's top-left corner"
+  }
+}

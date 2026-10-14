@@ -1,0 +1,16 @@
+{
+  "id": "footstep_stone_2",
+  "type": "sfx",
+  "prompt": "Close-up single footstep on a gritty stone floor, one clear tap with a tiny scrape of grit, isolated, game sound effect",
+  "duration": 0.8,
+  "prompt_influence": 0.7,
+  "model": "eleven_text_to_sound_v2",
+  "fallback": false,
+  "credits_est": 12,
+  "generated_at": "2026-10-14T22:46:09",
+  "process": {
+    "trimmed_lead_s": 0.0,
+    "truncated_to_s": 0.35,
+    "gain_db": 20.0
+  }
+}

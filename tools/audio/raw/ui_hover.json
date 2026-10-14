@@ -1,0 +1,16 @@
+{
+  "id": "ui_hover",
+  "type": "sfx",
+  "prompt": "A tiny soft wooden tick, a single very short and quiet UI hover sound, clean, isolated, no reverb",
+  "duration": 0.5,
+  "prompt_influence": 0.7,
+  "model": "eleven_text_to_sound_v2",
+  "fallback": false,
+  "credits_est": 7,
+  "generated_at": "2026-10-14T22:46:04",
+  "process": {
+    "trimmed_lead_s": 0.0,
+    "truncated_to_s": 0.15,
+    "gain_db": 26.0
+  }
+}

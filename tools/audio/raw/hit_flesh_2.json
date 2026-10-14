@@ -1,0 +1,16 @@
+{
+  "id": "hit_flesh_2",
+  "type": "sfx",
+  "prompt": "Squishy meat slap impact with a small splatter of blood, short",
+  "duration": 0.5,
+  "prompt_influence": 0.45,
+  "model": "eleven_text_to_sound_v2",
+  "fallback": false,
+  "credits_est": 7,
+  "generated_at": "2026-10-14T22:40:13",
+  "process": {
+    "trimmed_lead_s": 0.0,
+    "gain_capped_db": 0.8,
+    "gain_db": 19.25
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "id": "shuffle",
+  "type": "sfx",
+  "prompt": "A deck of playing cards riffle shuffled once and squared up, quick paper flutter, close-up, dry",
+  "duration": 1.2,
+  "prompt_influence": 0.6,
+  "model": "eleven_text_to_sound_v2",
+  "fallback": false,
+  "credits_est": 17,
+  "generated_at": "2026-10-14T22:39:43",
+  "process": {
+    "trimmed_lead_s": 0.012,
+    "gain_capped_db": 5.4,
+    "gain_db": 10.64
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "id": "door_open",
+  "type": "sfx",
+  "prompt": "An old heavy wooden dungeon door creaking open on rusty hinges, ending with a dull thud against a stone wall",
+  "duration": 1.8,
+  "prompt_influence": 0.45,
+  "model": "eleven_text_to_sound_v2",
+  "fallback": false,
+  "credits_est": 26,
+  "generated_at": "2026-10-14T22:39:52",
+  "process": {
+    "trimmed_lead_s": 0.0,
+    "gain_db": -4.4
+  }
+}

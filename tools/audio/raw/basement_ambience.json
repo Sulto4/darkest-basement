@@ -1,0 +1,15 @@
+{
+  "id": "basement_ambience",
+  "type": "loop",
+  "prompt": "Dark damp basement ambience: a steady low rumble of an old building, water dripping now and then, a fly buzzing past occasionally, old pipes and wooden beams creaking, unsettling, continuous, clearly audible, no music, no voices",
+  "duration": 30,
+  "prompt_influence": 0.35,
+  "model": "eleven_text_to_sound_v2",
+  "fallback": false,
+  "credits_est": 420,
+  "generated_at": "2026-10-14T22:46:22",
+  "process": {
+    "loop_len_s": 27.99,
+    "gain_db": 17.5
+  }
+}

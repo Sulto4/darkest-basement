@@ -1,0 +1,17 @@
+{
+  "id": "card_draw",
+  "type": "sfx",
+  "prompt": "A single playing card quickly sliding off the top of a deck, short crisp paper swish, close-up, dry",
+  "duration": 0.6,
+  "prompt_influence": 0.6,
+  "model": "eleven_text_to_sound_v2",
+  "fallback": false,
+  "credits_est": 9,
+  "generated_at": "2026-10-14T22:39:38",
+  "process": {
+    "trimmed_lead_s": 0.0,
+    "long_fade_s": 0.02,
+    "gain_capped_db": 0.8,
+    "gain_db": 5.08
+  }
+}

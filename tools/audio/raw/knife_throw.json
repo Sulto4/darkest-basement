@@ -1,0 +1,15 @@
+{
+  "id": "knife_throw",
+  "type": "sfx",
+  "prompt": "A kitchen knife thrown spinning through the air with a fast whoosh, ending in a sharp wet stab into flesh",
+  "duration": 0.8,
+  "prompt_influence": 0.45,
+  "model": "eleven_text_to_sound_v2",
+  "fallback": false,
+  "credits_est": 12,
+  "generated_at": "2026-10-14T22:40:09",
+  "process": {
+    "trimmed_lead_s": 0.0,
+    "gain_db": 0.9
+  }
+}

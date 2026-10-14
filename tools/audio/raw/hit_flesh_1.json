@@ -1,0 +1,16 @@
+{
+  "id": "hit_flesh_1",
+  "type": "sfx",
+  "prompt": "Wet fleshy impact, a squelchy hit on a soft body, short, gross",
+  "duration": 0.5,
+  "prompt_influence": 0.45,
+  "model": "eleven_text_to_sound_v2",
+  "fallback": false,
+  "credits_est": 7,
+  "generated_at": "2026-10-14T22:40:12",
+  "process": {
+    "trimmed_lead_s": 0.0,
+    "gain_capped_db": 0.3,
+    "gain_db": 5.58
+  }
+}

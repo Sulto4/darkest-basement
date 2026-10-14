@@ -1,0 +1,524 @@
+{
+  "_comment": "Lista de sunete pentru tools/audio/generate.py. type: sfx | loop | music. duration în secunde. volume = volumul implicit din manifest (0..1). Promptul nu numește artiști, jocuri sau melodii reale.",
+  "defaults": {
+    "sfx": {
+      "prompt_influence": 0.45,
+      "pitch_variance": 0.05,
+      "target_lufs": -16
+    },
+    "loop": {
+      "prompt_influence": 0.35,
+      "pitch_variance": 0.0,
+      "target_lufs": -20,
+      "crossfade": 2.0
+    },
+    "music": {
+      "pitch_variance": 0.0,
+      "target_lufs": -20,
+      "crossfade": 2.0,
+      "model_id": "music_v2_5",
+      "force_instrumental": false
+    }
+  },
+  "sounds": [
+    {
+      "id": "ui_click",
+      "category": "ui",
+      "type": "sfx",
+      "duration": 0.5,
+      "volume": 0.55,
+      "pitch_variance": 0.04,
+      "prompt_influence": 0.6,
+      "prompt": "Single short crisp UI click, a dry muted wooden tick, tight, no reverb, game menu button sound"
+    },
+    {
+      "id": "ui_hover",
+      "category": "ui",
+      "type": "sfx",
+      "duration": 0.5,
+      "max_length": 0.15,
+      "volume": 0.3,
+      "pitch_variance": 0.05,
+      "prompt_influence": 0.7,
+      "prompt": "A tiny soft wooden tick, a single very short and quiet UI hover sound, clean, isolated, no reverb"
+    },
+    {
+      "id": "card_draw",
+      "category": "ui",
+      "type": "sfx",
+      "duration": 0.6,
+      "volume": 0.5,
+      "pitch_variance": 0.06,
+      "prompt_influence": 0.6,
+      "prompt": "A single playing card quickly sliding off the top of a deck, short crisp paper swish, close-up, dry"
+    },
+    {
+      "id": "card_play",
+      "category": "ui",
+      "type": "sfx",
+      "duration": 0.8,
+      "volume": 0.7,
+      "pitch_variance": 0.05,
+      "prompt_influence": 0.6,
+      "prompt": "A playing card slapped down hard onto an old wooden table, a quick paper whoosh then a sharp slap, punchy, dry"
+    },
+    {
+      "id": "card_flip_reward",
+      "category": "ui",
+      "type": "sfx",
+      "duration": 1.8,
+      "volume": 0.7,
+      "pitch_variance": 0.03,
+      "prompt": "A playing card flipping over with a quick paper snap, followed by a short dark mystical shimmering chime that fades out, eerie fantasy reward reveal"
+    },
+    {
+      "id": "shuffle",
+      "category": "ui",
+      "type": "sfx",
+      "duration": 1.2,
+      "volume": 0.55,
+      "pitch_variance": 0.04,
+      "prompt_influence": 0.6,
+      "prompt": "A deck of playing cards riffle shuffled once and squared up, quick paper flutter, close-up, dry"
+    },
+    {
+      "id": "end_turn",
+      "category": "ui",
+      "type": "sfx",
+      "duration": 1.0,
+      "volume": 0.6,
+      "pitch_variance": 0.02,
+      "prompt": "A heavy wooden lever thunk followed by a short, low, muffled bell toll, dark and grim, game end turn sound"
+    },
+    {
+      "id": "turn_start",
+      "category": "ui",
+      "type": "sfx",
+      "duration": 1.0,
+      "volume": 0.55,
+      "pitch_variance": 0.02,
+      "prompt": "Short dark ominous swell, a quick reverse whoosh into a low soft drum hit, fantasy turn start cue"
+    },
+    {
+      "id": "footstep_stone_1",
+      "group": "footstep_stone",
+      "category": "explore",
+      "type": "sfx",
+      "duration": 0.8,
+      "max_length": 0.35,
+      "volume": 0.45,
+      "pitch_variance": 0.08,
+      "prompt_influence": 0.7,
+      "prompt": "Close-up single footstep on a hard stone floor, one soft but clear heel tap, clean, isolated, game sound effect"
+    },
+    {
+      "id": "footstep_stone_2",
+      "group": "footstep_stone",
+      "category": "explore",
+      "type": "sfx",
+      "duration": 0.8,
+      "max_length": 0.35,
+      "volume": 0.45,
+      "pitch_variance": 0.08,
+      "prompt_influence": 0.7,
+      "prompt": "Close-up single footstep on a gritty stone floor, one clear tap with a tiny scrape of grit, isolated, game sound effect"
+    },
+    {
+      "id": "footstep_stone_3",
+      "group": "footstep_stone",
+      "category": "explore",
+      "type": "sfx",
+      "duration": 0.8,
+      "max_length": 0.35,
+      "volume": 0.45,
+      "pitch_variance": 0.08,
+      "prompt_influence": 0.7,
+      "prompt": "Close-up single footstep on a damp stone floor, one clear tap with a subtle wet slap, isolated, game sound effect"
+    },
+    {
+      "id": "door_open",
+      "category": "explore",
+      "type": "sfx",
+      "duration": 1.8,
+      "volume": 0.7,
+      "pitch_variance": 0.04,
+      "prompt": "An old heavy wooden dungeon door creaking open on rusty hinges, ending with a dull thud against a stone wall"
+    },
+    {
+      "id": "door_boss_open",
+      "category": "explore",
+      "type": "sfx",
+      "duration": 3.0,
+      "volume": 0.85,
+      "pitch_variance": 0.02,
+      "prompt": "A massive grotesque dungeon gate grinding open, wet flesh tearing, bones rattling, deep demonic rumble, terrifying"
+    },
+    {
+      "id": "trapdoor_descend",
+      "category": "explore",
+      "type": "sfx",
+      "duration": 2.5,
+      "volume": 0.75,
+      "pitch_variance": 0.02,
+      "prompt": "A wooden trapdoor slamming open, then a deep falling whoosh down into darkness, ending with a muffled landing thump"
+    },
+    {
+      "id": "chest_open",
+      "category": "explore",
+      "type": "sfx",
+      "duration": 1.5,
+      "volume": 0.7,
+      "pitch_variance": 0.03,
+      "prompt": "A small wooden treasure chest lid creaking open with a metal latch click, followed by a soft magical sparkle"
+    },
+    {
+      "id": "trap_spikes",
+      "category": "explore",
+      "type": "sfx",
+      "duration": 1.0,
+      "volume": 0.75,
+      "pitch_variance": 0.06,
+      "prompt": "Sharp metal spikes shooting up out of a stone floor, a fast metallic shing, then a wet stab, short"
+    },
+    {
+      "id": "tear_shot",
+      "category": "combat",
+      "type": "sfx",
+      "duration": 0.5,
+      "volume": 0.55,
+      "pitch_variance": 0.08,
+      "prompt": "Small cartoonish wet projectile shot, a soft squishy water droplet pop with a quick tiny whoosh, short"
+    },
+    {
+      "id": "tear_splash",
+      "category": "combat",
+      "type": "sfx",
+      "duration": 0.5,
+      "max_length": 0.3,
+      "volume": 0.6,
+      "pitch_variance": 0.08,
+      "prompt_influence": 0.7,
+      "prompt": "One single water drop splat, the short wet impact of a teardrop hitting the ground, instant sharp attack, nothing before the hit, isolated"
+    },
+    {
+      "id": "punch",
+      "category": "combat",
+      "type": "sfx",
+      "duration": 0.5,
+      "volume": 0.75,
+      "pitch_variance": 0.08,
+      "prompt_influence": 0.6,
+      "prompt": "A solid fist punch hitting a body, meaty thud, short and punchy, dry"
+    },
+    {
+      "id": "crit_hit",
+      "category": "combat",
+      "type": "sfx",
+      "duration": 1.0,
+      "volume": 0.9,
+      "pitch_variance": 0.05,
+      "prompt": "Brutal critical hit, a heavy meaty smash with a bone crunch and a sharp ringing metallic accent, powerful and punchy"
+    },
+    {
+      "id": "brimstone_charge",
+      "category": "combat",
+      "type": "sfx",
+      "duration": 2.0,
+      "volume": 0.75,
+      "pitch_variance": 0.03,
+      "prompt": "Demonic energy charging up, a rising low rumble with crackling sizzling blood and an intensifying hum, building tension"
+    },
+    {
+      "id": "brimstone_beam",
+      "category": "combat",
+      "type": "sfx",
+      "duration": 2.5,
+      "volume": 0.9,
+      "pitch_variance": 0.03,
+      "prompt": "A huge blood-red demonic laser beam firing, a roaring sizzling energy blast with heavy sub bass, intense, fading out at the end"
+    },
+    {
+      "id": "bomb_explode",
+      "category": "combat",
+      "type": "sfx",
+      "duration": 2.0,
+      "volume": 0.9,
+      "pitch_variance": 0.05,
+      "prompt": "Cartoony bomb explosion, a punchy deep boom with flying debris and a short rumbling tail, clean, not distorted"
+    },
+    {
+      "id": "knife_throw",
+      "category": "combat",
+      "type": "sfx",
+      "duration": 0.8,
+      "volume": 0.7,
+      "pitch_variance": 0.07,
+      "prompt": "A kitchen knife thrown spinning through the air with a fast whoosh, ending in a sharp wet stab into flesh"
+    },
+    {
+      "id": "incubus_shot",
+      "category": "combat",
+      "type": "sfx",
+      "duration": 0.7,
+      "volume": 0.6,
+      "pitch_variance": 0.07,
+      "prompt": "A dark magic projectile fired, an eerie whispery whoosh with a short demonic hiss"
+    },
+    {
+      "id": "hit_flesh_1",
+      "group": "hit_flesh",
+      "category": "combat",
+      "type": "sfx",
+      "duration": 0.5,
+      "volume": 0.7,
+      "pitch_variance": 0.08,
+      "prompt": "Wet fleshy impact, a squelchy hit on a soft body, short, gross"
+    },
+    {
+      "id": "hit_flesh_2",
+      "group": "hit_flesh",
+      "category": "combat",
+      "type": "sfx",
+      "duration": 0.5,
+      "volume": 0.7,
+      "pitch_variance": 0.08,
+      "prompt": "Squishy meat slap impact with a small splatter of blood, short"
+    },
+    {
+      "id": "hit_flesh_3",
+      "group": "hit_flesh",
+      "category": "combat",
+      "type": "sfx",
+      "duration": 0.5,
+      "volume": 0.7,
+      "pitch_variance": 0.08,
+      "prompt": "A gory wet thwack into soft flesh with a subtle crunch, short"
+    },
+    {
+      "id": "block_gain",
+      "category": "combat",
+      "type": "sfx",
+      "duration": 0.8,
+      "volume": 0.6,
+      "pitch_variance": 0.05,
+      "prompt_influence": 0.6,
+      "prompt": "A shield raised for defense, a crisp solid metallic clank with a short bright ring, punchy, isolated"
+    },
+    {
+      "id": "block_hit",
+      "category": "combat",
+      "type": "sfx",
+      "duration": 0.6,
+      "volume": 0.7,
+      "pitch_variance": 0.07,
+      "prompt": "An attack blocked by a heavy shield, a dull metallic clang with a thud, short"
+    },
+    {
+      "id": "heal",
+      "category": "combat",
+      "type": "sfx",
+      "duration": 1.2,
+      "volume": 0.6,
+      "pitch_variance": 0.03,
+      "prompt": "Gentle healing magic, a warm soft rising chime sparkle with a soft heartbeat thump"
+    },
+    {
+      "id": "poison_apply",
+      "category": "combat",
+      "type": "sfx",
+      "duration": 1.0,
+      "volume": 0.6,
+      "pitch_variance": 0.05,
+      "prompt": "Toxic poison effect, sick bubbling gurgling green liquid with a short acidic hiss"
+    },
+    {
+      "id": "bleed_apply",
+      "category": "combat",
+      "type": "sfx",
+      "duration": 0.8,
+      "volume": 0.65,
+      "pitch_variance": 0.06,
+      "prompt": "A short squirt of blood, wet spurting splatter, gross, short"
+    },
+    {
+      "id": "stun",
+      "category": "combat",
+      "type": "sfx",
+      "duration": 1.2,
+      "volume": 0.6,
+      "pitch_variance": 0.04,
+      "prompt": "Dizzy stun effect, a cartoon bonk on the head followed by a short ringing wobble"
+    },
+    {
+      "id": "buff",
+      "category": "combat",
+      "type": "sfx",
+      "duration": 1.2,
+      "volume": 0.6,
+      "pitch_variance": 0.03,
+      "prompt": "Dark power-up, a rising demonic whoosh with a deep resonant swell, empowering"
+    },
+    {
+      "id": "debuff",
+      "category": "combat",
+      "type": "sfx",
+      "duration": 1.2,
+      "volume": 0.6,
+      "pitch_variance": 0.03,
+      "prompt": "A curse being applied, a descending eerie warble with a dark ghostly whisper, sinister"
+    },
+    {
+      "id": "hero_death",
+      "category": "combat",
+      "type": "sfx",
+      "duration": 2.0,
+      "volume": 0.8,
+      "pitch_variance": 0.02,
+      "prompt": "A weak final dying groan followed by a body collapsing onto a stone floor, sad and grim, clean, not distorted"
+    },
+    {
+      "id": "enemy_death_splat",
+      "category": "combat",
+      "type": "sfx",
+      "duration": 1.0,
+      "volume": 0.8,
+      "pitch_variance": 0.07,
+      "prompt": "A small monster bursting into gore, a big wet splat with blood and guts splattering, gross"
+    },
+    {
+      "id": "fly_buzz",
+      "category": "combat",
+      "type": "sfx",
+      "duration": 1.5,
+      "volume": 0.5,
+      "pitch_variance": 0.06,
+      "prompt": "A fat fly buzzing close by, a short angry buzz passing near the ear"
+    },
+    {
+      "id": "gaper_groan",
+      "category": "combat",
+      "type": "sfx",
+      "duration": 1.5,
+      "volume": 0.65,
+      "pitch_variance": 0.06,
+      "prompt_influence": 0.35,
+      "prompt": "A disfigured zombie-like creature moaning, a low hungry gurgling groan, grotesque"
+    },
+    {
+      "id": "monster_roar",
+      "category": "combat",
+      "type": "sfx",
+      "duration": 2.0,
+      "volume": 0.8,
+      "pitch_variance": 0.05,
+      "prompt_influence": 0.35,
+      "prompt": "A grotesque fleshy monster roar, a wet guttural snarl, aggressive and loud"
+    },
+    {
+      "id": "monstro_land",
+      "category": "combat",
+      "type": "sfx",
+      "duration": 2.0,
+      "volume": 0.9,
+      "pitch_variance": 0.03,
+      "prompt": "A huge fleshy blob monster landing after a jump, a heavy wet ground slam with a squelch and a deep rumble"
+    },
+    {
+      "id": "mom_stomp",
+      "category": "combat",
+      "type": "sfx",
+      "duration": 2.5,
+      "volume": 1.0,
+      "pitch_variance": 0.02,
+      "prompt": "A gigantic foot stomping down from above onto a stone floor, a massive thunderous impact with crumbling debris and a deep rumble"
+    },
+    {
+      "id": "victory_sting",
+      "category": "stinger",
+      "type": "sfx",
+      "duration": 4.0,
+      "volume": 0.8,
+      "pitch_variance": 0.0,
+      "prompt": "Short dark victorious orchestral sting, a triumphant brass and pipe organ chord with a choir swell, gothic, ends cleanly"
+    },
+    {
+      "id": "defeat_sting",
+      "category": "stinger",
+      "type": "sfx",
+      "duration": 4.0,
+      "volume": 0.8,
+      "pitch_variance": 0.0,
+      "prompt": "Short mournful defeat sting, a descending dissonant pipe organ chord with a low funeral bell toll and a fading choir, grim"
+    },
+    {
+      "id": "card_reward_rare",
+      "category": "stinger",
+      "type": "sfx",
+      "duration": 2.0,
+      "volume": 0.8,
+      "pitch_variance": 0.0,
+      "prompt": "Rare treasure reveal, a shimmering magical chime with an angelic choir swell, sparkling, short"
+    },
+    {
+      "id": "basement_ambience",
+      "category": "ambience",
+      "type": "loop",
+      "duration": 30,
+      "volume": 0.5,
+      "prompt": "Dark damp basement ambience: a steady low rumble of an old building, water dripping now and then, a fly buzzing past occasionally, old pipes and wooden beams creaking, unsettling, continuous, clearly audible, no music, no voices"
+    },
+    {
+      "id": "caves_ambience",
+      "category": "ambience",
+      "type": "loop",
+      "duration": 30,
+      "volume": 0.65,
+      "prompt": "Ambient wet cave atmosphere, water drops dripping at irregular intervals and echoing in a large stone cavern, distant trickling water, low cavern rumble, continuous, no music"
+    },
+    {
+      "id": "depths_ambience",
+      "category": "ambience",
+      "type": "loop",
+      "duration": 30,
+      "volume": 0.5,
+      "prompt": "Oppressive dark dungeon ambience, a slow muffled heartbeat thumping in the walls, a low ominous drone, distant agonized moans echoing, faint chains rattling far away, continuous, no music"
+    },
+    {
+      "id": "music_menu",
+      "category": "music",
+      "type": "music",
+      "duration": 75,
+      "volume": 0.7,
+      "prompt": "Dark gothic instrumental for the title screen of a grotesque horror roguelike. Slow mournful pipe organ chords, a soft wordless choir humming (no lyrics), a fragile detuned music-box melody like a twisted childhood lullaby, low cello drones. Melancholic, eerie, sparse. 70 BPM, D minor. Steady mood from start to end, no big intro and no ending, suitable for seamless looping.",
+      "fallback_prompt": "Dark gothic drone bed: slow mournful pipe organ chord sustained, faint detuned music box notes, low cello drone, eerie, continuous"
+    },
+    {
+      "id": "music_explore",
+      "category": "music",
+      "type": "music",
+      "duration": 120,
+      "volume": 0.6,
+      "force_instrumental": true,
+      "prompt": "Dark eerie ambient instrumental for slowly exploring a filthy dungeon basement. Low droning strings, sparse creepy celesta and music-box notes, distant muffled organ pads, occasional deep timpani hits, subtle unsettling dissonance. Slow, tense and atmospheric, minimal melody, constant intensity, 60 BPM, minor key. No intro and no ending, suitable for seamless looping.",
+      "fallback_prompt": "Eerie dark dungeon drone, low droning strings, sparse creepy celesta notes, distant organ pad, continuous, tense"
+    },
+    {
+      "id": "music_combat",
+      "category": "music",
+      "type": "music",
+      "duration": 120,
+      "volume": 0.65,
+      "prompt": "Driving dark gothic orchestral battle music for a grotesque turn-based dungeon fight. Heavy pounding war drums and taiko, aggressive staccato low strings, a dark choir chanting wordless syllables (no lyrics), menacing church pipe organ riffs, urgent and relentless. 140 BPM, C minor. Constant high energy from start to end, no intro, no outro, suitable for seamless looping.",
+      "fallback_prompt": "Driving dark tribal war drums with ominous pipe organ drone, relentless rhythm, continuous"
+    },
+    {
+      "id": "music_boss",
+      "category": "music",
+      "type": "music",
+      "duration": 120,
+      "volume": 0.7,
+      "prompt": "Intense dark gothic boss battle music against a monstrous grotesque creature. Thunderous orchestral percussion and fast double-time drums, furious tremolo strings, massive dissonant pipe organ, an epic dark choir shouting wordless syllables (no lyrics), brutal brass stabs, frantic and overwhelming. 160 BPM, minor key. Maximum intensity throughout, no intro, no fade-out, suitable for seamless looping.",
+      "fallback_prompt": "Frantic thunderous drums with massive dissonant pipe organ and brass stabs, overwhelming, continuous"
+    }
+  ]
+}

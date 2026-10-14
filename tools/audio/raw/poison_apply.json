@@ -1,0 +1,15 @@
+{
+  "id": "poison_apply",
+  "type": "sfx",
+  "prompt": "Toxic poison effect, sick bubbling gurgling green liquid with a short acidic hiss",
+  "duration": 1.0,
+  "prompt_influence": 0.45,
+  "model": "eleven_text_to_sound_v2",
+  "fallback": false,
+  "credits_est": 14,
+  "generated_at": "2026-10-14T22:40:21",
+  "process": {
+    "trimmed_lead_s": 0.0,
+    "gain_db": -4.8
+  }
+}

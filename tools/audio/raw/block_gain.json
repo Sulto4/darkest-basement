@@ -1,0 +1,16 @@
+{
+  "id": "block_gain",
+  "type": "sfx",
+  "prompt": "A shield raised for defense, a crisp solid metallic clank with a short bright ring, punchy, isolated",
+  "duration": 0.8,
+  "prompt_influence": 0.6,
+  "model": "eleven_text_to_sound_v2",
+  "fallback": false,
+  "credits_est": 12,
+  "generated_at": "2026-10-14T22:46:15",
+  "process": {
+    "trimmed_lead_s": 0.0,
+    "gain_capped_db": 0.3,
+    "gain_db": 19.54
+  }
+}

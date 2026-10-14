@@ -1,0 +1,4 @@
+!*.csproj
+.dotnet-home/
+bin/
+obj/

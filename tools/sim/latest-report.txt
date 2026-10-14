@@ -1,0 +1,97 @@
+CSSM_ModuleLoad(): One or more parameters passed to a function were not valid.
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:00.82
+CSSM_ModuleLoad(): One or more parameters passed to a function were not valid.
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:01.23
+PASS DatabaseHasEveryDefinition
+PASS MapsConnectedAndBossFarthestFor1000Seeds
+PASS ScoutingRevealsNeighborsOnly
+PASS RngForksAreStableAndIndependent
+PASS ShuffleAndDeckPreserveMultiset
+PASS DamageFormulaWeakMarkCritBlockStrength
+PASS DotsTickDecayAndBypassBlock
+PASS StunSkipsExactlyOneTurn
+PASS TauntForcesBothSidesAndPersistsOnNerve
+PASS DeathCompactsRanksAndEmitsMovement
+PASS MulliganSpawnsTwoFliesThatWaitUntilNextRound
+PASS GlobinRevivesOnlyOnce
+PASS HostReductionAndAlternatingOpenState
+PASS MomPhaseTwoHasTwoActionsBelowHalfOnly
+PASS BossEyeshadowWeakInsteadOfStun
+PASS RewardsUseLivingPoolsAndBossRares
+PASS MoveSwapsRanksAndCostsOneEnergy
+PASS EndTurnDiscardsAndEventsBelongToLatestCommand
+PASS InvalidCardCommandsDoNotConsumeEnergyOrHand
+PASS EveryCardResolvesThroughPublicEngine
+PASS UpgradesUseCeilingMinimumTwoOrCostReduction
+PASS MultiHitStrengthBleedAndCritStun
+PASS WeakMarkExpireButStrengthAndNewTauntPersist
+PASS GurdyNeverExceedsThreeMinions
+PASS ChargerAdvancesToFrontAndMomHandPullsBackHero
+PASS EnemyIntentsRespectAbilityRanksAndConditions
+PASS ConcessionIsAnExplicitDefeat
+PASS RunTravelEnforcesSegmentOrderAndEarlySafety
+PASS TreasureChoicePersistsExactlyOneOwnedCard
+PASS BedroomSupportsHealRemoveAndUpgrade
+PASS CombatResultPersistsDeathsDecksAndStatistics
+PASS BossRewardAndDescentAdvanceAllThreeFloors
+PASS EncounterBudgetsGrowAndRespectFloorPools
+PASS FullRunsAreDeterministic
+PASS TwoHundredFullRunsTerminate
+Tests: 35 passed, 0 failed.
+Runs=500 seeds=1..500
+Wins=219 (43.8%) floor clears=500/482/219
+Normal rounds=3.53 (n=8300) Boss rounds=6.78 (n=1385)
+Combats/run all=19.37 winning=19.61
+Boss rounds by floor=6.22/6.59/7.72 concessions=30
+card                       offers picks pick% plays play% damage damage%
+20_20                         415   231  55.7   3244   1.34   31750   2.51
+abaddon                       286   184  64.3   1915   0.79       0   0.00
+blood_bag                    1344   573  42.6   4875   2.01       0   0.00
+blood_beam                      0     0   0.0   6703   2.77   89902   7.10
+bomb_toss                       0     0   0.0   2799   1.16   28706   2.27
+book_of_belial               1347   502  37.3   3050   1.26       0   0.00
+box_of_friends                  0     0   0.0   3069   1.27   31792   2.51
+brimstone_swipe                 0     0   0.0  21217   8.76  171353  13.54
+cambion_shield                  0     0   0.0   3933   1.62       0   0.00
+ceremonial_robes              410   270  65.9   2644   1.09       0   0.00
+charged_brimstone             409   202  49.4   1716   0.71   28382   2.24
+crickets_head                 466   208  44.6   2605   1.08   37804   2.99
+cursed_eye                      0     0   0.0   6216   2.57       0   0.00
+demon_wings                     0     0   0.0   4800   1.98       0   0.00
+dice_shard                    433   332  76.7   7670   3.17       0   0.00
+dr_fetus                      262   166  63.4   1499   0.62   27446   2.17
+goat_head                    1319   422  32.0   1133   0.47       0   0.00
+guardian_angel                247   173  70.0    852   0.35       0   0.00
+holy_mantle                   267   197  73.8     44   0.02       0   0.00
+incubus_shot                    0     0   0.0  20283   8.38  116128   9.18
+ipecac                        370   217  58.6   1285   0.53   17419   1.38
+lil_brimstone                 360   186  51.7    788   0.33   11125   0.88
+lucky_foot                      0     0   0.0  14702   6.07       0   0.00
+lucky_penny                  1427   447  31.3   5578   2.30       0   0.00
+lucky_punch                     0     0   0.0  30026  12.40  184607  14.59
+maw_of_the_void               253   171  67.6   1596   0.66   43569   3.44
+midas_touch                   244   164  67.2   2208   0.91   28531   2.25
+moms_eyeshadow               1257   431  34.3   4628   1.91       0   0.00
+moms_knife                    412   301  73.1   5623   2.32   41127   3.25
+multidimensional_baby         424   320  75.5   3696   1.53   33058   2.61
+pentagram                     415   225  54.2   1832   0.76       0   0.00
+polyphemus                    227   179  78.9   1420   0.59   27502   2.17
+spoon_bender                    0     0   0.0  13848   5.72   56413   4.46
+succubus                      431   345  80.0   4024   1.66       0   0.00
+tear                            0     0   0.0  18334   7.57  106175   8.39
+the_d6                        412   255  61.9   1199   0.50       0   0.00
+the_poop                     1342   439  32.7   8787   3.63   29295   2.31
+the_sad_onion                   0     0   0.0  13007   5.37   94200   7.44
+twisted_pair                  225   192  85.3   2005   0.83   29189   2.31
+yum_heart                       0     0   0.0   7254   3.00       0   0.00
+Balance targets: PASS (card dominance threshold: 25% damage or plays)

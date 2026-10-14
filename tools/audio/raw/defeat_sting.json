@@ -1,0 +1,15 @@
+{
+  "id": "defeat_sting",
+  "type": "sfx",
+  "prompt": "Short mournful defeat sting, a descending dissonant pipe organ chord with a low funeral bell toll and a fading choir, grim",
+  "duration": 4.0,
+  "prompt_influence": 0.45,
+  "model": "eleven_text_to_sound_v2",
+  "fallback": false,
+  "credits_est": 56,
+  "generated_at": "2026-10-14T22:40:44",
+  "process": {
+    "trimmed_lead_s": 0.0,
+    "gain_db": -7.9
+  }
+}

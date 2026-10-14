@@ -1,0 +1,15 @@
+{
+  "id": "trapdoor_descend",
+  "type": "sfx",
+  "prompt": "A wooden trapdoor slamming open, then a deep falling whoosh down into darkness, ending with a muffled landing thump",
+  "duration": 2.5,
+  "prompt_influence": 0.45,
+  "model": "eleven_text_to_sound_v2",
+  "fallback": false,
+  "credits_est": 35,
+  "generated_at": "2026-10-14T22:39:56",
+  "process": {
+    "trimmed_lead_s": 0.0,
+    "gain_db": 1.6
+  }
+}

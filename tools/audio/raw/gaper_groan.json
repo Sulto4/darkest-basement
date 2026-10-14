@@ -1,0 +1,15 @@
+{
+  "id": "gaper_groan",
+  "type": "sfx",
+  "prompt": "A disfigured zombie-like creature moaning, a low hungry gurgling groan, grotesque",
+  "duration": 1.5,
+  "prompt_influence": 0.35,
+  "model": "eleven_text_to_sound_v2",
+  "fallback": false,
+  "credits_est": 21,
+  "generated_at": "2026-10-14T22:40:36",
+  "process": {
+    "trimmed_lead_s": 0.0,
+    "gain_db": -7.6
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "id": "heal",
+  "type": "sfx",
+  "prompt": "Gentle healing magic, a warm soft rising chime sparkle with a soft heartbeat thump",
+  "duration": 1.2,
+  "prompt_influence": 0.45,
+  "model": "eleven_text_to_sound_v2",
+  "fallback": false,
+  "credits_est": 17,
+  "generated_at": "2026-10-14T22:40:19",
+  "process": {
+    "trimmed_lead_s": 0.0,
+    "gain_db": 12.2
+  }
+}

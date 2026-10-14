@@ -1,0 +1,15 @@
+{
+  "id": "ui_click",
+  "type": "sfx",
+  "prompt": "Single short crisp UI click, a dry muted wooden tick, tight, no reverb, game menu button sound",
+  "duration": 0.5,
+  "prompt_influence": 0.6,
+  "model": "eleven_text_to_sound_v2",
+  "fallback": false,
+  "credits": 0,
+  "generated_at": "2026-10-14T22:36:52",
+  "process": {
+    "trimmed_lead_s": 0.0,
+    "gain_db": 17.9
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "id": "music_menu",
+  "type": "music",
+  "prompt": "Dark gothic instrumental for the title screen of a grotesque horror roguelike. Slow mournful pipe organ chords, a soft wordless choir humming (no lyrics), a fragile detuned music-box melody like a twisted childhood lullaby, low cello drones. Melancholic, eerie, sparse. 70 BPM, D minor. Steady mood from start to end, no big intro and no ending, suitable for seamless looping.",
+  "duration": 75,
+  "prompt_influence": null,
+  "model": "music_v2_5",
+  "fallback": false,
+  "credits_est": 1125,
+  "generated_at": "2026-10-14T22:38:28",
+  "process": {
+    "fadeout_cut_s": 5.42,
+    "loop_match": 0.812,
+    "loop_start_s": 9.74,
+    "loop_end_s": 50.89,
+    "loop_len_s": 41.15,
+    "gain_db": -7.1
+  }
+}

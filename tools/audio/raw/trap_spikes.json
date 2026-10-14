@@ -1,0 +1,15 @@
+{
+  "id": "trap_spikes",
+  "type": "sfx",
+  "prompt": "Sharp metal spikes shooting up out of a stone floor, a fast metallic shing, then a wet stab, short",
+  "duration": 1.0,
+  "prompt_influence": 0.45,
+  "model": "eleven_text_to_sound_v2",
+  "fallback": false,
+  "credits_est": 14,
+  "generated_at": "2026-10-14T22:39:59",
+  "process": {
+    "trimmed_lead_s": 0.0,
+    "gain_db": -8.1
+  }
+}

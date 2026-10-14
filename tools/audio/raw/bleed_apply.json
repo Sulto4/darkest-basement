@@ -1,0 +1,16 @@
+{
+  "id": "bleed_apply",
+  "type": "sfx",
+  "prompt": "A short squirt of blood, wet spurting splatter, gross, short",
+  "duration": 0.8,
+  "prompt_influence": 0.45,
+  "model": "eleven_text_to_sound_v2",
+  "fallback": false,
+  "credits_est": 12,
+  "generated_at": "2026-10-14T22:40:23",
+  "process": {
+    "trimmed_lead_s": 0.0,
+    "gain_capped_db": 2.1,
+    "gain_db": 15.82
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "id": "mom_stomp",
+  "type": "sfx",
+  "prompt": "A gigantic foot stomping down from above onto a stone floor, a massive thunderous impact with crumbling debris and a deep rumble",
+  "duration": 2.5,
+  "prompt_influence": 0.45,
+  "model": "eleven_text_to_sound_v2",
+  "fallback": false,
+  "credits_est": 35,
+  "generated_at": "2026-10-14T22:40:41",
+  "process": {
+    "trimmed_lead_s": 0.0,
+    "gain_db": 5.5
+  }
+}

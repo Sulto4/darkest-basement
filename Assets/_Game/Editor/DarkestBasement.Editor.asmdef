@@ -7,11 +7,11 @@
         "Unity.RenderPipelines.Core.Runtime",
         "Unity.RenderPipelines.Universal.Runtime",
         "Unity.RenderPipelines.Core.Editor",
-        "Unity.RenderPipelines.Universal.Editor",
-        "Unity.Recorder",
-        "Unity.Recorder.Editor"
+        "Unity.RenderPipelines.Universal.Editor"
     ],
-    "includePlatforms": ["Editor"],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

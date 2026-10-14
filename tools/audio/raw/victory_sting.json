@@ -1,0 +1,15 @@
+{
+  "id": "victory_sting",
+  "type": "sfx",
+  "prompt": "Short dark victorious orchestral sting, a triumphant brass and pipe organ chord with a choir swell, gothic, ends cleanly",
+  "duration": 4.0,
+  "prompt_influence": 0.45,
+  "model": "eleven_text_to_sound_v2",
+  "fallback": false,
+  "credits_est": 56,
+  "generated_at": "2026-10-14T22:40:42",
+  "process": {
+    "trimmed_lead_s": 0.0,
+    "gain_db": -6.7
+  }
+}

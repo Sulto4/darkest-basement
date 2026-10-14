@@ -1,0 +1,15 @@
+{
+  "id": "bomb_explode",
+  "type": "sfx",
+  "prompt": "Cartoony bomb explosion, a punchy deep boom with flying debris and a short rumbling tail, clean, not distorted",
+  "duration": 2.0,
+  "prompt_influence": 0.45,
+  "model": "eleven_text_to_sound_v2",
+  "fallback": false,
+  "credits_est": 28,
+  "generated_at": "2026-10-14T22:46:13",
+  "process": {
+    "trimmed_lead_s": 0.0,
+    "gain_db": -7.3
+  }
+}

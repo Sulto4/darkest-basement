@@ -1,0 +1,15 @@
+{
+  "id": "door_boss_open",
+  "type": "sfx",
+  "prompt": "A massive grotesque dungeon gate grinding open, wet flesh tearing, bones rattling, deep demonic rumble, terrifying",
+  "duration": 3.0,
+  "prompt_influence": 0.45,
+  "model": "eleven_text_to_sound_v2",
+  "fallback": false,
+  "credits_est": 42,
+  "generated_at": "2026-10-14T22:39:54",
+  "process": {
+    "trimmed_lead_s": 0.0,
+    "gain_db": -3.3
+  }
+}

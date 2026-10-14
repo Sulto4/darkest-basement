@@ -1,0 +1,19 @@
+{
+  "id": "music_combat",
+  "type": "music",
+  "prompt": "Driving dark gothic orchestral battle music for a grotesque turn-based dungeon fight. Heavy pounding war drums and taiko, aggressive staccato low strings, a dark choir chanting wordless syllables (no lyrics), menacing church pipe organ riffs, urgent and relentless. 140 BPM, C minor. Constant high energy from start to end, no intro, no outro, suitable for seamless looping.",
+  "duration": 120,
+  "prompt_influence": null,
+  "model": "music_v2_5",
+  "fallback": false,
+  "credits_est": 1800,
+  "generated_at": "2026-10-14T22:41:27",
+  "process": {
+    "fadeout_cut_s": 1.67,
+    "loop_match": 0.592,
+    "loop_start_s": 2.75,
+    "loop_end_s": 105.61,
+    "loop_len_s": 102.86,
+    "gain_db": -7.3
+  }
+}

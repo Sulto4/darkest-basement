@@ -1,0 +1,18 @@
+{
+  "id": "footstep_stone_3",
+  "type": "sfx",
+  "prompt": "Close-up single footstep on a damp stone floor, one clear tap with a subtle wet slap, isolated, game sound effect",
+  "duration": 0.8,
+  "prompt_influence": 0.7,
+  "model": "eleven_text_to_sound_v2",
+  "fallback": false,
+  "credits_est": 12,
+  "generated_at": "2026-10-14T22:46:10",
+  "process": {
+    "trimmed_lead_s": 0.0,
+    "truncated_to_s": 0.35,
+    "long_fade_s": 0.07,
+    "gain_capped_db": 6.8,
+    "gain_db": 14.63
+  }
+}

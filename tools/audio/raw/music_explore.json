@@ -1,0 +1,19 @@
+{
+  "id": "music_explore",
+  "type": "music",
+  "prompt": "Dark eerie ambient instrumental for slowly exploring a filthy dungeon basement. Low droning strings, sparse creepy celesta and music-box notes, distant muffled organ pads, occasional deep timpani hits, subtle unsettling dissonance. Slow, tense and atmospheric, minimal melody, constant intensity, 60 BPM, minor key. No intro and no ending, suitable for seamless looping.",
+  "duration": 120,
+  "prompt_influence": null,
+  "model": "music_v2_5",
+  "fallback": false,
+  "credits_est": 1800,
+  "generated_at": "2026-10-14T22:41:16",
+  "process": {
+    "fadeout_cut_s": 0.09,
+    "loop_match": 0.479,
+    "loop_start_s": 6.97,
+    "loop_end_s": 110.96,
+    "loop_len_s": 104.0,
+    "gain_db": -2.9
+  }
+}

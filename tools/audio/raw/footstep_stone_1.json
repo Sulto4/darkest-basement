@@ -1,0 +1,17 @@
+{
+  "id": "footstep_stone_1",
+  "type": "sfx",
+  "prompt": "Close-up single footstep on a hard stone floor, one soft but clear heel tap, clean, isolated, game sound effect",
+  "duration": 0.8,
+  "prompt_influence": 0.7,
+  "model": "eleven_text_to_sound_v2",
+  "fallback": false,
+  "credits_est": 12,
+  "generated_at": "2026-10-14T22:46:07",
+  "process": {
+    "trimmed_lead_s": 0.0,
+    "truncated_to_s": 0.35,
+    "gain_capped_db": 2.7,
+    "gain_db": 17.9
+  }
+}

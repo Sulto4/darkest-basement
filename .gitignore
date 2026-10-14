@@ -116,3 +116,4 @@ tools/sim/obj/
 tools/**/__pycache__/
 .DS_Store
 art-src/cache/
+tools/sim/.dotnet-home/

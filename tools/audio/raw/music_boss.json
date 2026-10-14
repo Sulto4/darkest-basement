@@ -1,0 +1,19 @@
+{
+  "id": "music_boss",
+  "type": "music",
+  "prompt": "Intense dark gothic boss battle music against a monstrous grotesque creature. Thunderous orchestral percussion and fast double-time drums, furious tremolo strings, massive dissonant pipe organ, an epic dark choir shouting wordless syllables (no lyrics), brutal brass stabs, frantic and overwhelming. 160 BPM, minor key. Maximum intensity throughout, no intro, no fade-out, suitable for seamless looping.",
+  "duration": 120,
+  "prompt_influence": null,
+  "model": "music_v2_5",
+  "fallback": false,
+  "credits_est": 1800,
+  "generated_at": "2026-10-14T22:41:37",
+  "process": {
+    "fadeout_cut_s": 0.01,
+    "loop_match": 0.488,
+    "loop_start_s": 31.96,
+    "loop_end_s": 115.97,
+    "loop_len_s": 84.01,
+    "gain_db": -8.6
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "id": "tear_splash",
+  "type": "sfx",
+  "prompt": "One single water drop splat, the short wet impact of a teardrop hitting the ground, instant sharp attack, nothing before the hit, isolated",
+  "duration": 0.5,
+  "prompt_influence": 0.7,
+  "model": "eleven_text_to_sound_v2",
+  "fallback": false,
+  "credits_est": 7,
+  "generated_at": "2026-10-14T22:48:42",
+  "process": {
+    "trimmed_lead_s": 0.0,
+    "truncated_to_s": 0.3,
+    "gain_capped_db": 6.5,
+    "gain_db": 17.69
+  }
+}

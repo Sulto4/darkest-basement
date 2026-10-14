@@ -1,0 +1,6 @@
+# Brutele MP3 de la ElevenLabs sunt intermediare: .ogg-urile din Resources sunt livrabilul.
+# generate.py nu regenerează un sunet care are deja .ogg, deci o clonă fără raw/ nu cheltuie credite.
+# Metadatele (raw/*.json: prompt, cost) și ledger-ul de buget rămân în git.
+raw/*.mp3
+raw/*.part
+raw/rejected/

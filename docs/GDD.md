@@ -87,60 +87,60 @@ Ce **nu** luăm din Darkest Dungeon: stres, torță, oraș, provizii. Păstrăm 
 Pachet de start: 5 cărți pe erou (marcate S). Pool-ul: restul. Valorile sunt de pornire și se echilibrează prin simulare.
 
 ### Azazel
-| Carte | Rar. | Cost | Din rang | Țintă | Efect |
-|---|---|---|---|---|---|
-| Brimstone Swipe ×2 | S | 1 | 1–2 | inamic r1–2 | 6 dmg |
-| Demon Wings ×2 | S | 1 | oricare | sine | 7 Block |
-| Blood Beam | S | 2 | 1–2 | toți inamicii r1–2 | 5 dmg + Bleed 2 |
-| Goat Head | C | 1 | 1–2 | sine | 6 Block + Taunt 1 |
-| Blood Bag | C | 1 | oricare | sine | vindecă 7 |
-| Pentagram | U | 1 | oricare | sine | +2 Strength |
-| Charged Brimstone | U | 2 | 1–2 | inamic r1–3 | 14 dmg |
-| Ceremonial Robes | U | 1 | oricare | sine | 10 Block + 1 Strength |
-| Abaddon | R | 0 | oricare | sine | +3 Strength, pierde 5 HP |
-| Maw of the Void | R | 2 | 1–2 | toți inamicii | 8 dmg + Bleed 3 |
+| Carte | Rar. | Cost | Din rang | Țintă | Efect | Upgrade pentru cost 0 (+) |
+|---|---|---|---|---|---|---|
+| Brimstone Swipe ×2 | S | 1 | 1–2 | inamic r1–2 | 6 dmg | — |
+| Demon Wings ×2 | S | 1 | oricare | sine | 7 Block | — |
+| Blood Beam | S | 2 | 1–2 | toți inamicii r1–2 | 5 dmg + Bleed 2 | — |
+| Goat Head | C | 1 | 1–2 | sine | 6 Block + Taunt 1 | — |
+| Blood Bag | C | 1 | oricare | sine | vindecă 7 | — |
+| Pentagram | U | 1 | oricare | sine | +2 Strength | — |
+| Charged Brimstone | U | 2 | 1–2 | inamic r1–3 | 14 dmg | — |
+| Ceremonial Robes | U | 1 | oricare | sine | 10 Block + 1 Strength | — |
+| Abaddon | R | 0 | oricare | sine | +3 Strength, pierde 5 HP | +4 Strength; pierde 5 HP |
+| Maw of the Void | R | 2 | 1–2 | toți inamicii | 8 dmg + Bleed 3 | — |
 
 ### Cain
-| Carte | Rar. | Cost | Din rang | Țintă | Efect |
-|---|---|---|---|---|---|
-| Lucky Punch ×2 | S | 1 | 1–3 | inamic r1–2 | 5 dmg, 25% crit |
-| Lucky Foot ×2 | S | 1 | oricare | sine | 5 Block + trage 1 carte |
-| Bomb Toss | S | 2 | 1–3 | toți inamicii r2–4 | 4 dmg |
-| The Poop | C | 1 | 1–3 | inamic oricare | 3 dmg + Weak 2 |
-| Lucky Penny | C | 0 | oricare | sine | trage 2 cărți |
-| Mom's Knife | U | 1 | 1–3 | inamic oricare | 7 dmg + Mark 2 |
-| Cricket's Head | U | 2 | 1–2 | inamic r1–2 | 12 dmg, 30% crit |
-| Dice Shard | U | 0 | oricare | sine | aruncă mâna, trage 3, +1 energie |
-| Midas' Touch | R | 2 | 1–2 | inamic r1–2 | 10 dmg, 50% crit; crit = Stun 1 |
-| Dr. Fetus | R | 2 | 1–3 | toți inamicii | 6 dmg, 25% crit |
+| Carte | Rar. | Cost | Din rang | Țintă | Efect | Upgrade pentru cost 0 (+) |
+|---|---|---|---|---|---|---|
+| Lucky Punch ×2 | S | 1 | 1–3 | inamic r1–2 | 5 dmg, 25% crit | — |
+| Lucky Foot ×2 | S | 1 | oricare | sine | 5 Block + trage 1 carte | — |
+| Bomb Toss | S | 2 | 1–3 | toți inamicii r2–4 | 4 dmg | — |
+| The Poop | C | 1 | 1–3 | inamic oricare | 3 dmg + Weak 2 | — |
+| Lucky Penny | C | 0 | oricare | sine | trage 2 cărți | trage 3 |
+| Mom's Knife | U | 1 | 1–3 | inamic oricare | 7 dmg + Mark 2 | — |
+| Cricket's Head | U | 2 | 1–2 | inamic r1–2 | 12 dmg, 30% crit | — |
+| Dice Shard | U | 0 | oricare | sine | aruncă mâna, trage 3, +1 energie | aruncă mâna, trage 4, +1 energie |
+| Midas' Touch | R | 2 | 1–2 | inamic r1–2 | 10 dmg, 50% crit; crit = Stun 1 | — |
+| Dr. Fetus | R | 2 | 1–3 | toți inamicii | 6 dmg, 25% crit | — |
 
 ### Isaac
-| Carte | Rar. | Cost | Din rang | Țintă | Efect |
-|---|---|---|---|---|---|
-| Tear ×2 | S | 1 | 2–4 | inamic oricare | 5 dmg |
-| Yum Heart | S | 1 | oricare | aliat | vindecă 5 |
-| The Sad Onion | S | 1 | 2–4 | inamic oricare | 3 dmg × 2 lovituri |
-| Spoon Bender | S | 1 | 2–4 | inamic oricare | 4 dmg + Mark 2 |
-| Book of Belial | C | 1 | oricare | aliat | +2 Strength |
-| 20/20 | U | 1 | 2–4 | inamic oricare | 4 dmg × 2 lovituri |
-| Ipecac | U | 2 | 2–4 | inamic oricare | 8 dmg + Poison 4 |
-| The D6 | U | 0 | oricare | sine | aruncă mâna, trage 3 |
-| Holy Mantle | R | 2 | oricare | toți aliații | 6 Block fiecare |
-| Polyphemus | R | 2 | 2–4 | inamic oricare | 18 dmg |
+| Carte | Rar. | Cost | Din rang | Țintă | Efect | Upgrade pentru cost 0 (+) |
+|---|---|---|---|---|---|---|
+| Tear ×2 | S | 1 | 2–4 | inamic oricare | 5 dmg | — |
+| Yum Heart | S | 1 | oricare | aliat | vindecă 5 | — |
+| The Sad Onion | S | 1 | 2–4 | inamic oricare | 3 dmg × 2 lovituri | — |
+| Spoon Bender | S | 1 | 2–4 | inamic oricare | 4 dmg + Mark 2 | — |
+| Book of Belial | C | 1 | oricare | aliat | +2 Strength | — |
+| 20/20 | U | 1 | 2–4 | inamic oricare | 4 dmg × 2 lovituri | — |
+| Ipecac | U | 2 | 2–4 | inamic oricare | 8 dmg + Poison 4 | — |
+| The D6 | U | 0 | oricare | sine | aruncă mâna, trage 3 | aruncă mâna, trage 4 |
+| Holy Mantle | R | 2 | oricare | toți aliații | 6 Block fiecare | — |
+| Polyphemus | R | 2 | 2–4 | inamic oricare | 18 dmg | — |
 
 ### Lilith
-| Carte | Rar. | Cost | Din rang | Țintă | Efect |
-|---|---|---|---|---|---|
-| Incubus Shot ×2 | S | 1 | 3–4 | inamic oricare | 5 dmg (trage Incubus) |
-| Cambion Shield | S | 1 | oricare | aliat | 6 Block |
-| Box of Friends | S | 2 | 3–4 | inamic oricare | 3 dmg × 3 lovituri |
-| Cursed Eye | S | 1 | 3–4 | toți inamicii | Weak 2 |
-| Mom's Eyeshadow | C | 1 | 3–4 | inamic oricare | Stun 1 (boss: în loc de Stun, Weak 2) |
-| Lil' Brimstone | U | 2 | 3–4 | toți inamicii r1–2 | 7 dmg |
-| Succubus | U | 1 | oricare | toți aliații | +1 Strength |
-| Multidimensional Baby | U | 1 | 3–4 | inamic oricare | 4 dmg × 2 + Mark 2 |
-| Guardian Angel | R | 2 | oricare | aliat | vindecă 10 + 5 Block |
-| Twisted Pair | R | 1 | 3–4 | inamic oricare | 6 dmg × 2, fiecare lovitură Bleed 1 |
+| Carte | Rar. | Cost | Din rang | Țintă | Efect | Upgrade pentru cost 0 (+) |
+|---|---|---|---|---|---|---|
+| Incubus Shot ×2 | S | 1 | 3–4 | inamic oricare | 5 dmg (trage Incubus) | — |
+| Cambion Shield | S | 1 | oricare | aliat | 6 Block | — |
+| Box of Friends | S | 2 | 3–4 | inamic oricare | 3 dmg × 3 lovituri | — |
+| Cursed Eye | S | 1 | 3–4 | toți inamicii | Weak 2 | — |
+| Mom's Eyeshadow | C | 1 | 3–4 | inamic oricare | Stun 1 (boss: în loc de Stun, Weak 2) | — |
+| Lil' Brimstone | U | 2 | 3–4 | toți inamicii r1–2 | 7 dmg | — |
+| Succubus | U | 1 | oricare | toți aliații | +1 Strength | — |
+| Multidimensional Baby | U | 1 | 3–4 | inamic oricare | 4 dmg × 2 + Mark 2 | — |
+| Guardian Angel | R | 2 | oricare | aliat | vindecă 10 + 5 Block | — |
+| Twisted Pair | R | 1 | 3–4 | inamic oricare | 6 dmg × 2, fiecare lovitură Bleed 1 | — |
 
 **Upgrade (+)**: damage / Block / vindecare +30% (rotunjit în sus, minim +2) sau cost −1, după carte.
 
@@ -150,27 +150,27 @@ Valori pentru etajul 1. Pe etajele 2 și 3 inamicii comuni se scalează: HP și 
 
 | Inamic | Etaj | HP | Spd | Rang | Abilități |
 |---|---|---|---|---|---|
-| Fly | 1 | 6 | 7 | oricare | Buzz: 2 dmg oricui |
-| Gaper | 1 | 18 | 3 | 1–2 | Grab: 5 dmg erou r1–2 |
-| Pooter | 1 | 10 | 6 | 2–4 | Spit: 3 dmg oricui |
-| Horf | 1 | 12 | 2 | 3–4 | Blood Shot: 6 dmg oricui |
-| Clotty | 1 | 14 | 4 | 1–3 | Clot Burst: 3 dmg + Bleed 2 la 2 eroi random |
-| Mulligan | 1 | 16 | 3 | 1–3 | Bump: 4 dmg; la moarte face 2 Fly |
-| Hopper | 2 | 16 | 6 | oricare | Hop: 6 dmg erou random |
-| Maw | 2 | 20 | 3 | 2–4 | Gore Spit: 4 dmg + Bleed 3 |
-| Globin | 2 | 22 | 3 | 1–2 | Slam: 7 dmg; prima dată când moare se reface la 50% |
-| Charger | 2 | 18 | 5 | 1–3 | Charge: 9 dmg erou r1, apoi trece pe rangul 1 |
-| Spider | 2 | 8 | 8 | oricare | Bite: 2 dmg + Poison 3 |
-| Knight | 3 | 30 | 3 | 1–2 | Shield Up: 10 Block; Lance: 8 dmg r1–2 |
-| Bony | 3 | 18 | 5 | 2–4 | Bone Throw: 6 dmg oricui |
-| Leaper | 3 | 24 | 4 | oricare | Leap: 8 dmg erou random |
-| Host | 3 | 20 | 4 | 2–4 | închis: −75% damage primit; deschis (o tură din două): Triple Shot 3×3 |
-| Nerve Ending | 3 | 25 | 1 | 1 | nu atacă; Taunt permanent (blochează) |
+| Fly | 1 | 9 | 7 | oricare | Buzz: 1 dmg oricui |
+| Gaper | 1 | 27 | 3 | 1–2 | Grab: 3 dmg erou r1–2 |
+| Pooter | 1 | 15 | 6 | 2–4 | Spit: 2 dmg oricui |
+| Horf | 1 | 18 | 2 | 3–4 | Blood Shot: 3 dmg oricui |
+| Clotty | 1 | 21 | 4 | 1–3 | Clot Burst: 2 dmg + Bleed 1 la 2 eroi random |
+| Mulligan | 1 | 24 | 3 | 1–3 | Bump: 2 dmg; la moarte face 2 Fly |
+| Hopper | 2 | 24 | 6 | oricare | Hop: 3 dmg erou random |
+| Maw | 2 | 30 | 3 | 2–4 | Gore Spit: 2 dmg + Bleed 1 |
+| Globin | 2 | 33 | 3 | 1–2 | Slam: 4 dmg; prima dată când moare se reface la 50% |
+| Charger | 2 | 27 | 5 | 1–3 | Charge: 5 dmg erou r1, apoi trece pe rangul 1 |
+| Spider | 2 | 12 | 8 | oricare | Bite: 1 dmg + Poison 1 |
+| Knight | 3 | 45 | 3 | 1–2 | Shield Up: 10 Block; Lance: 4 dmg r1–2 |
+| Bony | 3 | 27 | 5 | 2–4 | Bone Throw: 3 dmg oricui |
+| Leaper | 3 | 36 | 4 | oricare | Leap: 4 dmg erou random |
+| Host | 3 | 30 | 4 | 2–4 | închis: −75% damage primit; deschis (o tură din două): Triple Shot 2×3 |
+| Nerve Ending | 3 | 38 | 1 | 1 | nu atacă; Taunt permanent (blochează) |
 
 **Boss-ii** (o singură tură pe rundă; Mom are faze):
-- **Monstro** (HP 120, Spd 2): Big Leap (10 dmg r1–2, 30% Stun) · Blood Spray (4 dmg toată echipa) · Spit Glob (7 dmg + Bleed 2 oricui).
-- **Gurdy** (HP 180, Spd 1): Spawn (cheamă 2 Pooter/Fly, max 3 minioni) · Bile Rain (5 dmg toată echipa) · Mouth Beam (12 dmg r1).
-- **Mom** (HP 300, Spd 3): Mom's Foot (15 dmg r1–2) · Mom's Hand (8 dmg rang 4 + îl trage pe rangul 1) · Door Summon (2 inamici din etajul 3) · Mom's Eye (Weak 2 toată echipa). **Faza 2 sub 50% HP**: două acțiuni pe tură, mai agresivă.
+- **Monstro** (HP 260, Spd 2): Big Leap (4 dmg r1–2, 30% Stun) · Blood Spray (2 dmg toată echipa) · Spit Glob (3 dmg + Bleed 1 oricui).
+- **Gurdy** (HP 240, Spd 1): Spawn (cheamă 2 Pooter/Fly, max 3 minioni) · Bile Rain (3 dmg toată echipa) · Mouth Beam (7 dmg r1).
+- **Mom** (HP 180, Spd 3): Mom's Foot (12 dmg r1–2) · Mom's Hand (8 dmg rang 4 + îl trage pe rangul 1) · Door Summon (2 inamici din etajul 3) · Mom's Eye (Weak 2 toată echipa). **Faza 2 sub 50% HP**: două acțiuni pe tură, mai agresivă.
 
 ## 8. Ritmul unui run (ținta de 45–60 min)
 

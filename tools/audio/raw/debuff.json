@@ -1,0 +1,15 @@
+{
+  "id": "debuff",
+  "type": "sfx",
+  "prompt": "A curse being applied, a descending eerie warble with a dark ghostly whisper, sinister",
+  "duration": 1.2,
+  "prompt_influence": 0.45,
+  "model": "eleven_text_to_sound_v2",
+  "fallback": false,
+  "credits_est": 17,
+  "generated_at": "2026-10-14T22:40:29",
+  "process": {
+    "trimmed_lead_s": 0.0,
+    "gain_db": 0.3
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "id": "card_play",
+  "type": "sfx",
+  "prompt": "A playing card slapped down hard onto an old wooden table, a quick paper whoosh then a sharp slap, punchy, dry",
+  "duration": 0.8,
+  "prompt_influence": 0.6,
+  "model": "eleven_text_to_sound_v2",
+  "fallback": false,
+  "credits_est": 12,
+  "generated_at": "2026-10-14T22:39:40",
+  "process": {
+    "trimmed_lead_s": 0.0,
+    "gain_db": 13.7
+  }
+}

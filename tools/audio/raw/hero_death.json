@@ -1,0 +1,15 @@
+{
+  "id": "hero_death",
+  "type": "sfx",
+  "prompt": "A weak final dying groan followed by a body collapsing onto a stone floor, sad and grim, clean, not distorted",
+  "duration": 2.0,
+  "prompt_influence": 0.45,
+  "model": "eleven_text_to_sound_v2",
+  "fallback": false,
+  "credits_est": 28,
+  "generated_at": "2026-10-14T22:46:17",
+  "process": {
+    "trimmed_lead_s": 0.0,
+    "gain_db": -6.0
+  }
+}

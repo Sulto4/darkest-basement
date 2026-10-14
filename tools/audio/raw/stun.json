@@ -1,0 +1,15 @@
+{
+  "id": "stun",
+  "type": "sfx",
+  "prompt": "Dizzy stun effect, a cartoon bonk on the head followed by a short ringing wobble",
+  "duration": 1.2,
+  "prompt_influence": 0.45,
+  "model": "eleven_text_to_sound_v2",
+  "fallback": false,
+  "credits_est": 17,
+  "generated_at": "2026-10-14T22:40:25",
+  "process": {
+    "trimmed_lead_s": 0.0,
+    "gain_db": -3.6
+  }
+}

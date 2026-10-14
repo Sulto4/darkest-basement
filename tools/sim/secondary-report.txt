@@ -1,0 +1,47 @@
+Runs=500 seeds=1001..1500
+Wins=255 (51.0%) floor clears=500/488/255
+Normal rounds=3.56 (n=8326) Boss rounds=6.77 (n=1379)
+Combats/run all=19.41 winning=19.85
+Boss rounds by floor=6.29/6.61/7.59 concessions=30
+card                       offers picks pick% plays play% damage damage%
+20_20                         389   228  58.6   3150   1.30   30593   2.40
+abaddon                       278   180  64.7   1876   0.77       0   0.00
+blood_bag                    1429   578  40.4   4995   2.06       0   0.00
+blood_beam                      0     0   0.0   6681   2.75   89448   7.02
+bomb_toss                       0     0   0.0   2763   1.14   28377   2.23
+book_of_belial               1304   487  37.3   3080   1.27       0   0.00
+box_of_friends                  0     0   0.0   3118   1.28   31744   2.49
+brimstone_swipe                 0     0   0.0  21322   8.78  170939  13.42
+cambion_shield                  0     0   0.0   4110   1.69       0   0.00
+ceremonial_robes              427   281  65.8   2860   1.18       0   0.00
+charged_brimstone             431   204  47.3   1761   0.73   29147   2.29
+crickets_head                 421   184  43.7   2426   1.00   34669   2.72
+cursed_eye                      0     0   0.0   6104   2.51       0   0.00
+demon_wings                     0     0   0.0   4807   1.98       0   0.00
+dice_shard                    420   321  76.4   7178   2.96       0   0.00
+dr_fetus                      272   160  58.8   1402   0.58   25023   1.96
+goat_head                    1415   436  30.8   1118   0.46       0   0.00
+guardian_angel                218   156  71.6    835   0.34       0   0.00
+holy_mantle                   255   191  74.9     45   0.02       0   0.00
+incubus_shot                    0     0   0.0  20486   8.44  117151   9.19
+ipecac                        413   244  59.1   1630   0.67   21766   1.71
+lil_brimstone                 385   193  50.1    824   0.34   11851   0.93
+lucky_foot                      0     0   0.0  14556   6.00       0   0.00
+lucky_penny                  1354   430  31.8   5494   2.26       0   0.00
+lucky_punch                     0     0   0.0  29511  12.16  181434  14.24
+maw_of_the_void               275   186  67.6   1693   0.70   45515   3.57
+midas_touch                   271   182  67.2   2472   1.02   32136   2.52
+moms_eyeshadow               1310   437  33.4   4810   1.98       0   0.00
+moms_knife                    446   332  74.4   6078   2.50   44553   3.50
+multidimensional_baby         394   304  77.2   3687   1.52   32829   2.58
+pentagram                     404   229  56.7   2029   0.84       0   0.00
+polyphemus                    237   174  73.4   1563   0.64   30191   2.37
+spoon_bender                    0     0   0.0  13889   5.72   55998   4.40
+succubus                      423   341  80.6   3686   1.52       0   0.00
+tear                            0     0   0.0  18116   7.46  104549   8.21
+the_d6                        433   251  58.0   1144   0.47       0   0.00
+the_poop                     1384   464  33.5   9102   3.75   30057   2.36
+the_sad_onion                   0     0   0.0  12943   5.33   93734   7.36
+twisted_pair                  242   209  86.4   2210   0.91   32421   2.54
+yum_heart                       0     0   0.0   7218   2.97       0   0.00
+Balance targets: PASS (card dominance threshold: 25% damage or plays)
