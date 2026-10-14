@@ -1,15 +1,18 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text.RegularExpressions;
 using UnityEditor;
 using UnityEngine;
 
 namespace DarkestBasement.EditorTools
 {
-    // Toate imaginile din Resources sunt pixel art: fără filtrare, fără compresie, fără mipmaps.
+    // Toate imaginile din Resources sunt pixel art: fără filtrare, fără compresie, fără mipmaps (excepție: texturile 3D, mai jos).
     // Așa fiecare pixel desenat rămâne un pătrat curat pe ecran.
     public class PixelArtImportPostprocessor : AssetPostprocessor
     {
+        // Schimbă numărul când se schimbă regulile de mai jos: Unity reimportă atunci toate imaginile.
+        public override uint GetVersion() => 2;
+
         const string Root = "Assets/_Game/Resources/";
         const string SlicesPath = "Assets/_Game/Resources/Sprites/UI/ui_slices.json";
         const int PixelsPerUnit = 32;
@@ -28,11 +31,14 @@ namespace DarkestBasement.EditorTools
             ti.anisoLevel = 0;
 
             // Texturile 3D (pereți, podea) se repetă pe suprafețe mari.
+            // Au mipmap-uri (tot cu filtru Point): fără ele, podeaua din depărtare "fâșâie" ca zăpada TV când camera se mișcă.
             if (assetPath.StartsWith(Root + "Textures/"))
             {
                 ti.textureType = TextureImporterType.Default;
                 ti.wrapMode = TextureWrapMode.Repeat;
                 ti.npotScale = TextureImporterNPOTScale.None;
+                ti.mipmapEnabled = true;
+                ti.mipmapFilter = TextureImporterMipFilter.BoxFilter;
                 return;
             }
 
@@ -81,9 +87,12 @@ namespace DarkestBasement.EditorTools
             return false;
         }
 
+        // ui_slices.json: { "version": 1, "slices": [ { "sprite": "panel_paper", "left": 12, "right": 12, "top": 12, "bottom": 12, "drawMode": "tiled" }, ... ] }
+        [Serializable] sealed class SliceEntry { public string sprite; public int left, right, top, bottom; public string drawMode; }
+        [Serializable] sealed class SliceFile { public List<SliceEntry> slices = new List<SliceEntry>(); }
+
         static Dictionary<string, Vector4> _slices;
 
-        // ui_slices.json: { "panel_paper": { "left": 6, "right": 6, "top": 6, "bottom": 6 }, ... }
         static bool TryGetSliceBorder(string name, out Vector4 border)
         {
             border = Vector4.zero;
@@ -92,22 +101,14 @@ namespace DarkestBasement.EditorTools
                 _slices = new Dictionary<string, Vector4>();
                 if (File.Exists(SlicesPath))
                 {
-                    var json = File.ReadAllText(SlicesPath);
-                    var entry = new Regex("\"([^\"]+)\"\\s*:\\s*\\{([^}]*)\\}");
-                    foreach (Match m in entry.Matches(json))
-                    {
-                        var body = m.Groups[2].Value;
-                        _slices[m.Groups[1].Value] = new Vector4(Num(body, "left"), Num(body, "bottom"), Num(body, "right"), Num(body, "top"));
-                    }
+                    var file = JsonUtility.FromJson<SliceFile>(File.ReadAllText(SlicesPath));
+                    if (file != null && file.slices != null)
+                        foreach (var e in file.slices)
+                            // Ordinea Unity pentru margini: stânga, jos, dreapta, sus.
+                            if (!string.IsNullOrEmpty(e.sprite)) _slices[e.sprite] = new Vector4(e.left, e.bottom, e.right, e.top);
                 }
             }
             return _slices.TryGetValue(name, out border);
-        }
-
-        static float Num(string body, string key)
-        {
-            var m = Regex.Match(body, "\"" + key + "\"\\s*:\\s*(\\d+)");
-            return m.Success ? float.Parse(m.Groups[1].Value) : 0f;
         }
     }
 }

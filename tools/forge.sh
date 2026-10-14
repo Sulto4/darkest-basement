@@ -2,11 +2,13 @@
 # Rulează Unity pe HP Forge (Linux, 32 GB RAM) și aduce înapoi rezultatele.
 # Mac-ul rămâne sursa de adevăr pentru cod și artă; Forge doar compilează, testează și face build-uri.
 #
-# Folosire: tools/forge.sh compile|test|setup|build-win|build-mac|method <Clasa.Metoda> [argumente Unity]
+# Folosire: tools/forge.sh compile|test|setup|build-win|build-mac|build-linux|method <Clasa.Metoda> [argumente Unity]
+#           tools/forge.sh qa [tour|full|combat|sandbox] [seed] [argumente player]   # build Linux + joc automat sub Xvfb
 #           tools/forge.sh push            # doar sincronizează
+# Capturile QA ajung în Logs/qa/<script>/ (PNG, qa-log.txt, qa-summary.txt, player.log).
 #
-# Forge găzduiește și producția Voost Control, așa că Unity rulează plafonat (memorie, CPU, timp)
-# și serializat (un singur Unity odată, prin flock).
+# Forge găzduiește și producția Voost Control, așa că Unity (și player-ul de QA) rulează plafonat
+# (memorie, CPU, timp) și serializat (un singur Unity odată, prin flock).
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd -P)"
@@ -23,10 +25,11 @@ shift || true
 
 push() {
   ssh "$HOST" "mkdir -p '$RDIR'"
-  # .meta-urile generate de Unity pe Forge sunt protejate de --delete până le aducem pe Mac.
+  # .meta-urile și asset-urile generate de Unity pe Forge sunt protejate de --delete până le aducem pe Mac.
   rsync -a --delete \
     --filter='P *.meta' --filter='P /Library/' --filter='P /Logs/' --filter='P /Builds/' --filter='P /Temp/' \
     --filter='P /UserSettings/' --filter='P /Assets/_Game/Scenes/' \
+    --filter='P /Assets/_Game/Resources/Materials/' --filter='P /Assets/_Game/Resources/PostFx/' --filter='P /Assets/TextMesh Pro/' \
     --exclude='/Library/' --exclude='/Temp/' --exclude='/Logs/' --exclude='/Builds/' --exclude='/UserSettings/' \
     --exclude='/.git/' --exclude='/tools/sim/bin/' --exclude='/tools/sim/obj/' --exclude='/tools/sim/.dotnet-home/' \
     --exclude='/tools/audio/raw/' --exclude='__pycache__/' --exclude='.DS_Store' \
@@ -41,22 +44,46 @@ pull() {
   rsync -a "$HOST:$RDIR/Assets/_Game/Scenes/" "$ROOT/Assets/_Game/Scenes/" 2>/dev/null || true
   rsync -a "$HOST:$RDIR/ProjectSettings/" "$ROOT/ProjectSettings/"
   rsync -a "$HOST:$RDIR/Packages/packages-lock.json" "$ROOT/Packages/" 2>/dev/null || true
+  # Asset-urile generate de ProjectSetup (șabloane de materiale, profilul de post-procesare, TMP Essentials).
+  mkdir -p "$ROOT/Assets/_Game/Resources"
+  rsync -a "$HOST:$RDIR/Assets/_Game/Resources/Materials" "$ROOT/Assets/_Game/Resources/" 2>/dev/null || true
+  rsync -a "$HOST:$RDIR/Assets/_Game/Resources/PostFx" "$ROOT/Assets/_Game/Resources/" 2>/dev/null || true
+  # "TextMesh Pro" are spațiu în nume: îl aducem cu tar, o singură dată.
+  if [ ! -d "$ROOT/Assets/TextMesh Pro" ]; then
+    ssh "$HOST" "cd '$RDIR/Assets' && test -d 'TextMesh Pro' && tar -cf - 'TextMesh Pro' 'TextMesh Pro.meta'" 2>/dev/null \
+      | tar -xf - -C "$ROOT/Assets" 2>/dev/null || true
+  fi
   mkdir -p "$ROOT/Logs"
   rsync -a "$HOST:$RDIR/Logs/" "$ROOT/Logs/" 2>/dev/null || true
+}
+
+# Un pas pe Forge, în cușca de resurse: o singură instanță odată (flock), memorie/CPU/timp plafonate.
+remote() {
+  ssh "$HOST" "cd '$RDIR' && flock /tmp/darkest-basement-unity.lock \
+    systemd-run --user --scope --quiet -p MemoryMax=8G -p MemorySwapMax=0 -p CPUQuota=600% -p RuntimeMaxSec=2400 \
+    nice -n 10 env UNITY_NO_CONSENT_PROMPT=1 tools/unity.sh $*"
 }
 
 push
 [ "$cmd" = "push" ] && exit 0
 
 set +e
-ssh "$HOST" "cd '$RDIR' && flock /tmp/darkest-basement-unity.lock \
-  systemd-run --user --scope --quiet -p MemoryMax=8G -p MemorySwapMax=0 -p CPUQuota=600% -p RuntimeMaxSec=2400 \
-  nice -n 10 env UNITY_NO_CONSENT_PROMPT=1 tools/unity.sh $cmd $*"
-code=$?
+if [ "$cmd" = "qa" ]; then
+  # QA = build Linux proaspăt, apoi jocul automat sub Xvfb. Doi pași, fiecare cu plafonul lui.
+  remote build-linux
+  code=$?
+  if [ $code -eq 0 ]; then
+    remote qa "$@"
+    code=$?
+  fi
+else
+  remote "$cmd" "$@"
+  code=$?
+fi
 set -e
 
 pull
-if [[ "$cmd" == build-* ]]; then
+if [ "$cmd" = "build-win" ] || [ "$cmd" = "build-mac" ]; then
   mkdir -p "$ROOT/Builds"
   rsync -a "$HOST:$RDIR/Builds/" "$ROOT/Builds/"
 fi

@@ -27,6 +27,22 @@ namespace DarkestBasement.Core
 
         public static bool Exists(string path) => Resources.Load<Sprite>(path) != null;
 
+        // Ca Get, dar întoarce null (fără avertisment) pentru asset-urile opționale.
+        public static Sprite TryGet(string path)
+        {
+            if (Sprites.TryGetValue(path, out var s)) return s == _missing ? null : s;
+            s = Resources.Load<Sprite>(path);
+            if (s != null) Sprites[path] = s;
+            return s;
+        }
+
+        // Cadrele unei animații, dar null dacă nu există niciunul (fără avertisment).
+        public static Sprite[] TryFrames(string prefix)
+        {
+            if (FrameSets.TryGetValue(prefix, out var set)) return set.Length == 1 && set[0] == _missing ? null : set;
+            return Resources.Load<Sprite>(prefix + "_0") != null ? Frames(prefix) : null;
+        }
+
         // Cadrele unei animații: prefix_0, prefix_1, ... până la primul care lipsește.
         public static Sprite[] Frames(string prefix)
         {
