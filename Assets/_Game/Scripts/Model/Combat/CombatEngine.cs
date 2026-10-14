@@ -34,11 +34,14 @@ namespace DarkestBasement.Model.Combat
             if (!started || IsOver || CurrentActor != hero || !hero.IsAlive) reason = "Not this hero's turn";
             else if (card == null || !hero.Deck.Hand.Contains(card)) reason = "Card is not in hand";
             else if (card.Def.HeroId != hero.Def.Id) reason = "Wrong hero";
-            else if (!card.Def.CanUseRank(hero.Rank)) reason = "Needs rank " + string.Join("–", card.Def.UsableRanks);
+            else if (!card.Def.CanUseRank(hero.Rank) && !IsLastStand(hero)) reason = "Needs rank " + string.Join("–", card.Def.UsableRanks);
             else if (card.Cost > hero.Energy) reason = "Not enough energy";
             else if (ValidTargets(hero, card).Count == 0) reason = "No valid targets";
             return reason.Length == 0;
         }
+        // Last Stand: un erou rămas singur poate juca orice carte din orice rang.
+        // Fără regula asta, Isaac sau Lilith rămași singuri ajung pe rangul 1 și nu mai pot ataca deloc (luptă blocată).
+        public bool IsLastStand(HeroUnit hero) { return hero != null && hero.IsAlive && State.Living(true).Count == 1; }
         public IReadOnlyList<Unit> ValidTargets(HeroUnit hero, CardInstance card)
         {
             var result = new List<Unit>(); if (card == null || hero == null || !hero.IsAlive) return result;

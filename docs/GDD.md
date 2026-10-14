@@ -65,6 +65,7 @@ Ce **nu** luăm din Darkest Dungeon: stres, torță, oraș, provizii. Păstrăm 
 - **Statusuri**: Block (absoarbe damage; dispare la începutul turei următoare a purtătorului), Bleed (damage la început de tură, scade cu 1), Poison (la fel, se cumulează), Stun (pierde tura următoare), Weak (−25% damage), Mark (+50% damage primit), Strength (+X damage pe lovitură, pe toată lupta), Taunt (inamicii trebuie să-l atace pe el).
 - **Damage** = `(baza + Strength) × (Weak ? 0.75 : 1) × (Mark ? 1.5 : 1) × (crit ? 1.5 : 1)`, rotunjit în jos, minus Block. Nu există miss.
 - **Moartea**: eroul la 0 HP moare definitiv în acel run. Rangurile din spate avansează. Când mor toți 4, run-ul s-a terminat.
+- **Last Stand**: un erou rămas singur poate juca orice carte din orice rang. Altfel Isaac sau Lilith, ajunși singuri pe rangul 1, n-ar mai putea ataca.
 - O luptă normală durează **3–4 runde (~2–3 min)**. Boss-ii durează 6–8 runde.
 
 ## 5. Recompense și deck building

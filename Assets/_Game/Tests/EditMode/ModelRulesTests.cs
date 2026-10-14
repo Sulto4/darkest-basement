@@ -87,6 +87,12 @@ namespace DarkestBasement.Tests
             e.StartCombat(); Equal(29, hero.Hp); Equal(2, hero.Statuses[Status.Bleed]); Equal(1, hero.Statuses[Status.Poison]); Equal(0, hero.Statuses[Status.Block]);
             NextRound(e); Equal(26, hero.Hp); Equal(1, hero.Statuses[Status.Bleed]); Equal(0, hero.Statuses[Status.Poison]);
         }
+        [Test] public static void LastStandIgnoresRankRequirements()
+        {
+            var e = Engine("isaac", "gaper"); e.StartCombat(); int guard = 0; while (e.CurrentActor.Id != "isaac" && guard++ < 20) e.EndTurn();
+            var hero = (HeroUnit)e.CurrentActor; Equal(1, hero.Rank); Check(e.IsLastStand(hero), "singur = Last Stand");
+            var tear = Give(e, "tear"); Check(e.CanPlay(hero, tear, out string reason), "Tear (rang 2–4) se joacă din rangul 1 la Last Stand: " + reason);
+        }
         [Test] public static void StunSkipsExactlyOneTurn()
         {
             var e = Engine("azazel", "nerve_ending"); e.State.Heroes[0].Statuses[Status.Stun] = 1; e.StartCombat();
