@@ -8,7 +8,7 @@ Joc turn-based roguelike în Unity (fan game privat, proiect de facultate al lui
 - Calea fizică: `/Volumes/Dock & Hub 2TB/work/claude-worktrees/darkest-basement` (root SSD aprobat de `radu-heavy`). `~/Projects/darkest-basement` e un symlink spre ea. Pentru `codex exec -C` folosește calea fizică.
 - Unity **6000.3.26f1**, instalat pe SSD: `/Volumes/Dock & Hub 2TB/DevStorage/unity/editors/6000.3.26f1/Unity.app` (+ modulul Windows Mono). URP 17.3, Input System 1.20, uGUI 2.0 (cu TextMeshPro inclus).
 - .NET 8 SDK (pentru `tools/sim`): `/Volumes/Dock & Hub 2TB/DevStorage/dotnet/sdk8/dotnet`.
-- GitHub: `Sulto4/darkest-basement`, **privat** (conține fan art cu personaje Isaac; nu-l face public).
+- GitHub: `Sulto4/darkest-basement`, **public** din 15.10.2026, la decizia lui Radu, ca să poată da link-ul mai departe. Nu pune niciodată chei, parole sau date personale în repo.
 
 ## Cum verifici
 
