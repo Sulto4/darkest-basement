@@ -21,7 +21,7 @@ namespace DarkestBasement.UI
 
         const float Pitch = 52f;     // distanța dintre centrele a două camere
         const float CellSize = 32f;  // map_cell (16 px) ×2: mărire întreagă, rămâne pixel-perfect
-        static readonly Vector2 PanelSize = new Vector2(300, 270);
+        static readonly Vector2 PanelSize = new Vector2(300, 282);
         static readonly Vector2 GridOrigin = new Vector2(30, 34);
 
         sealed class Cell
@@ -71,12 +71,12 @@ namespace DarkestBasement.UI
             _dim = UiKit.Dim(transform, 0f);
             _dim.raycastTarget = interactive; // în modul doar-citire (M pe hol) nu blocăm nimic
 
-            _panel = UiKit.Panel(transform, "panel_paper", new Vector2(320, 182), PanelSize).rectTransform;
+            _panel = UiKit.Panel(transform, "panel_paper", new Vector2(320, 178), PanelSize).rectTransform;
             _panel.GetComponent<Image>().raycastTarget = true;
 
             var floor = FloorTheme.ForFloor(run.State.FloorIndex);
-            UiKit.Text(_panel, floor.Title, new Vector2(PanelSize.x / 2f, 246), new Vector2(260, 26), UiFont.Title, Palette.Ink, TextAlignmentOptions.Center, 2);
-            UiKit.Text(_panel, "FLOOR " + floor.Index + " OF 3", new Vector2(PanelSize.x / 2f, 228), new Vector2(200, 10), UiFont.Label, Palette.WithAlpha(Palette.Ink, 0.7f));
+            UiKit.Text(_panel, floor.Title, new Vector2(PanelSize.x / 2f, 254), new Vector2(270, 34), UiFont.Title, Palette.Ink, TextAlignmentOptions.Center, 2);
+            UiKit.Text(_panel, "FLOOR " + floor.Index + " OF 3", new Vector2(PanelSize.x / 2f, 232), new Vector2(200, 10), UiFont.Label, Palette.WithAlpha(Palette.Ink, 0.7f));
             _infoPlain = UiKit.Text(_panel, "", new Vector2(PanelSize.x / 2f, 22), new Vector2(270, 10), UiFont.Label, Palette.Ink);
 
             BuildLinks();

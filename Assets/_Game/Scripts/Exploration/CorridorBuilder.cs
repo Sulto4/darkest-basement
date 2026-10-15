@@ -50,6 +50,7 @@ namespace DarkestBasement.Exploration
         {
             var rng = new System.Random(seed);
             var batch = new MeshBatch();
+            var near = new MeshBatch(); // stâlpii de pe peretele dinspre cameră (+X): ascunși în vederea laterală
             var floor = _materials.Get(MaterialKind.Lit, Tex("floor"));
             var ceiling = _materials.Get(MaterialKind.Lit, Tex("ceiling"));
             var beam = _materials.Get(MaterialKind.Lit, Tex("beam"));
@@ -87,8 +88,8 @@ namespace DarkestBasement.Exploration
                 // Stâlpul din stânga: fața dinspre hol și fața dinspre noi (-Z). Din exterior ambele sunt invizibile.
                 batch.Quad(beam, new Vector3(-w + 0.18f, 0f, z - 0.16f), new Vector3(0f, 0f, 0.32f), new Vector3(0f, py, 0f), 1f);
                 batch.Quad(beam, new Vector3(-w, 0f, z - 0.16f), new Vector3(0.18f, 0f, 0f), new Vector3(0f, py, 0f), 1f);
-                batch.Quad(beam, new Vector3(w - 0.18f, 0f, z + 0.16f), new Vector3(0f, 0f, -0.32f), new Vector3(0f, py, 0f), 1f);
-                batch.Quad(beam, new Vector3(w - 0.18f, 0f, z - 0.16f), new Vector3(0.18f, 0f, 0f), new Vector3(0f, py, 0f), 1f);
+                near.Quad(beam, new Vector3(w - 0.18f, 0f, z + 0.16f), new Vector3(0f, 0f, -0.32f), new Vector3(0f, py, 0f), 1f);
+                near.Quad(beam, new Vector3(w - 0.18f, 0f, z - 0.16f), new Vector3(0.18f, 0f, 0f), new Vector3(0f, py, 0f), 1f);
 
                 // Pânze în colțul dintre stâlp, perete și tavan.
                 if (rng.NextDouble() < 0.28 && System.Array.IndexOf(Theme.WallDecals, "web_0") >= 0)
@@ -103,6 +104,10 @@ namespace DarkestBasement.Exploration
                 }
             }
             _meshes = batch.Build(transform, "Corridor");
+            var nearRoot = new GameObject("NearSide").transform;
+            nearRoot.SetParent(transform, false);
+            _meshes.AddRange(near.Build(nearRoot, "CorridorNear"));
+            NearSide.Add(nearRoot.gameObject);
 
             // Colțurile întunecate dintre podea și pereți dau adâncime (fără ele, holul pare o cutie de carton).
             EnvKit.AoAlongWall(transform, _materials, new Vector3(-w, 0f, BackZ), new Vector3(-w, 0f, DoorZ), Vector3.right);
@@ -150,7 +155,7 @@ namespace DarkestBasement.Exploration
             {
                 if (rng.NextDouble() > 0.6) continue;
                 bool left = rng.NextDouble() < 0.5;
-                float x = (left ? -1f : 1f) * EnvKit.Range(rng, 1.35f, 1.7f);
+                float x = (left ? -1f : 1f) * EnvKit.Range(rng, 1.5f, 1.75f);
                 string name = EnvKit.Pick(rng, Theme.FloorProps);
                 if (name == "tinted_rock" && rng.NextDouble() < 0.7) name = "rock_1";
                 var prop = EnvKit.Prop(transform, name, new Vector3(x, 0f, z), EnvKit.Range(rng, 0.9f, 1.25f), rng.NextDouble() < 0.5);
@@ -169,7 +174,7 @@ namespace DarkestBasement.Exploration
             for (int i = 0; i < 3; i++)
             {
                 if (slotEvents == null || slotEvents[i] != CorridorEventKind.Curio) continue;
-                CurioPiles[i] = EnvKit.Prop(transform, "poop_0", new Vector3(0.95f, 0f, TriggerZ[i] + 1.7f), 1.35f);
+                CurioPiles[i] = EnvKit.Prop(transform, "poop_0", new Vector3(1.4f, 0f, TriggerZ[i] + 2.1f), 1.3f);
             }
         }
 

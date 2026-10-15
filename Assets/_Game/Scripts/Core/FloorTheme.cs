@@ -44,9 +44,9 @@ namespace DarkestBasement.Core
                     return new FloorTheme
                     {
                         Index = 3, Id = "depths", Title = "DEPTHS",
-                        Ambient = new Color(0.070f, 0.030f, 0.040f),
+                        Ambient = new Color(0.080f, 0.042f, 0.050f),
                         Fog = new Color(0.022f, 0.006f, 0.010f), FogStart = 4.5f, FogEnd = 23f,
-                        TorchColor = new Color(1.00f, 0.48f, 0.30f), TorchIntensity = 3.4f,
+                        TorchColor = new Color(1.00f, 0.52f, 0.34f), TorchIntensity = 3.8f,
                         Accent = Palette("#d33c3c"),
                         Ambience = "depths_ambience",
                         FloorProps = new[] { "bones_0", "bones_1", "rock_0", "rock_2", "poop_2" },

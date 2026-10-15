@@ -54,6 +54,7 @@ namespace DarkestBasement.Core
         PartyHud _hud;
         PauseMenu _pause;
         CurioPrompt _curioPrompt;
+        TweenHandle _cameraTween;   // mișcări de cameră scrise de GameFlow (căderea prin trapă)
 
         FlowState _next;
         int _errors;
@@ -296,8 +297,17 @@ namespace DarkestBasement.Core
             _roomViewId = -1;
         }
 
+        // O mișcare de cameră rămasă din starea veche ar rescrie poza camerei din starea nouă (de ex. meniul).
+        void StopCameraTween()
+        {
+            _cameraTween?.Kill();
+            _cameraTween = null;
+        }
+
         void ClearScreens()
         {
+            StopCameraTween();
+            FloorCard.Cancel();
             if (MapPanel.Current != null) MapPanel.Current.Close(true);
             Menu?.Close(); Menu = null;
             Treasure?.Close(); Treasure = null;

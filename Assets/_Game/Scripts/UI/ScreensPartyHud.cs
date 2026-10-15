@@ -35,8 +35,11 @@ namespace DarkestBasement.UI
             _floorSub = UiKit.Label(Root, "", new Vector2(560, 330), new Vector2(150, 10), UiFont.Label, Palette.Parchment, TextAlignmentOptions.Right);
         }
 
+        public bool Visible { get; private set; } = true;
+
         public void SetVisible(bool visible, float duration = 0.25f)
         {
+            Visible = visible;
             float from = _group.alpha, to = visible ? 1f : 0f;
             Tween.Value(duration, k => _group.alpha = Mathf.Lerp(from, to, k), Ease.OutQuad, null, 0f, true, Root);
         }

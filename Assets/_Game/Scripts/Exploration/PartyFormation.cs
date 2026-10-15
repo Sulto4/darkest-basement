@@ -70,20 +70,22 @@ namespace DarkestBasement.Exploration
         // Pozițiile din formație, relative la centrul echipei (rândul din față e la z = 0).
         public static Vector3 SlotFor(int rank)
         {
+            // Rândul din spate e mai larg decât cel din față (o formație în V): eroii din spate sunt mai aproape de cameră,
+            // deci mai mari, iar așa nu-i acoperă pe cei din față. Fiecare rând e și puțin decalat în adâncime (eșalonat).
             switch (rank)
             {
-                case 1: return new Vector3(-0.5f, 0f, 0.15f);
-                case 2: return new Vector3(0.55f, 0f, -0.1f);
-                case 3: return new Vector3(-0.55f, 0f, -1.25f);
-                default: return new Vector3(0.5f, 0f, -1.5f);
+                case 1: return new Vector3(-0.42f, 0f, 0.12f);
+                case 2: return new Vector3(0.48f, 0f, -0.1f);
+                case 3: return new Vector3(-1.08f, 0f, -1.3f);
+                default: return new Vector3(1.06f, 0f, -1.5f);
             }
         }
 
-        // Unde stă eroul cu rangul dat pe scena de luptă (contractul cu echipa C: rangul 1 lângă centru, pas de 1,6).
+        // Unde stă eroul cu rangul dat pe scena de luptă. Folosim chiar constantele scenei echipei C (CombatStage),
+        // ca eroii de explorare să ajungă exact unde apar cei de luptă: predarea se face fără niciun salt.
         public static Vector3 StagePosition(CombatStageInfo stage, int rank)
         {
-            Vector3 right = stage.Right.sqrMagnitude > 0.0001f ? stage.Right.normalized : Vector3.forward;
-            return stage.Center - right * (0.8f + 1.6f * (rank - 1));
+            return CombatStage.Point(stage, true, CombatStage.CenterGap + CombatStage.RankSpacing * (rank - 1));
         }
 
         public void Rebuild(RunState state)

@@ -43,7 +43,7 @@ namespace DarkestBasement.UI
         public void ShowOptions()
         {
             NewPage();
-            UiKit.Label(_page, "BEDROOM", new Vector2(320, 312), new Vector2(300, 30), UiFont.Title, Palette.Hex("#a9c1ff"), TextAlignmentOptions.Center, 2);
+            UiKit.Label(_page, "BEDROOM", new Vector2(320, 312), new Vector2(400, 36), UiFont.Title, Palette.Hex("#a9c1ff"), TextAlignmentOptions.Center, 2);
             UiKit.Label(_page, "REST A WHILE. CHOOSE ONE.", new Vector2(320, 290), new Vector2(300, 10), UiFont.Label, Palette.Parchment);
 
             int healTotal = 0;
@@ -57,7 +57,7 @@ namespace DarkestBasement.UI
         {
             var panel = UiKit.Panel(_page, "panel_paper", new Vector2(x, 176), new Vector2(136, 150));
             var rt = panel.rectTransform;
-            UiKit.Text(rt, title, new Vector2(68, 122), new Vector2(120, 24), UiFont.Title, Palette.Ink, TextAlignmentOptions.Center, 2);
+            UiKit.Text(rt, title, new Vector2(68, 122), new Vector2(124, 24), UiFont.Title, Palette.Ink, TextAlignmentOptions.Center, 1);
             UiKit.Fill(rt, accent, new Vector2(68, 104), new Vector2(60, 2));
             UiKit.Text(rt, text, new Vector2(68, 70), new Vector2(108, 50), UiFont.Body, Palette.Ink);
             UiKit.Text(rt, footer, new Vector2(68, 26), new Vector2(120, 10), UiFont.Label, Palette.Ink);
@@ -82,7 +82,7 @@ namespace DarkestBasement.UI
             _heroId = heroId;
             NewPage();
             bool upgrade = action == BedroomAction.UpgradeCard;
-            UiKit.Label(_page, upgrade ? "UPGRADE A CARD" : "REMOVE A CARD", new Vector2(320, 330), new Vector2(300, 26), UiFont.Title,
+            UiKit.Label(_page, upgrade ? "UPGRADE A CARD" : "REMOVE A CARD", new Vector2(320, 318), new Vector2(560, 36), UiFont.Title,
                 upgrade ? Palette.Gold : Palette.Blood, TextAlignmentOptions.Center, 2);
 
             var living = new List<PartyHero>();
@@ -132,14 +132,19 @@ namespace DarkestBasement.UI
                 string uid = card.Uid;
                 var c = card;
                 view.OnClicked = _ => Choose(_action, _heroId, uid);
-                var events = PointerEvents.Of(glow.gameObject);
-                events.OnClick = () => Choose(_action, _heroId, uid);
-                events.OnEnter = () => { glow.color = Color.white; view.SetHighlighted(true); AudioManager.Play("ui_hover"); };
-                events.OnExit = () => { glow.color = new Color(1f, 1f, 1f, 0f); view.SetHighlighted(false); };
+                PointerEvents.Of(glow.gameObject).OnClick = () => Choose(_action, _heroId, uid);
                 // La upgrade arătăm cum va arăta cartea după: același text, cu cifrele noi.
-                Tooltip.Attach(glow.gameObject, () => upgrade
+                // Hover-ul îl prinde CardView-ul (imaginea lui acoperă aura), deci ne legăm de evenimentul lui.
+                string tip = upgrade
                     ? c.Def.Name + "+\n" + CardText.Describe(c.Def, true)
-                    : "Remove " + c.Def.Name + (c.Upgraded ? "+" : "") + "\n" + CardText.Describe(c.Def, c.Upgraded));
+                    : "Remove " + c.Def.Name + (c.Upgraded ? "+" : "") + "\n" + CardText.Describe(c.Def, c.Upgraded);
+                view.HoverChanged = (v, on) =>
+                {
+                    glow.color = on ? Color.white : new Color(1f, 1f, 1f, 0f);
+                    v.SetHighlighted(on);
+                    if (on) { AudioManager.Play("ui_hover"); Tooltip.Show(tip, v); }
+                    else Tooltip.Hide(v);
+                };
             }
 
             UiKit.Button(_page, "BACK", new Vector2(60, 24), new Vector2(80, 18), ShowOptions);

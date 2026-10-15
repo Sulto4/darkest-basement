@@ -36,8 +36,9 @@ namespace DarkestBasement.Exploration
 
             _halo = Billboard.Create(transform, "Halo", null, new Vector3(0f, 0.72f, 0f), MaterialKind.Additive);
             _halo.Material.SetTexture(Materials.BaseMap, ProceduralTextures.Halo);
-            _halo.Quad.localScale = new Vector3(2.2f, 2.2f, 1f);
-            _halo.Quad.localPosition = new Vector3(0f, -1.1f, 0f);
+            // O strălucire mică în jurul flăcării; lumina adevărată pe pereți o face Light-ul de mai jos.
+            _halo.Quad.localScale = new Vector3(1.15f, 1.15f, 1f);
+            _halo.Quad.localPosition = new Vector3(0f, -0.575f, 0f);
             _halo.UseLocalLight = false;
             _halo.Tint = new Color(color.r, color.g * 0.85f, color.b * 0.7f, 0.22f);
 
@@ -68,9 +69,9 @@ namespace DarkestBasement.Exploration
                 (Mathf.PerlinNoise(_seed + 3f, t * 2.1f) - 0.5f) * 0.12f,
                 (Mathf.PerlinNoise(_seed + 7f, t * 2.4f) - 0.5f) * 0.10f, 0f);
             var halo = _halo.Tint;
-            halo.a = 0.16f + 0.12f * k;
+            halo.a = 0.12f + 0.08f * k;
             _halo.Tint = halo;
-            _halo.Brightness = 0.9f + 0.4f * k;
+            _halo.Brightness = 0.8f + 0.3f * k;
         }
 
         void OnDestroy() => LocalLight.Unregister(Light);

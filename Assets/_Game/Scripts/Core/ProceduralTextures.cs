@@ -8,8 +8,9 @@ namespace DarkestBasement.Core
     {
         static Texture2D _halo, _shadow, _shaft, _white, _fade;
 
-        // Cerc luminos cu 5 trepte de intensitate, pentru halo-ul torțelor și strălucirea piedestalului.
-        public static Texture2D Halo => _halo != null ? _halo : (_halo = Radial(32, 5, 1.6f, "Halo"));
+        // Strălucirea din jurul flăcărilor: scade lin spre margine, cu dithering (pixeli împrăștiați în tipar Bayer)
+        // în loc de inele: de aproape se vede ca o pâclă pixelată, nu ca un disc portocaliu cu margine tăiată.
+        public static Texture2D Halo => _halo != null ? _halo : (_halo = DitheredRadial(32, 2.6f, "Halo"));
 
         // Umbra ovală de sub personaje (o pată închisă pe podea).
         public static Texture2D Shadow => _shadow != null ? _shadow : (_shadow = Radial(16, 3, 0.6f, "Shadow"));
@@ -80,6 +81,28 @@ namespace DarkestBasement.Core
                     float r = Mathf.Sqrt(dx * dx + dy * dy);
                     float a = Mathf.Pow(Mathf.Clamp01(1f - r), power);
                     tex.SetPixel(x, y, new Color(1f, 1f, 1f, Quantize(a, steps)));
+                }
+            tex.Apply();
+            return tex;
+        }
+
+        // Matricea Bayer 4×4: pragul de "aprindere" al fiecărui pixel. Vecinii au praguri foarte diferite,
+        // așa că o valoare de 0.3 aprinde ~30% din pixeli, răspândiți uniform (dithering ordonat).
+        static readonly float[] Bayer = { 0, 8, 2, 10, 12, 4, 14, 6, 3, 11, 1, 9, 15, 7, 13, 5 };
+
+        static Texture2D DitheredRadial(int size, float power, string name)
+        {
+            const int levels = 4;
+            var tex = NewTexture(size, size, name);
+            float c = (size - 1) / 2f;
+            for (int y = 0; y < size; y++)
+                for (int x = 0; x < size; x++)
+                {
+                    float dx = (x - c) / (c + 0.5f), dy = (y - c) / (c + 0.5f);
+                    float a = Mathf.Pow(Mathf.Clamp01(1f - Mathf.Sqrt(dx * dx + dy * dy)), power) * levels;
+                    float threshold = (Bayer[(y % 4) * 4 + x % 4] + 0.5f) / 16f;
+                    float level = Mathf.Floor(a) + (a - Mathf.Floor(a) > threshold ? 1f : 0f);
+                    tex.SetPixel(x, y, new Color(1f, 1f, 1f, Mathf.Clamp01(level / levels)));
                 }
             tex.Apply();
             return tex;

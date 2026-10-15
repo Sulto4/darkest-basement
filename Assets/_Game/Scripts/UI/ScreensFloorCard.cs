@@ -9,15 +9,27 @@ namespace DarkestBasement.UI
     // ca titlurile de nivel din Isaac. Apare după fade-ul la negru și dispare înainte să se vadă harta.
     public static class FloorCard
     {
+        static RectTransform _current;
+
+        // Abandon în timpul cartonașului: corutina care l-ar fi închis a fost oprită, deci îl scoatem de aici.
+        // Tween-urile lui au ca "proprietar" chiar obiectul, așa că mor odată cu el.
+        public static void Cancel()
+        {
+            if (_current != null) Object.Destroy(_current.gameObject);
+            _current = null;
+        }
+
         public static IEnumerator Show(FloorTheme theme, string subtitle, string note = null)
         {
+            Cancel();
             var ui = UIRoot.Instance;
             var root = UiKit.Rect(ui.Overlay, "FloorCard", new Vector2(320, 190), new Vector2(400, 120));
+            _current = root;
             var group = root.gameObject.AddComponent<CanvasGroup>();
             group.alpha = 0f;
             group.blocksRaycasts = false;
 
-            var title = UiKit.Label(root, theme.Title, new Vector2(200, 64), new Vector2(400, 50), UiFont.Title, theme.Accent, TextAlignmentOptions.Center, 3);
+            var title = UiKit.Label(root, theme.Title, new Vector2(200, 66), new Vector2(400, 52), UiFont.Title, theme.Accent, TextAlignmentOptions.Center, 3);
             // Linia de sub titlu se "desenează" din centru spre margini.
             var line = UiKit.Fill(root, Palette.WithAlpha(theme.Accent, 0.8f), new Vector2(200, 34), new Vector2(0, 2));
             UiKit.Label(root, subtitle, new Vector2(200, 22), new Vector2(400, 12), UiFont.Label, Palette.Parchment);
@@ -34,6 +46,7 @@ namespace DarkestBasement.UI
 
             yield return Wait(1.5f);
             yield return Tween.Value(0.5f, k => group.alpha = 1f - k, Ease.InQuad, null, 0f, true, root).Wait();
+            if (_current == root) _current = null;
             Object.Destroy(root.gameObject);
         }
 

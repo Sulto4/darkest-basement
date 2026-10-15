@@ -17,8 +17,11 @@ namespace DarkestBasement.Exploration
             if (ui == null || rig == null) return;
 
             int mult = big ? 3 : 2;
-            var label = UiKit.Label(ui.World, text, new Vector2(-1000, -1000), new Vector2(120, 30), UiFont.LabelBold, color,
+            // Lat și fără împărțire pe rânduri: "A SOOTHING WARMTH" trebuie să rămână o singură linie.
+            var label = UiKit.Label(ui.World, text, new Vector2(-1000, -1000), new Vector2(400, 30), UiFont.LabelBold, color,
                 TextAlignmentOptions.Center, mult);
+            label.Front.textWrappingMode = TextWrappingModes.NoWrap;
+            label.Back.textWrappingMode = TextWrappingModes.NoWrap;
             var rt = label.Rect;
             rt.localScale = Vector3.zero;
             float age = -delay;

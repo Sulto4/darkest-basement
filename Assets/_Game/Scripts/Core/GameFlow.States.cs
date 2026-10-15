@@ -95,7 +95,7 @@ namespace DarkestBasement.Core
             _travelTarget = -1;
             _descend = false;
             OpenTravelMap();
-            if (!Run.CanDescend) Hint.Show("map_travel", "Click a glowing room to travel. M hides the map.", new Vector2(320, 30), 7f);
+            if (!Run.CanDescend) Hint.Show("map_travel", "Click a glowing room to travel. M hides the map.", new Vector2(320, 20), 7f);
             Prompt = FlowPrompt.ChooseRoom;
             StartCoroutine(DelayedMoment("map", 0.6f));
             while (_travelTarget < 0 && !_descend) yield return null;
@@ -258,17 +258,18 @@ namespace DarkestBasement.Core
             EnsureRoomView();
             if (_room.Trapdoor == null) _room.ShowTrapdoor(false);
 
-            yield return _walker.WalkTo(_room.TrapdoorLocal.z - 1.6f, 2.4f);
+            // Echipa e deja lângă trapă (în stânga ei); sare direct, pe un arc.
+            yield return Wait(0.2f);
             Vector3 hole = _room.transform.TransformPoint(_room.TrapdoorLocal);
             AudioManager.Play("trapdoor_descend");
             float jump = _party.JumpInto(hole);
 
             // Camera se apleacă peste gaură și "cade" după eroi.
             var from = new Pose(_rig.transform.position, _rig.transform.rotation);
-            Vector3 above = hole + new Vector3(0f, 3.2f, -2.2f);
+            Vector3 above = hole + new Vector3(0.9f, 3.4f, -2.6f);
             var to = new Pose(above, Quaternion.LookRotation(hole - above));
             _rig.SetManualPose(from.position, from.rotation, _rig.FollowFov);
-            Tween.Value(jump + 0.4f, k =>
+            _cameraTween = Tween.Value(jump + 0.4f, k =>
             {
                 Vector3 p = Vector3.Lerp(from.position, to.position, k) + Vector3.down * (k * k * 1.5f);
                 _rig.SetManualPose(p, Quaternion.Slerp(from.rotation, to.rotation, k), Mathf.Lerp(_rig.FollowFov, 38f, k));
@@ -276,6 +277,7 @@ namespace DarkestBasement.Core
             StartCoroutine(DelayedMoment("descend", jump * 0.6f));
             yield return Wait(jump * 0.7f);
             yield return _ui.FadeOut(0.5f).Wait();
+            StopCameraTween();
 
             Run.Descend();
             GoTo(Run.IsVictory ? FlowState.Victory : FlowState.FloorIntro);

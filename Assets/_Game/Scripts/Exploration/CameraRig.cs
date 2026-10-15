@@ -21,19 +21,22 @@ namespace DarkestBasement.Exploration
         public Mode CurrentMode { get; private set; } = Mode.Manual;
 
         // Explorare: în spatele echipei și mai sus, privind puțin în jos, spre holul din fața ei.
-        public Vector3 FollowOffset = new Vector3(0f, 2.35f, -5.4f);
-        public Vector3 LookOffset = new Vector3(0f, 0.85f, 3.4f);
+        // Destul de sus încât rândul din față să apară deasupra celui din spate (nu ascuns de el).
+        public Vector3 FollowOffset = new Vector3(0f, 3.0f, -5.9f);
+        public Vector3 LookOffset = new Vector3(0f, 0.6f, 3.2f);
         public float FollowFov = 50f;
 
-        // Vederea laterală: la distanța asta, pe planul scenei de luptă se văd exact 20 de unități în lățime,
-        // adică 640 px / 20 = 32 px pe unitate = 1 pixel de artă pe 1 pixel de imagine. Sprite-urile rămân perfect pixelate.
+        // Vederea laterală: pe planul scenei de luptă se văd exact 10 unități în lățime, adică 640 px / 10 = 64 px pe unitate:
+        // fiecare pixel de artă (32 pe unitate) devine exact 2×2 pixeli în imagine. E cel mai mare zoom ÎNTREG la care încap
+        // 4 eroi + 4 inamici pe ecran (la ×3 ar trebui ~1000 px lățime), deci sprite-urile rămân perfect pixelate.
         public const float SideFov = 40f;
-        public const float SideViewWidth = 20f;
-        // Privim spre un punct jos: picioarele unităților ajung pe la 40% din înălțimea ecranului, ca sub ele
-        // să încapă HUD-ul unităților (HP, statusuri), iar dedesubt mâna de cărți.
-        public const float SideLookHeight = 1.25f;
-        public const float SideCameraHeight = 2.9f;
+        public const float SideViewWidth = 10f;
+        // Centrul cadrului e la 1 unitate deasupra podelei: picioarele unităților ajung pe la o treime din înălțimea ecranului,
+        // ca dedesubt să încapă HUD-ul lor (HP, statusuri) și mâna de cărți, iar deasupra boss-ii mari.
+        public const float SideLookHeight = 1.0f;
+        const float SidePitch = 6f; // grade în jos: se vede puțin din podea, ca scena să aibă adâncime
         public static float SideDistance => SideViewWidth * UIRoot.RefHeight / UIRoot.RefWidth * 0.5f / Mathf.Tan(SideFov * 0.5f * Mathf.Deg2Rad);
+        public static float SideCameraHeight => SideLookHeight + SideDistance * Mathf.Tan(SidePitch * Mathf.Deg2Rad);
 
         // Ceața (liniară: start, end): aproape în explorare (holul se pierde în beznă), departe în vederea laterală,
         // unde camera stă la ~15 unități de scenă și altfel ar vedea lupta printr-un zid de ceață. Tranziția o schimbă lin.

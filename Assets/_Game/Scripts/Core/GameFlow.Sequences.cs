@@ -65,7 +65,7 @@ namespace DarkestBasement.Core
             ShowStageLight(stage);
             yield return swing.Wait();
             if (_party != null) _party.SetVisible(false);
-            Moment("side_view");
+            Moment(stage.IsAmbush ? "side_view_ambush" : stage.IsBoss ? "side_view_boss" : "side_view");
 
             bool? result = null;
             float started = Time.time;
@@ -154,6 +154,8 @@ namespace DarkestBasement.Core
         {
             var returnState = State;
             SetState(FlowState.Reward);
+            bool hudWasVisible = _hud != null && _hud.Visible;
+            if (hudWasVisible) _hud.SetVisible(false);
             var card = Run.RollCardReward();
             bool? take = null;
             try { RewardScreen.Show(card, card.Rarity == Rarity.Rare, t => take = t); }
@@ -181,6 +183,7 @@ namespace DarkestBasement.Core
                 if (_hud != null) _hud.Flash(card.HeroId, Palette.Gold);
             }
             else Run.SkipCard();
+            if (hudWasVisible) _hud.SetVisible(true);
             SetState(returnState);
         }
 
@@ -189,6 +192,7 @@ namespace DarkestBasement.Core
         {
             SetState(FlowState.Treasure);
             yield return Wait(0.5f);
+            if (_hud != null) _hud.SetVisible(false);
             int chosen = -1;
             Treasure = new TreasureScreen(_ui.Screens, Run.TreasureChoices, i => chosen = i);
             Prompt = FlowPrompt.Treasure;
@@ -202,6 +206,7 @@ namespace DarkestBasement.Core
             Treasure = null;
             if (_room != null) _room.ConsumeFeature();
             RefreshHud();
+            if (_hud != null) _hud.SetVisible(true);
             if (_hud != null) _hud.Flash(card.HeroId, Palette.Gold);
             Banner.Show(card.Name.ToUpperInvariant(), TreasureScreen.RarityColor(card.Rarity), "ADDED TO " + HeroDatabase.Get(card.HeroId).Name.ToUpperInvariant() + "'S DECK", 1f, 250f);
             yield return Wait(1.2f);
@@ -212,6 +217,7 @@ namespace DarkestBasement.Core
         {
             SetState(FlowState.Bedroom);
             yield return Wait(0.5f);
+            if (_hud != null) _hud.SetVisible(false);
             BedroomAction? action = null;
             string heroId = null, cardUid = null;
             Bedroom = new BedroomScreen(_ui.Screens, Run.State, (a, h, u) => { action = a; heroId = h; cardUid = u; });
@@ -229,6 +235,7 @@ namespace DarkestBasement.Core
             Run.UseBedroom(action.Value, heroId, cardUid);
             Bedroom.Close();
             Bedroom = null;
+            if (_hud != null) _hud.SetVisible(true);
 
             if (action == BedroomAction.Heal) ShowHpChanges(before, "SLEPT LIKE A BABY");
             else if (action == BedroomAction.UpgradeCard) Banner.Show(cardName + "+", Palette.Gold, "CARD UPGRADED", 1f, 250f);
@@ -286,10 +293,16 @@ namespace DarkestBasement.Core
         IEnumerator TrapSequence()
         {
             Banner.Show("TRAP!", Palette.Mark, null, 0.7f, 240f);
-            var spikes = Billboard.Create(_worldRoot, "Spikes", SpriteLibrary.Get("Sprites/Props/spikes_0"), _party.transform.position + new Vector3(0f, 0f, 0.9f));
-            spikes.SetScale(1.6f);
-            spikes.transform.localScale = new Vector3(1f, 0.05f, 1f);
-            Tween.Scale(spikes.transform, Vector3.one, 0.12f, Ease.OutBack);
+            // Un șir de țepi țâșnește din podea, de la un perete la altul, chiar în fața echipei.
+            var spikes = new List<Billboard>();
+            for (int i = 0; i < 3; i++)
+            {
+                var b = Billboard.Create(_worldRoot, "Spikes", SpriteLibrary.Get("Sprites/Props/spikes_0"), _party.transform.position + new Vector3(-1.05f + i * 1.05f, 0f, 1.25f));
+                b.SetScale(1.3f);
+                b.transform.localScale = new Vector3(1f, 0.05f, 1f);
+                Tween.Scale(b.transform, Vector3.one, 0.12f, Ease.OutBack, null, i * 0.04f);
+                spikes.Add(b);
+            }
             AudioManager.Play("trap_spikes");
             ScreenShake.Add(0.35f);
             var before = HpSnapshot();
@@ -299,9 +312,9 @@ namespace DarkestBasement.Core
             StartCoroutine(DelayedMoment("trap", 0.35f));
             yield return Wait(1.1f);
             // Țepii se retrag în podea.
-            if (spikes != null) spikes.SetSprite(SpriteLibrary.Get("Sprites/Props/spikes_1"));
+            foreach (var b in spikes) if (b != null) b.SetSprite(SpriteLibrary.Get("Sprites/Props/spikes_1"));
             yield return Wait(0.6f);
-            if (spikes != null) Destroy(spikes.gameObject);
+            foreach (var b in spikes) if (b != null) Destroy(b.gameObject);
         }
 
         IEnumerator CorridorCurioSequence(int slot)
@@ -341,7 +354,7 @@ namespace DarkestBasement.Core
             switch (outcome.Kind)
             {
                 case ExplorationOutcomeKind.Heal:
-                    FloatingText.Spawn(at, "A SOOTHING WARMTH", Palette.Poison);
+                    FloatingText.Spawn(at + Vector3.up * 0.9f, "A SOOTHING WARMTH", Palette.Poison);
                     ShowHpChanges(before, null);
                     break;
                 case ExplorationOutcomeKind.Card:
@@ -350,7 +363,7 @@ namespace DarkestBasement.Core
                     break;
                 case ExplorationOutcomeKind.Trap:
                 case ExplorationOutcomeKind.Avoided:
-                    FloatingText.Spawn(at, "IT WAS A TRAP!", Palette.Mark);
+                    FloatingText.Spawn(at + Vector3.up * 0.9f, "IT WAS A TRAP!", Palette.Mark);
                     yield return Wait(0.35f);
                     ShowOutcome(outcome, before);
                     break;
@@ -476,7 +489,10 @@ namespace DarkestBasement.Core
                 bool won = false;
                 var stage = _room.StageInfo(floor, encounter.IsBoss);
                 stage.IsAmbush = encounter.IsAmbush;
+                // Anunțăm lupta ca stare: QA-ul face capturi regulate și știe că o luptă de boss poate dura minute bune.
+                SetState(FlowState.Combat);
                 yield return PresentCombat(engine, stage, v => won = v);
+                SetState(FlowState.Sandbox);
                 if (won)
                 {
                     // Doar pentru privit: recompensa nu intră în niciun run.

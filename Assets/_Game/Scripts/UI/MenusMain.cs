@@ -30,7 +30,7 @@ namespace DarkestBasement.UI
                 img.raycastTarget = false;
                 logo = img.rectTransform;
             }
-            else logo = UiKit.Label(Root, "DARKEST BASEMENT", new Vector2(320, 292), new Vector2(600, 60), UiFont.Title, Palette.Parchment, TextAlignmentOptions.Center, 4).Rect;
+            else logo = UiKit.Label(Root, "DARKEST BASEMENT", new Vector2(320, 292), new Vector2(600, 60), UiFont.Title, Palette.Parchment, TextAlignmentOptions.Center, 3).Rect;
             UiKit.Label(Root, "A TURN-BASED DESCENT INTO THE BASEMENT", new Vector2(320, 252), new Vector2(400, 10), UiFont.Label, Palette.WithAlpha(Palette.ParchmentDark, 0.85f));
 
             var panel = UiKit.Panel(Root, "panel_dark", new Vector2(118, 100), new Vector2(184, 112)).rectTransform;

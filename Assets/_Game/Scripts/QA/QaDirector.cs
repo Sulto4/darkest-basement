@@ -54,8 +54,9 @@ namespace DarkestBasement.QA
             if (_sandbox) _script = "sandbox";
             _seed = CommandLine.Int("-seed", 12345);
             _captureFps = CommandLine.Int("-capture-fps", 0);
-            // Sub plafonul de 2400 s al lui forge.sh, ca să ieșim curat (cu raport) înainte să ne oprească systemd.
-            float defaultTimeout = _script == "full" ? 2300f : _script == "tour" ? 1500f : 900f;
+            // Sub plafonul de timp al pasului QA din forge.sh (5400 s), ca să ieșim curat (cu raport) înainte să ne oprească systemd.
+            // Un run complet are ~18 lupte animate (×2) și ~50 de holuri: ~45 de minute pe Forge.
+            float defaultTimeout = _script == "full" ? 5200f : _script == "tour" ? 1500f : 900f;
             _timeout = CommandLine.Float("-qa-timeout", defaultTimeout);
             _maxPerTag = _script == "combat" || _script == "sandbox" ? 40 : _script == "full" ? 2 : 3;
             _maxShots = _script == "full" ? 220 : 140;
@@ -70,7 +71,7 @@ namespace DarkestBasement.QA
 
             if (_captureFps > 0) Time.captureFramerate = _captureFps;
             GameInput.AutoWalk = true;
-            PartyWalker.GlobalSpeedScale = _script == "combat" || _captureFps > 0 ? 1f : 1.5f;
+            PartyWalker.GlobalSpeedScale = _script == "combat" || _captureFps > 0 ? 1f : _script == "full" ? 2.5f : 1.5f;
         }
 
         void Start()
@@ -328,7 +329,9 @@ namespace DarkestBasement.QA
                     _lastState = _flow.State;
                     _lastProgress = now;
                 }
-                float limit = _flow.State == FlowState.Combat ? 900f : 150f;
+                // O luptă (mai ales de boss) poate sta minute întregi fără schimbare de stare; restul jocului, nu.
+                bool fighting = _flow.State == FlowState.Combat || _flow.State == FlowState.Reward;
+                float limit = fighting ? 900f : 150f;
                 if (now - _started > _timeout) { Debug.LogError("[QA] timeout global după " + _timeout + " s"); Finish("timeout"); yield break; }
                 if (now - _lastProgress > limit)
                 {

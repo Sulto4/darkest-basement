@@ -33,7 +33,9 @@ namespace DarkestBasement.Exploration
         public Billboard FloatingCard { get; private set; }
         public Light FeatureLight { get; private set; }
         public Transform Trapdoor { get; private set; }
-        public Vector3 TrapdoorLocal => new Vector3(0f, 0f, 4.2f);
+        // În stânga echipei, spre peretele din fund: se vede pe lângă eroi (nu e acoperită de ei, nici de cadavrul boss-ului,
+        // care rămâne pe linia scenei).
+        public Vector3 TrapdoorLocal => new Vector3(-3.0f, 0f, 0.4f);
 
         readonly MaterialSet _materials = new MaterialSet();
         List<Mesh> _meshes = new List<Mesh>();
@@ -57,6 +59,7 @@ namespace DarkestBasement.Exploration
         {
             var rng = new System.Random(seed);
             var batch = new MeshBatch();
+            var near = new MeshBatch(); // stâlpii peretelui dinspre cameră (+X): ascunși în vederea laterală
             var floor = _materials.Get(MaterialKind.Lit, Tex("floor"));
             var ceiling = _materials.Get(MaterialKind.Lit, Tex("ceiling"));
             var beam = _materials.Get(MaterialKind.Lit, Tex("beam"));
@@ -88,10 +91,14 @@ namespace DarkestBasement.Exploration
                 batch.Box(beam, new Vector3(0f, H - 0.2f, z), new Vector3(2f * W, 0.36f, 0.4f), 1f, top: false);
                 batch.Quad(beam, new Vector3(-W + 0.22f, 0f, z - 0.2f), new Vector3(0f, 0f, 0.4f), new Vector3(0f, H - 0.38f, 0f), 1f);
                 batch.Quad(beam, new Vector3(-W, 0f, z - 0.2f), new Vector3(0.22f, 0f, 0f), new Vector3(0f, H - 0.38f, 0f), 1f);
-                batch.Quad(beam, new Vector3(W - 0.22f, 0f, z + 0.2f), new Vector3(0f, 0f, -0.4f), new Vector3(0f, H - 0.38f, 0f), 1f);
-                batch.Quad(beam, new Vector3(W - 0.22f, 0f, z - 0.2f), new Vector3(0.22f, 0f, 0f), new Vector3(0f, H - 0.38f, 0f), 1f);
+                near.Quad(beam, new Vector3(W - 0.22f, 0f, z + 0.2f), new Vector3(0f, 0f, -0.4f), new Vector3(0f, H - 0.38f, 0f), 1f);
+                near.Quad(beam, new Vector3(W - 0.22f, 0f, z - 0.2f), new Vector3(0.22f, 0f, 0f), new Vector3(0f, H - 0.38f, 0f), 1f);
             }
             _meshes = batch.Build(transform, "Room");
+            var nearRoot = new GameObject("NearSide").transform;
+            nearRoot.SetParent(transform, false);
+            _meshes.AddRange(near.Build(nearRoot, "RoomNear"));
+            NearSide.Add(nearRoot.gameObject);
             EnvKit.AoAlongWall(transform, _materials, new Vector3(-W, 0f, -L), new Vector3(-W, 0f, L), Vector3.right);
             EnvKit.AoAlongWall(transform, _materials, new Vector3(W, 0f, -L), new Vector3(W, 0f, L), Vector3.left);
             EnvKit.AoAlongWall(transform, _materials, new Vector3(-W, 0f, L), new Vector3(W, 0f, L), Vector3.back);
@@ -133,8 +140,8 @@ namespace DarkestBasement.Exploration
             }
             // Două torțe înfipte în podea, în spatele liniei de luptă: unitățile de pe scenă primesc lumină caldă
             // (sprite-urile se colorează după lumina locală), iar în vederea laterală flăcările stau în fundal.
-            TorchFlicker.Create(transform, new Vector3(-2.7f, 0f, -4.6f), torch, Theme.TorchIntensity * 0.9f, 6.5f, (float)rng.NextDouble() * 50f);
-            TorchFlicker.Create(transform, new Vector3(-2.7f, 0f, 4.6f), torch, Theme.TorchIntensity * 0.9f, 6.5f, (float)rng.NextDouble() * 50f);
+            TorchFlicker.Create(transform, new Vector3(-3.3f, 0f, -4.4f), torch, Theme.TorchIntensity * 0.9f, 7f, (float)rng.NextDouble() * 50f);
+            TorchFlicker.Create(transform, new Vector3(-3.3f, 0f, 4.4f), torch, Theme.TorchIntensity * 0.9f, 7f, (float)rng.NextDouble() * 50f);
             TorchFlicker.Create(transform, new Vector3(-2.1f, 1.5f, HalfLength - 0.4f), torch, Theme.TorchIntensity, 6f, (float)rng.NextDouble() * 50f);
             TorchFlicker.Create(transform, new Vector3(2.1f, 1.5f, HalfLength - 0.4f), torch, Theme.TorchIntensity, 6f, (float)rng.NextDouble() * 50f);
         }
@@ -148,6 +155,8 @@ namespace DarkestBasement.Exploration
                 float z = EnvKit.Range(rng, -HalfLength + 1.5f, HalfLength - 1.5f);
                 float x = Mathf.Abs(z) < 8f ? EnvKit.Range(rng, -HalfWidth + 0.6f, -2.4f) : EnvKit.Range(rng, -HalfWidth + 0.6f, HalfWidth - 0.8f);
                 string name = Type == RoomType.Boss && rng.NextDouble() < 0.5 ? (rng.NextDouble() < 0.5 ? "bones_0" : "bones_1") : EnvKit.Pick(rng, Theme.FloorProps);
+                // În camera boss-ului lăsăm liber locul trapei.
+                if (Type == RoomType.Boss && Vector2.Distance(new Vector2(x, z), new Vector2(TrapdoorLocal.x, TrapdoorLocal.z)) < 2f) continue;
                 var prop = EnvKit.Prop(transform, name, new Vector3(x, 0f, z), EnvKit.Range(rng, 0.9f, 1.3f), rng.NextDouble() < 0.5);
                 if (x > 0.3f) NearSide.Add(prop.gameObject);
             }
@@ -173,29 +182,27 @@ namespace DarkestBasement.Exploration
                 case RoomType.Treasure:
                 {
                     // Piedestalul din Isaac: o carte plutește deasupra, cu halo auriu și o rază de lumină.
-                    FeatureSprite = EnvKit.Prop(root, "pedestal", Vector3.zero, 1.5f);
+                    // Piedestalul are în desen o rază de lumină semi-transparentă: cu alfa adevărat (nu tăiat la 50%)
+                    // raza se estompează în sus, în loc să devină un dreptunghi galben plin.
+                    FeatureSprite = EnvKit.Prop(root, "pedestal", Vector3.zero, 1.5f, false, MaterialKind.UnlitTransparent);
+                    // Stă chiar sub lumina piedestalului: fără plafon, raza desenată s-ar arde în alb-galben.
+                    FeatureSprite.UseLocalLight = false;
+                    FeatureSprite.Tint = new Color(0.82f, 0.74f, 0.66f);
                     FeatureLight = AddLight(root, new Vector3(0f, 2.4f, -0.6f), new Color(1f, 0.8f, 0.4f), cleared ? 0.6f : 2.8f, 7f);
                     if (!cleared)
                     {
-                        FloatingCard = Billboard.Create(root, "Card", SpriteLibrary.Get("Sprites/UI/card_back"), new Vector3(0f, 2.0f, 0f));
-                        FloatingCard.SetScale(0.45f);
+                        FloatingCard = Billboard.Create(root, "Card", SpriteLibrary.Get("Sprites/UI/card_back"), new Vector3(0f, 2.15f, 0f));
+                        FloatingCard.SetScale(0.32f);
                         FloatingCard.UseLocalLight = false;
                         FloatingCard.Brightness = 1.15f;
-                        var halo = Billboard.Create(root, "Glow", null, new Vector3(0f, 2.4f, 0.05f), MaterialKind.Additive);
+                        var halo = Billboard.Create(root, "Glow", null, new Vector3(0f, 2.45f, 0.05f), MaterialKind.Additive);
                         halo.Material.SetTexture(Materials.BaseMap, ProceduralTextures.Halo);
-                        halo.Quad.localScale = new Vector3(2.6f, 2.6f, 1f);
-                        halo.Quad.localPosition = new Vector3(0f, -1.3f, 0f);
+                        halo.Quad.localScale = new Vector3(1.7f, 1.7f, 1f);
+                        halo.Quad.localPosition = new Vector3(0f, -0.85f, 0f);
                         halo.UseLocalLight = false;
-                        halo.Tint = new Color(1f, 0.8f, 0.35f, 0.45f);
-                        var shaft = Billboard.Create(root, "Shaft", null, new Vector3(0f, 1.2f, 0.08f), MaterialKind.Additive);
-                        shaft.Material.SetTexture(Materials.BaseMap, ProceduralTextures.Shaft);
-                        shaft.Quad.localScale = new Vector3(1.1f, 3.6f, 1f);
-                        shaft.Quad.localPosition = new Vector3(0f, 0f, 0f);
-                        shaft.UseLocalLight = false;
-                        shaft.Tint = new Color(1f, 0.85f, 0.5f, 0.28f);
+                        halo.Tint = new Color(1f, 0.8f, 0.35f, 0.3f);
                         _featureParts.Add(FloatingCard.gameObject);
                         _featureParts.Add(halo.gameObject);
-                        _featureParts.Add(shaft.gameObject);
                     }
                     break;
                 }
@@ -208,8 +215,10 @@ namespace DarkestBasement.Exploration
                 case RoomType.Curio:
                 {
                     // Cufărul (sau, din când în când, o grămadă suspectă). Are collider: îl poți și apăsa cu mouse-ul.
+                    // Mai departe și mai mare decât piedestalul: un obiect scund ar fi ascuns de capetele eroilor din față.
+                    root.localPosition = FeatureSpot + new Vector3(0f, 0f, 2f);
                     string sprite = cleared ? "chest_open" : (rng.NextDouble() < 0.7 ? "chest_closed" : "tinted_rock");
-                    FeatureSprite = EnvKit.Prop(root, sprite, Vector3.zero, 1.6f);
+                    FeatureSprite = EnvKit.Prop(root, sprite, Vector3.zero, 2.2f);
                     FeatureLight = AddLight(root, new Vector3(0f, 1.8f, -1f), new Color(1f, 0.75f, 0.45f), cleared ? 0.6f : 1.6f, 5f);
                     var col = root.gameObject.AddComponent<BoxCollider>();
                     col.center = new Vector3(0f, 0.6f, 0f);
@@ -270,6 +279,17 @@ namespace DarkestBasement.Exploration
             var s = r.transform.localScale;
             r.transform.localScale = new Vector3(s.x, s.y, s.z * 1.7f);
             Trapdoor = r.transform;
+            // O lumină caldă, joasă, deasupra trapei: gaura se vede în penumbra camerei și o luminează și pe cea de la cădere.
+            var glow = new GameObject("TrapdoorLight");
+            glow.transform.SetParent(transform, false);
+            glow.transform.localPosition = TrapdoorLocal + new Vector3(0.4f, 1.3f, -0.4f);
+            var light = glow.AddComponent<Light>();
+            light.type = LightType.Point;
+            light.color = new Color(1f, 0.6f, 0.38f);
+            light.range = 4.5f;
+            light.intensity = 2.2f;
+            light.shadows = LightShadows.None;
+            LocalLight.Register(light);
             if (!animate) return;
             Vector3 full = r.transform.localScale;
             r.transform.localScale = new Vector3(0.01f, 1f, 0.01f);

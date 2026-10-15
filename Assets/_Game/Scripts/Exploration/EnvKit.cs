@@ -7,9 +7,10 @@ namespace DarkestBasement.Exploration
     public static class EnvKit
     {
         // Recuzită în picioare (caca, pietre, oase), ca billboard pe podea.
-        public static Billboard Prop(Transform parent, string name, Vector3 localPos, float scale = 1f, bool flip = false)
+        public static Billboard Prop(Transform parent, string name, Vector3 localPos, float scale = 1f, bool flip = false,
+            MaterialKind kind = MaterialKind.UnlitCutout)
         {
-            var b = Billboard.Create(parent, name, SpriteLibrary.Get("Sprites/Props/" + name), localPos);
+            var b = Billboard.Create(parent, name, SpriteLibrary.Get("Sprites/Props/" + name), localPos, kind);
             if (scale != 1f) b.SetScale(scale);
             if (flip) b.SetFlip(true);
             return b;

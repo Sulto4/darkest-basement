@@ -15,7 +15,7 @@ namespace DarkestBasement.UI
             Root = UiKit.Stretch(parent, "PauseMenu");
             UiKit.Dim(Root, 0.6f);
             var panel = UiKit.Panel(Root, "panel_paper", new Vector2(320, 186), new Vector2(200, 196)).rectTransform;
-            UiKit.Text(panel, "PAUSED", new Vector2(100, 166), new Vector2(180, 26), UiFont.Title, Palette.Ink, TextAlignmentOptions.Center, 2);
+            UiKit.Text(panel, "PAUSED", new Vector2(100, 166), new Vector2(190, 34), UiFont.Title, Palette.Ink, TextAlignmentOptions.Center, 2);
             UiKit.BigButton(panel, "RESUME", new Vector2(100, 128), new Vector2(150, 24), onResume);
             UiKit.Button(panel, "ABANDON RUN", new Vector2(100, 96), new Vector2(150, 18), onMainMenu);
             UiKit.Button(panel, "QUIT GAME", new Vector2(100, 72), new Vector2(150, 18), onQuit);

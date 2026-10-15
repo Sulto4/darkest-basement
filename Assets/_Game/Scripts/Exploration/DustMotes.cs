@@ -3,18 +3,20 @@ using UnityEngine;
 
 namespace DarkestBasement.Exploration
 {
-    // Praful care plutește în aer. Un singur mesh cu N pătrățele mici (un singur draw call),
-    // rescris în fiecare frame. Fiecare fir de praf luminează doar când e aproape de o lumină:
-    // în întuneric e invizibil, lângă torță sclipește. Așa se "vede" aerul din jurul flăcărilor.
+    // Praful care plutește în aer. Un singur mesh cu N pătrățele (un singur draw call), rescris în fiecare frame.
+    // Fiecare fir are mereu ~1 pixel pe ecran, oricât de aproape sau departe ar fi: mărimea lui în lume crește cu distanța
+    // exact cât scade perspectiva. Luminează doar lângă o lumină: în întuneric e invizibil, lângă torță sclipește discret.
     public sealed class DustMotes : MonoBehaviour
     {
-        const int Count = 110;
-        static readonly Vector3 Box = new Vector3(9f, 4f, 16f); // zona din fața camerei în care trăiește praful
+        const int Count = 56;
+        const float NearDistance = 2.5f;              // niciun fir mai aproape de cameră (ar deveni o pată mare)
+        static readonly Vector3 Box = new Vector3(10f, 3.6f, 11.5f);
+        const float PixelsOnScreen = 1.4f;
 
-        Vector3[] _pos = new Vector3[Count];
-        float[] _seed = new float[Count];
-        Vector3[] _verts = new Vector3[Count * 4];
-        Color[] _colors = new Color[Count * 4];
+        readonly Vector3[] _pos = new Vector3[Count];
+        readonly float[] _seed = new float[Count];
+        readonly Vector3[] _verts = new Vector3[Count * 4];
+        readonly Color[] _colors = new Color[Count * 4];
         Mesh _mesh;
         Material _material;
         public Color Tint = new Color(1f, 0.85f, 0.65f);
@@ -32,13 +34,12 @@ namespace DarkestBasement.Exploration
         void Init(int seed)
         {
             var rng = new System.Random(seed);
-            var cam = CameraRig.Instance.Camera.transform;
+            Vector3 center = BoxCenter();
             for (int i = 0; i < Count; i++)
             {
-                _pos[i] = cam.position + new Vector3(
-                    ((float)rng.NextDouble() - 0.5f) * Box.x,
-                    (float)rng.NextDouble() * Box.y - 1.5f,
-                    (float)rng.NextDouble() * Box.z);
+                _pos[i] = center + new Vector3(
+                    ((float)rng.NextDouble() - 0.5f) * Box.x, 0f, ((float)rng.NextDouble() - 0.5f) * Box.z);
+                _pos[i].y = 0.25f + (float)rng.NextDouble() * Box.y;
                 _seed[i] = (float)rng.NextDouble() * 100f;
             }
 
@@ -58,7 +59,8 @@ namespace DarkestBasement.Exploration
             _mesh.triangles = tris;
             _mesh.bounds = new Bounds(Vector3.zero, Vector3.one * 1000f);
 
-            _material = Materials.Create(MaterialKind.Additive, SpriteLibrary.Get("Sprites/Props/dust_mote").texture);
+            // Un pătrățel plin (nu sprite-ul în formă de cruce): la 1 pixel, orice formă devine oricum un punct.
+            _material = Materials.Create(MaterialKind.Additive, ProceduralTextures.White);
             gameObject.AddComponent<MeshFilter>().sharedMesh = _mesh;
             var r = gameObject.AddComponent<MeshRenderer>();
             r.sharedMaterial = _material;
@@ -68,39 +70,55 @@ namespace DarkestBasement.Exploration
             transform.rotation = Quaternion.identity;
         }
 
+        // Cutia de praf stă în fața camerei, între NearDistance și NearDistance + Box.z.
+        static Vector3 BoxCenter()
+        {
+            var cam = CameraRig.Instance.Camera.transform;
+            Vector3 forward = cam.forward;
+            forward.y = 0f;
+            if (forward.sqrMagnitude < 0.0001f) forward = Vector3.forward;
+            return cam.position + forward.normalized * (NearDistance + Box.z * 0.5f);
+        }
+
         void LateUpdate()
         {
-            var camT = CameraRig.Instance.Camera.transform;
-            Vector3 right = camT.right, up = camT.up;
-            Vector3 center = camT.position + camT.forward * (Box.z * 0.5f);
+            var cam = CameraRig.Instance.Camera;
+            var camT = cam.transform;
+            Vector3 right = camT.right, up = camT.up, camPos = camT.position;
+            Vector3 center = BoxCenter();
             float t = Time.time, dt = Time.deltaTime;
-            const float size = 3f / 32f; // 3 pixeli de artă
+            // Cât de mare e un pixel al imaginii de 640×360 la distanța 1 de cameră.
+            float pixelAtOne = 2f * Mathf.Tan(cam.fieldOfView * 0.5f * Mathf.Deg2Rad) / cam.pixelHeight;
 
             for (int i = 0; i < Count; i++)
             {
                 float s = _seed[i];
-                // Plutire lentă: zgomot Perlin pe fiecare axă + o cădere foarte mică.
+                // Plutire foarte lentă: zgomot Perlin pe fiecare axă și o cădere abia simțită.
                 Vector3 drift = new Vector3(
-                    Mathf.PerlinNoise(s, t * 0.15f) - 0.5f,
-                    (Mathf.PerlinNoise(s + 5f, t * 0.12f) - 0.55f) * 0.6f,
-                    Mathf.PerlinNoise(s + 9f, t * 0.15f) - 0.5f) * 0.35f;
+                    Mathf.PerlinNoise(s, t * 0.1f) - 0.5f,
+                    (Mathf.PerlinNoise(s + 5f, t * 0.08f) - 0.56f) * 0.5f,
+                    Mathf.PerlinNoise(s + 9f, t * 0.1f) - 0.5f) * 0.16f;
                 Vector3 p = _pos[i] + drift * dt;
 
                 // Firul care iese din cutie reapare pe partea cealaltă (cutia se mută odată cu camera).
                 Vector3 d = p - center;
                 p.x = center.x + Wrap(d.x, Box.x);
-                p.y = Mathf.Clamp(p.y, 0.1f, 3.9f);
                 p.z = center.z + Wrap(d.z, Box.z);
+                if (p.y < 0.2f) p.y += Box.y;
+                if (p.y > 0.2f + Box.y) p.y -= Box.y;
                 _pos[i] = p;
 
-                // Lumina locală decide cât se vede; sclipirea vine din zgomot rapid.
+                // Lumina locală decide cât se vede; sclipirea vine din zgomot.
                 Color light = LocalLight.Sample(p) - LocalLight.Ambient;
-                float lum = Mathf.Clamp01((light.r + light.g + light.b) / 3f * 1.6f);
-                float twinkle = 0.55f + 0.45f * Mathf.PerlinNoise(s + 13f, t * 1.7f);
-                Color c = Tint * (lum * twinkle);
-                c.a = Mathf.Clamp01(lum * twinkle * 1.4f);
+                float lum = Mathf.Clamp01((light.r + light.g + light.b) / 3f * 1.2f);
+                float twinkle = 0.45f + 0.55f * Mathf.PerlinNoise(s + 13f, t * 1.2f);
+                float a = Mathf.Clamp01(lum * twinkle) * 0.75f;
+                Color c = Tint * a;
+                c.a = a;
 
-                Vector3 r = right * (size * 0.5f), u = up * (size * 0.5f);
+                float distance = Mathf.Max(NearDistance, Vector3.Dot(p - camPos, camT.forward));
+                float half = distance * pixelAtOne * PixelsOnScreen * 0.5f;
+                Vector3 r = right * half, u = up * half;
                 int v = i * 4;
                 _verts[v] = p - r - u; _verts[v + 1] = p - r + u; _verts[v + 2] = p + r + u; _verts[v + 3] = p + r - u;
                 _colors[v] = _colors[v + 1] = _colors[v + 2] = _colors[v + 3] = c;
@@ -112,8 +130,8 @@ namespace DarkestBasement.Exploration
         static float Wrap(float v, float size)
         {
             float half = size * 0.5f;
-            if (v > half) return v - size;
-            if (v < -half) return v + size;
+            while (v > half) v -= size;
+            while (v < -half) v += size;
             return v;
         }
 

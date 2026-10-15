@@ -26,7 +26,7 @@ namespace DarkestBasement.UI
             var dim = UiKit.Dim(Root, 0f);
             Tween.Value(0.35f, k => { if (dim != null) dim.color = new Color(0.02f, 0.01f, 0.01f, 0.55f * k); }, Ease.OutQuad, null, 0f, true, dim);
 
-            UiKit.Label(Root, "TREASURE", new Vector2(320, 312), new Vector2(300, 30), UiFont.Title, Palette.Gold, TextAlignmentOptions.Center, 2);
+            UiKit.Label(Root, "TREASURE", new Vector2(320, 312), new Vector2(400, 36), UiFont.Title, Palette.Gold, TextAlignmentOptions.Center, 2);
             UiKit.Label(Root, "TAKE ONE CARD", new Vector2(320, 290), new Vector2(300, 10), UiFont.Label, Palette.Parchment);
 
             for (int i = 0; i < choices.Count; i++)
@@ -38,11 +38,15 @@ namespace DarkestBasement.UI
                 glow.color = RarityColor(def.Rarity);
                 var card = CardView.Create(slot, def, false, new Vector2(40, 55));
                 card.OnClicked = _ => Choose(index);
-                var events = PointerEvents.Of(glow.gameObject);
-                events.OnClick = () => Choose(index);
-                events.OnEnter = () => { AudioManager.Play("ui_hover"); card.SetHighlighted(true); };
-                events.OnExit = () => card.SetHighlighted(false);
-                Tooltip.Attach(glow.gameObject, () => def.Name + "\n" + CardText.Describe(def, false));
+                PointerEvents.Of(glow.gameObject).OnClick = () => Choose(index);
+                // Cartea (CardView) prinde hover-ul: ridicare, sunet și textul complet în tooltip.
+                string tip = def.Name + "\n" + CardText.Describe(def, false);
+                card.HoverChanged = (v, on) =>
+                {
+                    v.SetHighlighted(on);
+                    if (on) { AudioManager.Play("ui_hover"); Tooltip.Show(tip, v); }
+                    else Tooltip.Hide(v);
+                };
 
                 string owner = HeroDatabase.Get(def.HeroId).Name.ToUpperInvariant();
                 UiKit.Label(slot, owner, new Vector2(40, -6), new Vector2(100, 10), UiFont.Label, Palette.Parchment);

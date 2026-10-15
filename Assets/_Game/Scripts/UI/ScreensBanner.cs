@@ -12,12 +12,14 @@ namespace DarkestBasement.UI
         {
             var ui = UIRoot.Instance;
             if (ui == null) return;
-            var root = UiKit.Rect(ui.Screens, "Banner", new Vector2(320, y), new Vector2(520, 70));
+            var root = UiKit.Rect(ui.Screens, "Banner", new Vector2(320, y), new Vector2(620, 70));
             var group = root.gameObject.AddComponent<CanvasGroup>();
             group.blocksRaycasts = false;
-            var title = UiKit.Label(root, text, new Vector2(260, 40), new Vector2(520, 44), UiFont.Title, color, TextAlignmentOptions.Center, 3);
+            // Textele scurte (AMBUSH!, MONSTRO) la 48 px; cele lungi (numele unei cărți) la 32 px, ca să încapă pe un rând.
+            int size = text.Length <= 12 ? 3 : 2;
+            var title = UiKit.Label(root, text, new Vector2(310, 40), new Vector2(620, 52), UiFont.Title, color, TextAlignmentOptions.Center, size);
             if (!string.IsNullOrEmpty(subtitle))
-                UiKit.Label(root, subtitle, new Vector2(260, 10), new Vector2(520, 12), UiFont.Label, Palette.Parchment);
+                UiKit.Label(root, subtitle, new Vector2(310, 8), new Vector2(620, 12), UiFont.Label, Palette.Parchment);
 
             float age = 0f;
             Ticker.Attach(root.gameObject, () =>

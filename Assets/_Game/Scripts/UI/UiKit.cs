@@ -9,9 +9,10 @@ using UnityEngine.UI;
 namespace DarkestBasement.UI
 {
     // Body = Micro 5 (textul principal, cărți, tooltip-uri); Label/LabelBold = Silkscreen (numere, etichete în majuscule);
-    // Tiny = același Micro 5 (păstrat pentru codul vechi); Title = Jacquarda Bastarda (gotică, titluri);
-    // Big = Pixelify Sans (doar texte mari de meniu, ≥ 20 px).
-    public enum UiFont { Body, Label, Tiny, Title, Big, LabelBold }
+    // Tiny = același Micro 5 (păstrat pentru codul vechi); Title = Silkscreen Bold la 16 px (titluri: blocuri clare, se citesc
+    // de departe); Big = Pixelify Sans (doar texte mari de meniu, ≥ 20 px); Gothic = Jacquarda Bastarda (decor, doar mare).
+    // Title era gotica Jacquarda, dar la ×2 literele se amestecau ("BASEMENT" nu se mai citea), așa că am mutat-o pe Gothic.
+    public enum UiFont { Body, Label, Tiny, Title, Big, LabelBold, Gothic }
 
     // Fabrica de elemente UI. Tot UI-ul e construit din cod cu funcțiile astea, ca să arate la fel peste tot.
     // Coordonatele sunt în pixeli de referință (640×360), cu originea în colțul stânga-jos al părintelui.
@@ -27,7 +28,9 @@ namespace DarkestBasement.UI
             { UiFont.Tiny, ("Fonts/Micro5/Micro5-Regular", 11) },
             { UiFont.Label, ("Fonts/Silkscreen/Silkscreen-Regular", 8) },
             { UiFont.LabelBold, ("Fonts/Silkscreen/Silkscreen-Bold", 8) },
-            { UiFont.Title, ("Fonts/JacquardaBastarda9/JacquardaBastarda9-Regular", 13) },
+            // Silkscreen Bold e desenat pe o grilă de 8 px; 16 = ×2 exact, deci pixelii cad tot pe grilă.
+            { UiFont.Title, ("Fonts/Silkscreen/Silkscreen-Bold", 16) },
+            { UiFont.Gothic, ("Fonts/JacquardaBastarda9/JacquardaBastarda9-Regular", 13) },
             { UiFont.Big, ("Fonts/PixelifySans/PixelifySans-Variable", 20) },
         };
 

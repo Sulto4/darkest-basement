@@ -58,9 +58,11 @@ pull() {
 }
 
 # Un pas pe Forge, în cușca de resurse: o singură instanță odată (flock), memorie/CPU/timp plafonate.
+# RUNTIME = plafonul de timp al pasului: 2400 s pentru Unity; jocul automat "qa full" (un run întreg, ~45 min) primește 5400 s.
 remote() {
+  local runtime="${RUNTIME:-2400}"
   ssh "$HOST" "cd '$RDIR' && flock /tmp/darkest-basement-unity.lock \
-    systemd-run --user --scope --quiet -p MemoryMax=8G -p MemorySwapMax=0 -p CPUQuota=600% -p RuntimeMaxSec=2400 \
+    systemd-run --user --scope --quiet -p MemoryMax=8G -p MemorySwapMax=0 -p CPUQuota=600% -p RuntimeMaxSec=$runtime \
     nice -n 10 env UNITY_NO_CONSENT_PROMPT=1 tools/unity.sh $*"
 }
 
@@ -73,7 +75,7 @@ if [ "$cmd" = "qa" ]; then
   remote build-linux
   code=$?
   if [ $code -eq 0 ]; then
-    remote qa "$@"
+    RUNTIME=$([ "${1:-tour}" = "full" ] && echo 5400 || echo 2400) remote qa "$@"
     code=$?
   fi
 else
@@ -82,6 +84,8 @@ else
 fi
 set -e
 
+# Capturile QA vin într-un folder curat (altfel s-ar amesteca cu cele din rularea trecută).
+if [ "$cmd" = "qa" ]; then rm -rf "$ROOT/Logs/qa/${1:-tour}"; fi
 pull
 if [ "$cmd" = "build-win" ] || [ "$cmd" = "build-mac" ]; then
   mkdir -p "$ROOT/Builds"
