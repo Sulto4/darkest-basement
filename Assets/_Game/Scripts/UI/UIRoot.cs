@@ -147,6 +147,14 @@ namespace DarkestBasement.UI
             return local + Root.rect.size * 0.5f;
         }
 
+        // Din coordonatele lui Root (640×360) în pixeli de ecran: inversul lui ScreenToUI.
+        // Canvas-ul e Screen Space Overlay, deci poziția „în lume” a unui punct din UI chiar e pixelul de pe ecran.
+        public Vector2 UIToScreen(Vector2 ui)
+        {
+            Vector3 world = Root.TransformPoint(ui - Root.rect.size * 0.5f);
+            return new Vector2(world.x, world.y);
+        }
+
         // Din pixeli de ecran (mouse) în coordonatele lui Root (stânga-jos = 0,0).
         public Vector2 ScreenToUI(Vector2 screenPos)
         {

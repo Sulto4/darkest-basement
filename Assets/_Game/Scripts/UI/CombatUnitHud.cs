@@ -137,6 +137,14 @@ namespace DarkestBasement.UI
             return icon;
         }
 
+        // O iconiță de status de pe ecran (Block sau din rândul de statusuri), pentru QA; null dacă nu e niciuna.
+        public RectTransform VisibleStatusIcon()
+        {
+            if (_dead || _waiting) return null;
+            foreach (var icon in _icons.Values) if (icon.Root.gameObject.activeInHierarchy) return icon.Icon.rectTransform;
+            return _blockIcon.enabled ? _blockIcon.rectTransform : null;
+        }
+
         public void OnDamaged(int amount, int blocked)
         {
             _shake = amount > 0 ? 1f : 0.5f;

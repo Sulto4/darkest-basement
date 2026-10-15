@@ -3,7 +3,8 @@
 # Mac-ul rămâne sursa de adevăr pentru cod și artă; Forge doar compilează, testează și face build-uri.
 #
 # Folosire: tools/forge.sh compile|test|setup|build-win|build-mac|build-linux|method <Clasa.Metoda> [argumente Unity]
-#           tools/forge.sh qa [tour|full|combat|sandbox] [seed] [argumente player]   # build Linux + joc automat sub Xvfb
+#           tools/forge.sh qa [tour|full|combat|sandbox|input] [seed] [argumente player]   # build Linux + joc automat sub Xvfb
+#             (input = joacă prin mouse și tastatură virtuale, cu PASS/FAIL pe fiecare pas; vezi QA/QaDirector.Input.cs)
 #           tools/forge.sh push            # doar sincronizează
 # Capturile QA ajung în Logs/qa/<script>/ (PNG, qa-log.txt, qa-summary.txt, player.log).
 #

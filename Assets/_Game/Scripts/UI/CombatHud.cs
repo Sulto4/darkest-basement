@@ -24,6 +24,10 @@ namespace DarkestBasement.UI
         public CombatHand Hand { get; private set; }
         public CombatTurnOrderBar TurnOrder { get; private set; }
         public string HandHero { get; private set; }
+        public Button EndTurnButton => _endTurn;
+        public Button GiveUpButton => _giveUp;
+        public Button MoveButton(int direction) => direction < 0 ? _moveFront : _moveBack;
+        public bool SpeedLabelShown => _speed != null && _speed.Rect.gameObject.activeSelf;
 
         // Panoul eroului (stânga jos).
         Image _panel, _portraitFrame, _portrait;
@@ -42,6 +46,9 @@ namespace DarkestBasement.UI
         TweenHandle _bannerTween;
         bool _input;
         UnitView _hoveredUnit;
+        // Unitatea aprinsă de un element UI (butonul Move, portretul din bara de inițiativă), nu de mouse-ul de pe scenă.
+        // UpdateHover rescrie conturul în fiecare frame, deci trebuie să știe și de ea.
+        string _uiHighlight;
 
         public static CombatHud Create(CombatController c)
         {
@@ -130,13 +137,14 @@ namespace DarkestBasement.UI
             _moveRoot = UiKit.Rect(_hud, "Move", Vector2.zero, Vector2.zero);
             _moveBack = CombatUi.Button(_moveRoot, "<", new Vector2(-22, 0), new Vector2(14, 14), () => _c.RequestMove(+1), UiFont.LabelBold);
             _moveFront = CombatUi.Button(_moveRoot, ">", new Vector2(22, 0), new Vector2(14, 14), () => _c.RequestMove(-1), UiFont.LabelBold);
-            CombatHoverTrigger.On(_moveBack.gameObject, () => MoveTooltip(+1), () => CombatTooltip.Hide(this));
-            CombatHoverTrigger.On(_moveFront.gameObject, () => MoveTooltip(-1), () => CombatTooltip.Hide(this));
+            // On(...) înlocuiește hover-ul pus de CombatUi.Button, deci sunetul de hover îl punem din nou aici.
+            CombatHoverTrigger.On(_moveBack.gameObject, () => { HoverSound(_moveBack); MoveTooltip(+1); }, MoveTooltipHide);
+            CombatHoverTrigger.On(_moveFront.gameObject, () => { HoverSound(_moveFront); MoveTooltip(-1); }, MoveTooltipHide);
             _moveRoot.gameObject.SetActive(false);
             _endTurn.interactable = false;
             _endTurn.gameObject.SetActive(false);
             _giveUp = CombatUi.Button(_hud, "GIVE UP", new Vector2(596, 46), new Vector2(76, 16), () => _c.RequestGiveUp(), UiFont.Label);
-            CombatHoverTrigger.On(_giveUp.gameObject, () => CombatTooltip.Show(this, "GIVE UP", "Nobody left can hurt the enemy. End this fight as a defeat.", new Vector2(596, 56)), () => CombatTooltip.Hide(this));
+            CombatHoverTrigger.On(_giveUp.gameObject, () => { HoverSound(_giveUp); CombatTooltip.Show(this, "GIVE UP", "Nobody left can hurt the enemy. End this fight as a defeat.", new Vector2(596, 56)); }, () => CombatTooltip.Hide(this));
             _giveUp.gameObject.SetActive(false);
             // Last Stand: o insignă deasupra panoului eroului, cât timp a rămas un singur erou.
             _lastStand = CombatUi.Outlined(_hud, "LAST STAND", new Vector2(64, 62), new Vector2(110, 10), UiFont.LabelBold, Palette.Blood);
@@ -159,7 +167,23 @@ namespace DarkestBasement.UI
             if (other != null && hero.Energy < 1) body += "\nNot enough tears.";
             CombatTooltip.Show(this, direction < 0 ? "MOVE FORWARD" : "MOVE BACK", body, _moveRoot.anchoredPosition + new Vector2(direction < 0 ? 22 : -22, 10));
             // Aliatul cu care s-ar schimba locul se aprinde.
-            foreach (var u in _c.Engine.State.Living(true)) if (u.Rank == hero.Rank + direction) _c.View(u.Id)?.SetHovered(true);
+            _uiHighlight = null;
+            foreach (var u in _c.Engine.State.Living(true)) if (u.Rank == hero.Rank + direction) _uiHighlight = u.Id;
+        }
+
+        void MoveTooltipHide()
+        {
+            CombatTooltip.Hide(this);
+            _uiHighlight = null;
+        }
+
+        static void HoverSound(Button b) { if (b != null && b.interactable) AudioManager.Play("ui_hover", 0.5f); }
+
+        // Aprinde (on) sau stinge conturul unei unități de pe un element din afara scenei. Folosit de bara de inițiativă.
+        public void HighlightUnit(string id, bool on)
+        {
+            if (on) _uiHighlight = id;
+            else if (_uiHighlight == id) _uiHighlight = null;
         }
 
         // ---------- unități ----------
@@ -272,6 +296,9 @@ namespace DarkestBasement.UI
             _input = true;
             ShowHero(hero.Id);
             Hand.BeginInput(hero);
+            // Butoanele Move apar direct lângă erou: dacă ar porni din locul vechi (de dinaintea unei mutări),
+            // mouse-ul de deasupra lor ar primi o clipă tooltip-ul greșit.
+            PlaceMoveButtons();
             _moveRoot.gameObject.SetActive(true);
             // End Turn apare doar în tura jucătorului, cu un mic „pop”: e semnalul că acum e rândul tău.
             _endTurn.gameObject.SetActive(true);
@@ -289,6 +316,7 @@ namespace DarkestBasement.UI
             _endTurn.interactable = false;
             _endTurn.gameObject.SetActive(false);
             _giveUp.gameObject.SetActive(false);
+            _uiHighlight = null;
             CombatTooltip.HideAll();
         }
 
@@ -363,13 +391,15 @@ namespace DarkestBasement.UI
             _drawPile.rectTransform.localScale = Vector3.Lerp(_drawPile.rectTransform.localScale, Vector3.one, 1f - Mathf.Exp(-10f * dt));
             if (_hint.Rect.gameObject.activeSelf) _hint.Alpha = 0.65f + 0.35f * Mathf.Sin(Time.unscaledTime * 3f);
 
-            // Butoanele Move stau de o parte și de alta a eroului activ.
-            if (_input && _c.InputHero != null)
-            {
-                var v = _c.View(_c.InputHero.Id);
-                if (v != null) _moveRoot.anchoredPosition = CombatUi.Snap(CombatCamera.WorldToUI(v.Home) + new Vector2(0, 8));
-            }
+            if (_input) PlaceMoveButtons();
             UpdateHover();
+        }
+
+        // Butoanele Move stau de o parte și de alta a eroului activ.
+        void PlaceMoveButtons()
+        {
+            var v = _c.InputHero != null ? _c.View(_c.InputHero.Id) : null;
+            if (v != null) _moveRoot.anchoredPosition = CombatUi.Snap(CombatCamera.WorldToUI(v.Home) + new Vector2(0, 8));
         }
 
         // Mouse-ul peste o unitate: conturul ei se aprinde; la inamici apar săgețile spre țintele intenției.
@@ -380,7 +410,7 @@ namespace DarkestBasement.UI
             var focus = Hand.FocusCard;
             foreach (var v in _c.Views.Values)
             {
-                bool hovered = v == over && (focus == null || Hand.IsValidTarget(v.Id));
+                bool hovered = (v == over && (focus == null || Hand.IsValidTarget(v.Id))) || v.Id == _uiHighlight;
                 v.SetHovered(hovered);
             }
             if (over == _hoveredUnit) return;

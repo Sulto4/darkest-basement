@@ -20,11 +20,12 @@ namespace DarkestBasement.QA
     // Salvează capturi la momentele cheie și qa-log.txt cu toate avertismentele, erorile și excepțiile, apoi iese
     // cu codul 0 (curat) sau 1 (erori, blocaj, timeout).
     //
-    // Argumente: -qa <folder> [-seed N] [-qa-script tour|full|combat] [-capture-fps 30] [-combat-sandbox [id]] [-qa-timeout s]
+    // Argumente: -qa <folder> [-seed N] [-qa-script tour|full|combat|input] [-capture-fps 30] [-combat-sandbox [id]] [-qa-timeout s]
     //   tour   — etajul 1 cu camerele speciale, boss, trapa, cartonașul etajului 2, ecranul de final
     //   full   — un run întreg până la victorie sau moarte
     //   combat — prima luptă, cu multe capturi (pentru echipa C)
-    public sealed class QaDirector : MonoBehaviour
+    //   input  — joacă prin mouse și tastatură virtuale, ca un om (QaDirector.Input.cs), cu PASS/FAIL pe fiecare pas
+    public sealed partial class QaDirector : MonoBehaviour
     {
         string _dir, _script;
         int _seed, _captureFps, _shot, _frame;
@@ -56,7 +57,8 @@ namespace DarkestBasement.QA
             _captureFps = CommandLine.Int("-capture-fps", 0);
             // Sub plafonul de timp al pasului QA din forge.sh (5400 s), ca să ieșim curat (cu raport) înainte să ne oprească systemd.
             // Un run complet are ~18 lupte animate (×2) și ~50 de holuri: ~45 de minute pe Forge.
-            float defaultTimeout = _script == "full" ? 5200f : _script == "tour" ? 1500f : 900f;
+            _manual = _script == "input";
+            float defaultTimeout = _script == "full" ? 5200f : _script == "tour" || _manual ? 1500f : 900f;
             _timeout = CommandLine.Float("-qa-timeout", defaultTimeout);
             _maxPerTag = _script == "combat" || _script == "sandbox" ? 40 : _script == "full" ? 2 : 3;
             _maxShots = _script == "full" ? 220 : 140;
@@ -70,8 +72,10 @@ namespace DarkestBasement.QA
                  + " screen=" + Screen.width + "x" + Screen.height + " gfx=" + SystemInfo.graphicsDeviceType);
 
             if (_captureFps > 0) Time.captureFramerate = _captureFps;
-            GameInput.AutoWalk = true;
-            PartyWalker.GlobalSpeedScale = _script == "combat" || _captureFps > 0 ? 1f : _script == "full" ? 2.5f : 1.5f;
+            // Scriptul "input" ține singur tasta W, la viteza reală de mers.
+            QaHooks.ManualInput = _manual;
+            GameInput.AutoWalk = !_manual;
+            PartyWalker.GlobalSpeedScale = _script == "combat" || _manual || _captureFps > 0 ? 1f : _script == "full" ? 2.5f : 1.5f;
         }
 
         void Start()
@@ -109,6 +113,8 @@ namespace DarkestBasement.QA
         void OnMoment(string tag)
         {
             if (_shot >= _maxShots) return;
+            // Scriptul "input" își face singur capturile, la fiecare pas (Shot); momentele automate ar umple folderul.
+            if (_manual && tag != "stall") return;
             string key = _script == "full" && _flow != null && _flow.Run != null ? tag + "@" + _flow.Run.State.FloorIndex : tag;
             _tagCount.TryGetValue(key, out int count);
             if (count >= _maxPerTag) return;
@@ -155,6 +161,12 @@ namespace DarkestBasement.QA
                 while (!_flow.SandboxFinished) yield return null;
                 yield return Seconds(0.5f);
                 Finish("sandbox done");
+                yield break;
+            }
+
+            if (_manual)
+            {
+                yield return DriveInput();
                 yield break;
             }
 
@@ -296,6 +308,7 @@ namespace DarkestBasement.QA
         // Capturi regulate în luptă (cărți în mână, lovituri) și pe hol (mersul), pentru momentele fără eveniment explicit.
         IEnumerator PeriodicShots()
         {
+            if (_manual) yield break;
             float combatTimer = 0f, walkTimer = 0f;
             while (true)
             {
@@ -349,6 +362,15 @@ namespace DarkestBasement.QA
         // e luată sau sărită după aceeași politică ca în simulator.
         void ConfigureTeamCHooks()
         {
+            if (_manual)
+            {
+                // Mâinile sunt ale scriptului: fără AutoPlay, fără alegere automată, viteza o schimbă tasta F.
+                CombatController.Fast = false;
+                CombatController.AutoPlay = false;
+                RewardScreen.AutoDecide = null;
+                Note("echipa C: AutoPlay nu, AutoDecide nu, Fast nu (input real)");
+                return;
+            }
             bool fast = _script != "combat" && _script != "sandbox" && _captureFps == 0;
             CombatController.Fast = fast;
             CombatController.AutoPlay = true;
@@ -369,7 +391,8 @@ namespace DarkestBasement.QA
         {
             // Lăsăm capturile cerute să se scrie.
             for (int i = 0; i < 10 && _pending.Count > 0; i++) yield return null;
-            int code = _errors + _exceptions > 0 || reason == "timeout" || reason == "stall" ? 1 : 0;
+            int failedSteps = _manual ? CloseSteps() : 0;
+            int code = _errors + _exceptions > 0 || failedSteps > 0 || reason == "timeout" || reason == "stall" ? 1 : 0;
             var run = _flow != null ? _flow.Run : null;
             var summary = new StringBuilder();
             summary.AppendLine("script: " + _script);
@@ -384,11 +407,14 @@ namespace DarkestBasement.QA
                 summary.AppendLine("floor: " + run.State.FloorIndex + ", rooms travelled: " + _roomsVisited + ", combats: " + run.State.Stats.Combats + ", kills: " + run.State.Stats.Kills);
                 foreach (var h in run.State.Party) summary.AppendLine("  " + h.Def.Id + " hp " + h.Hp + "/" + h.Def.MaxHp + " deck " + h.Deck.Count);
             }
+            if (_manual) AppendSteps(summary);
             File.WriteAllText(Path.Combine(_dir, "qa-summary.txt"), summary.ToString());
             Note("QA gata: " + reason + ", cod " + code);
             Application.logMessageReceivedThreaded -= OnLog;
             lock (_logLock) { _log?.Flush(); _log?.Dispose(); _log = null; }
             GameInput.AutoWalk = false;
+            _input?.Dispose();
+            _input = null;
             Application.Quit(code);
         }
 

@@ -2,17 +2,21 @@ using System.Collections.Generic;
 using DarkestBasement.Audio;
 using DarkestBasement.Combat;
 using DarkestBasement.Core;
+using DarkestBasement.FX;
 using DarkestBasement.Model.Combat;
 using DarkestBasement.Model.Core;
 using DarkestBasement.Model.Data;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 namespace DarkestBasement.UI
 {
     // Mâna eroului activ, jos la mijloc, ca un evantai.
     // Hover: cartea urcă, crește la 1.15 și se înclină spre mouse. Drag: urmărește mouse-ul cu SmoothDamp
     // (un arc amortizat) și se înclină după viteză. Drop pe o țintă validă = carte jucată.
+    // O carte cu țintă, scoasă din mână, se oprește deasupra ei și arată spre mouse cu o săgeată punctată
+    // (ca în Slay the Spire): altfel cartea ar acoperi chiar inamicul pe care îl ochești.
     // Merge și fără drag: click pe carte, apoi click pe țintă; tastele 1–9 aleg cartea.
     public sealed class CombatHand : MonoBehaviour
     {
@@ -25,6 +29,10 @@ namespace DarkestBasement.UI
 
         public static readonly Vector2 DrawPilePos = new Vector2(150, 30);
         public static readonly Vector2 DiscardPilePos = new Vector2(490, 30);
+        // Deasupra acestei linii mouse-ul e „pe scenă”: o carte fără țintă lăsată aici se joacă.
+        const float PlayZoneY = 110f;
+        // Unde stă o carte cu țintă cât timp o ochești (sus din mână, dar sub barele de HP ale unităților din față).
+        const float AimCardY = 84f;
 
         CombatController _c;
         RectTransform _rt;
@@ -35,6 +43,10 @@ namespace DarkestBasement.UI
         HeroUnit _hero;
         readonly HashSet<string> _validTargets = new HashSet<string>();
         CardView _targetsFor;
+        // Săgeata de țintire: puncte pe o curbă Bézier, de la carte până la mouse.
+        RectTransform _aimLayer;
+        readonly List<Image> _aimDots = new List<Image>();
+        Vector2 _dragFrom;   // de unde a plecat cartea trasă (în ea „se întoarce” cât timp ochești)
 
         public static CombatHand Create(Transform parent, CombatController c)
         {
@@ -42,10 +54,13 @@ namespace DarkestBasement.UI
             var hand = rt.gameObject.AddComponent<CombatHand>();
             hand._rt = rt;
             hand._c = c;
+            hand._aimLayer = UiKit.Stretch(rt, "AimArrow");
             return hand;
         }
 
         public int Count => _cards.Count;
+        public IReadOnlyList<CardView> Cards => _cards;     // de la stânga la dreapta (tasta 1 = prima)
+        public CardView Selected => _selected;
 
         // Cartea care decide ce ținte se aprind: cea trasă > cea selectată > cea de sub mouse (dacă se poate juca).
         public CardView FocusCard
@@ -191,7 +206,8 @@ namespace DarkestBasement.UI
                 _hovered = card;
                 if (_dragged == null) AudioManager.Play("ui_hover", 0.35f);
                 if (_interactive && !card.Playable && !string.IsNullOrEmpty(card.Reason))
-                    CombatTooltip.Show(card, "CAN'T PLAY", card.Reason, card.Rect.anchoredPosition + new Vector2(0, 60));
+                    CombatTooltip.Show(card, "CAN'T PLAY", card.Reason, BesideCard(card));
+                else if (_dragged == null) ShowKeywords(card);
             }
             else
             {
@@ -200,6 +216,52 @@ namespace DarkestBasement.UI
             }
             card.SetHoverPad(on);
         }
+
+        // Cuvintele-cheie de pe carte (Bleed, Mark, Block...) explicate lângă ea (GDD §10: jucătorul înțelege mereu de ce).
+        // Tooltip-ul stă în partea în care e mai mult loc, ca să nu acopere chiar cartea.
+        void ShowKeywords(CardView card)
+        {
+            var def = card.Def;
+            if (def == null) return;
+            var seen = new List<Status>();
+            var lines = new List<string>();
+            foreach (var fx in def.Effects)
+            {
+                Status s;
+                if (fx.Kind == EffectKind.ApplyStatus) s = fx.Status;
+                else if (fx.Kind == EffectKind.Block) s = Status.Block;
+                else if (fx.Kind == EffectKind.GainStrength) s = Status.Strength;
+                else if (fx.Kind == EffectKind.Taunt) s = Status.Taunt;
+                else continue;
+                if (seen.Contains(s)) continue;
+                seen.Add(s);
+                int value = def.EffectValue(fx, card.Upgraded);
+                lines.Add("<color=" + CombatUi.HexOf(Palette.BloodDark) + ">" + s.ToString().ToUpperInvariant() + "</color>  " + CombatUi.StatusText(s, value));
+            }
+            if (lines.Count == 0) return;
+            CombatTooltip.Show(card, lines.Count == 1 ? "KEYWORD" : "KEYWORDS", string.Join("\n", lines), BesideCard(card), CombatUi.StatusIcon(seen[0]));
+        }
+
+        // Tooltip-urile unei cărți stau lângă ea, în partea cu mai mult loc: nu acoperă cartea ridicată
+        // și nici barele de HP ale unităților de deasupra mâinii. Pornim de la locul cărții în evantai, nu de la
+        // poziția de acum: în clipa hover-ului ea poate fi încă împinsă de vecina ridicată înainte.
+        Vector2 BesideCard(CardView card)
+        {
+            float x = RestX(card);
+            float side = x <= UIRoot.RefWidth / 2f ? 1f : -1f;
+            return new Vector2(x + side * 108f, 34f);
+        }
+
+        // Locul unei cărți în evantai (fără împingerile de la hover) — aceeași formulă ca în Layout.
+        float RestX(CardView card)
+        {
+            int n = _cards.Count, i = _cards.IndexOf(card);
+            if (i < 0) return card.Rect.anchoredPosition.x;
+            return 320f + (i - (n - 1) / 2f) * Spacing(n);
+        }
+
+        // Până la 4 cărți încap una lângă alta (66 > 64 px), fără să-și acopere textul; de la 5 se strâng.
+        static float Spacing(int n) => n <= 4 ? 66f : Mathf.Max(30f, 230f / Mathf.Max(1, n - 1));
 
         void OnClick(CardView card)
         {
@@ -234,6 +296,8 @@ namespace DarkestBasement.UI
             if (!_interactive || !card.Playable) { card.Shake(); return; }
             Deselect();
             _dragged = card;
+            _dragFrom = card.Rect.anchoredPosition;
+            CombatTooltip.Hide(card);
             card.BlocksRaycasts = false;
             card.SetGlow(CardGlow.Selected);
             AudioManager.Play("card_draw", 0.6f);
@@ -251,7 +315,7 @@ namespace DarkestBasement.UI
                 var unit = _c.UnitAtUI(mouse);
                 if (unit != null && _validTargets.Contains(unit.Id)) played = TryPlay(card, _c.ModelUnit(unit.Id));
             }
-            else if (mouse.y > 110f) played = PlayUntargeted(card);
+            else if (mouse.y > PlayZoneY) played = PlayUntargeted(card);
             if (!played)
             {
                 card.SetGlow(card.Playable ? CardGlow.Playable : CardGlow.None);
@@ -289,6 +353,7 @@ namespace DarkestBasement.UI
             if (_interactive && !GameFlow.Paused) HandleInput(mouse);
             Layout(mouse, dt);
             UpdateTargets();
+            UpdateAim(mouse);
         }
 
         void HandleInput(Vector2 mouse)
@@ -312,7 +377,7 @@ namespace DarkestBasement.UI
                     if (unit != null && _validTargets.Contains(unit.Id)) TryPlay(_selected, _c.ModelUnit(unit.Id));
                     else Deselect();
                 }
-                else if (mouse.y > 110f) PlayUntargeted(_selected);
+                else if (mouse.y > PlayZoneY) PlayUntargeted(_selected);
             }
         }
 
@@ -322,7 +387,7 @@ namespace DarkestBasement.UI
         {
             int n = _cards.Count;
             float mid = (n - 1) / 2f;
-            float spacing = n <= 4 ? 56f : Mathf.Max(30f, 230f / Mathf.Max(1, n - 1));
+            float spacing = Spacing(n);
             var focus = _dragged != null ? null : _selected != null ? _selected : _hovered != null ? _hovered : null;
             int focusIndex = focus != null ? _cards.IndexOf(focus) : -1;
             float k = 1f - Mathf.Exp(-16f * dt);
@@ -337,11 +402,21 @@ namespace DarkestBasement.UI
                 Vector2 target; float rot, scale;
                 if (card == _dragged)
                 {
+                    if (NeedsTarget(card.Def) && mouse.y > PlayZoneY)
+                    {
+                        // Ochire: cartea se oprește deasupra mâinii (urmărește doar puțin mouse-ul pe orizontală),
+                        // iar săgeata arată ținta. Ținta rămâne la vedere, cu conturul aprins.
+                        target = new Vector2(Mathf.Lerp(_dragFrom.x, mouse.x, 0.25f), AimCardY);
+                        scale = 1f;
+                    }
+                    else
+                    {
+                        target = mouse + new Vector2(0f, -20f);
+                        scale = 1.1f;
+                    }
                     // SmoothDamp = arc amortizat critic: ajunge repede la mouse, fără să oscileze.
-                    target = mouse + new Vector2(0f, -20f);
                     m.Pos = Vector2.SmoothDamp(m.Pos, target, ref m.Vel, 0.05f, Mathf.Infinity, dt);
                     rot = Mathf.Clamp(-m.Vel.x * 0.03f, -20f, 20f);
-                    scale = 1.1f;
                 }
                 else
                 {
@@ -359,7 +434,8 @@ namespace DarkestBasement.UI
                         // Înclinare spre mouse: partea de sus a cărții „se apleacă” după cursor.
                         rot = -Mathf.Clamp((mouse.x - m.Pos.x) / 30f, -1f, 1f) * 6f;
                     }
-                    m.Pos = Vector2.SmoothDamp(m.Pos, target, ref m.Vel, 0.07f, Mathf.Infinity, dt);
+                    // Cartea de sub mouse răspunde mai repede decât restul (ridicarea se simte imediat).
+                    m.Pos = Vector2.SmoothDamp(m.Pos, target, ref m.Vel, card == focus ? 0.04f : 0.07f, Mathf.Infinity, dt);
                 }
                 m.Rot = Mathf.LerpAngle(m.Rot, rot, k);
                 m.Scale = Mathf.Lerp(m.Scale, scale, k);
@@ -371,7 +447,66 @@ namespace DarkestBasement.UI
             for (int i = 0; i < n; i++) _cards[i].transform.SetSiblingIndex(i);
             if (focus != null && focus.transform.parent == _rt) focus.transform.SetAsLastSibling();
             if (_dragged != null) _dragged.transform.SetAsLastSibling();
+            _aimLayer.SetAsLastSibling();
         }
+
+        // ---------- săgeata de țintire ----------
+
+        // De la cartea trasă (sau selectată cu click) la mouse, cât timp mouse-ul e pe scenă și cartea cere o țintă.
+        // Aurie peste o țintă validă, palidă în rest: vezi dinainte dacă drop-ul / click-ul va prinde.
+        void UpdateAim(Vector2 mouse)
+        {
+            CardView source = null;
+            if (_dragged != null && NeedsTarget(_dragged.Def)) source = _dragged;
+            else if (_selected != null && _interactive && NeedsTarget(_selected.Def)) source = _selected;
+            if (source == null || mouse.y <= PlayZoneY || GameFlow.Paused) { HideAim(); return; }
+
+            var unit = _c.UnitAtUI(mouse);
+            bool onTarget = unit != null && _validTargets.Contains(unit.Id);
+            Color color = onTarget ? Palette.Gold : new Color(0.91f, 0.86f, 0.77f, 0.7f);
+            float top = Height(source) * 0.5f;
+            Vector2 a = source.Rect.anchoredPosition + new Vector2(0f, top);
+            Vector2 b = mouse;
+            // B(t) = (1−t)²·A + 2(1−t)t·C + t²·B, cu punctul de control C ridicat deasupra mijlocului.
+            Vector2 c = (a + b) * 0.5f + new Vector2((a.x - b.x) * 0.15f, 18f + Mathf.Abs(a.x - b.x) * 0.12f);
+            int steps = Mathf.Clamp(Mathf.RoundToInt(Vector2.Distance(a, b) / 7f), 4, 40);
+            float phase = (Time.unscaledTime * 2.5f) % 1f;
+            int dot = 0;
+            for (int i = 0; i < steps; i++)
+            {
+                float t = (i + phase) / (steps + 1);
+                Vector2 p = (1 - t) * (1 - t) * a + 2 * (1 - t) * t * c + t * t * b;
+                // Puncte cu contur închis: se văd și peste praful auriu și torțele din fundal.
+                var img = AimDot(dot++, PixelSprites.DotOutlined, new Vector2(4, 4));
+                img.rectTransform.anchoredPosition = CombatUi.Snap(p);
+                img.rectTransform.localRotation = Quaternion.identity;
+                img.color = new Color(color.r, color.g, color.b, color.a * (0.6f + 0.4f * t));
+            }
+            // Vârful, orientat pe direcția de la sfârșitul curbei: B'(1) ∝ (B − C).
+            var head = AimDot(dot++, PixelSprites.ChevronOutlined, new Vector2(11, 11));
+            head.rectTransform.anchoredPosition = CombatUi.Snap(b);
+            head.rectTransform.localRotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(b.y - c.y, b.x - c.x) * Mathf.Rad2Deg);
+            head.color = color;
+            for (int i = dot; i < _aimDots.Count; i++) _aimDots[i].enabled = false;
+        }
+
+        static float Height(CardView card) => CardView.Height * card.Rect.localScale.y;
+
+        Image AimDot(int i, Sprite sprite, Vector2 size)
+        {
+            while (_aimDots.Count <= i) _aimDots.Add(CombatUi.Image(_aimLayer, sprite, Vector2.zero, size, "AimDot"));
+            var img = _aimDots[i];
+            if (img.sprite != sprite) { img.sprite = sprite; img.rectTransform.sizeDelta = size; }
+            img.enabled = true;
+            return img;
+        }
+
+        void HideAim()
+        {
+            foreach (var d in _aimDots) if (d.enabled) d.enabled = false;
+        }
+
+        public bool AimShown => _aimDots.Count > 0 && _aimDots[0].enabled;
 
         // ---------- ținte ----------
 

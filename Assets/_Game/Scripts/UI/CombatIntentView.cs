@@ -30,7 +30,9 @@ namespace DarkestBasement.UI
         UnitView _view;
         RectTransform _rt;
         readonly Slot[] _slots = new Slot[2];
-        bool _arrows;
+        // Săgețile apar din două locuri: mouse-ul pe unitate (le cere HUD-ul) sau pe iconița intenției.
+        // Le ținem separat: altfel HUD-ul, văzând că mouse-ul a plecat de pe corp spre iconiță, le-ar stinge.
+        bool _arrows, _unitHover, _iconHover;
         readonly List<Image> _dots = new List<Image>();
         RectTransform _arrowLayer;
 
@@ -52,7 +54,7 @@ namespace DarkestBasement.UI
             var icon = CombatUi.Image(root, (Sprite)null, new Vector2(6, 7), new Vector2(12, 12), "Icon", true);
             var text = CombatUi.Outlined(root, "", new Vector2(22, 7), new Vector2(24, 10), UiFont.LabelBold, Palette.White, 1, TMPro.TextAlignmentOptions.Left);
             var slot = new Slot { Root = root, Icon = icon, Text = text };
-            CombatHoverTrigger.On(icon.gameObject, () => ShowTooltip(slot), () => { CombatTooltip.Hide(this); SetArrows(false); });
+            CombatHoverTrigger.On(icon.gameObject, () => ShowTooltip(slot), () => { CombatTooltip.Hide(this); _iconHover = false; UpdateArrows(); });
             root.gameObject.SetActive(false);
             return slot;
         }
@@ -108,10 +110,19 @@ namespace DarkestBasement.UI
         }
 
         public bool HasIntent => _slots[0].Active || _slots[1].Active;
+        public bool ArrowsShown => _arrows;
+        public RectTransform ActiveIcon => _slots[0].Active ? _slots[0].Icon.rectTransform : _slots[1].Active ? _slots[1].Icon.rectTransform : null;
 
+        // Mouse-ul pe unitate (chemat de CombatHud).
         public void SetArrows(bool on)
         {
-            _arrows = on && HasIntent;
+            _unitHover = on;
+            UpdateArrows();
+        }
+
+        void UpdateArrows()
+        {
+            _arrows = (_unitHover || _iconHover) && HasIntent;
             if (!_arrows) foreach (var d in _dots) d.enabled = false;
         }
 
@@ -147,7 +158,8 @@ namespace DarkestBasement.UI
         void ShowTooltip(Slot s)
         {
             if (!s.Active) return;
-            SetArrows(true);
+            _iconHover = true;
+            UpdateArrows();
             CombatTooltip.Show(this, _view.DisplayName.ToUpperInvariant(), Describe(), CombatUi.Snap(_rt.anchoredPosition + new Vector2(0, 16)), s.Icon.sprite);
         }
 

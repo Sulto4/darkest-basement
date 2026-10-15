@@ -168,7 +168,7 @@ namespace DarkestBasement.Core
             {
                 waited += Time.unscaledDeltaTime;
                 // În QA, dacă ecranul nu răspunde (nu are încă AutoDecide), alege politica AutoPlayer.
-                if (QaHooks.Active && waited > 15f)
+                if (QaHooks.Active && !QaHooks.ManualInput && waited > 15f)
                 {
                     Debug.LogWarning("[GameFlow] RewardScreen nu a răspuns în 15 s; QA alege singur.");
                     take = new AutoPlayer().ShouldTake(Run.State, card);

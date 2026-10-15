@@ -60,6 +60,21 @@ namespace DarkestBasement.UI
             _instance.gameObject.SetActive(false);
         }
 
+        // Pentru QA: tooltip-ul e pe ecran și cine l-a deschis.
+        public static bool IsShown => _instance != null && _instance.gameObject.activeSelf;
+        public static object Owner => _instance != null ? _instance._owner : null;
+        public static string Title => _instance != null ? _instance._title.text : null;
+        // Dreptunghiul tooltip-ului în pixeli de referință (pivotul e jos, la mijloc).
+        public static Rect UIRect
+        {
+            get
+            {
+                if (_instance == null) return default;
+                Vector2 p = _instance._rt.anchoredPosition, size = _instance._rt.sizeDelta;
+                return new Rect(p.x - size.x / 2f, p.y, size.x, size.y);
+            }
+        }
+
         public static void HideAll()
         {
             if (_instance != null) { _instance._owner = null; _instance.gameObject.SetActive(false); }

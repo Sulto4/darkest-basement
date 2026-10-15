@@ -2,6 +2,7 @@ using System;
 using DarkestBasement.Core;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace DarkestBasement.UI
 {
@@ -9,6 +10,7 @@ namespace DarkestBasement.UI
     public sealed class CurioPrompt
     {
         public RectTransform Root { get; }
+        public Button SearchButton { get; }
 
         public CurioPrompt(Transform parent, string title, string flavor, Action onSearch)
         {
@@ -16,7 +18,7 @@ namespace DarkestBasement.UI
             var panel = UiKit.Panel(Root, "panel_dark", new Vector2(120, 35), new Vector2(240, 70)).rectTransform;
             UiKit.Label(panel, title, new Vector2(120, 56), new Vector2(220, 10), UiFont.Label, Palette.Gold);
             UiKit.Text(panel, flavor, new Vector2(120, 40), new Vector2(220, 14), UiFont.Body, Palette.Parchment);
-            UiKit.BigButton(panel, "SEARCH", new Vector2(120, 16), new Vector2(110, 22), onSearch);
+            SearchButton = UiKit.BigButton(panel, "SEARCH", new Vector2(120, 16), new Vector2(110, 22), onSearch);
 
             var home = Root.anchoredPosition;
             Root.anchoredPosition = home + new Vector2(0, -90);

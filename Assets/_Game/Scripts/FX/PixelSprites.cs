@@ -140,12 +140,39 @@ namespace DarkestBasement.FX
             return rows[6 - y][x] == '#' ? FxColors.Stun : Clear;
         });
 
-        // Săgeată (vârf de țintire) pentru UI, 7×7, albă.
-        public static Sprite Chevron => Make("chevron", 7, 7, (x, y) =>
+        // Săgeată (vârf de țintire) pentru UI, 7×7, albă, cu vârful spre DREAPTA: rotită cu unghiul direcției
+        // de mers (Atan2), arată spre țintă. (Desenată invers, „<”, vârful ar fi arătat înapoi, spre atacator.)
+        public static Sprite Chevron => Make("chevron_right", 7, 7, (x, y) =>
         {
             int d = Mathf.Abs(y - 3);
-            return x >= d && x <= d + 2 ? new Color32(255, 255, 255, 255) : Clear;
+            return x >= 4 - d && x <= 6 - d ? new Color32(255, 255, 255, 255) : Clear;
         });
+
+        // Aceeași săgeată, mai mare (11×11) și cu contur închis de 1 px: se vede și peste fundaluri aglomerate.
+        // Miezul e alb, deci ia culoarea din Image.color; conturul rămâne închis.
+        public static Sprite ChevronOutlined => Make("chevron_outlined", 11, 11, (x, y) =>
+        {
+            if (ChevronCore(x, y)) return new Color32(255, 255, 255, 255);
+            bool edge = ChevronCore(x - 1, y) || ChevronCore(x + 1, y) || ChevronCore(x, y - 1) || ChevronCore(x, y + 1);
+            return edge ? OutlineDark : Clear;
+        });
+
+        static bool ChevronCore(int x, int y)
+        {
+            if (y < 1 || y > 9) return false;
+            int d = Mathf.Abs(y - 5);
+            return x >= 6 - d && x <= 8 - d;
+        }
+
+        // Punct de 4×4: miez alb 2×2 cu contur închis (colțurile goale, ca să pară rotund).
+        public static Sprite DotOutlined => Make("dot_outlined", 4, 4, (x, y) =>
+        {
+            bool edgeX = x == 0 || x == 3, edgeY = y == 0 || y == 3;
+            if (edgeX && edgeY) return Clear;
+            return edgeX || edgeY ? OutlineDark : new Color32(255, 255, 255, 255);
+        });
+
+        static readonly Color32 OutlineDark = new Color32(0x1b, 0x0f, 0x0f, 255);
 
         // Dunga verticală pentru raza Brimstone: alb în miez, roșu spre margini, transparent la capete.
         // E de 1 px lățime; o întindem pe orizontală cât e de lungă raza.

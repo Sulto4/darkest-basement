@@ -44,6 +44,11 @@ namespace DarkestBasement.UI
             Follow();
         }
 
+        // Pentru QA: tooltip-ul e pe ecran și ce scrie în el.
+        public static bool IsShown => _root != null && _root.gameObject.activeSelf;
+        public static string Text => _text != null ? _text.text : null;
+        public static Rect UIRect => _root != null ? new Rect(_root.anchoredPosition, _panel.rectTransform.sizeDelta) : default;
+
         public static void Hide(object owner = null)
         {
             if (_root == null) return;

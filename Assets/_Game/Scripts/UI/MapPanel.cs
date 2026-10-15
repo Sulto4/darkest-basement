@@ -50,6 +50,10 @@ namespace DarkestBasement.UI
         float _age;
 
         public bool IsInteractive => _interactive;
+        public int HoveredRoom => _hovered;
+        public string Info => _infoPlain != null ? _infoPlain.text : "";
+        // Pătratul unei camere (ce prinde mouse-ul), pentru QA.
+        public RectTransform CellRect(int roomId) => _cells.TryGetValue(roomId, out var c) ? c.Base.rectTransform : null;
 
         public static MapPanel Open(Run run, bool interactive, Action<int> onTravel, Action onDescend)
         {

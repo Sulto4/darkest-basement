@@ -41,6 +41,10 @@ namespace DarkestBasement.Core
         public TreasureScreen Treasure { get; private set; }
         public BedroomScreen Bedroom { get; private set; }
         public EndScreen End { get; private set; }
+        public PauseMenu PauseScreen => _pause;
+        public CurioPrompt CurioScreen => _curioPrompt;
+        // Cât a mers echipa pe hol (QA-ul verifică dacă ținutul tastei W chiar o mișcă).
+        public float WalkerZ => _walker != null ? _walker.Z : 0f;
 
         UIRoot _ui;
         CameraRig _rig;

@@ -3,6 +3,7 @@ using DarkestBasement.Audio;
 using DarkestBasement.Exploration;
 using DarkestBasement.Model.Core;
 using DarkestBasement.Model.Map;
+using DarkestBasement.QA;
 using DarkestBasement.UI;
 using UnityEngine;
 
@@ -11,6 +12,8 @@ namespace DarkestBasement.Core
     // Stările mari: meniu, cartonașul de etaj, harta, holul, camera, trapa, finalul.
     public sealed partial class GameFlow
     {
+        static bool _firstMenu = true;
+
         // ---- Meniul principal: echipa stă într-un hol luminat de torțe, camera plutește încet ----
         IEnumerator MainMenuState()
         {
@@ -38,7 +41,10 @@ namespace DarkestBasement.Core
 
             bool chosen = false;
             int seed = 0;
-            Menu = new MainMenu(_ui.Screens, CommandLine.Int("-seed", MainMenu.RandomSeed()), s => { seed = s; chosen = true; }, Quit);
+            // -seed se aplică doar la primul meniu (și mereu în QA); după un run, meniul propune un seed nou.
+            int suggested = (_firstMenu || QaHooks.Active) ? CommandLine.Int("-seed", MainMenu.RandomSeed()) : MainMenu.RandomSeed();
+            _firstMenu = false;
+            Menu = new MainMenu(_ui.Screens, suggested, s => { seed = s; chosen = true; }, Quit);
             yield return _ui.FadeIn(0.9f).Wait();
             Prompt = FlowPrompt.MainMenu;
             StartCoroutine(DelayedMoment("menu", 1.2f));
@@ -95,7 +101,8 @@ namespace DarkestBasement.Core
             _travelTarget = -1;
             _descend = false;
             OpenTravelMap();
-            if (!Run.CanDescend) Hint.Show("map_travel", "Click a glowing room to travel. M hides the map.", new Vector2(320, 20), 7f);
+            // Sub hartă: săgeata ar arăta în afara ecranului, deci fără ea.
+            if (!Run.CanDescend) Hint.Show("map_travel", "Click a glowing room to travel. M hides the map.", new Vector2(320, 20), 7f, false);
             Prompt = FlowPrompt.ChooseRoom;
             StartCoroutine(DelayedMoment("map", 0.6f));
             while (_travelTarget < 0 && !_descend) yield return null;

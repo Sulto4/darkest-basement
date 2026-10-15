@@ -216,6 +216,7 @@ namespace DarkestBasement.Combat
         }
 
         public void SetHovered(bool on) { _hovered = on; }
+        public bool IsHovered => _hovered;
 
         public void SetActiveTurn(bool on)
         {

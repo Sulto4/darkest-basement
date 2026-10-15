@@ -10,12 +10,15 @@ using UnityEngine.UI;
 namespace DarkestBasement.UI
 {
     // Comoara: 3 cărți pe piedestal, alegi una (GDD §5, cel puțin una Uncommon+).
-    // Cărțile sunt CardView-urile echipei C; în spatele fiecăreia stă o aură în culoarea rarității,
+    // Cărțile sunt CardView-urile echipei C, la scară ×2 (ca pe ecranul de recompensă): e singura alegere de pe ecran,
+    // textul trebuie citit dintr-o privire. În spatele fiecăreia stă o aură în culoarea rarității,
     // care prinde și click-ul (merge și cât timp CardView e încă un stub).
     public sealed class TreasureScreen
     {
         public RectTransform Root { get; }
         readonly List<RectTransform> _slots = new List<RectTransform>();
+        readonly List<CardView> _cards = new List<CardView>();
+        public CardView ChoiceCard(int index) => index >= 0 && index < _cards.Count ? _cards[index] : null;
         readonly Action<int> _onChoose;
         bool _chosen;
 
@@ -33,25 +36,28 @@ namespace DarkestBasement.UI
             {
                 var def = choices[i];
                 int index = i;
-                var slot = UiKit.Rect(Root, "Slot" + i, new Vector2(320 + (i - (choices.Count - 1) / 2f) * 104f, 178), new Vector2(80, 110));
-                var glow = UiKit.Image(slot, SpriteLibrary.Get("Sprites/UI/card_glow"), new Vector2(40, 55));
+                // Slotul are mărimea cărții ×2 (128×180); centrul cărții e la (64, 90) în slot.
+                // y = 172: și ridicată la hover, cartea rămâne sub „TAKE ONE CARD” (y = 290).
+                var slot = UiKit.Rect(Root, "Slot" + i, new Vector2(320 + (i - (choices.Count - 1) / 2f) * 150f, 172), new Vector2(128, 180));
+                var glow = UiKit.Image(slot, SpriteLibrary.Get("Sprites/UI/card_glow"), new Vector2(64, 90));
+                glow.rectTransform.localScale = Vector3.one * 2f;
                 glow.color = RarityColor(def.Rarity);
-                var card = CardView.Create(slot, def, false, new Vector2(40, 55));
+                var card = CardView.Create(slot, def, false, new Vector2(64, 90));
+                card.Rect.localScale = Vector3.one * 2f;
                 card.OnClicked = _ => Choose(index);
+                _cards.Add(card);
                 PointerEvents.Of(glow.gameObject).OnClick = () => Choose(index);
-                // Cartea (CardView) prinde hover-ul: ridicare, sunet și textul complet în tooltip.
-                string tip = def.Name + "\n" + CardText.Describe(def, false);
+                // Cartea (CardView) prinde hover-ul: ridicare, sunet, ramă aurie. Textul se citește direct pe ea.
                 card.HoverChanged = (v, on) =>
                 {
                     v.SetHighlighted(on);
-                    if (on) { AudioManager.Play("ui_hover"); Tooltip.Show(tip, v); }
-                    else Tooltip.Hide(v);
+                    if (on) AudioManager.Play("ui_hover");
                 };
 
                 string owner = HeroDatabase.Get(def.HeroId).Name.ToUpperInvariant();
-                UiKit.Label(slot, owner, new Vector2(40, -6), new Vector2(100, 10), UiFont.Label, Palette.Parchment);
-                UiKit.Label(slot, def.Rarity.ToString().ToUpperInvariant(), new Vector2(40, -17), new Vector2(100, 10), UiFont.Label, RarityColor(def.Rarity));
-                if (IsStub(card)) UiKit.Label(slot, def.Name, new Vector2(40, 55), new Vector2(70, 40), UiFont.Body, Palette.Parchment);
+                UiKit.Label(slot, owner, new Vector2(64, -8), new Vector2(120, 10), UiFont.Label, Palette.Parchment);
+                UiKit.Label(slot, def.Rarity.ToString().ToUpperInvariant(), new Vector2(64, -19), new Vector2(120, 10), UiFont.Label, RarityColor(def.Rarity));
+                if (IsStub(card)) UiKit.Label(slot, def.Name, new Vector2(64, 90), new Vector2(110, 40), UiFont.Body, Palette.Parchment);
 
                 // Cărțile intră una câte una, de jos, cu un mic salt.
                 var home = slot.anchoredPosition;
@@ -99,7 +105,8 @@ namespace DarkestBasement.UI
                 }
                 else
                 {
-                    Tween.Value(0.4f, k => { if (slot != null) slot.anchoredPosition = from + new Vector2(0, -260f * k); }, Ease.InBack, null, 0f, true, slot);
+                    // Cărțile ×2 au 180 px: cad destul cât să iasă de tot din ecran.
+                    Tween.Value(0.4f, k => { if (slot != null) slot.anchoredPosition = from + new Vector2(0, -330f * k); }, Ease.InBack, null, 0f, true, slot);
                 }
             }
             var onChoose = _onChoose;

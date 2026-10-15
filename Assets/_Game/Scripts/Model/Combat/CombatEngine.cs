@@ -35,7 +35,7 @@ namespace DarkestBasement.Model.Combat
             else if (card == null || !hero.Deck.Hand.Contains(card)) reason = "Card is not in hand";
             else if (card.Def.HeroId != hero.Def.Id) reason = "Wrong hero";
             else if (!card.Def.CanUseRank(hero.Rank) && !IsLastStand(hero)) reason = "Needs rank " + string.Join("–", card.Def.UsableRanks);
-            else if (card.Cost > hero.Energy) reason = "Not enough energy";
+            else if (card.Cost > hero.Energy) reason = "Not enough tears";
             else if (ValidTargets(hero, card).Count == 0) reason = "No valid targets";
             return reason.Length == 0;
         }

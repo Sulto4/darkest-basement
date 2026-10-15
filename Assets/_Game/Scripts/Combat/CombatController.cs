@@ -91,6 +91,7 @@ namespace DarkestBasement.Combat
         }
 
         public CombatEngine Engine => _engine;
+        public CombatHud Hud => _hud;
         public CombatViewState State => _state;
         public CombatStageInfo Stage => _stage;
         public IReadOnlyDictionary<string, UnitView> Views => _views;
@@ -129,7 +130,8 @@ namespace DarkestBasement.Combat
             if (CommandLine.Has("-combat-fast")) Fast = true;
             HitStop.BaseTimeScale = Fast ? 2f : 1f;
             // QA-ul automat (echipa W) nu are mâini: eroii sunt jucați de AutoPlayer, cu toate animațiile.
-            if (QA.QaHooks.Active) AutoPlay = true;
+            // Excepție: scriptul "input" joacă chiar prin mouse și tastatură.
+            if (QA.QaHooks.Active && !QA.QaHooks.ManualInput) AutoPlay = true;
 
             foreach (var u in _state.Units.Values) if (!u.Dead) SpawnView(u);
             foreach (var v in _views.Values) v.Home = HomeOf(v.Id);

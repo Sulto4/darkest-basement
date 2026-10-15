@@ -151,7 +151,7 @@ namespace DarkestBasement.Model.Data
                     case EffectKind.GainStrength: text = "Gain " + v + " Strength"; break;
                     case EffectKind.Draw: text = "Draw " + v + " cards"; break;
                     case EffectKind.DiscardHandDraw: text = "Discard your hand. Draw " + v + " cards"; break;
-                    case EffectKind.GainEnergy: text = "Gain " + v + " energy"; break;
+                    case EffectKind.GainEnergy: text = "Gain " + v + (v == 1 ? " tear" : " tears"); break; // în joc, energia se numește "tears"
                     case EffectKind.SelfDamage: text = "Lose " + v + " HP"; break;
                     case EffectKind.Taunt: text = "Gain " + v + " Taunt"; break;
                     case EffectKind.Summon: text = "Summon " + v + " " + e.SummonId; break;

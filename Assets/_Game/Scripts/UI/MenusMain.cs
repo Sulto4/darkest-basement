@@ -11,6 +11,8 @@ namespace DarkestBasement.UI
     public sealed class MainMenu
     {
         public RectTransform Root { get; }
+        public TMP_InputField SeedInput => _seed;
+        public Button NewRunButton { get; }
         readonly TMP_InputField _seed;
         readonly Action<int> _onStart;
         bool _done;
@@ -34,7 +36,7 @@ namespace DarkestBasement.UI
             UiKit.Label(Root, "A TURN-BASED DESCENT INTO THE BASEMENT", new Vector2(320, 252), new Vector2(400, 10), UiFont.Label, Palette.WithAlpha(Palette.ParchmentDark, 0.85f));
 
             var panel = UiKit.Panel(Root, "panel_dark", new Vector2(118, 100), new Vector2(184, 112)).rectTransform;
-            UiKit.BigButton(panel, "NEW RUN", new Vector2(92, 84), new Vector2(156, 26), Start);
+            NewRunButton = UiKit.BigButton(panel, "NEW RUN", new Vector2(92, 84), new Vector2(156, 26), Start);
 
             UiKit.Label(panel, "SEED", new Vector2(36, 52), new Vector2(50, 10), UiFont.Label, Palette.Gold);
             _seed = SeedField(panel, new Vector2(108, 52), new Vector2(100, 18), suggestedSeed);

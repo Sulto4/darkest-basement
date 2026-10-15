@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Rulează Unity în batchmode pe proiectul ăsta.
 # Folosire: tools/unity.sh compile|test|setup|build-mac|build-win|build-linux|method <Namespace.Clasa.Metoda> [argumente Unity în plus]
-#           tools/unity.sh qa [tour|full|combat|sandbox] [seed] [argumente pentru player]   (doar Linux, cu Xvfb)
+#           tools/unity.sh qa [tour|full|combat|sandbox|input] [seed] [argumente pentru player]   (doar Linux, cu Xvfb)
 # Exemple QA: tools/unity.sh qa tour 12345
 #             tools/unity.sh qa combat 7 -capture-fps 30
 #             tools/unity.sh qa sandbox 7 -combat-sandbox monstro

@@ -81,9 +81,17 @@ namespace DarkestBasement.UI
                 if (info == null) return;
                 string body = "HP " + info.Hp + "/" + info.MaxHp + (id == _active ? "\nActing now." : "");
                 CombatTooltip.Show(this, info.Name.ToUpperInvariant(), body, CombatUi.Snap(slot.Pos + new Vector2(0, -22)), null, true);
-                _c.View(id)?.SetHovered(true);
-            }, () => { CombatTooltip.Hide(this); _c.View(id)?.SetHovered(false); });
+                // Conturul îl desenează HUD-ul (care știe și de mouse-ul de pe scenă), nu direct unitatea.
+                _c.Hud?.HighlightUnit(id, true);
+            }, () => { CombatTooltip.Hide(this); _c.Hud?.HighlightUnit(id, false); });
             return slot;
+        }
+
+        // Rama portretului unei unități din bară (pentru QA); null dacă nu e în bară.
+        public RectTransform SlotRect(string id)
+        {
+            foreach (var s in _slots) if (s.Id == id && !s.Leaving) return s.Frame.rectTransform;
+            return null;
         }
 
         public void SetActive(string id)

@@ -124,6 +124,9 @@ namespace DarkestBasement.Audio
 
         public static void Play(string idOrGroup, float volumeScale = 1f, float pitch = 1f) => Instance.PlayInternal(idOrGroup, volumeScale, pitch);
 
+        // Fiecare sunet care chiar pornește (QA-ul verifică așa că butoanele „sună” la hover și la click).
+        public static event Action<string> Played;
+
         void PlayInternal(string idOrGroup, float volumeScale, float pitch)
         {
             var e = Resolve(idOrGroup);
@@ -143,6 +146,7 @@ namespace DarkestBasement.Audio
             // Variația mică de pitch face ca lovitura a zecea să nu sune identic cu prima.
             src.pitch = pitch * (1f + UnityEngine.Random.Range(-e.pitchVariance, e.pitchVariance));
             src.Play();
+            Played?.Invoke(idOrGroup);
         }
 
         public static void PlayMusic(string id) => Instance.PlayMusicInternal(id);

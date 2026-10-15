@@ -27,6 +27,10 @@ namespace DarkestBasement.UI
         static Coroutine _routine;
         static RectTransform _root;
 
+        // Butoanele ecranului deschis (pentru QA); null cât timp nu se poate alege.
+        public static Button TakeButton { get; private set; }
+        public static Button SkipButton { get; private set; }
+
         public static void Show(CardDef card, bool rare, Action<bool> onDone)
         {
             if (card == null) { onDone?.Invoke(false); return; }
@@ -42,6 +46,7 @@ namespace DarkestBasement.UI
             _routine = null;
             if (_root != null) UnityEngine.Object.Destroy(_root.gameObject);
             _root = null;
+            TakeButton = SkipButton = null;
             IsOpen = false;
         }
 
@@ -105,6 +110,8 @@ namespace DarkestBasement.UI
             bool? choice = null;
             var take = CombatUi.Button(root, "TAKE", new Vector2(250, 82), new Vector2(72, 22), () => choice = true, UiFont.LabelBold);
             var skip = CombatUi.Button(root, "SKIP", new Vector2(390, 82), new Vector2(72, 22), () => choice = false, UiFont.LabelBold);
+            TakeButton = take;
+            SkipButton = skip;
             float time = 0f;
             while (choice == null)
             {
@@ -115,11 +122,12 @@ namespace DarkestBasement.UI
                 var kb = Keyboard.current;
                 // Escape aparține meniului de pauză (W); aici doar Enter/Space = Take, cât timp jocul nu e pe pauză.
                 if (kb != null && !GameFlow.Paused && (kb.enterKey.wasPressedThisFrame || kb.spaceKey.wasPressedThisFrame)) { AudioManager.Play("ui_click"); choice = true; }
-                if (QA.QaHooks.Active && time > 2.5f) choice = AutoDecide != null ? AutoDecide(card) : true;
+                if (QA.QaHooks.Active && !QA.QaHooks.ManualInput && time > 2.5f) choice = AutoDecide != null ? AutoDecide(card) : true;
                 yield return null;
             }
             take.interactable = false;
             skip.interactable = false;
+            TakeButton = SkipButton = null;
             UnityEngine.Object.Destroy(glow.gameObject);
 
             if (choice.Value)
