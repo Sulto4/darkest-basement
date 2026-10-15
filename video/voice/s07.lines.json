@@ -1,0 +1,783 @@
+{
+ "voice": "NKQBjfoAhInP7Bjx6P7l",
+ "model": "eleven_multilingual_v2",
+ "speed": 1.0,
+ "stability": 0.5,
+ "style": 0.2,
+ "lines": [
+  {
+   "n": 1,
+   "text": "Când joci o carte, Modelul rezolvă totul pe loc. Damage, morți, mutări, statusuri. Într-o fracțiune de milisecundă.",
+   "src": "voice/s07/01.mp3",
+   "dur": 7.709,
+   "speechStart": 0.0,
+   "speechEnd": 7.546,
+   "words": [
+    {
+     "w": "Când",
+     "start": 0.0,
+     "end": 0.209,
+     "clean": "Când"
+    },
+    {
+     "w": "joci",
+     "start": 0.255,
+     "end": 0.464,
+     "clean": "joci"
+    },
+    {
+     "w": "o",
+     "start": 0.499,
+     "end": 0.522,
+     "clean": "o"
+    },
+    {
+     "w": "carte,",
+     "start": 0.569,
+     "end": 0.952,
+     "clean": "carte"
+    },
+    {
+     "w": "Modelul",
+     "start": 0.975,
+     "end": 1.451,
+     "clean": "Modelul"
+    },
+    {
+     "w": "rezolvă",
+     "start": 1.521,
+     "end": 1.904,
+     "clean": "rezolvă"
+    },
+    {
+     "w": "totul",
+     "start": 1.95,
+     "end": 2.241,
+     "clean": "totul"
+    },
+    {
+     "w": "pe",
+     "start": 2.287,
+     "end": 2.403,
+     "clean": "pe"
+    },
+    {
+     "w": "loc.",
+     "start": 2.45,
+     "end": 2.844,
+     "clean": "loc"
+    },
+    {
+     "w": "Damage,",
+     "start": 3.053,
+     "end": 3.587,
+     "clean": "Damage"
+    },
+    {
+     "w": "morți,",
+     "start": 3.657,
+     "end": 4.098,
+     "clean": "morți"
+    },
+    {
+     "w": "mutări,",
+     "start": 4.122,
+     "end": 4.621,
+     "clean": "mutări"
+    },
+    {
+     "w": "statusuri.",
+     "start": 4.644,
+     "end": 5.375,
+     "clean": "statusuri"
+    },
+    {
+     "w": "Într-o",
+     "start": 5.7,
+     "end": 6.026,
+     "clean": "Într-o"
+    },
+    {
+     "w": "fracțiune",
+     "start": 6.072,
+     "end": 6.536,
+     "clean": "fracțiune"
+    },
+    {
+     "w": "de",
+     "start": 6.583,
+     "end": 6.653,
+     "clean": "de"
+    },
+    {
+     "w": "milisecundă.",
+     "start": 6.699,
+     "end": 7.546,
+     "clean": "milisecundă"
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "text": "Dar dacă le-ai arăta pe toate deodată, n-ai înțelege nimic. Așa că View-ul le pune la coadă.",
+   "src": "voice/s07/02.mp3",
+   "dur": 5.892,
+   "speechStart": 0.163,
+   "speechEnd": 5.7,
+   "words": [
+    {
+     "w": "Dar",
+     "start": 0.163,
+     "end": 0.372,
+     "clean": "Dar"
+    },
+    {
+     "w": "dacă",
+     "start": 0.43,
+     "end": 0.65,
+     "clean": "dacă"
+    },
+    {
+     "w": "le-ai",
+     "start": 0.697,
+     "end": 0.824,
+     "clean": "le-ai"
+    },
+    {
+     "w": "arăta",
+     "start": 0.848,
+     "end": 1.115,
+     "clean": "arăta"
+    },
+    {
+     "w": "pe",
+     "start": 1.161,
+     "end": 1.254,
+     "clean": "pe"
+    },
+    {
+     "w": "toate",
+     "start": 1.289,
+     "end": 1.498,
+     "clean": "toate"
+    },
+    {
+     "w": "deodată,",
+     "start": 1.556,
+     "end": 2.136,
+     "clean": "deodată"
+    },
+    {
+     "w": "n-ai",
+     "start": 2.218,
+     "end": 2.38,
+     "clean": "n-ai"
+    },
+    {
+     "w": "înțelege",
+     "start": 2.415,
+     "end": 2.856,
+     "clean": "înțelege"
+    },
+    {
+     "w": "nimic.",
+     "start": 2.903,
+     "end": 3.46,
+     "clean": "nimic"
+    },
+    {
+     "w": "Așa",
+     "start": 3.843,
+     "end": 4.133,
+     "clean": "Așa"
+    },
+    {
+     "w": "că",
+     "start": 4.168,
+     "end": 4.272,
+     "clean": "că"
+    },
+    {
+     "w": "View-ul",
+     "start": 4.33,
+     "end": 4.644,
+     "clean": "View-ul"
+    },
+    {
+     "w": "le",
+     "start": 4.702,
+     "end": 4.771,
+     "clean": "le"
+    },
+    {
+     "w": "pune",
+     "start": 4.829,
+     "end": 5.027,
+     "clean": "pune"
+    },
+    {
+     "w": "la",
+     "start": 5.073,
+     "end": 5.143,
+     "clean": "la"
+    },
+    {
+     "w": "coadă.",
+     "start": 5.212,
+     "end": 5.7,
+     "clean": "coadă"
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "text": "Ia primul eveniment, îl animă, așteaptă să se termine, apoi trece la următorul.",
+   "src": "voice/s07/03.mp3",
+   "dur": 4.899,
+   "speechStart": 0.191,
+   "speechEnd": 4.707,
+   "words": [
+    {
+     "w": "Ia",
+     "start": 0.191,
+     "end": 0.389,
+     "clean": "Ia"
+    },
+    {
+     "w": "primul",
+     "start": 0.435,
+     "end": 0.726,
+     "clean": "primul"
+    },
+    {
+     "w": "eveniment,",
+     "start": 0.761,
+     "end": 1.317,
+     "clean": "eveniment"
+    },
+    {
+     "w": "îl",
+     "start": 1.341,
+     "end": 1.503,
+     "clean": "îl"
+    },
+    {
+     "w": "animă,",
+     "start": 1.62,
+     "end": 2.027,
+     "clean": "animă"
+    },
+    {
+     "w": "așteaptă",
+     "start": 2.085,
+     "end": 2.526,
+     "clean": "așteaptă"
+    },
+    {
+     "w": "să",
+     "start": 2.572,
+     "end": 2.642,
+     "clean": "să"
+    },
+    {
+     "w": "se",
+     "start": 2.7,
+     "end": 2.78,
+     "clean": "se"
+    },
+    {
+     "w": "termine,",
+     "start": 2.828,
+     "end": 3.21,
+     "clean": "termine"
+    },
+    {
+     "w": "apoi",
+     "start": 3.256,
+     "end": 3.558,
+     "clean": "apoi"
+    },
+    {
+     "w": "trece",
+     "start": 3.593,
+     "end": 3.837,
+     "clean": "trece"
+    },
+    {
+     "w": "la",
+     "start": 3.895,
+     "end": 3.953,
+     "clean": "la"
+    },
+    {
+     "w": "următorul.",
+     "start": 4.011,
+     "end": 4.707,
+     "clean": "următorul"
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "text": "În Unity asta se face cu corutine. O funcție care face yield return se oprește acolo și continuă când e gata animația.",
+   "src": "voice/s07/04.mp3",
+   "dur": 7.599,
+   "speechStart": 0.192,
+   "speechEnd": 7.378,
+   "words": [
+    {
+     "w": "În",
+     "start": 0.192,
+     "end": 0.366,
+     "clean": "În"
+    },
+    {
+     "w": "Unity",
+     "start": 0.482,
+     "end": 0.784,
+     "clean": "Unity"
+    },
+    {
+     "w": "asta",
+     "start": 0.842,
+     "end": 1.051,
+     "clean": "asta"
+    },
+    {
+     "w": "se",
+     "start": 1.109,
+     "end": 1.178,
+     "clean": "se"
+    },
+    {
+     "w": "face",
+     "start": 1.225,
+     "end": 1.434,
+     "clean": "face"
+    },
+    {
+     "w": "cu",
+     "start": 1.48,
+     "end": 1.573,
+     "clean": "cu"
+    },
+    {
+     "w": "corutine.",
+     "start": 1.631,
+     "end": 2.293,
+     "clean": "corutine"
+    },
+    {
+     "w": "O",
+     "start": 2.676,
+     "end": 2.757,
+     "clean": "O"
+    },
+    {
+     "w": "funcție",
+     "start": 2.839,
+     "end": 3.152,
+     "clean": "funcție"
+    },
+    {
+     "w": "care",
+     "start": 3.199,
+     "end": 3.373,
+     "clean": "care"
+    },
+    {
+     "w": "face",
+     "start": 3.408,
+     "end": 3.64,
+     "clean": "face"
+    },
+    {
+     "w": "yield",
+     "start": 3.698,
+     "end": 3.93,
+     "clean": "yield"
+    },
+    {
+     "w": "return",
+     "start": 4.011,
+     "end": 4.29,
+     "clean": "return"
+    },
+    {
+     "w": "se",
+     "start": 4.371,
+     "end": 4.429,
+     "clean": "se"
+    },
+    {
+     "w": "oprește",
+     "start": 4.487,
+     "end": 4.836,
+     "clean": "oprește"
+    },
+    {
+     "w": "acolo",
+     "start": 4.87,
+     "end": 5.161,
+     "clean": "acolo"
+    },
+    {
+     "w": "și",
+     "start": 5.219,
+     "end": 5.3,
+     "clean": "și"
+    },
+    {
+     "w": "continuă",
+     "start": 5.346,
+     "end": 5.869,
+     "clean": "continuă"
+    },
+    {
+     "w": "când",
+     "start": 5.904,
+     "end": 6.066,
+     "clean": "când"
+    },
+    {
+     "w": "e",
+     "start": 6.136,
+     "end": 6.159,
+     "clean": "e"
+    },
+    {
+     "w": "gata",
+     "start": 6.24,
+     "end": 6.531,
+     "clean": "gata"
+    },
+    {
+     "w": "animația.",
+     "start": 6.565,
+     "end": 7.378,
+     "clean": "animația"
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "text": "Un switch alege animația pentru fiecare tip de eveniment. Damaged înseamnă un număr care sare, o clipire albă, puțin sânge și un shake.",
+   "src": "voice/s07/05.mp3",
+   "dur": 8.186,
+   "speechStart": 0.22,
+   "speechEnd": 8.023,
+   "words": [
+    {
+     "w": "Un",
+     "start": 0.22,
+     "end": 0.418,
+     "clean": "Un"
+    },
+    {
+     "w": "switch",
+     "start": 0.453,
+     "end": 0.697,
+     "clean": "switch"
+    },
+    {
+     "w": "alege",
+     "start": 0.731,
+     "end": 0.976,
+     "clean": "alege"
+    },
+    {
+     "w": "animația",
+     "start": 1.011,
+     "end": 1.476,
+     "clean": "animația"
+    },
+    {
+     "w": "pentru",
+     "start": 1.521,
+     "end": 1.788,
+     "clean": "pentru"
+    },
+    {
+     "w": "fiecare",
+     "start": 1.846,
+     "end": 2.31,
+     "clean": "fiecare"
+    },
+    {
+     "w": "tip",
+     "start": 2.357,
+     "end": 2.519,
+     "clean": "tip"
+    },
+    {
+     "w": "de",
+     "start": 2.577,
+     "end": 2.636,
+     "clean": "de"
+    },
+    {
+     "w": "eveniment.",
+     "start": 2.659,
+     "end": 3.32,
+     "clean": "eveniment"
+    },
+    {
+     "w": "Damaged",
+     "start": 3.646,
+     "end": 4.122,
+     "clean": "Damaged"
+    },
+    {
+     "w": "înseamnă",
+     "start": 4.214,
+     "end": 4.574,
+     "clean": "înseamnă"
+    },
+    {
+     "w": "un",
+     "start": 4.633,
+     "end": 4.702,
+     "clean": "un"
+    },
+    {
+     "w": "număr",
+     "start": 4.761,
+     "end": 4.981,
+     "clean": "număr"
+    },
+    {
+     "w": "care",
+     "start": 5.04,
+     "end": 5.236,
+     "clean": "care"
+    },
+    {
+     "w": "sare,",
+     "start": 5.284,
+     "end": 5.631,
+     "clean": "sare"
+    },
+    {
+     "w": "o",
+     "start": 5.701,
+     "end": 5.747,
+     "clean": "o"
+    },
+    {
+     "w": "clipire",
+     "start": 5.793,
+     "end": 6.166,
+     "clean": "clipire"
+    },
+    {
+     "w": "albă,",
+     "start": 6.212,
+     "end": 6.548,
+     "clean": "albă"
+    },
+    {
+     "w": "puțin",
+     "start": 6.584,
+     "end": 6.908,
+     "clean": "puțin"
+    },
+    {
+     "w": "sânge",
+     "start": 6.966,
+     "end": 7.268,
+     "clean": "sânge"
+    },
+    {
+     "w": "și",
+     "start": 7.349,
+     "end": 7.419,
+     "clean": "și"
+    },
+    {
+     "w": "un",
+     "start": 7.477,
+     "end": 7.547,
+     "clean": "un"
+    },
+    {
+     "w": "shake.",
+     "start": 7.593,
+     "end": 8.023,
+     "clean": "shake"
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "text": "Și încă ceva. Dacă o animație aruncă o excepție, lupta merge mai departe. Fiecare pas e învelit într-un try. Un bug vizual n-are voie să-ți blocheze jocul.",
+   "src": "voice/s07/06.mp3",
+   "dur": 10.204,
+   "speechStart": 0.163,
+   "speechEnd": 10.204,
+   "words": [
+    {
+     "w": "Și",
+     "start": 0.163,
+     "end": 0.289,
+     "clean": "Și"
+    },
+    {
+     "w": "încă",
+     "start": 0.359,
+     "end": 0.533,
+     "clean": "încă"
+    },
+    {
+     "w": "ceva.",
+     "start": 0.591,
+     "end": 0.974,
+     "clean": "ceva"
+    },
+    {
+     "w": "Dacă",
+     "start": 1.358,
+     "end": 1.624,
+     "clean": "Dacă"
+    },
+    {
+     "w": "o",
+     "start": 1.672,
+     "end": 1.694,
+     "clean": "o"
+    },
+    {
+     "w": "animație",
+     "start": 1.752,
+     "end": 2.194,
+     "clean": "animație"
+    },
+    {
+     "w": "aruncă",
+     "start": 2.228,
+     "end": 2.553,
+     "clean": "aruncă"
+    },
+    {
+     "w": "o",
+     "start": 2.6,
+     "end": 2.623,
+     "clean": "o"
+    },
+    {
+     "w": "excepție,",
+     "start": 2.681,
+     "end": 3.203,
+     "clean": "excepție"
+    },
+    {
+     "w": "lupta",
+     "start": 3.239,
+     "end": 3.495,
+     "clean": "lupta"
+    },
+    {
+     "w": "merge",
+     "start": 3.553,
+     "end": 3.807,
+     "clean": "merge"
+    },
+    {
+     "w": "mai",
+     "start": 3.865,
+     "end": 4.005,
+     "clean": "mai"
+    },
+    {
+     "w": "departe.",
+     "start": 4.063,
+     "end": 4.701,
+     "clean": "departe"
+    },
+    {
+     "w": "Fiecare",
+     "start": 4.91,
+     "end": 5.374,
+     "clean": "Fiecare"
+    },
+    {
+     "w": "pas",
+     "start": 5.422,
+     "end": 5.584,
+     "clean": "pas"
+    },
+    {
+     "w": "e",
+     "start": 5.654,
+     "end": 5.688,
+     "clean": "e"
+    },
+    {
+     "w": "învelit",
+     "start": 5.758,
+     "end": 6.164,
+     "clean": "învelit"
+    },
+    {
+     "w": "într-un",
+     "start": 6.258,
+     "end": 6.524,
+     "clean": "într-un"
+    },
+    {
+     "w": "try.",
+     "start": 6.57,
+     "end": 7.0,
+     "clean": "try"
+    },
+    {
+     "w": "Un",
+     "start": 7.325,
+     "end": 7.499,
+     "clean": "Un"
+    },
+    {
+     "w": "bug",
+     "start": 7.557,
+     "end": 7.731,
+     "clean": "bug"
+    },
+    {
+     "w": "vizual",
+     "start": 7.789,
+     "end": 8.149,
+     "clean": "vizual"
+    },
+    {
+     "w": "n-are",
+     "start": 8.231,
+     "end": 8.451,
+     "clean": "n-are"
+    },
+    {
+     "w": "voie",
+     "start": 8.498,
+     "end": 8.695,
+     "clean": "voie"
+    },
+    {
+     "w": "să-ți",
+     "start": 8.742,
+     "end": 8.916,
+     "clean": "să-ți"
+    },
+    {
+     "w": "blocheze",
+     "start": 8.939,
+     "end": 9.334,
+     "clean": "blocheze"
+    },
+    {
+     "w": "jocul.",
+     "start": 9.392,
+     "end": 10.204,
+     "clean": "jocul"
+    }
+   ]
+  }
+ ]
+}

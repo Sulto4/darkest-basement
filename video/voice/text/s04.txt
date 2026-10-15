@@ -1,0 +1,10 @@
+Harta unui etaj e un graf. Camerele sunt noduri pe o grilă de cinci pe patru, iar holurile sunt muchiile.
+Cum o generăm? Pornim dintr-o cameră aleasă la întâmplare.
+La fiecare pas ne uităm la locurile libere de lângă camerele deja puse. Alegem unul la întâmplare și îl legăm de vecinul lui.
+Fiecare cameră nouă vine cu exact o muchie. Deci n camere au n minus unu muchii și totul e conectat. Adică un arbore de acoperire.
+Doar că într-un arbore, între două camere există un singur drum. N-ai ce alege. Așa că mai adăugăm una sau două muchii. Apar bucle, deci apar alegeri.
+Cu o condiție. O muchie nouă intră doar dacă rămân măcar două fundături, pentru că ne trebuie locuri pentru boss și pentru comoară.
+Acum, unde punem boss-ul? Cât mai departe de start.
+Aici intră BFS-ul. Startul are distanța zero, vecinii lui unu, vecinii vecinilor doi, și tot așa, cu o coadă.
+Camera cu distanța cea mai mare devine boss-ul. La egalitate alegem o fundătură, ca să nu dai peste boss în drum spre altceva.
+Comoara merge în altă fundătură. Restul camerelor se împart în lupte, un pat pentru odihnă și un curio.

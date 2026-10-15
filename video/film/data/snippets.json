@@ -1,0 +1,1848 @@
+{
+ "asmdef": {
+  "file": "Assets/_Game/Scripts/Model/DarkestBasement.Model.asmdef",
+  "start": 1,
+  "lines": [
+   {
+    "n": 1,
+    "s": "{"
+   },
+   {
+    "n": 2,
+    "s": "    \"name\": \"DarkestBasement.Model\","
+   },
+   {
+    "n": 3,
+    "s": "    \"rootNamespace\": \"DarkestBasement.Model\","
+   },
+   {
+    "n": 4,
+    "s": "    \"references\": [],"
+   },
+   {
+    "n": 5,
+    "s": "    \"includePlatforms\": [],"
+   },
+   {
+    "n": 6,
+    "s": "    \"excludePlatforms\": [],"
+   },
+   {
+    "n": 7,
+    "s": "    \"allowUnsafeCode\": false,"
+   },
+   {
+    "n": 8,
+    "s": "    \"overrideReferences\": false,"
+   },
+   {
+    "n": 9,
+    "s": "    \"precompiledReferences\": [],"
+   },
+   {
+    "n": 10,
+    "s": "    \"autoReferenced\": true,"
+   },
+   {
+    "n": 11,
+    "s": "    \"defineConstraints\": [],"
+   },
+   {
+    "n": 12,
+    "s": "    \"versionDefines\": [],"
+   },
+   {
+    "n": 13,
+    "s": "    \"noEngineReferences\": true"
+   },
+   {
+    "n": 14,
+    "s": "}"
+   }
+  ]
+ },
+ "flow_comment": {
+  "file": "Assets/_Game/Scripts/Core/GameFlow.cs",
+  "start": 23,
+  "lines": [
+   {
+    "n": 23,
+    "s": "// Mașina de stări care conduce un run (Model.Core.Run) și tot ce se vede:"
+   },
+   {
+    "n": 24,
+    "s": "//   MainMenu → FloorIntro → Map → Corridor → Room → (luptă → recompensă /"
+   },
+   {
+    "n": null,
+    "s": "    comoară / pat / curio) → Map → …"
+   },
+   {
+    "n": 25,
+    "s": "//   … → boss → trapa (Descending) → FloorIntro (etajul următor) → … →"
+   },
+   {
+    "n": null,
+    "s": "    Victory sau GameOver."
+   },
+   {
+    "n": 26,
+    "s": "// Modelul decide regulile (ce e în cameră, cine moare);"
+   },
+   {
+    "n": null,
+    "s": "    GameFlow doar le pune în scenă și așteaptă alegerile jucătorului."
+   }
+  ]
+ },
+ "flow_machine": {
+  "file": "Assets/_Game/Scripts/Core/GameFlow.cs",
+  "start": 89,
+  "lines": [
+   {
+    "n": 89,
+    "s": "IEnumerator Machine(FlowState first)"
+   },
+   {
+    "n": 90,
+    "s": "{"
+   },
+   {
+    "n": 91,
+    "s": "    _next = first;"
+   },
+   {
+    "n": 92,
+    "s": "    while (_next != FlowState.None)"
+   },
+   {
+    "n": 93,
+    "s": "    {"
+   },
+   {
+    "n": 94,
+    "s": "        FlowState state = _next;"
+   },
+   {
+    "n": 95,
+    "s": "        _next = FlowState.None;"
+   },
+   {
+    "n": 96,
+    "s": "        SetState(state);"
+   },
+   {
+    "n": 97,
+    "s": "        Exception error = null;"
+   },
+   {
+    "n": 98,
+    "s": "        yield return Safe(Routine(state), e => error = e);"
+   }
+  ]
+ },
+ "flow_routine": {
+  "file": "Assets/_Game/Scripts/Core/GameFlow.cs",
+  "start": 112,
+  "lines": [
+   {
+    "n": 112,
+    "s": "IEnumerator Routine(FlowState state)"
+   },
+   {
+    "n": 113,
+    "s": "{"
+   },
+   {
+    "n": 114,
+    "s": "    switch (state)"
+   },
+   {
+    "n": 115,
+    "s": "    {"
+   },
+   {
+    "n": 116,
+    "s": "        case FlowState.MainMenu: return MainMenuState();"
+   },
+   {
+    "n": 117,
+    "s": "        case FlowState.FloorIntro: return FloorIntroState();"
+   },
+   {
+    "n": 118,
+    "s": "        case FlowState.Map: return MapState();"
+   },
+   {
+    "n": 119,
+    "s": "        case FlowState.Corridor: return CorridorState();"
+   },
+   {
+    "n": 120,
+    "s": "        case FlowState.Room: return RoomState();"
+   },
+   {
+    "n": 121,
+    "s": "        case FlowState.Descending: return DescendState();"
+   },
+   {
+    "n": 122,
+    "s": "        case FlowState.GameOver: return EndState(false);"
+   },
+   {
+    "n": 123,
+    "s": "        case FlowState.Victory: return EndState(true);"
+   }
+  ]
+ },
+ "map_grow": {
+  "file": "Assets/_Game/Scripts/Model/Map/MapGenerator.cs",
+  "start": 71,
+  "lines": [
+   {
+    "n": 71,
+    "s": "while (map.Rooms.Count < count)"
+   },
+   {
+    "n": 72,
+    "s": "{"
+   },
+   {
+    "n": 73,
+    "s": "    var frontier = new List<int[]>();"
+   },
+   {
+    "n": 74,
+    "s": "    foreach (var room in map.Rooms)"
+   },
+   {
+    "n": 75,
+    "s": "    {"
+   },
+   {
+    "n": 76,
+    "s": "        int[] dx = { -1, 1, 0, 0 }, dy = { 0, 0, -1, 1 };"
+   },
+   {
+    "n": 77,
+    "s": "        for (int i = 0; i < 4; i++)"
+   },
+   {
+    "n": 78,
+    "s": "        {"
+   },
+   {
+    "n": 79,
+    "s": "            int x = room.X + dx[i], y = room.Y + dy[i];"
+   },
+   {
+    "n": 80,
+    "s": "            if (x < 0 || x >= 5 || y < 0 || y >= 4) continue;"
+   },
+   {
+    "n": 81,
+    "s": "            bool occupied = false;"
+   },
+   {
+    "n": null,
+    "s": "                foreach (var other in map.Rooms) if (other.X == x &&"
+   },
+   {
+    "n": null,
+    "s": "                other.Y == y) occupied = true;"
+   },
+   {
+    "n": 82,
+    "s": "            if (!occupied) frontier.Add(new[] { room.Id, x, y });"
+   },
+   {
+    "n": 83,
+    "s": "        }"
+   },
+   {
+    "n": 84,
+    "s": "    }"
+   },
+   {
+    "n": 85,
+    "s": "    var next = rng.Pick(frontier); int id = map.Rooms.Count;"
+   },
+   {
+    "n": null,
+    "s": "        map.Rooms.Add(new Room(id, next[1], next[2]));"
+   },
+   {
+    "n": null,
+    "s": "        Link(map, next[0], id, rng);"
+   },
+   {
+    "n": 86,
+    "s": "}"
+   }
+  ]
+ },
+ "map_extra": {
+  "file": "Assets/_Game/Scripts/Model/Map/MapGenerator.cs",
+  "start": 90,
+  "lines": [
+   {
+    "n": 90,
+    "s": "rng.Shuffle(edges); int extra = rng.Range(1, 3), added = 0;"
+   },
+   {
+    "n": 91,
+    "s": "foreach (var edge in edges)"
+   },
+   {
+    "n": 92,
+    "s": "{"
+   },
+   {
+    "n": 93,
+    "s": "    int leaves = 0;"
+   },
+   {
+    "n": 94,
+    "s": "    foreach (var room in map.Rooms) if (room.Neighbors.Count == 1 &&"
+   },
+   {
+    "n": null,
+    "s": "        room.Id != edge[0] && room.Id != edge[1]) leaves++;"
+   },
+   {
+    "n": 95,
+    "s": "    // Păstrăm fundături pentru comoară și, când e posibil, boss."
+   },
+   {
+    "n": 96,
+    "s": "    if (leaves < 2) continue;"
+   },
+   {
+    "n": 97,
+    "s": "    Link(map, edge[0], edge[1], rng); if (++added == extra) break;"
+   }
+  ]
+ },
+ "map_bfs": {
+  "file": "Assets/_Game/Scripts/Model/Map/MapGenerator.cs",
+  "start": 54,
+  "lines": [
+   {
+    "n": 54,
+    "s": "public Dictionary<int, int> Distances(int origin)"
+   },
+   {
+    "n": 55,
+    "s": "{"
+   },
+   {
+    "n": 56,
+    "s": "    var distances = new Dictionary<int, int> { { origin, 0 } };"
+   },
+   {
+    "n": null,
+    "s": "        var queue = new Queue<int>(); queue.Enqueue(origin);"
+   },
+   {
+    "n": 57,
+    "s": "    while (queue.Count > 0)"
+   },
+   {
+    "n": 58,
+    "s": "    { int id = queue.Dequeue();"
+   },
+   {
+    "n": null,
+    "s": "        foreach (int n in GetRoom(id).Neighbors) if"
+   },
+   {
+    "n": null,
+    "s": "        (!distances.ContainsKey(n)) { distances[n] = distances[id] + 1;"
+   },
+   {
+    "n": null,
+    "s": "        queue.Enqueue(n); } }"
+   },
+   {
+    "n": 59,
+    "s": "    return distances;"
+   },
+   {
+    "n": 60,
+    "s": "}"
+   }
+  ]
+ },
+ "map_boss": {
+  "file": "Assets/_Game/Scripts/Model/Map/MapGenerator.cs",
+  "start": 100,
+  "lines": [
+   {
+    "n": 100,
+    "s": "var distances = map.Distances(0); int boss = 1;"
+   },
+   {
+    "n": 101,
+    "s": "foreach (var room in map.Rooms)"
+   },
+   {
+    "n": 102,
+    "s": "    if (distances[room.Id] > distances[boss] || (distances[room.Id] =="
+   },
+   {
+    "n": null,
+    "s": "        distances[boss] && room.Neighbors.Count == 1 &&"
+   },
+   {
+    "n": null,
+    "s": "        map.Rooms[boss].Neighbors.Count != 1)) boss = room.Id;"
+   }
+  ]
+ },
+ "rng_next": {
+  "file": "Assets/_Game/Scripts/Model/Core/GameRng.cs",
+  "start": 11,
+  "lines": [
+   {
+    "n": 11,
+    "s": "private uint Next()"
+   },
+   {
+    "n": 12,
+    "s": "{ uint x = state; x ^= x << 13; x ^= x >> 17; x ^= x << 5; state = x;"
+   },
+   {
+    "n": null,
+    "s": "    return x; }"
+   }
+  ]
+ },
+ "rng_ctor": {
+  "file": "Assets/_Game/Scripts/Model/Core/GameRng.cs",
+  "start": 10,
+  "lines": [
+   {
+    "n": 10,
+    "s": "public GameRng(int seed) { Seed = seed;"
+   },
+   {
+    "n": null,
+    "s": "    state = unchecked((uint)seed) ^ 0xA3C59AC3u; if (state == 0) state = 1;"
+   },
+   {
+    "n": null,
+    "s": "    }"
+   }
+  ]
+ },
+ "rng_range": {
+  "file": "Assets/_Game/Scripts/Model/Core/GameRng.cs",
+  "start": 13,
+  "lines": [
+   {
+    "n": 13,
+    "s": "public int Range(int minInclusive, int maxExclusive)"
+   },
+   {
+    "n": 14,
+    "s": "{"
+   },
+   {
+    "n": 15,
+    "s": "    if (maxExclusive <= minInclusive) throw new"
+   },
+   {
+    "n": null,
+    "s": "        ArgumentOutOfRangeException(nameof(maxExclusive));"
+   },
+   {
+    "n": 16,
+    "s": "    uint span = (uint)((long)maxExclusive - minInclusive);"
+   },
+   {
+    "n": 17,
+    "s": "    // Respingem coada pentru a evita favorizarea unor resturi modulo."
+   },
+   {
+    "n": 18,
+    "s": "    uint limit = unchecked(0u - span) % span;"
+   },
+   {
+    "n": 19,
+    "s": "    uint value; do { value = Next(); } while (value < limit);"
+   },
+   {
+    "n": 20,
+    "s": "    return (int)(minInclusive + (long)(value % span));"
+   },
+   {
+    "n": 21,
+    "s": "}"
+   }
+  ]
+ },
+ "rng_shuffle": {
+  "file": "Assets/_Game/Scripts/Model/Core/GameRng.cs",
+  "start": 25,
+  "lines": [
+   {
+    "n": 25,
+    "s": "public void Shuffle<T>(IList<T> values)"
+   },
+   {
+    "n": 26,
+    "s": "{ for (int i = values.Count - 1; i > 0; i--) { int j = Range(0, i + 1);"
+   },
+   {
+    "n": null,
+    "s": "    T temp = values[i]; values[i] = values[j]; values[j] = temp; } }"
+   }
+  ]
+ },
+ "rng_fork": {
+  "file": "Assets/_Game/Scripts/Model/Core/GameRng.cs",
+  "start": 27,
+  "lines": [
+   {
+    "n": 27,
+    "s": "public GameRng Fork(string streamName)"
+   },
+   {
+    "n": 28,
+    "s": "{"
+   },
+   {
+    "n": 29,
+    "s": "    if (streamName == null) throw new"
+   },
+   {
+    "n": null,
+    "s": "        ArgumentNullException(nameof(streamName));"
+   },
+   {
+    "n": 30,
+    "s": "    // Hash stabil; string.GetHashCode diferă între runtime-uri."
+   },
+   {
+    "n": 31,
+    "s": "    uint hash = 2166136261u;"
+   },
+   {
+    "n": 32,
+    "s": "    foreach (char c in streamName) { hash ^= c;"
+   },
+   {
+    "n": null,
+    "s": "        hash = unchecked(hash * 16777619u); }"
+   },
+   {
+    "n": 33,
+    "s": "    return new GameRng(unchecked((int)(hash ^ (uint)Seed)));"
+   },
+   {
+    "n": 34,
+    "s": "}"
+   }
+  ]
+ },
+ "run_fork": {
+  "file": "Assets/_Game/Scripts/Model/Core/Run.cs",
+  "start": 52,
+  "lines": [
+   {
+    "n": 52,
+    "s": "public void StartRun(int seed)"
+   },
+   {
+    "n": 53,
+    "s": "{"
+   },
+   {
+    "n": 54,
+    "s": "    State = new RunState(seed); var root = new GameRng(seed);"
+   },
+   {
+    "n": null,
+    "s": "        mapRng = root.Fork(\"map\"); combatRng = root.Fork(\"combat\");"
+   },
+   {
+    "n": null,
+    "s": "        lootRng = root.Fork(\"loot\");"
+   }
+  ]
+ },
+ "turn_order": {
+  "file": "Assets/_Game/Scripts/Model/Combat/CombatState.cs",
+  "start": 128,
+  "lines": [
+   {
+    "n": 128,
+    "s": "public static List<Unit> Roll(CombatState state, GameRng rng)"
+   },
+   {
+    "n": 129,
+    "s": "{"
+   },
+   {
+    "n": 130,
+    "s": "    var entries = new List<KeyValuePair<Unit, int>>();"
+   },
+   {
+    "n": 131,
+    "s": "    foreach (var unit in state.Units) if (unit.IsAlive &&"
+   },
+   {
+    "n": null,
+    "s": "        unit.JoinedRound < state.Round) entries.Add(new KeyValuePair<Unit,"
+   },
+   {
+    "n": null,
+    "s": "        int>(unit, unit.Speed + rng.Range(0, 4)));"
+   },
+   {
+    "n": 132,
+    "s": "    entries.Sort((a, b) => { int cmp = b.Value.CompareTo(a.Value);"
+   },
+   {
+    "n": null,
+    "s": "        if (cmp != 0) return cmp;"
+   },
+   {
+    "n": null,
+    "s": "        cmp = b.Key.IsHero.CompareTo(a.Key.IsHero);"
+   },
+   {
+    "n": null,
+    "s": "        return cmp != 0 ? cmp : string.CompareOrdinal(a.Key.Id, b.Key.Id);"
+   },
+   {
+    "n": null,
+    "s": "        });"
+   },
+   {
+    "n": 133,
+    "s": "    var order = new List<Unit>();"
+   },
+   {
+    "n": null,
+    "s": "        foreach (var entry in entries) order.Add(entry.Key); return order;"
+   },
+   {
+    "n": 134,
+    "s": "}"
+   }
+  ]
+ },
+ "damage": {
+  "file": "Assets/_Game/Scripts/Model/Combat/CombatState.cs",
+  "start": 115,
+  "lines": [
+   {
+    "n": 115,
+    "s": "public static DamageResult Calculate(Unit source, Unit target,"
+   },
+   {
+    "n": null,
+    "s": "    int baseDamage, bool crit)"
+   },
+   {
+    "n": 116,
+    "s": "{"
+   },
+   {
+    "n": 117,
+    "s": "    double damage = Math.Max(0,"
+   },
+   {
+    "n": null,
+    "s": "        baseDamage + source.Statuses[Status.Strength]);"
+   },
+   {
+    "n": 118,
+    "s": "    if (source.Statuses.Has(Status.Weak)) damage *= 0.75;"
+   },
+   {
+    "n": 119,
+    "s": "    if (target.Statuses.Has(Status.Mark)) damage *= 1.5;"
+   },
+   {
+    "n": 120,
+    "s": "    if (crit) damage *= 1.5;"
+   },
+   {
+    "n": 121,
+    "s": "    if (target is EnemyUnit enemy && enemy.Def.Id == \"host\" &&"
+   },
+   {
+    "n": null,
+    "s": "        !enemy.HostOpen) damage *= 0.25;"
+   },
+   {
+    "n": 122,
+    "s": "    int raw = (int)Math.Floor(damage), blocked = Math.Min(raw,"
+   },
+   {
+    "n": null,
+    "s": "        target.Statuses[Status.Block]);"
+   },
+   {
+    "n": 123,
+    "s": "    return new DamageResult(raw, Math.Min(target.Hp, raw - blocked),"
+   },
+   {
+    "n": null,
+    "s": "        blocked, crit);"
+   },
+   {
+    "n": 124,
+    "s": "}"
+   }
+  ]
+ },
+ "statusset": {
+  "file": "Assets/_Game/Scripts/Model/Combat/CombatState.cs",
+  "start": 10,
+  "lines": [
+   {
+    "n": 10,
+    "s": "public sealed class StatusSet"
+   },
+   {
+    "n": 11,
+    "s": "{"
+   },
+   {
+    "n": 12,
+    "s": "    private readonly int[] stacks = new int[8];"
+   },
+   {
+    "n": 13,
+    "s": "    public int this[Status status] { get { return stacks[(int)status];"
+   },
+   {
+    "n": null,
+    "s": "        } set { stacks[(int)status] = Math.Max(0, value); } }"
+   },
+   {
+    "n": 14,
+    "s": "    public void Add(Status status, int amount) { this[status] += amount; }"
+   },
+   {
+    "n": 15,
+    "s": "    public bool Has(Status status) { return this[status] > 0; }"
+   },
+   {
+    "n": 16,
+    "s": "    public void Decay(Status status) { this[status]--; }"
+   },
+   {
+    "n": 17,
+    "s": "}"
+   }
+  ]
+ },
+ "deck_draw": {
+  "file": "Assets/_Game/Scripts/Model/Combat/CombatState.cs",
+  "start": 70,
+  "lines": [
+   {
+    "n": 70,
+    "s": "if (DrawPile.Count == 0)"
+   },
+   {
+    "n": 71,
+    "s": "{"
+   },
+   {
+    "n": 72,
+    "s": "    if (DiscardPile.Count == 0) break;"
+   },
+   {
+    "n": 73,
+    "s": "    DrawPile.AddRange(DiscardPile); DiscardPile.Clear();"
+   },
+   {
+    "n": null,
+    "s": "        rng.Shuffle(DrawPile); shuffled?.Invoke();"
+   }
+  ]
+ },
+ "cc_take": {
+  "file": "Assets/_Game/Scripts/Combat/CombatController.cs",
+  "start": 221,
+  "lines": [
+   {
+    "n": 221,
+    "s": "// Golim lista modelului imediat ce am copiat-o (contractul CombatEngine)."
+   },
+   {
+    "n": 222,
+    "s": "List<CombatEvent> Take()"
+   },
+   {
+    "n": 223,
+    "s": "{"
+   },
+   {
+    "n": 224,
+    "s": "    var list = new List<CombatEvent>(_engine.Events);"
+   },
+   {
+    "n": 225,
+    "s": "    _engine.Events.Clear();"
+   },
+   {
+    "n": 226,
+    "s": "    return list;"
+   },
+   {
+    "n": 227,
+    "s": "}"
+   }
+  ]
+ },
+ "cc_play": {
+  "file": "Assets/_Game/Scripts/Combat/CombatController.cs",
+  "start": 363,
+  "lines": [
+   {
+    "n": 363,
+    "s": "IEnumerator Play(List<CombatEvent> events)"
+   },
+   {
+    "n": 364,
+    "s": "{"
+   },
+   {
+    "n": 365,
+    "s": "    _events = events;"
+   },
+   {
+    "n": 366,
+    "s": "    for (int i = 0; i < events.Count; i++)"
+   },
+   {
+    "n": 367,
+    "s": "    {"
+   },
+   {
+    "n": 368,
+    "s": "        _cursor = i;"
+   },
+   {
+    "n": 369,
+    "s": "        if (events[i] is UnitMoved)"
+   },
+   {
+    "n": 370,
+    "s": "        {"
+   },
+   {
+    "n": 371,
+    "s": "            // Mutările vin în rafală (schimb de locuri,"
+   },
+   {
+    "n": null,
+    "s": "                avansare după o moarte): le jucăm deodată."
+   },
+   {
+    "n": 372,
+    "s": "            var moves = new List<UnitMoved>();"
+   },
+   {
+    "n": 373,
+    "s": "            int j = i;"
+   },
+   {
+    "n": 374,
+    "s": "            while (j < events.Count && events[j] is UnitMoved m) {"
+   },
+   {
+    "n": null,
+    "s": "                moves.Add(m); j++; }"
+   },
+   {
+    "n": 375,
+    "s": "            yield return Safe(OnUnitsMoved(moves));"
+   },
+   {
+    "n": 376,
+    "s": "            i = j - 1;"
+   },
+   {
+    "n": 377,
+    "s": "            continue;"
+   },
+   {
+    "n": 378,
+    "s": "        }"
+   },
+   {
+    "n": 379,
+    "s": "        yield return Safe(PlayOne(events[i]));"
+   },
+   {
+    "n": 380,
+    "s": "    }"
+   },
+   {
+    "n": 381,
+    "s": "    yield return Safe(EndAction());"
+   },
+   {
+    "n": 382,
+    "s": "    _state.SettleInFlight();"
+   },
+   {
+    "n": 383,
+    "s": "    _hud.RefreshAll();"
+   }
+  ]
+ },
+ "cc_playone": {
+  "file": "Assets/_Game/Scripts/Combat/CombatController.cs",
+  "start": 408,
+  "lines": [
+   {
+    "n": 408,
+    "s": "IEnumerator PlayOne(CombatEvent e)"
+   },
+   {
+    "n": 409,
+    "s": "{"
+   },
+   {
+    "n": 410,
+    "s": "    switch (e)"
+   },
+   {
+    "n": 411,
+    "s": "    {"
+   },
+   {
+    "n": 412,
+    "s": "        case RoundStarted ev: return OnRoundStarted(ev);"
+   },
+   {
+    "n": 413,
+    "s": "        case TurnStarted ev: return OnTurnStarted(ev);"
+   },
+   {
+    "n": 414,
+    "s": "        case IntentChosen ev: return OnIntentChosen(ev);"
+   },
+   {
+    "n": 415,
+    "s": "        case CardsDrawn ev: return OnCardsDrawn(ev);"
+   },
+   {
+    "n": 416,
+    "s": "        case Shuffled ev: return OnShuffled(ev);"
+   },
+   {
+    "n": 417,
+    "s": "        case EnergyChanged ev: return OnEnergyChanged(ev);"
+   },
+   {
+    "n": 418,
+    "s": "        case CardPlayed ev: return OnCardPlayed(ev);"
+   },
+   {
+    "n": 419,
+    "s": "        case EnemyActed ev: return OnEnemyActed(ev);"
+   },
+   {
+    "n": 420,
+    "s": "        case Damaged ev: return OnDamaged(ev);"
+   },
+   {
+    "n": 421,
+    "s": "        case Healed ev: return OnHealed(ev);"
+   }
+  ]
+ },
+ "cc_safe": {
+  "file": "Assets/_Game/Scripts/Combat/CombatController.cs",
+  "start": 389,
+  "lines": [
+   {
+    "n": 389,
+    "s": "static IEnumerator Safe(IEnumerator routine)"
+   },
+   {
+    "n": 390,
+    "s": "{"
+   },
+   {
+    "n": 391,
+    "s": "    while (routine != null)"
+   },
+   {
+    "n": 392,
+    "s": "    {"
+   },
+   {
+    "n": 393,
+    "s": "        object current;"
+   },
+   {
+    "n": 394,
+    "s": "        try"
+   },
+   {
+    "n": 395,
+    "s": "        {"
+   },
+   {
+    "n": 396,
+    "s": "            if (!routine.MoveNext()) yield break;"
+   },
+   {
+    "n": 397,
+    "s": "            current = routine.Current;"
+   },
+   {
+    "n": 398,
+    "s": "        }"
+   },
+   {
+    "n": 399,
+    "s": "        catch (Exception e)"
+   },
+   {
+    "n": 400,
+    "s": "        {"
+   },
+   {
+    "n": 401,
+    "s": "            Debug.LogException(e);"
+   },
+   {
+    "n": 402,
+    "s": "            yield break;"
+   },
+   {
+    "n": 403,
+    "s": "        }"
+   },
+   {
+    "n": 404,
+    "s": "        yield return current is IEnumerator nested ? Safe(nested) : current;"
+   },
+   {
+    "n": 405,
+    "s": "    }"
+   },
+   {
+    "n": 406,
+    "s": "}"
+   }
+  ]
+ },
+ "cc_juice": {
+  "file": "Assets/_Game/Scripts/Combat/CombatController.cs",
+  "start": 610,
+  "lines": [
+   {
+    "n": 610,
+    "s": "// Juice: hit-stop (60–100 ms, 150 ms la crit/kill), shake (trauma),"
+   },
+   {
+    "n": null,
+    "s": "    punch-in, flash."
+   },
+   {
+    "n": 611,
+    "s": "float severity = Mathf.Clamp01(e.RawAmount / 12f);"
+   },
+   {
+    "n": 612,
+    "s": "float stop = dot ? 0.04f : (e.Crit || lethal) ? 0.15f : Mathf.Lerp(0.06f,"
+   },
+   {
+    "n": null,
+    "s": "    0.1f, severity);"
+   },
+   {
+    "n": 613,
+    "s": "if (e.Amount > 0 || !dot) HitStop.Freeze(stop);"
+   },
+   {
+    "n": 614,
+    "s": "float trauma = dot ? 0.08f : 0.14f + 0.22f * severity + (e.Crit ? 0.25f :"
+   },
+   {
+    "n": null,
+    "s": "    0f) + (lethal ? 0.1f : 0f);"
+   },
+   {
+    "n": 615,
+    "s": "if (ctx != null && ctx.Hits == 1 && !dot) trauma += ctx.Style.Shake;"
+   },
+   {
+    "n": 616,
+    "s": "ScreenShake.Add(trauma);"
+   }
+  ]
+ },
+ "ease_cubic": {
+  "file": "Assets/_Game/Scripts/Core/Easing.cs",
+  "start": 20,
+  "lines": [
+   {
+    "n": 20,
+    "s": "case Ease.OutCubic: return 1f - Mathf.Pow(1f - t, 3f);"
+   }
+  ]
+ },
+ "ease_back": {
+  "file": "Assets/_Game/Scripts/Core/Easing.cs",
+  "start": 23,
+  "lines": [
+   {
+    "n": 23,
+    "s": "case Ease.OutBack:"
+   },
+   {
+    "n": 24,
+    "s": "{"
+   },
+   {
+    "n": 25,
+    "s": "    // Depășește puțin ținta și revine: senzația de \"pop\"."
+   },
+   {
+    "n": 26,
+    "s": "    const float c1 = 1.70158f, c3 = c1 + 1f;"
+   },
+   {
+    "n": 27,
+    "s": "    return 1f + c3 * Mathf.Pow(t - 1f, 3f) + c1 * Mathf.Pow(t - 1f, 2f);"
+   },
+   {
+    "n": 28,
+    "s": "}"
+   }
+  ]
+ },
+ "ease_head": {
+  "file": "Assets/_Game/Scripts/Core/Easing.cs",
+  "start": 5,
+  "lines": [
+   {
+    "n": 5,
+    "s": "// Funcții de easing: primesc t în [0,1] (cât din animație a trecut) și"
+   },
+   {
+    "n": null,
+    "s": "    întorc progresul \"simțit\"."
+   },
+   {
+    "n": 6,
+    "s": "// Liniar arată mecanic; curbele astea dau greutate și viață mișcării."
+   }
+  ]
+ },
+ "tween_move": {
+  "file": "Assets/_Game/Scripts/Core/Tween.cs",
+  "start": 63,
+  "lines": [
+   {
+    "n": 63,
+    "s": "public static TweenHandle Move(Transform t, Vector3 to, float duration,"
+   },
+   {
+    "n": null,
+    "s": "    Ease ease = Ease.OutCubic, Action onComplete = null, float delay = 0f)"
+   },
+   {
+    "n": 64,
+    "s": "{"
+   },
+   {
+    "n": 65,
+    "s": "    Vector3 from = t.position;"
+   },
+   {
+    "n": 66,
+    "s": "    return Value(duration, k => t.position = Vector3.LerpUnclamped(from,"
+   },
+   {
+    "n": null,
+    "s": "        to, k), ease, onComplete, delay, false, t);"
+   },
+   {
+    "n": 67,
+    "s": "}"
+   }
+  ]
+ },
+ "tween_update": {
+  "file": "Assets/_Game/Scripts/Core/Tween.cs",
+  "start": 121,
+  "lines": [
+   {
+    "n": 121,
+    "s": "h.Elapsed += dt;"
+   },
+   {
+    "n": 122,
+    "s": "float t = Mathf.Clamp01(h.Elapsed / h.Duration);"
+   },
+   {
+    "n": 123,
+    "s": "h.OnUpdate?.Invoke(Easing.Evaluate(h.Ease, t));"
+   }
+  ]
+ },
+ "unit_anticipate": {
+  "file": "Assets/_Game/Scripts/Combat/UnitView.cs",
+  "start": 242,
+  "lines": [
+   {
+    "n": 242,
+    "s": "// Anticipare: atacatorul se trage puțin înapoi și se turtește,"
+   },
+   {
+    "n": null,
+    "s": "    ca un arc care se încarcă."
+   },
+   {
+    "n": 243,
+    "s": "public IEnumerator Anticipate(float duration = 0.16f,"
+   },
+   {
+    "n": null,
+    "s": "    float distance = 0.22f)"
+   },
+   {
+    "n": 244,
+    "s": "{"
+   },
+   {
+    "n": 245,
+    "s": "    Hold(Frames.Attack[0], duration + 0.3f);"
+   },
+   {
+    "n": 246,
+    "s": "    Squash(1.12f, 0.88f);"
+   },
+   {
+    "n": 247,
+    "s": "    Vector3 from = _offset, to = _offset - FrontDir * distance;"
+   },
+   {
+    "n": 248,
+    "s": "    yield return TweenOffset(from, to, duration, Ease.OutQuad);"
+   },
+   {
+    "n": 249,
+    "s": "}"
+   }
+  ]
+ },
+ "unit_lunge": {
+  "file": "Assets/_Game/Scripts/Combat/UnitView.cs",
+  "start": 252,
+  "lines": [
+   {
+    "n": 252,
+    "s": "public IEnumerator Lunge(Vector3 targetFeet, float duration = 0.1f,"
+   },
+   {
+    "n": null,
+    "s": "    float stop = 1.0f)"
+   },
+   {
+    "n": 253,
+    "s": "{"
+   },
+   {
+    "n": 254,
+    "s": "    Vector3 home = Home;"
+   },
+   {
+    "n": 255,
+    "s": "    Vector3 dest = targetFeet - FrontDir * stop;"
+   },
+   {
+    "n": 256,
+    "s": "    Vector3 to = dest - home;"
+   },
+   {
+    "n": 257,
+    "s": "    // Chiar și la țintele foarte apropiate,"
+   },
+   {
+    "n": null,
+    "s": "        saltul are măcar o jumătate de unitate: altfel nu se „simte”."
+   },
+   {
+    "n": 258,
+    "s": "    if (Vector3.Dot(to, FrontDir) < 0.45f) to = FrontDir * 0.45f;"
+   },
+   {
+    "n": 259,
+    "s": "    Hold(Frames.Attack[Frames.Attack.Length - 1], duration + 0.35f);"
+   },
+   {
+    "n": 260,
+    "s": "    Squash(0.85f, 1.14f);"
+   },
+   {
+    "n": 261,
+    "s": "    SetOrderBoost(8);"
+   },
+   {
+    "n": 262,
+    "s": "    yield return TweenOffset(_offset, to, duration, Ease.OutCubic);"
+   },
+   {
+    "n": 263,
+    "s": "    Squash(1.12f, 0.9f);"
+   },
+   {
+    "n": 264,
+    "s": "}"
+   }
+  ]
+ },
+ "unit_breath": {
+  "file": "Assets/_Game/Scripts/Combat/UnitView.cs",
+  "start": 432,
+  "lines": [
+   {
+    "n": 432,
+    "s": "float breath = Dead ? 0f : Mathf.Sin(Time.time * 2f * Mathf.PI * 0.55f +"
+   },
+   {
+    "n": null,
+    "s": "    _phase) * 0.028f;"
+   },
+   {
+    "n": 433,
+    "s": "// Arcul de squash revine spre (1,1);"
+   },
+   {
+    "n": null,
+    "s": "    exp(−k·dt) face revenirea independentă de frame rate."
+   },
+   {
+    "n": 434,
+    "s": "_squash = Vector2.Lerp(_squash, Vector2.one, 1f - Mathf.Exp(-14f * dt));"
+   },
+   {
+    "n": 435,
+    "s": "_visual.localScale = new Vector3(_squash.x, _squash.y * (1f + breath),"
+   },
+   {
+    "n": null,
+    "s": "    1f) * _breath;"
+   }
+  ]
+ },
+ "cam_follow": {
+  "file": "Assets/_Game/Scripts/Exploration/CameraRig.cs",
+  "start": 233,
+  "lines": [
+   {
+    "n": 233,
+    "s": "if (CurrentMode == Mode.Follow && _target != null)"
+   },
+   {
+    "n": 234,
+    "s": "{"
+   },
+   {
+    "n": 235,
+    "s": "    var pose = FollowPose();"
+   },
+   {
+    "n": 236,
+    "s": "    transform.position = Vector3.SmoothDamp(transform.position,"
+   },
+   {
+    "n": null,
+    "s": "        pose.position, ref _velocity, 0.22f);"
+   },
+   {
+    "n": 237,
+    "s": "    transform.rotation = Quaternion.Slerp(transform.rotation,"
+   },
+   {
+    "n": null,
+    "s": "        pose.rotation, 1f - Mathf.Exp(-9f * dt));"
+   },
+   {
+    "n": 238,
+    "s": "    _baseFov = Mathf.Lerp(_baseFov, FollowFov, 1f - Mathf.Exp(-4f * dt));"
+   }
+  ]
+ },
+ "cam_orbit": {
+  "file": "Assets/_Game/Scripts/Exploration/CameraRig.cs",
+  "start": 178,
+  "lines": [
+   {
+    "n": 178,
+    "s": "float angle = angleA + delta * k;"
+   },
+   {
+    "n": 179,
+    "s": "float radius = Mathf.Lerp(radiusA, radiusB, k);"
+   },
+   {
+    "n": 180,
+    "s": "// Arcul urcă puțin la mijloc: camera \"respiră\" ca o macara,"
+   },
+   {
+    "n": null,
+    "s": "    nu alunecă pe o linie dreaptă."
+   },
+   {
+    "n": 181,
+    "s": "float height = Mathf.Lerp(a.y, b.y, k) + Mathf.Sin(k * Mathf.PI) * 0.9f;"
+   },
+   {
+    "n": 182,
+    "s": "transform.position = pivot + new Vector3(Mathf.Sin(angle) * radius, height,"
+   },
+   {
+    "n": null,
+    "s": "    Mathf.Cos(angle) * radius);"
+   },
+   {
+    "n": 183,
+    "s": "// O înclinare mică (dutch angle) la mijlocul mișcării,"
+   },
+   {
+    "n": null,
+    "s": "    pentru senzația de film."
+   }
+  ]
+ },
+ "cam_side": {
+  "file": "Assets/_Game/Scripts/Exploration/CameraRig.cs",
+  "start": 29,
+  "lines": [
+   {
+    "n": 29,
+    "s": "// Vederea laterală: pe planul scenei de luptă se văd exact 10 unități în"
+   },
+   {
+    "n": null,
+    "s": "    lățime, adică 640 px / 10 = 64 px pe unitate:"
+   },
+   {
+    "n": 30,
+    "s": "// fiecare pixel de artă (32 pe unitate) devine exact 2×2 pixeli în"
+   },
+   {
+    "n": null,
+    "s": "    imagine. E cel mai mare zoom ÎNTREG la care încap"
+   },
+   {
+    "n": 31,
+    "s": "// 4 eroi + 4 inamici pe ecran (la ×3 ar trebui ~1000 px lățime),"
+   },
+   {
+    "n": null,
+    "s": "    deci sprite-urile rămân perfect pixelate."
+   },
+   {
+    "n": 32,
+    "s": "public const float SideFov = 40f;"
+   },
+   {
+    "n": 33,
+    "s": "public const float SideViewWidth = 10f;"
+   }
+  ]
+ },
+ "shake_head": {
+  "file": "Assets/_Game/Scripts/FX/ScreenShake.cs",
+  "start": 6,
+  "lines": [
+   {
+    "n": 6,
+    "s": "// Screen shake bazat pe „trauma” (tehnica din GDC-ul lui Squirrel"
+   },
+   {
+    "n": null,
+    "s": "    Eiserloh)."
+   },
+   {
+    "n": 7,
+    "s": "// - Fiecare lovitură adaugă trauma (0..1); trauma scade liniar în timp."
+   },
+   {
+    "n": 8,
+    "s": "// - Mișcarea = trauma²: loviturile mici abia se simt,"
+   },
+   {
+    "n": null,
+    "s": "    cele mari se simt mult (curbă convexă)."
+   },
+   {
+    "n": 9,
+    "s": "// - Direcția vine din zgomot Perlin, nu din Random: zgomotul e continuu,"
+   },
+   {
+    "n": null,
+    "s": "    deci camera „tremură”, nu „sare”."
+   }
+  ]
+ },
+ "shake_tick": {
+  "file": "Assets/_Game/Scripts/FX/ScreenShake.cs",
+  "start": 52,
+  "lines": [
+   {
+    "n": 52,
+    "s": "float shake = Trauma * Trauma;"
+   },
+   {
+    "n": 53,
+    "s": "// Timp real: shake-ul continuă și în timpul hit-stop-ului (arată foarte"
+   },
+   {
+    "n": null,
+    "s": "    bine împreună)."
+   },
+   {
+    "n": 54,
+    "s": "float t = Time.unscaledTime * Frequency;"
+   },
+   {
+    "n": 55,
+    "s": "root.localPosition = new Vector3(MaxOffset * shake * Noise(0, t),"
+   },
+   {
+    "n": null,
+    "s": "    MaxOffset * shake * Noise(1, t), 0f);"
+   },
+   {
+    "n": 56,
+    "s": "root.localRotation = Quaternion.Euler(0f, 0f, MaxAngle * shake * Noise(2,"
+   },
+   {
+    "n": null,
+    "s": "    t));"
+   },
+   {
+    "n": 57,
+    "s": "_dirty = true;"
+   },
+   {
+    "n": 58,
+    "s": "Trauma = Mathf.Max(0f, Trauma - Decay * Time.unscaledDeltaTime);"
+   }
+  ]
+ },
+ "shake_noise": {
+  "file": "Assets/_Game/Scripts/FX/ScreenShake.cs",
+  "start": 61,
+  "lines": [
+   {
+    "n": 61,
+    "s": "// PerlinNoise dă 0..1; îl mutăm în -1..1. Fiecare canal citește alt „rând”"
+   },
+   {
+    "n": null,
+    "s": "    din zgomot."
+   },
+   {
+    "n": 62,
+    "s": "static float Noise(int channel,"
+   },
+   {
+    "n": null,
+    "s": "    float t) => Mathf.PerlinNoise(13.7f + channel * 41.3f, t) * 2f - 1f;"
+   }
+  ]
+ },
+ "hitstop": {
+  "file": "Assets/_Game/Scripts/FX/HitStop.cs",
+  "start": 26,
+  "lines": [
+   {
+    "n": 26,
+    "s": "public static void Freeze(float seconds)"
+   },
+   {
+    "n": 27,
+    "s": "{"
+   },
+   {
+    "n": 28,
+    "s": "    if (seconds <= 0f) return;"
+   },
+   {
+    "n": 29,
+    "s": "    FxHost.Ensure();"
+   },
+   {
+    "n": 30,
+    "s": "    // La viteză ×2 și pauzele sunt mai scurte,"
+   },
+   {
+    "n": null,
+    "s": "        altfel lupta rapidă ar părea sacadată."
+   },
+   {
+    "n": 31,
+    "s": "    float real = seconds / Mathf.Max(1f, _base);"
+   },
+   {
+    "n": 32,
+    "s": "    _until = Mathf.Max(_until, Time.unscaledTime + real);"
+   },
+   {
+    "n": 33,
+    "s": "    Time.timeScale = 0f;"
+   },
+   {
+    "n": 34,
+    "s": "}"
+   }
+  ]
+ },
+ "billboard": {
+  "file": "Assets/_Game/Scripts/Exploration/Billboard.cs",
+  "start": 115,
+  "lines": [
+   {
+    "n": 115,
+    "s": "if (FaceCamera && cam != null)"
+   },
+   {
+    "n": 116,
+    "s": "{"
+   },
+   {
+    "n": 117,
+    "s": "    // Paralel cu planul camerei (nu \"privește\" spre ea): așa sprite-urile"
+   },
+   {
+    "n": null,
+    "s": "        de pe margini nu se deformează."
+   },
+   {
+    "n": 118,
+    "s": "    Vector3 f = cam.transform.forward;"
+   },
+   {
+    "n": 119,
+    "s": "    f.y = 0f;"
+   },
+   {
+    "n": 120,
+    "s": "    if (f.sqrMagnitude > 0.0001f) transform.rotation ="
+   },
+   {
+    "n": null,
+    "s": "        Quaternion.LookRotation(f.normalized, Vector3.up);"
+   }
+  ]
+ },
+ "ui_scale": {
+  "file": "Assets/_Game/Scripts/UI/UIRoot.cs",
+  "start": 108,
+  "lines": [
+   {
+    "n": 108,
+    "s": "// Cel mai mare factor întreg care încape în ecran: 1920×1080 → ×3,"
+   },
+   {
+    "n": null,
+    "s": "    2560×1440 → ×4."
+   },
+   {
+    "n": 109,
+    "s": "void UpdateScale()"
+   },
+   {
+    "n": 110,
+    "s": "{"
+   },
+   {
+    "n": 111,
+    "s": "    _lastScreen = new Vector2Int(Screen.width, Screen.height);"
+   },
+   {
+    "n": 112,
+    "s": "    Scale = Mathf.Max(1, Mathf.Min(Screen.width / RefWidth,"
+   },
+   {
+    "n": null,
+    "s": "        Screen.height / RefHeight));"
+   },
+   {
+    "n": 113,
+    "s": "    _scaler.scaleFactor = Scale;"
+   }
+  ]
+ },
+ "ui_head": {
+  "file": "Assets/_Game/Scripts/UI/UIRoot.cs",
+  "start": 9,
+  "lines": [
+   {
+    "n": 9,
+    "s": "// Canvas-ul unic al jocului. Tot UI-ul e desenat la 640×360 și mărit cu un"
+   },
+   {
+    "n": null,
+    "s": "    factor ÎNTREG (×2, ×3, ×4),"
+   },
+   {
+    "n": 10,
+    "s": "// ca fiecare pixel din artă să devină un pătrat perfect (pixel-perfect)."
+   },
+   {
+    "n": null,
+    "s": "    Ce rămâne pe margini e bandă neagră."
+   }
+  ]
+ },
+ "card_tear": {
+  "file": "Assets/_Game/Scripts/Model/Data/Databases.cs",
+  "start": 44,
+  "lines": [
+   {
+    "n": 44,
+    "s": "Add(\"tear\", \"Tear\", \"isaac\", s, 1, ranged, enemy, any, EffectDef.Damage(5));"
+   }
+  ]
+ },
+ "card_add": {
+  "file": "Assets/_Game/Scripts/Model/Data/Databases.cs",
+  "start": 16,
+  "lines": [
+   {
+    "n": 16,
+    "s": "void Add(string id, string name, string hero, Rarity rarity, int cost,"
+   },
+   {
+    "n": null,
+    "s": "    int[] ranks, TargetType target, int[] targets,"
+   },
+   {
+    "n": null,
+    "s": "    params EffectDef[] effects)"
+   }
+  ]
+ },
+ "monstro": {
+  "file": "Assets/_Game/Scripts/Model/Data/Databases.cs",
+  "start": 110,
+  "lines": [
+   {
+    "n": 110,
+    "s": "d.Add(\"monstro\", new EnemyDef(\"monstro\", \"Monstro\", 1, 260, 2, 0, any, true,"
+   }
+  ]
+ },
+ "ai_score": {
+  "file": "Assets/_Game/Scripts/Model/Sim/AutoPlayer.cs",
+  "start": 81,
+  "lines": [
+   {
+    "n": 81,
+    "s": "    double damage = DamageCalculator.Calculate(hero, target, value,"
+   },
+   {
+    "n": null,
+    "s": "        false).Raw * effect.Hits * (1 + 0.5 * effect.CritChance);"
+   },
+   {
+    "n": 82,
+    "s": "    double effective = Math.Min(target.Hp, Math.Max(0,"
+   },
+   {
+    "n": null,
+    "s": "        damage - target.Statuses[Status.Block]));"
+   },
+   {
+    "n": 83,
+    "s": "    score += effective + (damage >= target.Hp +"
+   },
+   {
+    "n": null,
+    "s": "        target.Statuses[Status.Block] ? 6 : 3.0 / Math.Max(1, target.Hp));"
+   },
+   {
+    "n": 84,
+    "s": "}"
+   },
+   {
+    "n": 85,
+    "s": "else if (effect.Kind == EffectKind.Heal) score += Math.Min(value,"
+   },
+   {
+    "n": null,
+    "s": "    target.MaxHp - target.Hp) * (target.Hp < target.MaxHp * 0.45 ? 2.2 :"
+   },
+   {
+    "n": null,
+    "s": "    1.15);"
+   },
+   {
+    "n": 86,
+    "s": "else if (effect.Kind == EffectKind.Block) score += Math.Min(value,"
+   },
+   {
+    "n": null,
+    "s": "    Math.Max(0, Incoming(engine.State,"
+   },
+   {
+    "n": null,
+    "s": "    target) - target.Statuses[Status.Block])) * 0.9;"
+   }
+  ]
+ },
+ "sim_loop": {
+  "file": "Assets/_Game/Scripts/Model/Sim/RunSimulator.cs",
+  "start": 69,
+  "lines": [
+   {
+    "n": 69,
+    "s": "while (!engine.IsOver)"
+   },
+   {
+    "n": 70,
+    "s": "{"
+   },
+   {
+    "n": 71,
+    "s": "    // Politica renunță la lupte fără atacuri sau cu progres prea lent."
+   },
+   {
+    "n": 72,
+    "s": "    if (player.HasNoOffense(engine.State) || engine.State.Round > 40) {"
+   },
+   {
+    "n": null,
+    "s": "        engine.Concede(); Consume(engine.Events); result.Concessions++;"
+   },
+   {
+    "n": null,
+    "s": "        break; }"
+   },
+   {
+    "n": 73,
+    "s": "    player.PlayTurn(engine, Consume);"
+   }
+  ]
+ },
+ "ease_orbit": {
+  "file": "Assets/_Game/Scripts/Exploration/CameraRig.cs",
+  "start": 190,
+  "lines": [
+   {
+    "n": 190,
+    "s": "}, Ease.InOutCubic, () =>"
+   }
+  ]
+ }
+}

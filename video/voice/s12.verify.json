@@ -1,0 +1,52 @@
+{
+ "scene": "s12",
+ "voice": "NKQBjfoAhInP7Bjx6P7l",
+ "model": "eleven_multilingual_v2",
+ "lines": [
+  {
+   "n": 1,
+   "text": "Ca să-l faci al tău, trei exerciții.",
+   "whisper_ro": "ca să-l faci al tău 3 exerciții.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 2,
+   "text": "Unu. Adaugă o carte nouă în CardDatabase și joac-o. Textul ei se scrie singur din efecte, fără nicio linie nouă de interfață.",
+   "whisper_ro": "1. Adaugă o carte nouă în Car Database și joacă-o. Textul ei se scrie singur din efecte, fără nici o linie nouă de interfață.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 3,
+   "text": "Doi. Schimbă curba de easing de la tranziția camerei. Pune ease out back sau chiar liniar, și simte diferența.",
+   "whisper_ro": "2. Schimbă curba de easing de la tranziția camerei. Pune ease out back sau chiar liniar și simte diferența.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 4,
+   "text": "Trei. Dublează viața lui Monstro, rulează simulatorul și citește noua rată de victorie.",
+   "whisper_ro": "3. Dublează viața lui Monstruo, rulează simulatorul și citește noua rată de victorie.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 5,
+   "text": "Dacă știi să explici de ce s-a schimbat cifra, ai înțeles jocul. Spor la coborât.",
+   "whisper_ro": "Dacă știi să explici de ce s-a schimbat cifra, ai înțeles jocul. Spor la coborât!",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  }
+ ]
+}

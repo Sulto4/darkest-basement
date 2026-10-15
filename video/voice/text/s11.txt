@@ -1,0 +1,9 @@
+Bun. Dacă ar fi să pornești de la zero, în ce ordine ai învăța?
+Unu. C sharp simplu, fără Unity. Clase, liste, dicționare. Scrie o luptă în consolă, cu doi eroi și un inamic. Exact ce face simulatorul.
+Doi. Unity de bază. Ce e un GameObject, ce e o componentă, ce face Update. Pune un sprite care respiră cu un sinus.
+Trei. Leagă cele două lumi cu o coadă de evenimente. Lupta ta din consolă produce evenimente, iar o corutină le animă una câte una.
+Patru. Interfața. Un Canvas, câteva butoane, o carte care se ridică atunci când treci cu mouse-ul peste ea.
+Cinci. Camera și mișcarea. Lerp, easing, SmoothDamp. Fă holul văzut din spate și tranziția în lateral.
+Șase. Harta. BFS și arborele de acoperire, desenate pe o grilă.
+Șapte. Echilibrarea. Lași un bot să joace, strângi statistici și ajustezi cifrele.
+Regula care leagă totul e simplă. Fiecare pas se poate testa singur. Așa rămâne un proiect mare sub control.

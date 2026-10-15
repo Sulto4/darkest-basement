@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Darkest Basement: explainer</title>
+<link rel="stylesheet" href="fonts.css">
+<style>
+  html, body { margin: 0; background: #0b0707; color: #e8dcc4; font: 14px Inter, system-ui, sans-serif; }
+  body { display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+  .wrap { position: relative; overflow: hidden; }
+  #frame { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; transform-origin: 0 0; overflow: hidden; background: #000; }
+  #frame canvas { position: absolute; inset: 0; width: 1920px; height: 1080px; }
+  .safe { position: absolute; outline: 3px dashed #29f; display: none; pointer-events: none; z-index: 9; }
+  body.show-safe .safe { display: block; }
+  .ui { display: flex; gap: 12px; align-items: center; height: 56px; width: min(100%, 960px); padding: 0 16px; box-sizing: border-box; }
+  .ui input { flex: 1; accent-color: #e0b04a; }
+  .ui button { background: #e0b04a; color: #1b0f0f; border: 0; border-radius: 6px; width: 44px; height: 36px; font-weight: 700; cursor: pointer; }
+  .ui span { font-variant-numeric: tabular-nums; opacity: .7; min-width: 160px; text-align: right; }
+  body.render { display: block; }
+  body.render .wrap { width: 1920px; height: 1080px; }
+  body.render .ui { display: none; }
+</style>
+</head>
+<body>
+<div class="wrap"><div id="frame"></div></div>
+<div class="ui"><button id="play">▶</button><input id="bar" type="range" min="0" value="0"><span id="time"></span></div>
+<script type="module" src="core.js"></script>
+</body>
+</html>

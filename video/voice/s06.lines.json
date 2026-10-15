@@ -1,0 +1,1191 @@
+{
+ "voice": "NKQBjfoAhInP7Bjx6P7l",
+ "model": "eleven_multilingual_v2",
+ "speed": 1.0,
+ "stability": 0.5,
+ "style": 0.2,
+ "lines": [
+  {
+   "n": 1,
+   "text": "Lupta. Fiecare rundă începe cu inițiativa. Fiecare personaj aruncă un zar de la zero la trei și îl adună la viteza lui.",
+   "src": "voice/s06/01.mp3",
+   "dur": 8.453,
+   "speechStart": 0.0,
+   "speechEnd": 8.29,
+   "words": [
+    {
+     "w": "Lupta.",
+     "start": 0.0,
+     "end": 0.778,
+     "clean": "Lupta"
+    },
+    {
+     "w": "Fiecare",
+     "start": 0.987,
+     "end": 1.486,
+     "clean": "Fiecare"
+    },
+    {
+     "w": "rundă",
+     "start": 1.533,
+     "end": 1.823,
+     "clean": "rundă"
+    },
+    {
+     "w": "începe",
+     "start": 1.858,
+     "end": 2.218,
+     "clean": "începe"
+    },
+    {
+     "w": "cu",
+     "start": 2.252,
+     "end": 2.357,
+     "clean": "cu"
+    },
+    {
+     "w": "inițiativa.",
+     "start": 2.415,
+     "end": 3.286,
+     "clean": "inițiativa"
+    },
+    {
+     "w": "Fiecare",
+     "start": 3.46,
+     "end": 3.959,
+     "clean": "Fiecare"
+    },
+    {
+     "w": "personaj",
+     "start": 4.005,
+     "end": 4.54,
+     "clean": "personaj"
+    },
+    {
+     "w": "aruncă",
+     "start": 4.586,
+     "end": 4.899,
+     "clean": "aruncă"
+    },
+    {
+     "w": "un",
+     "start": 4.969,
+     "end": 5.039,
+     "clean": "un"
+    },
+    {
+     "w": "zar",
+     "start": 5.12,
+     "end": 5.317,
+     "clean": "zar"
+    },
+    {
+     "w": "de",
+     "start": 5.387,
+     "end": 5.457,
+     "clean": "de"
+    },
+    {
+     "w": "la",
+     "start": 5.503,
+     "end": 5.584,
+     "clean": "la"
+    },
+    {
+     "w": "zero",
+     "start": 5.654,
+     "end": 5.921,
+     "clean": "zero"
+    },
+    {
+     "w": "la",
+     "start": 5.991,
+     "end": 6.084,
+     "clean": "la"
+    },
+    {
+     "w": "trei",
+     "start": 6.142,
+     "end": 6.478,
+     "clean": "trei"
+    },
+    {
+     "w": "și",
+     "start": 6.722,
+     "end": 6.861,
+     "clean": "și"
+    },
+    {
+     "w": "îl",
+     "start": 6.92,
+     "end": 7.024,
+     "clean": "îl"
+    },
+    {
+     "w": "adună",
+     "start": 7.082,
+     "end": 7.361,
+     "clean": "adună"
+    },
+    {
+     "w": "la",
+     "start": 7.407,
+     "end": 7.465,
+     "clean": "la"
+    },
+    {
+     "w": "viteza",
+     "start": 7.512,
+     "end": 7.872,
+     "clean": "viteza"
+    },
+    {
+     "w": "lui.",
+     "start": 7.918,
+     "end": 8.29,
+     "clean": "lui"
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "text": "Apoi sortăm descrescător. Asta e toată ordinea turelor. O sortare.",
+   "src": "voice/s06/02.mp3",
+   "dur": 5.305,
+   "speechStart": 0.162,
+   "speechEnd": 5.2,
+   "words": [
+    {
+     "w": "Apoi",
+     "start": 0.162,
+     "end": 0.498,
+     "clean": "Apoi"
+    },
+    {
+     "w": "sortăm",
+     "start": 0.556,
+     "end": 0.939,
+     "clean": "sortăm"
+    },
+    {
+     "w": "descrescător.",
+     "start": 1.021,
+     "end": 2.054,
+     "clean": "descrescător"
+    },
+    {
+     "w": "Asta",
+     "start": 2.38,
+     "end": 2.646,
+     "clean": "Asta"
+    },
+    {
+     "w": "e",
+     "start": 2.704,
+     "end": 2.739,
+     "clean": "e"
+    },
+    {
+     "w": "toată",
+     "start": 2.785,
+     "end": 2.994,
+     "clean": "toată"
+    },
+    {
+     "w": "ordinea",
+     "start": 3.064,
+     "end": 3.401,
+     "clean": "ordinea"
+    },
+    {
+     "w": "turelor.",
+     "start": 3.46,
+     "end": 4.086,
+     "clean": "turelor"
+    },
+    {
+     "w": "O",
+     "start": 4.295,
+     "end": 4.364,
+     "clean": "O"
+    },
+    {
+     "w": "sortare.",
+     "start": 4.48,
+     "end": 5.2,
+     "clean": "sortare"
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "text": "La egalitate merg întâi eroii, iar dacă tot e egal, decide id-ul. Comparatorul trebuie să fie o ordine totală, pentru că sortarea din C sharp nu e stabilă. Altfel aceeași rundă ar putea ieși diferit.",
+   "src": "voice/s06/03.mp3",
+   "dur": 13.716,
+   "speechStart": 0.104,
+   "speechEnd": 13.526,
+   "words": [
+    {
+     "w": "La",
+     "start": 0.104,
+     "end": 0.243,
+     "clean": "La"
+    },
+    {
+     "w": "egalitate",
+     "start": 0.278,
+     "end": 0.835,
+     "clean": "egalitate"
+    },
+    {
+     "w": "merg",
+     "start": 0.893,
+     "end": 1.102,
+     "clean": "merg"
+    },
+    {
+     "w": "întâi",
+     "start": 1.172,
+     "end": 1.405,
+     "clean": "întâi"
+    },
+    {
+     "w": "eroii,",
+     "start": 1.451,
+     "end": 2.089,
+     "clean": "eroii"
+    },
+    {
+     "w": "iar",
+     "start": 2.299,
+     "end": 2.497,
+     "clean": "iar"
+    },
+    {
+     "w": "dacă",
+     "start": 2.555,
+     "end": 2.774,
+     "clean": "dacă"
+    },
+    {
+     "w": "tot",
+     "start": 2.845,
+     "end": 3.03,
+     "clean": "tot"
+    },
+    {
+     "w": "e",
+     "start": 3.099,
+     "end": 3.122,
+     "clean": "e"
+    },
+    {
+     "w": "egal,",
+     "start": 3.146,
+     "end": 3.703,
+     "clean": "egal"
+    },
+    {
+     "w": "decide",
+     "start": 3.878,
+     "end": 4.284,
+     "clean": "decide"
+    },
+    {
+     "w": "id-ul.",
+     "start": 4.354,
+     "end": 4.968,
+     "clean": "id-ul"
+    },
+    {
+     "w": "Comparatorul",
+     "start": 5.247,
+     "end": 5.945,
+     "clean": "Comparatorul"
+    },
+    {
+     "w": "trebuie",
+     "start": 6.014,
+     "end": 6.293,
+     "clean": "trebuie"
+    },
+    {
+     "w": "să",
+     "start": 6.338,
+     "end": 6.421,
+     "clean": "să"
+    },
+    {
+     "w": "fie",
+     "start": 6.479,
+     "end": 6.652,
+     "clean": "fie"
+    },
+    {
+     "w": "o",
+     "start": 6.71,
+     "end": 6.733,
+     "clean": "o"
+    },
+    {
+     "w": "ordine",
+     "start": 6.756,
+     "end": 7.163,
+     "clean": "ordine"
+    },
+    {
+     "w": "totală,",
+     "start": 7.209,
+     "end": 7.895,
+     "clean": "totală"
+    },
+    {
+     "w": "pentru",
+     "start": 7.953,
+     "end": 8.22,
+     "clean": "pentru"
+    },
+    {
+     "w": "că",
+     "start": 8.255,
+     "end": 8.335,
+     "clean": "că"
+    },
+    {
+     "w": "sortarea",
+     "start": 8.393,
+     "end": 8.835,
+     "clean": "sortarea"
+    },
+    {
+     "w": "din",
+     "start": 8.893,
+     "end": 9.032,
+     "clean": "din"
+    },
+    {
+     "w": "C",
+     "start": 9.078,
+     "end": 9.148,
+     "clean": "C"
+    },
+    {
+     "w": "sharp",
+     "start": 9.241,
+     "end": 9.543,
+     "clean": "sharp"
+    },
+    {
+     "w": "nu",
+     "start": 9.625,
+     "end": 9.753,
+     "clean": "nu"
+    },
+    {
+     "w": "e",
+     "start": 9.822,
+     "end": 9.846,
+     "clean": "e"
+    },
+    {
+     "w": "stabilă.",
+     "start": 9.88,
+     "end": 10.564,
+     "clean": "stabilă"
+    },
+    {
+     "w": "Altfel",
+     "start": 10.948,
+     "end": 11.366,
+     "clean": "Altfel"
+    },
+    {
+     "w": "aceeași",
+     "start": 11.436,
+     "end": 11.819,
+     "clean": "aceeași"
+    },
+    {
+     "w": "rundă",
+     "start": 11.843,
+     "end": 12.12,
+     "clean": "rundă"
+    },
+    {
+     "w": "ar",
+     "start": 12.143,
+     "end": 12.213,
+     "clean": "ar"
+    },
+    {
+     "w": "putea",
+     "start": 12.284,
+     "end": 12.515,
+     "clean": "putea"
+    },
+    {
+     "w": "ieși",
+     "start": 12.55,
+     "end": 12.77,
+     "clean": "ieși"
+    },
+    {
+     "w": "diferit.",
+     "start": 12.817,
+     "end": 13.526,
+     "clean": "diferit"
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "text": "Damage-ul e o compunere de funcții. Pornești de la baza cărții și aduni Strength-ul.",
+   "src": "voice/s06/04.mp3",
+   "dur": 5.806,
+   "speechStart": 0.192,
+   "speechEnd": 5.614,
+   "words": [
+    {
+     "w": "Damage-ul",
+     "start": 0.192,
+     "end": 0.726,
+     "clean": "Damage-ul"
+    },
+    {
+     "w": "e",
+     "start": 0.784,
+     "end": 0.819,
+     "clean": "e"
+    },
+    {
+     "w": "o",
+     "start": 0.866,
+     "end": 0.912,
+     "clean": "o"
+    },
+    {
+     "w": "compunere",
+     "start": 0.97,
+     "end": 1.457,
+     "clean": "compunere"
+    },
+    {
+     "w": "de",
+     "start": 1.505,
+     "end": 1.573,
+     "clean": "de"
+    },
+    {
+     "w": "funcții.",
+     "start": 1.62,
+     "end": 2.248,
+     "clean": "funcții"
+    },
+    {
+     "w": "Pornești",
+     "start": 2.631,
+     "end": 3.142,
+     "clean": "Pornești"
+    },
+    {
+     "w": "de",
+     "start": 3.188,
+     "end": 3.245,
+     "clean": "de"
+    },
+    {
+     "w": "la",
+     "start": 3.303,
+     "end": 3.373,
+     "clean": "la"
+    },
+    {
+     "w": "baza",
+     "start": 3.431,
+     "end": 3.722,
+     "clean": "baza"
+    },
+    {
+     "w": "cărții",
+     "start": 3.791,
+     "end": 4.221,
+     "clean": "cărții"
+    },
+    {
+     "w": "și",
+     "start": 4.337,
+     "end": 4.419,
+     "clean": "și"
+    },
+    {
+     "w": "aduni",
+     "start": 4.477,
+     "end": 4.79,
+     "clean": "aduni"
+    },
+    {
+     "w": "Strength-ul.",
+     "start": 4.812,
+     "end": 5.614,
+     "clean": "Strength-ul"
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "text": "Dacă atacatorul e slăbit, înmulțești cu zero virgulă șaptezeci și cinci. Dacă ținta e marcată, cu unu virgulă cinci. Crit-ul, încă o dată unu virgulă cinci.",
+   "src": "voice/s06/05.mp3",
+   "dur": 10.374,
+   "speechStart": 0.192,
+   "speechEnd": 10.153,
+   "words": [
+    {
+     "w": "Dacă",
+     "start": 0.192,
+     "end": 0.482,
+     "clean": "Dacă"
+    },
+    {
+     "w": "atacatorul",
+     "start": 0.528,
+     "end": 1.12,
+     "clean": "atacatorul"
+    },
+    {
+     "w": "e",
+     "start": 1.178,
+     "end": 1.202,
+     "clean": "e"
+    },
+    {
+     "w": "slăbit,",
+     "start": 1.248,
+     "end": 1.689,
+     "clean": "slăbit"
+    },
+    {
+     "w": "înmulțești",
+     "start": 1.747,
+     "end": 2.281,
+     "clean": "înmulțești"
+    },
+    {
+     "w": "cu",
+     "start": 2.305,
+     "end": 2.421,
+     "clean": "cu"
+    },
+    {
+     "w": "zero",
+     "start": 2.49,
+     "end": 2.711,
+     "clean": "zero"
+    },
+    {
+     "w": "virgulă",
+     "start": 2.757,
+     "end": 3.129,
+     "clean": "virgulă"
+    },
+    {
+     "w": "șaptezeci",
+     "start": 3.175,
+     "end": 3.733,
+     "clean": "șaptezeci"
+    },
+    {
+     "w": "și",
+     "start": 3.767,
+     "end": 3.884,
+     "clean": "și"
+    },
+    {
+     "w": "cinci.",
+     "start": 3.93,
+     "end": 4.429,
+     "clean": "cinci"
+    },
+    {
+     "w": "Dacă",
+     "start": 4.557,
+     "end": 4.836,
+     "clean": "Dacă"
+    },
+    {
+     "w": "ținta",
+     "start": 4.894,
+     "end": 5.149,
+     "clean": "ținta"
+    },
+    {
+     "w": "e",
+     "start": 5.207,
+     "end": 5.23,
+     "clean": "e"
+    },
+    {
+     "w": "marcată,",
+     "start": 5.277,
+     "end": 5.904,
+     "clean": "marcată"
+    },
+    {
+     "w": "cu",
+     "start": 6.055,
+     "end": 6.206,
+     "clean": "cu"
+    },
+    {
+     "w": "unu",
+     "start": 6.298,
+     "end": 6.461,
+     "clean": "unu"
+    },
+    {
+     "w": "virgulă",
+     "start": 6.507,
+     "end": 6.914,
+     "clean": "virgulă"
+    },
+    {
+     "w": "cinci.",
+     "start": 6.949,
+     "end": 7.494,
+     "clean": "cinci"
+    },
+    {
+     "w": "Crit-ul,",
+     "start": 7.703,
+     "end": 8.295,
+     "clean": "Crit-ul"
+    },
+    {
+     "w": "încă",
+     "start": 8.377,
+     "end": 8.597,
+     "clean": "încă"
+    },
+    {
+     "w": "o",
+     "start": 8.62,
+     "end": 8.644,
+     "clean": "o"
+    },
+    {
+     "w": "dată",
+     "start": 8.69,
+     "end": 8.934,
+     "clean": "dată"
+    },
+    {
+     "w": "unu",
+     "start": 9.015,
+     "end": 9.178,
+     "clean": "unu"
+    },
+    {
+     "w": "virgulă",
+     "start": 9.224,
+     "end": 9.619,
+     "clean": "virgulă"
+    },
+    {
+     "w": "cinci.",
+     "start": 9.654,
+     "end": 10.153,
+     "clean": "cinci"
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "text": "Rotunjești în jos, și abia la final scazi Block-ul.",
+   "src": "voice/s06/06.mp3",
+   "dur": 3.401,
+   "speechStart": 0.221,
+   "speechEnd": 3.297,
+   "words": [
+    {
+     "w": "Rotunjești",
+     "start": 0.221,
+     "end": 0.87,
+     "clean": "Rotunjești"
+    },
+    {
+     "w": "în",
+     "start": 0.905,
+     "end": 0.963,
+     "clean": "în"
+    },
+    {
+     "w": "jos,",
+     "start": 1.033,
+     "end": 1.44,
+     "clean": "jos"
+    },
+    {
+     "w": "și",
+     "start": 1.521,
+     "end": 1.626,
+     "clean": "și"
+    },
+    {
+     "w": "abia",
+     "start": 1.684,
+     "end": 1.916,
+     "clean": "abia"
+    },
+    {
+     "w": "la",
+     "start": 1.962,
+     "end": 2.032,
+     "clean": "la"
+    },
+    {
+     "w": "final",
+     "start": 2.078,
+     "end": 2.38,
+     "clean": "final"
+    },
+    {
+     "w": "scazi",
+     "start": 2.426,
+     "end": 2.728,
+     "clean": "scazi"
+    },
+    {
+     "w": "Block-ul.",
+     "start": 2.752,
+     "end": 3.297,
+     "clean": "Block-ul"
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "text": "Fiecare pas e o funcție mică. Le poți testa separat, dar nu le poți muta oricum, pentru că rotunjirea nu comută cu înmulțirea.",
+   "src": "voice/s06/07.mp3",
+   "dur": 8.221,
+   "speechStart": 0.105,
+   "speechEnd": 7.965,
+   "words": [
+    {
+     "w": "Fiecare",
+     "start": 0.105,
+     "end": 0.604,
+     "clean": "Fiecare"
+    },
+    {
+     "w": "pas",
+     "start": 0.662,
+     "end": 0.871,
+     "clean": "pas"
+    },
+    {
+     "w": "e",
+     "start": 0.918,
+     "end": 0.952,
+     "clean": "e"
+    },
+    {
+     "w": "o",
+     "start": 1.01,
+     "end": 1.045,
+     "clean": "o"
+    },
+    {
+     "w": "funcție",
+     "start": 1.092,
+     "end": 1.498,
+     "clean": "funcție"
+    },
+    {
+     "w": "mică.",
+     "start": 1.556,
+     "end": 2.055,
+     "clean": "mică"
+    },
+    {
+     "w": "Le",
+     "start": 2.497,
+     "end": 2.613,
+     "clean": "Le"
+    },
+    {
+     "w": "poți",
+     "start": 2.659,
+     "end": 2.88,
+     "clean": "poți"
+    },
+    {
+     "w": "testa",
+     "start": 2.903,
+     "end": 3.182,
+     "clean": "testa"
+    },
+    {
+     "w": "separat,",
+     "start": 3.251,
+     "end": 3.774,
+     "clean": "separat"
+    },
+    {
+     "w": "dar",
+     "start": 3.808,
+     "end": 3.983,
+     "clean": "dar"
+    },
+    {
+     "w": "nu",
+     "start": 4.041,
+     "end": 4.122,
+     "clean": "nu"
+    },
+    {
+     "w": "le",
+     "start": 4.168,
+     "end": 4.226,
+     "clean": "le"
+    },
+    {
+     "w": "poți",
+     "start": 4.273,
+     "end": 4.493,
+     "clean": "poți"
+    },
+    {
+     "w": "muta",
+     "start": 4.517,
+     "end": 4.726,
+     "clean": "muta"
+    },
+    {
+     "w": "oricum,",
+     "start": 4.807,
+     "end": 5.295,
+     "clean": "oricum"
+    },
+    {
+     "w": "pentru",
+     "start": 5.329,
+     "end": 5.631,
+     "clean": "pentru"
+    },
+    {
+     "w": "că",
+     "start": 5.666,
+     "end": 5.736,
+     "clean": "că"
+    },
+    {
+     "w": "rotunjirea",
+     "start": 5.782,
+     "end": 6.328,
+     "clean": "rotunjirea"
+    },
+    {
+     "w": "nu",
+     "start": 6.421,
+     "end": 6.537,
+     "clean": "nu"
+    },
+    {
+     "w": "comută",
+     "start": 6.595,
+     "end": 6.99,
+     "clean": "comută"
+    },
+    {
+     "w": "cu",
+     "start": 7.036,
+     "end": 7.152,
+     "clean": "cu"
+    },
+    {
+     "w": "înmulțirea.",
+     "start": 7.21,
+     "end": 7.965,
+     "clean": "înmulțirea"
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "text": "Statusurile sunt doar opt numere într-un vector. Block, Bleed, Poison, Stun și celelalte. Cele mai multe scad cu unu pe tură.",
+   "src": "voice/s06/08.mp3",
+   "dur": 8.439,
+   "speechStart": 0.255,
+   "speechEnd": 8.277,
+   "words": [
+    {
+     "w": "Statusurile",
+     "start": 0.255,
+     "end": 0.941,
+     "clean": "Statusurile"
+    },
+    {
+     "w": "sunt",
+     "start": 0.975,
+     "end": 1.207,
+     "clean": "sunt"
+    },
+    {
+     "w": "doar",
+     "start": 1.276,
+     "end": 1.44,
+     "clean": "doar"
+    },
+    {
+     "w": "opt",
+     "start": 1.509,
+     "end": 1.672,
+     "clean": "opt"
+    },
+    {
+     "w": "numere",
+     "start": 1.742,
+     "end": 2.078,
+     "clean": "numere"
+    },
+    {
+     "w": "într-un",
+     "start": 2.148,
+     "end": 2.414,
+     "clean": "într-un"
+    },
+    {
+     "w": "vector.",
+     "start": 2.472,
+     "end": 3.006,
+     "clean": "vector"
+    },
+    {
+     "w": "Block,",
+     "start": 3.181,
+     "end": 3.563,
+     "clean": "Block"
+    },
+    {
+     "w": "Bleed,",
+     "start": 3.599,
+     "end": 3.959,
+     "clean": "Bleed"
+    },
+    {
+     "w": "Poison,",
+     "start": 3.993,
+     "end": 4.539,
+     "clean": "Poison"
+    },
+    {
+     "w": "Stun",
+     "start": 4.562,
+     "end": 4.84,
+     "clean": "Stun"
+    },
+    {
+     "w": "și",
+     "start": 4.934,
+     "end": 5.026,
+     "clean": "și"
+    },
+    {
+     "w": "celelalte.",
+     "start": 5.084,
+     "end": 5.84,
+     "clean": "celelalte"
+    },
+    {
+     "w": "Cele",
+     "start": 6.222,
+     "end": 6.489,
+     "clean": "Cele"
+    },
+    {
+     "w": "mai",
+     "start": 6.535,
+     "end": 6.64,
+     "clean": "mai"
+    },
+    {
+     "w": "multe",
+     "start": 6.675,
+     "end": 6.943,
+     "clean": "multe"
+    },
+    {
+     "w": "scad",
+     "start": 6.989,
+     "end": 7.255,
+     "clean": "scad"
+    },
+    {
+     "w": "cu",
+     "start": 7.313,
+     "end": 7.407,
+     "clean": "cu"
+    },
+    {
+     "w": "unu",
+     "start": 7.487,
+     "end": 7.627,
+     "clean": "unu"
+    },
+    {
+     "w": "pe",
+     "start": 7.673,
+     "end": 7.779,
+     "clean": "pe"
+    },
+    {
+     "w": "tură.",
+     "start": 7.825,
+     "end": 8.277,
+     "clean": "tură"
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "text": "Iar inamicii își arată intenția de la începutul rundei. Știi dinainte pe cine vrea Gaper să muște. Asta transformă lupta într-un puzzle.",
+   "src": "voice/s06/09.mp3",
+   "dur": 9.01,
+   "speechStart": 0.163,
+   "speechEnd": 9.009,
+   "words": [
+    {
+     "w": "Iar",
+     "start": 0.163,
+     "end": 0.384,
+     "clean": "Iar"
+    },
+    {
+     "w": "inamicii",
+     "start": 0.441,
+     "end": 0.976,
+     "clean": "inamicii"
+    },
+    {
+     "w": "își",
+     "start": 1.021,
+     "end": 1.185,
+     "clean": "își"
+    },
+    {
+     "w": "arată",
+     "start": 1.208,
+     "end": 1.462,
+     "clean": "arată"
+    },
+    {
+     "w": "intenția",
+     "start": 1.521,
+     "end": 1.95,
+     "clean": "intenția"
+    },
+    {
+     "w": "de",
+     "start": 2.009,
+     "end": 2.066,
+     "clean": "de"
+    },
+    {
+     "w": "la",
+     "start": 2.113,
+     "end": 2.172,
+     "clean": "la"
+    },
+    {
+     "w": "începutul",
+     "start": 2.194,
+     "end": 2.658,
+     "clean": "începutul"
+    },
+    {
+     "w": "rundei.",
+     "start": 2.729,
+     "end": 3.298,
+     "clean": "rundei"
+    },
+    {
+     "w": "Știi",
+     "start": 3.681,
+     "end": 3.947,
+     "clean": "Știi"
+    },
+    {
+     "w": "dinainte",
+     "start": 4.018,
+     "end": 4.47,
+     "clean": "dinainte"
+    },
+    {
+     "w": "pe",
+     "start": 4.517,
+     "end": 4.62,
+     "clean": "pe"
+    },
+    {
+     "w": "cine",
+     "start": 4.643,
+     "end": 4.842,
+     "clean": "cine"
+    },
+    {
+     "w": "vrea",
+     "start": 4.877,
+     "end": 5.027,
+     "clean": "vrea"
+    },
+    {
+     "w": "Gaper",
+     "start": 5.096,
+     "end": 5.422,
+     "clean": "Gaper"
+    },
+    {
+     "w": "să",
+     "start": 5.479,
+     "end": 5.55,
+     "clean": "să"
+    },
+    {
+     "w": "muște.",
+     "start": 5.607,
+     "end": 6.131,
+     "clean": "muște"
+    },
+    {
+     "w": "Asta",
+     "start": 6.456,
+     "end": 6.78,
+     "clean": "Asta"
+    },
+    {
+     "w": "transformă",
+     "start": 6.827,
+     "end": 7.372,
+     "clean": "transformă"
+    },
+    {
+     "w": "lupta",
+     "start": 7.408,
+     "end": 7.675,
+     "clean": "lupta"
+    },
+    {
+     "w": "într-un",
+     "start": 7.721,
+     "end": 8.023,
+     "clean": "într-un"
+    },
+    {
+     "w": "puzzle.",
+     "start": 8.104,
+     "end": 9.009,
+     "clean": "puzzle"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,6 @@
+Când joci o carte, Modelul rezolvă totul pe loc. Damage, morți, mutări, statusuri. Într-o fracțiune de milisecundă.
+Dar dacă le-ai arăta pe toate deodată, n-ai înțelege nimic. Așa că View-ul le pune la coadă.
+Ia primul eveniment, îl animă, așteaptă să se termine, apoi trece la următorul.
+În Unity asta se face cu corutine. O funcție care face yield return se oprește acolo și continuă când e gata animația.
+Un switch alege animația pentru fiecare tip de eveniment. Damaged înseamnă un număr care sare, o clipire albă, puțin sânge și un shake.
+Și încă ceva. Dacă o animație aruncă o excepție, lupta merge mai departe. Fiecare pas e învelit într-un try. Un bug vizual n-are voie să-ți blocheze jocul.

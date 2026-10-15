@@ -1,0 +1,70 @@
+{
+ "scene": "s03",
+ "voice": "NKQBjfoAhInP7Bjx6P7l",
+ "model": "eleven_multilingual_v2",
+ "lines": [
+  {
+   "n": 1,
+   "text": "Bun. Cum curge jocul de la meniu până la final?",
+   "whisper_ro": "Bun. Cum curge jocul de la meniu până la final?",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 2,
+   "text": "Gândește-te la el ca la un automat finit, ca la cursul de limbaje formale.",
+   "whisper_ro": "Gândește-te la el ca la un automat finit, ca la cursul de limbaje formale.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 3,
+   "text": "La orice moment ești într-o singură stare. Meniu, hartă, hol, cameră, luptă, recompensă.",
+   "whisper_ro": "La orice moment ești într-o singură stare. Meniu, hartă, hol, cameră, luptă, recompensă.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 4,
+   "text": "Fiecare stare e o corutină. O joci de la cap la coadă, iar la final ea spune care e starea următoare.",
+   "whisper_ro": "Fiecare stare e o corutină. O joci de la cap la coadă, iar la final ea spune care e starea următoare.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 5,
+   "text": "Din hartă pleci pe hol. De pe hol intri în cameră. După luptă iei recompensa și te întorci pe hartă.",
+   "whisper_ro": "Din hartă pleci pe hol. De pe hol intri în cameră. După luptă iei recompensa și te întorci pe hartă.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 6,
+   "text": "Toată bucla asta e un while cu un switch. Atât conduce un run întreg.",
+   "whisper_ro": "Toată bucla asta e un while cu un switch. Atât conduce un run întreg.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 7,
+   "text": "Și GameFlow nu decide nimic. Modelul spune ce e în cameră și cine moare. GameFlow doar pune în scenă și așteaptă alegerea ta.",
+   "whisper_ro": "Și GameFlow nu decide nimic. Modelul spune ce e în cameră și cine moare. GameFlow doar pune în scenă și așteaptă alegerea ta.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  }
+ ]
+}

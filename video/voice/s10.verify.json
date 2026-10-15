@@ -1,0 +1,79 @@
+{
+ "scene": "s10",
+ "voice": "NKQBjfoAhInP7Bjx6P7l",
+ "model": "eleven_multilingual_v2",
+ "lines": [
+  {
+   "n": 1,
+   "text": "Holul e 3D adevărat, dar personajele sunt plate. Sunt billboard-uri. Un dreptunghi cu sprite-ul pe el.",
+   "whisper_ro": "Holul e 3D adevărat, dar personajele sunt plate. Sunt billboard-uri. Un dreptunghi cu sprite-ul pe el.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 2,
+   "text": "La fiecare frame îl rotim după cameră. Iei direcția în care se uită camera, pui componenta verticală pe zero, ca să rămână drept, și îl aliniezi cu ea.",
+   "whisper_ro": "La fiecare frame îl rotim după cameră. Iei direcția în care se uită camera, pui componenta verticală pe 0 ca să rămână drept și îl aliniezi cu ea.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": true
+  },
+  {
+   "n": 3,
+   "text": "Atenție, nu se uită spre cameră. E paralel cu planul ei. Așa sprite-urile de pe margini nu se deformează.",
+   "whisper_ro": "Atenție, nu se uită spre cameră. E paralel cu planul ei. Așa spraiturile de pe margini nu se deformează.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 4,
+   "text": "Când intri în luptă, camera iese din spatele echipei pe un arc, ca o macara. Unghiul și raza se interpolează separat, iar înălțimea mai primește un sinus care o ridică la mijloc.",
+   "whisper_ro": "Când intri în luptă, camera iese din spatele echipei pe un arc, ca o macară. Unghiul și raza se interpolează separat, iar înălțimea mai primește un sinus care o ridică la mijloc.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 5,
+   "text": "Acum pixelii. Treizeci și doi de pixeli de artă fac o unitate în lume. Interfața e desenată la șase sute patruzeci pe trei sute șaizeci.",
+   "whisper_ro": "Acum pixeli. 32 de pixeli de artă fac o unitate în lume. Interfața e desenată la 640x360.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 6,
+   "text": "Apoi o mărim cu un factor întreg. Pe Full HD, ori trei. Fiecare pixel devine un pătrat perfect de trei pe trei.",
+   "whisper_ro": "Apoi o mărim cu un factor întreg, pe Full HD, ori 3. Fiecare pixel devine un pătrat perfect de 3x3.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 7,
+   "text": "Cu un factor ca doi și jumătate, unele coloane ar ieși mai late decât altele, și se vede imediat. De asta doar numere întregi, iar ce rămâne pe margini e bandă neagră.",
+   "whisper_ro": "Cu un factor ca 2,5, unele coloane ar ieși mai late decât altele și se vede imediat. De asta doar numere întregi, iar ce rămâne pe margini e bandă neagră.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": true
+  },
+  {
+   "n": 8,
+   "text": "Chiar și camera de luptă e calculată așa. Vede exact zece unități în lățime, deci fiecare pixel de artă iese doi pe doi.",
+   "whisper_ro": "Chiar și camera de luptă e calculată așa. Vede exact 10 unități în lățime, deci fiecare pixel de artă iese 2x2.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  }
+ ]
+}

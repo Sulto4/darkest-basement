@@ -1,0 +1,8 @@
+Cum știi dacă jocul e prea greu? Nu-l joci tu de o mie de ori. Îl pui pe calculator să-l joace.
+AutoPlayer e un jucător simplu și lacom. Dă damage unde contează, se vindecă atunci când e jos și pune Block când vede că vine o lovitură.
+Pentru că Modelul nu depinde de Unity, simulatorul joacă cinci sute de run-uri complete în câteva secunde.
+Asta e metoda Monte Carlo. Nu calculezi probabilitatea exact. O estimezi din foarte multe încercări.
+Prima versiune a dat zero victorii din cinci sute. Luptele se terminau în două runde și ceva. Prea brutal.
+Am crescut viața inamicilor cu vreo cincizeci la sută și am scăzut damage-ul. Acum botul câștigă două sute nouăsprezece din cinci sute. Adică patruzeci și trei virgulă opt la sută.
+O luptă normală ține în medie trei runde și jumătate, iar una cu boss aproape șapte. Exact cât ne-am propus.
+Cu cinci sute de run-uri, eroarea e de câteva procente. De asta am verificat și pe alte seed-uri. A ieșit cam cincizeci la sută, tot în țintă.

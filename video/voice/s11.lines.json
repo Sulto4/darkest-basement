@@ -1,0 +1,1066 @@
+{
+ "voice": "NKQBjfoAhInP7Bjx6P7l",
+ "model": "eleven_multilingual_v2",
+ "speed": 1.0,
+ "stability": 0.5,
+ "style": 0.2,
+ "lines": [
+  {
+   "n": 1,
+   "text": "Bun. Dacă ar fi să pornești de la zero, în ce ordine ai învăța?",
+   "src": "voice/s11/01.mp3",
+   "dur": 4.505,
+   "speechStart": 0.0,
+   "speechEnd": 4.505,
+   "words": [
+    {
+     "w": "Bun.",
+     "start": 0.0,
+     "end": 0.464,
+     "clean": "Bun"
+    },
+    {
+     "w": "Dacă",
+     "start": 0.848,
+     "end": 1.115,
+     "clean": "Dacă"
+    },
+    {
+     "w": "ar",
+     "start": 1.149,
+     "end": 1.207,
+     "clean": "ar"
+    },
+    {
+     "w": "fi",
+     "start": 1.254,
+     "end": 1.347,
+     "clean": "fi"
+    },
+    {
+     "w": "să",
+     "start": 1.393,
+     "end": 1.474,
+     "clean": "să"
+    },
+    {
+     "w": "pornești",
+     "start": 1.521,
+     "end": 1.916,
+     "clean": "pornești"
+    },
+    {
+     "w": "de",
+     "start": 1.985,
+     "end": 2.09,
+     "clean": "de"
+    },
+    {
+     "w": "la",
+     "start": 2.148,
+     "end": 2.241,
+     "clean": "la"
+    },
+    {
+     "w": "zero,",
+     "start": 2.322,
+     "end": 2.682,
+     "clean": "zero"
+    },
+    {
+     "w": "în",
+     "start": 2.74,
+     "end": 2.844,
+     "clean": "în"
+    },
+    {
+     "w": "ce",
+     "start": 2.891,
+     "end": 2.984,
+     "clean": "ce"
+    },
+    {
+     "w": "ordine",
+     "start": 3.042,
+     "end": 3.332,
+     "clean": "ordine"
+    },
+    {
+     "w": "ai",
+     "start": 3.367,
+     "end": 3.425,
+     "clean": "ai"
+    },
+    {
+     "w": "învăța?",
+     "start": 3.448,
+     "end": 4.505,
+     "clean": "învăța"
+    }
+   ],
+   "regen": true
+  },
+  {
+   "n": 2,
+   "text": "Unu. C sharp simplu, fără Unity. Clase, liste, dicționare. Scrie o luptă în consolă, cu doi eroi și un inamic. Exact ce face simulatorul.",
+   "src": "voice/s11/02.mp3",
+   "dur": 10.054,
+   "speechStart": 0.104,
+   "speechEnd": 9.798,
+   "words": [
+    {
+     "w": "Unu.",
+     "start": 0.104,
+     "end": 0.534,
+     "clean": "Unu"
+    },
+    {
+     "w": "C",
+     "start": 0.975,
+     "end": 1.091,
+     "clean": "C"
+    },
+    {
+     "w": "sharp",
+     "start": 1.184,
+     "end": 1.404,
+     "clean": "sharp"
+    },
+    {
+     "w": "simplu,",
+     "start": 1.451,
+     "end": 1.857,
+     "clean": "simplu"
+    },
+    {
+     "w": "fără",
+     "start": 1.893,
+     "end": 2.112,
+     "clean": "fără"
+    },
+    {
+     "w": "Unity.",
+     "start": 2.194,
+     "end": 2.752,
+     "clean": "Unity"
+    },
+    {
+     "w": "Clase,",
+     "start": 2.96,
+     "end": 3.425,
+     "clean": "Clase"
+    },
+    {
+     "w": "liste,",
+     "start": 3.459,
+     "end": 3.842,
+     "clean": "liste"
+    },
+    {
+     "w": "dicționare.",
+     "start": 3.877,
+     "end": 4.713,
+     "clean": "dicționare"
+    },
+    {
+     "w": "Scrie",
+     "start": 5.038,
+     "end": 5.317,
+     "clean": "Scrie"
+    },
+    {
+     "w": "o",
+     "start": 5.375,
+     "end": 5.399,
+     "clean": "o"
+    },
+    {
+     "w": "luptă",
+     "start": 5.444,
+     "end": 5.688,
+     "clean": "luptă"
+    },
+    {
+     "w": "în",
+     "start": 5.711,
+     "end": 5.758,
+     "clean": "în"
+    },
+    {
+     "w": "consolă,",
+     "start": 5.816,
+     "end": 6.327,
+     "clean": "consolă"
+    },
+    {
+     "w": "cu",
+     "start": 6.351,
+     "end": 6.489,
+     "clean": "cu"
+    },
+    {
+     "w": "doi",
+     "start": 6.547,
+     "end": 6.71,
+     "clean": "doi"
+    },
+    {
+     "w": "eroi",
+     "start": 6.733,
+     "end": 6.977,
+     "clean": "eroi"
+    },
+    {
+     "w": "și",
+     "start": 7.059,
+     "end": 7.117,
+     "clean": "și"
+    },
+    {
+     "w": "un",
+     "start": 7.187,
+     "end": 7.256,
+     "clean": "un"
+    },
+    {
+     "w": "inamic.",
+     "start": 7.314,
+     "end": 7.894,
+     "clean": "inamic"
+    },
+    {
+     "w": "Exact",
+     "start": 8.069,
+     "end": 8.544,
+     "clean": "Exact"
+    },
+    {
+     "w": "ce",
+     "start": 8.614,
+     "end": 8.707,
+     "clean": "ce"
+    },
+    {
+     "w": "face",
+     "start": 8.753,
+     "end": 8.973,
+     "clean": "face"
+    },
+    {
+     "w": "simulatorul.",
+     "start": 9.021,
+     "end": 9.798,
+     "clean": "simulatorul"
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "text": "Doi. Unity de bază. Ce e un GameObject, ce e o componentă, ce face Update. Pune un sprite care respiră cu un sinus.",
+   "src": "voice/s11/03.mp3",
+   "dur": 8.144,
+   "speechStart": 0.255,
+   "speechEnd": 7.953,
+   "words": [
+    {
+     "w": "Doi.",
+     "start": 0.255,
+     "end": 0.789,
+     "clean": "Doi"
+    },
+    {
+     "w": "Unity",
+     "start": 0.963,
+     "end": 1.323,
+     "clean": "Unity"
+    },
+    {
+     "w": "de",
+     "start": 1.369,
+     "end": 1.439,
+     "clean": "de"
+    },
+    {
+     "w": "bază.",
+     "start": 1.497,
+     "end": 2.089,
+     "clean": "bază"
+    },
+    {
+     "w": "Ce",
+     "start": 2.334,
+     "end": 2.495,
+     "clean": "Ce"
+    },
+    {
+     "w": "e",
+     "start": 2.53,
+     "end": 2.566,
+     "clean": "e"
+    },
+    {
+     "w": "un",
+     "start": 2.646,
+     "end": 2.774,
+     "clean": "un"
+    },
+    {
+     "w": "GameObject,",
+     "start": 2.845,
+     "end": 3.494,
+     "clean": "GameObject"
+    },
+    {
+     "w": "ce",
+     "start": 3.54,
+     "end": 3.656,
+     "clean": "ce"
+    },
+    {
+     "w": "e",
+     "start": 3.68,
+     "end": 3.703,
+     "clean": "e"
+    },
+    {
+     "w": "o",
+     "start": 3.761,
+     "end": 3.819,
+     "clean": "o"
+    },
+    {
+     "w": "componentă,",
+     "start": 3.877,
+     "end": 4.527,
+     "clean": "componentă"
+    },
+    {
+     "w": "ce",
+     "start": 4.55,
+     "end": 4.643,
+     "clean": "ce"
+    },
+    {
+     "w": "face",
+     "start": 4.691,
+     "end": 4.922,
+     "clean": "face"
+    },
+    {
+     "w": "Update.",
+     "start": 4.945,
+     "end": 5.561,
+     "clean": "Update"
+    },
+    {
+     "w": "Pune",
+     "start": 5.735,
+     "end": 5.979,
+     "clean": "Pune"
+    },
+    {
+     "w": "un",
+     "start": 6.037,
+     "end": 6.107,
+     "clean": "un"
+    },
+    {
+     "w": "sprite",
+     "start": 6.152,
+     "end": 6.479,
+     "clean": "sprite"
+    },
+    {
+     "w": "care",
+     "start": 6.502,
+     "end": 6.688,
+     "clean": "care"
+    },
+    {
+     "w": "respiră",
+     "start": 6.721,
+     "end": 7.07,
+     "clean": "respiră"
+    },
+    {
+     "w": "cu",
+     "start": 7.116,
+     "end": 7.197,
+     "clean": "cu"
+    },
+    {
+     "w": "un",
+     "start": 7.255,
+     "end": 7.325,
+     "clean": "un"
+    },
+    {
+     "w": "sinus.",
+     "start": 7.383,
+     "end": 7.953,
+     "clean": "sinus"
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "text": "Trei. Leagă cele două lumi cu o coadă de evenimente. Lupta ta din consolă produce evenimente, iar o corutină le animă una câte una.",
+   "src": "voice/s11/04.mp3",
+   "dur": 8.91,
+   "speechStart": 0.191,
+   "speechEnd": 8.655,
+   "words": [
+    {
+     "w": "Trei.",
+     "start": 0.191,
+     "end": 0.748,
+     "clean": "Trei"
+    },
+    {
+     "w": "Leagă",
+     "start": 1.073,
+     "end": 1.375,
+     "clean": "Leagă"
+    },
+    {
+     "w": "cele",
+     "start": 1.41,
+     "end": 1.631,
+     "clean": "cele"
+    },
+    {
+     "w": "două",
+     "start": 1.677,
+     "end": 1.909,
+     "clean": "două"
+    },
+    {
+     "w": "lumi",
+     "start": 1.933,
+     "end": 2.153,
+     "clean": "lumi"
+    },
+    {
+     "w": "cu",
+     "start": 2.188,
+     "end": 2.269,
+     "clean": "cu"
+    },
+    {
+     "w": "o",
+     "start": 2.327,
+     "end": 2.362,
+     "clean": "o"
+    },
+    {
+     "w": "coadă",
+     "start": 2.409,
+     "end": 2.629,
+     "clean": "coadă"
+    },
+    {
+     "w": "de",
+     "start": 2.676,
+     "end": 2.757,
+     "clean": "de"
+    },
+    {
+     "w": "evenimente.",
+     "start": 2.78,
+     "end": 3.686,
+     "clean": "evenimente"
+    },
+    {
+     "w": "Lupta",
+     "start": 3.964,
+     "end": 4.266,
+     "clean": "Lupta"
+    },
+    {
+     "w": "ta",
+     "start": 4.313,
+     "end": 4.394,
+     "clean": "ta"
+    },
+    {
+     "w": "din",
+     "start": 4.44,
+     "end": 4.556,
+     "clean": "din"
+    },
+    {
+     "w": "consolă",
+     "start": 4.615,
+     "end": 5.032,
+     "clean": "consolă"
+    },
+    {
+     "w": "produce",
+     "start": 5.079,
+     "end": 5.427,
+     "clean": "produce"
+    },
+    {
+     "w": "evenimente,",
+     "start": 5.462,
+     "end": 6.112,
+     "clean": "evenimente"
+    },
+    {
+     "w": "iar",
+     "start": 6.135,
+     "end": 6.321,
+     "clean": "iar"
+    },
+    {
+     "w": "o",
+     "start": 6.367,
+     "end": 6.391,
+     "clean": "o"
+    },
+    {
+     "w": "corutină",
+     "start": 6.437,
+     "end": 6.925,
+     "clean": "corutină"
+    },
+    {
+     "w": "le",
+     "start": 6.983,
+     "end": 7.064,
+     "clean": "le"
+    },
+    {
+     "w": "animă",
+     "start": 7.145,
+     "end": 7.482,
+     "clean": "animă"
+    },
+    {
+     "w": "una",
+     "start": 7.575,
+     "end": 7.795,
+     "clean": "una"
+    },
+    {
+     "w": "câte",
+     "start": 7.854,
+     "end": 8.074,
+     "clean": "câte"
+    },
+    {
+     "w": "una.",
+     "start": 8.167,
+     "end": 8.655,
+     "clean": "una"
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "text": "Patru. Interfața. Un Canvas, câteva butoane, o carte care se ridică atunci când treci cu mouse-ul peste ea.",
+   "src": "voice/s11/05.mp3",
+   "dur": 7.895,
+   "speechStart": 0.255,
+   "speechEnd": 7.605,
+   "words": [
+    {
+     "w": "Patru.",
+     "start": 0.255,
+     "end": 0.813,
+     "clean": "Patru"
+    },
+    {
+     "w": "Interfața.",
+     "start": 1.393,
+     "end": 2.322,
+     "clean": "Interfața"
+    },
+    {
+     "w": "Un",
+     "start": 2.427,
+     "end": 2.589,
+     "clean": "Un"
+    },
+    {
+     "w": "Canvas,",
+     "start": 2.647,
+     "end": 3.39,
+     "clean": "Canvas"
+    },
+    {
+     "w": "câteva",
+     "start": 3.553,
+     "end": 3.889,
+     "clean": "câteva"
+    },
+    {
+     "w": "butoane,",
+     "start": 3.936,
+     "end": 4.54,
+     "clean": "butoane"
+    },
+    {
+     "w": "o",
+     "start": 4.714,
+     "end": 4.783,
+     "clean": "o"
+    },
+    {
+     "w": "carte",
+     "start": 4.841,
+     "end": 5.074,
+     "clean": "carte"
+    },
+    {
+     "w": "care",
+     "start": 5.12,
+     "end": 5.294,
+     "clean": "care"
+    },
+    {
+     "w": "se",
+     "start": 5.329,
+     "end": 5.41,
+     "clean": "se"
+    },
+    {
+     "w": "ridică",
+     "start": 5.433,
+     "end": 5.712,
+     "clean": "ridică"
+    },
+    {
+     "w": "atunci",
+     "start": 5.759,
+     "end": 6.026,
+     "clean": "atunci"
+    },
+    {
+     "w": "când",
+     "start": 6.049,
+     "end": 6.165,
+     "clean": "când"
+    },
+    {
+     "w": "treci",
+     "start": 6.188,
+     "end": 6.409,
+     "clean": "treci"
+    },
+    {
+     "w": "cu",
+     "start": 6.432,
+     "end": 6.513,
+     "clean": "cu"
+    },
+    {
+     "w": "mouse-ul",
+     "start": 6.594,
+     "end": 6.92,
+     "clean": "mouse-ul"
+    },
+    {
+     "w": "peste",
+     "start": 6.978,
+     "end": 7.233,
+     "clean": "peste"
+    },
+    {
+     "w": "ea.",
+     "start": 7.256,
+     "end": 7.605,
+     "clean": "ea"
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "text": "Cinci. Camera și mișcarea. Lerp, easing, SmoothDamp. Fă holul văzut din spate și tranziția în lateral.",
+   "src": "voice/s11/06.mp3",
+   "dur": 8.267,
+   "speechStart": 0.29,
+   "speechEnd": 8.023,
+   "words": [
+    {
+     "w": "Cinci.",
+     "start": 0.29,
+     "end": 0.929,
+     "clean": "Cinci"
+    },
+    {
+     "w": "Camera",
+     "start": 1.3,
+     "end": 1.706,
+     "clean": "Camera"
+    },
+    {
+     "w": "și",
+     "start": 1.776,
+     "end": 1.846,
+     "clean": "și"
+    },
+    {
+     "w": "mișcarea.",
+     "start": 1.904,
+     "end": 2.647,
+     "clean": "mișcarea"
+    },
+    {
+     "w": "Lerp,",
+     "start": 2.879,
+     "end": 3.402,
+     "clean": "Lerp"
+    },
+    {
+     "w": "easing,",
+     "start": 3.471,
+     "end": 4.017,
+     "clean": "easing"
+    },
+    {
+     "w": "SmoothDamp.",
+     "start": 4.133,
+     "end": 5.027,
+     "clean": "SmoothDamp"
+    },
+    {
+     "w": "Fă",
+     "start": 5.224,
+     "end": 5.375,
+     "clean": "Fă"
+    },
+    {
+     "w": "holul",
+     "start": 5.433,
+     "end": 5.724,
+     "clean": "holul"
+    },
+    {
+     "w": "văzut",
+     "start": 5.782,
+     "end": 6.049,
+     "clean": "văzut"
+    },
+    {
+     "w": "din",
+     "start": 6.107,
+     "end": 6.223,
+     "clean": "din"
+    },
+    {
+     "w": "spate",
+     "start": 6.258,
+     "end": 6.559,
+     "clean": "spate"
+    },
+    {
+     "w": "și",
+     "start": 6.629,
+     "end": 6.722,
+     "clean": "și"
+    },
+    {
+     "w": "tranziția",
+     "start": 6.757,
+     "end": 7.245,
+     "clean": "tranziția"
+    },
+    {
+     "w": "în",
+     "start": 7.291,
+     "end": 7.338,
+     "clean": "în"
+    },
+    {
+     "w": "lateral.",
+     "start": 7.396,
+     "end": 8.023,
+     "clean": "lateral"
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "text": "Șase. Harta. BFS și arborele de acoperire, desenate pe o grilă.",
+   "src": "voice/s11/07.mp3",
+   "dur": 6.375,
+   "speechStart": 0.243,
+   "speechEnd": 6.072,
+   "words": [
+    {
+     "w": "Șase.",
+     "start": 0.243,
+     "end": 0.894,
+     "clean": "Șase"
+    },
+    {
+     "w": "Harta.",
+     "start": 1.474,
+     "end": 2.229,
+     "clean": "Harta"
+    },
+    {
+     "w": "BFS",
+     "start": 2.612,
+     "end": 3.088,
+     "clean": "BFS"
+    },
+    {
+     "w": "și",
+     "start": 3.297,
+     "end": 3.401,
+     "clean": "și"
+    },
+    {
+     "w": "arborele",
+     "start": 3.459,
+     "end": 3.901,
+     "clean": "arborele"
+    },
+    {
+     "w": "de",
+     "start": 3.959,
+     "end": 4.005,
+     "clean": "de"
+    },
+    {
+     "w": "acoperire,",
+     "start": 4.04,
+     "end": 4.713,
+     "clean": "acoperire"
+    },
+    {
+     "w": "desenate",
+     "start": 4.794,
+     "end": 5.282,
+     "clean": "desenate"
+    },
+    {
+     "w": "pe",
+     "start": 5.329,
+     "end": 5.41,
+     "clean": "pe"
+    },
+    {
+     "w": "o",
+     "start": 5.456,
+     "end": 5.491,
+     "clean": "o"
+    },
+    {
+     "w": "grilă.",
+     "start": 5.538,
+     "end": 6.072,
+     "clean": "grilă"
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "text": "Șapte. Echilibrarea. Lași un bot să joace, strângi statistici și ajustezi cifrele.",
+   "src": "voice/s11/08.mp3",
+   "dur": 6.873,
+   "speechStart": 0.301,
+   "speechEnd": 6.572,
+   "words": [
+    {
+     "w": "Șapte.",
+     "start": 0.301,
+     "end": 1.044,
+     "clean": "Șapte"
+    },
+    {
+     "w": "Echilibrarea.",
+     "start": 1.37,
+     "end": 2.392,
+     "clean": "Echilibrarea"
+    },
+    {
+     "w": "Lași",
+     "start": 2.995,
+     "end": 3.227,
+     "clean": "Lași"
+    },
+    {
+     "w": "un",
+     "start": 3.263,
+     "end": 3.332,
+     "clean": "un"
+    },
+    {
+     "w": "bot",
+     "start": 3.401,
+     "end": 3.575,
+     "clean": "bot"
+    },
+    {
+     "w": "să",
+     "start": 3.611,
+     "end": 3.691,
+     "clean": "să"
+    },
+    {
+     "w": "joace,",
+     "start": 3.749,
+     "end": 4.099,
+     "clean": "joace"
+    },
+    {
+     "w": "strângi",
+     "start": 4.133,
+     "end": 4.447,
+     "clean": "strângi"
+    },
+    {
+     "w": "statistici",
+     "start": 4.469,
+     "end": 5.096,
+     "clean": "statistici"
+    },
+    {
+     "w": "și",
+     "start": 5.12,
+     "end": 5.202,
+     "clean": "și"
+    },
+    {
+     "w": "ajustezi",
+     "start": 5.248,
+     "end": 5.736,
+     "clean": "ajustezi"
+    },
+    {
+     "w": "cifrele.",
+     "start": 5.758,
+     "end": 6.572,
+     "clean": "cifrele"
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "text": "Regula care leagă totul e simplă. Fiecare pas se poate testa singur. Așa rămâne un proiect mare sub control.",
+   "src": "voice/s11/09.mp3",
+   "dur": 6.908,
+   "speechStart": 0.301,
+   "speechEnd": 6.908,
+   "words": [
+    {
+     "w": "Regula",
+     "start": 0.301,
+     "end": 0.661,
+     "clean": "Regula"
+    },
+    {
+     "w": "care",
+     "start": 0.708,
+     "end": 0.894,
+     "clean": "care"
+    },
+    {
+     "w": "leagă",
+     "start": 0.952,
+     "end": 1.172,
+     "clean": "leagă"
+    },
+    {
+     "w": "totul",
+     "start": 1.219,
+     "end": 1.486,
+     "clean": "totul"
+    },
+    {
+     "w": "e",
+     "start": 1.532,
+     "end": 1.555,
+     "clean": "e"
+    },
+    {
+     "w": "simplă.",
+     "start": 1.602,
+     "end": 2.194,
+     "clean": "simplă"
+    },
+    {
+     "w": "Fiecare",
+     "start": 2.403,
+     "end": 2.867,
+     "clean": "Fiecare"
+    },
+    {
+     "w": "pas",
+     "start": 2.914,
+     "end": 3.088,
+     "clean": "pas"
+    },
+    {
+     "w": "se",
+     "start": 3.123,
+     "end": 3.204,
+     "clean": "se"
+    },
+    {
+     "w": "poate",
+     "start": 3.25,
+     "end": 3.448,
+     "clean": "poate"
+    },
+    {
+     "w": "testa",
+     "start": 3.494,
+     "end": 3.75,
+     "clean": "testa"
+    },
+    {
+     "w": "singur.",
+     "start": 3.796,
+     "end": 4.4,
+     "clean": "singur"
+    },
+    {
+     "w": "Așa",
+     "start": 4.725,
+     "end": 4.992,
+     "clean": "Așa"
+    },
+    {
+     "w": "rămâne",
+     "start": 5.015,
+     "end": 5.271,
+     "clean": "rămâne"
+    },
+    {
+     "w": "un",
+     "start": 5.329,
+     "end": 5.398,
+     "clean": "un"
+    },
+    {
+     "w": "proiect",
+     "start": 5.445,
+     "end": 5.689,
+     "clean": "proiect"
+    },
+    {
+     "w": "mare",
+     "start": 5.758,
+     "end": 5.956,
+     "clean": "mare"
+    },
+    {
+     "w": "sub",
+     "start": 5.99,
+     "end": 6.141,
+     "clean": "sub"
+    },
+    {
+     "w": "control.",
+     "start": 6.2,
+     "end": 6.908,
+     "clean": "control"
+    }
+   ]
+  }
+ ]
+}

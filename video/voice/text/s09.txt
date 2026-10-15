@@ -1,0 +1,14 @@
+Acum partea care face un joc să se simtă bine. Și e mai multă matematică decât ai crede.
+Totul pornește de la lerp. Interpolare liniară. a plus, b minus a, ori t.
+Pentru t de la zero la unu mergi pe segment de la a la b. Dacă t crește uniform, mișcarea arată robotic. Pornește brusc și se oprește brusc.
+Trucul e să treci t printr-o funcție de easing. O funcție de la zero, unu în zero, unu, cu f de zero egal cu zero și f de unu egal cu unu.
+Ease out cubic pleacă repede și frânează moale. E unu minus, unu minus t, la puterea a treia.
+Ease out back trece puțin de unu și revine. De aici vine senzația de pop.
+Când un erou atacă, întâi se trage puțin înapoi, ca un arc care se încarcă. Apoi sare spre țintă pe ease out cubic, într-o zecime de secundă, și se întoarce acasă lin.
+Pe deasupra se turtește și se lungește puțin. Iar când stă, respiră. Scara lui pe verticală urmează un sinus.
+Camera folosește SmoothDamp. Gândește-te la un arc cu amortizare critică. Ajunge la țintă cât mai repede, fără să treacă de ea și fără să oscileze.
+Pe hol, camera urmărește echipa cu un timp de netezire de zero virgulă douăzeci și doi de secunde. Ținta sare, camera nu.
+Și shake-ul. Fiecare lovitură adaugă trauma, un număr între zero și unu care scade în timp.
+Camera nu tremură cu trauma, ci cu trauma la pătrat. Loviturile mici abia se simt, cele mari se simt mult.
+Direcția vine din zgomot Perlin, nu din random. Zgomotul e continuu, așa că imaginea tremură, nu sare dintr-un loc în altul.
+Pune peste asta un hit-stop, timpul înghețat câteva zeci de milisecunde, și creierul citește lovitura ca având greutate.

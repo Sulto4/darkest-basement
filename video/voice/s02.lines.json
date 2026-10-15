@@ -1,0 +1,1237 @@
+{
+ "voice": "NKQBjfoAhInP7Bjx6P7l",
+ "model": "eleven_multilingual_v2",
+ "speed": 1.0,
+ "stability": 0.5,
+ "style": 0.2,
+ "lines": [
+  {
+   "n": 1,
+   "text": "Prima decizie e și cea mai importantă. Jocul are două lumi separate.",
+   "src": "voice/s02/01.mp3",
+   "dur": 4.527,
+   "speechStart": 0.09,
+   "speechEnd": 4.365,
+   "words": [
+    {
+     "w": "Prima",
+     "start": 0.09,
+     "end": 0.348,
+     "clean": "Prima"
+    },
+    {
+     "w": "decizie",
+     "start": 0.395,
+     "end": 0.836,
+     "clean": "decizie"
+    },
+    {
+     "w": "e",
+     "start": 0.871,
+     "end": 0.894,
+     "clean": "e"
+    },
+    {
+     "w": "și",
+     "start": 0.964,
+     "end": 1.045,
+     "clean": "și"
+    },
+    {
+     "w": "cea",
+     "start": 1.103,
+     "end": 1.196,
+     "clean": "cea"
+    },
+    {
+     "w": "mai",
+     "start": 1.242,
+     "end": 1.347,
+     "clean": "mai"
+    },
+    {
+     "w": "importantă.",
+     "start": 1.382,
+     "end": 2.136,
+     "clean": "importantă"
+    },
+    {
+     "w": "Jocul",
+     "start": 2.647,
+     "end": 2.995,
+     "clean": "Jocul"
+    },
+    {
+     "w": "are",
+     "start": 3.042,
+     "end": 3.17,
+     "clean": "are"
+    },
+    {
+     "w": "două",
+     "start": 3.228,
+     "end": 3.46,
+     "clean": "două"
+    },
+    {
+     "w": "lumi",
+     "start": 3.483,
+     "end": 3.669,
+     "clean": "lumi"
+    },
+    {
+     "w": "separate.",
+     "start": 3.692,
+     "end": 4.365,
+     "clean": "separate"
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "text": "Prima lume e Modelul. El e creierul. Știe regulile, ține minte câtă viață are fiecare și ce cărți are în mână.",
+   "src": "voice/s02/02.mp3",
+   "dur": 6.967,
+   "speechStart": 0.163,
+   "speechEnd": 6.71,
+   "words": [
+    {
+     "w": "Prima",
+     "start": 0.163,
+     "end": 0.465,
+     "clean": "Prima"
+    },
+    {
+     "w": "lume",
+     "start": 0.511,
+     "end": 0.721,
+     "clean": "lume"
+    },
+    {
+     "w": "e",
+     "start": 0.779,
+     "end": 0.801,
+     "clean": "e"
+    },
+    {
+     "w": "Modelul.",
+     "start": 0.859,
+     "end": 1.487,
+     "clean": "Modelul"
+    },
+    {
+     "w": "El",
+     "start": 1.66,
+     "end": 1.812,
+     "clean": "El"
+    },
+    {
+     "w": "e",
+     "start": 1.87,
+     "end": 1.893,
+     "clean": "e"
+    },
+    {
+     "w": "creierul.",
+     "start": 1.928,
+     "end": 2.519,
+     "clean": "creierul"
+    },
+    {
+     "w": "Știe",
+     "start": 2.729,
+     "end": 3.054,
+     "clean": "Știe"
+    },
+    {
+     "w": "regulile,",
+     "start": 3.112,
+     "end": 3.623,
+     "clean": "regulile"
+    },
+    {
+     "w": "ține",
+     "start": 3.681,
+     "end": 3.925,
+     "clean": "ține"
+    },
+    {
+     "w": "minte",
+     "start": 3.972,
+     "end": 4.204,
+     "clean": "minte"
+    },
+    {
+     "w": "câtă",
+     "start": 4.249,
+     "end": 4.435,
+     "clean": "câtă"
+    },
+    {
+     "w": "viață",
+     "start": 4.47,
+     "end": 4.761,
+     "clean": "viață"
+    },
+    {
+     "w": "are",
+     "start": 4.784,
+     "end": 4.912,
+     "clean": "are"
+    },
+    {
+     "w": "fiecare",
+     "start": 4.957,
+     "end": 5.399,
+     "clean": "fiecare"
+    },
+    {
+     "w": "și",
+     "start": 5.457,
+     "end": 5.55,
+     "clean": "și"
+    },
+    {
+     "w": "ce",
+     "start": 5.597,
+     "end": 5.69,
+     "clean": "ce"
+    },
+    {
+     "w": "cărți",
+     "start": 5.736,
+     "end": 6.002,
+     "clean": "cărți"
+    },
+    {
+     "w": "are",
+     "start": 6.026,
+     "end": 6.153,
+     "clean": "are"
+    },
+    {
+     "w": "în",
+     "start": 6.188,
+     "end": 6.235,
+     "clean": "în"
+    },
+    {
+     "w": "mână.",
+     "start": 6.293,
+     "end": 6.71,
+     "clean": "mână"
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "text": "Modelul nu știe că există Unity. N-are sprite-uri, n-are cameră, n-are sunet. E C sharp curat, doar numere și liste.",
+   "src": "voice/s02/03.mp3",
+   "dur": 8.278,
+   "speechStart": 0.255,
+   "speechEnd": 8.116,
+   "words": [
+    {
+     "w": "Modelul",
+     "start": 0.255,
+     "end": 0.696,
+     "clean": "Modelul"
+    },
+    {
+     "w": "nu",
+     "start": 0.754,
+     "end": 0.847,
+     "clean": "nu"
+    },
+    {
+     "w": "știe",
+     "start": 0.894,
+     "end": 1.138,
+     "clean": "știe"
+    },
+    {
+     "w": "că",
+     "start": 1.184,
+     "end": 1.265,
+     "clean": "că"
+    },
+    {
+     "w": "există",
+     "start": 1.323,
+     "end": 1.695,
+     "clean": "există"
+    },
+    {
+     "w": "Unity.",
+     "start": 1.811,
+     "end": 2.357,
+     "clean": "Unity"
+    },
+    {
+     "w": "N-are",
+     "start": 2.74,
+     "end": 2.972,
+     "clean": "N-are"
+    },
+    {
+     "w": "sprite-uri,",
+     "start": 3.018,
+     "end": 3.576,
+     "clean": "sprite-uri"
+    },
+    {
+     "w": "n-are",
+     "start": 3.645,
+     "end": 3.843,
+     "clean": "n-are"
+    },
+    {
+     "w": "cameră,",
+     "start": 3.889,
+     "end": 4.296,
+     "clean": "cameră"
+    },
+    {
+     "w": "n-are",
+     "start": 4.365,
+     "end": 4.598,
+     "clean": "n-are"
+    },
+    {
+     "w": "sunet.",
+     "start": 4.645,
+     "end": 5.191,
+     "clean": "sunet"
+    },
+    {
+     "w": "E",
+     "start": 5.468,
+     "end": 5.677,
+     "clean": "E"
+    },
+    {
+     "w": "C",
+     "start": 5.747,
+     "end": 5.863,
+     "clean": "C"
+    },
+    {
+     "w": "sharp",
+     "start": 5.956,
+     "end": 6.211,
+     "clean": "sharp"
+    },
+    {
+     "w": "curat,",
+     "start": 6.281,
+     "end": 6.665,
+     "clean": "curat"
+    },
+    {
+     "w": "doar",
+     "start": 6.7,
+     "end": 6.896,
+     "clean": "doar"
+    },
+    {
+     "w": "numere",
+     "start": 7.012,
+     "end": 7.361,
+     "clean": "numere"
+    },
+    {
+     "w": "și",
+     "start": 7.442,
+     "end": 7.535,
+     "clean": "și"
+    },
+    {
+     "w": "liste.",
+     "start": 7.593,
+     "end": 8.116,
+     "clean": "liste"
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "text": "A doua lume e View-ul. Ăsta e teatrul de păpuși. Desenează, animă, cântă și ascultă ce face jucătorul.",
+   "src": "voice/s02/04.mp3",
+   "dur": 7.053,
+   "speechStart": 0.162,
+   "speechEnd": 6.861,
+   "words": [
+    {
+     "w": "A",
+     "start": 0.162,
+     "end": 0.244,
+     "clean": "A"
+    },
+    {
+     "w": "doua",
+     "start": 0.325,
+     "end": 0.522,
+     "clean": "doua"
+    },
+    {
+     "w": "lume",
+     "start": 0.557,
+     "end": 0.789,
+     "clean": "lume"
+    },
+    {
+     "w": "e",
+     "start": 0.836,
+     "end": 0.859,
+     "clean": "e"
+    },
+    {
+     "w": "View-ul.",
+     "start": 0.929,
+     "end": 1.439,
+     "clean": "View-ul"
+    },
+    {
+     "w": "Ăsta",
+     "start": 1.764,
+     "end": 2.043,
+     "clean": "Ăsta"
+    },
+    {
+     "w": "e",
+     "start": 2.101,
+     "end": 2.124,
+     "clean": "e"
+    },
+    {
+     "w": "teatrul",
+     "start": 2.171,
+     "end": 2.461,
+     "clean": "teatrul"
+    },
+    {
+     "w": "de",
+     "start": 2.508,
+     "end": 2.577,
+     "clean": "de"
+    },
+    {
+     "w": "păpuși.",
+     "start": 2.624,
+     "end": 3.192,
+     "clean": "păpuși"
+    },
+    {
+     "w": "Desenează,",
+     "start": 3.576,
+     "end": 4.237,
+     "clean": "Desenează"
+    },
+    {
+     "w": "animă,",
+     "start": 4.272,
+     "end": 4.76,
+     "clean": "animă"
+    },
+    {
+     "w": "cântă",
+     "start": 4.783,
+     "end": 5.143,
+     "clean": "cântă"
+    },
+    {
+     "w": "și",
+     "start": 5.213,
+     "end": 5.282,
+     "clean": "și"
+    },
+    {
+     "w": "ascultă",
+     "start": 5.34,
+     "end": 5.758,
+     "clean": "ascultă"
+    },
+    {
+     "w": "ce",
+     "start": 5.805,
+     "end": 5.886,
+     "clean": "ce"
+    },
+    {
+     "w": "face",
+     "start": 5.932,
+     "end": 6.153,
+     "clean": "face"
+    },
+    {
+     "w": "jucătorul.",
+     "start": 6.199,
+     "end": 6.861,
+     "clean": "jucătorul"
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "text": "Între ele circulă două feluri de mesaje. View-ul trimite comenzi. De exemplu, joacă cartea asta pe ținta asta.",
+   "src": "voice/s02/05.mp3",
+   "dur": 7.605,
+   "speechStart": 0.191,
+   "speechEnd": 7.413,
+   "words": [
+    {
+     "w": "Între",
+     "start": 0.191,
+     "end": 0.517,
+     "clean": "Între"
+    },
+    {
+     "w": "ele",
+     "start": 0.552,
+     "end": 0.715,
+     "clean": "ele"
+    },
+    {
+     "w": "circulă",
+     "start": 0.75,
+     "end": 1.133,
+     "clean": "circulă"
+    },
+    {
+     "w": "două",
+     "start": 1.191,
+     "end": 1.399,
+     "clean": "două"
+    },
+    {
+     "w": "feluri",
+     "start": 1.434,
+     "end": 1.701,
+     "clean": "feluri"
+    },
+    {
+     "w": "de",
+     "start": 1.724,
+     "end": 1.794,
+     "clean": "de"
+    },
+    {
+     "w": "mesaje.",
+     "start": 1.84,
+     "end": 2.479,
+     "clean": "mesaje"
+    },
+    {
+     "w": "View-ul",
+     "start": 2.805,
+     "end": 3.165,
+     "clean": "View-ul"
+    },
+    {
+     "w": "trimite",
+     "start": 3.233,
+     "end": 3.558,
+     "clean": "trimite"
+    },
+    {
+     "w": "comenzi.",
+     "start": 3.605,
+     "end": 4.197,
+     "clean": "comenzi"
+    },
+    {
+     "w": "De",
+     "start": 4.581,
+     "end": 4.686,
+     "clean": "De"
+    },
+    {
+     "w": "exemplu,",
+     "start": 4.72,
+     "end": 5.394,
+     "clean": "exemplu"
+    },
+    {
+     "w": "joacă",
+     "start": 5.638,
+     "end": 5.928,
+     "clean": "joacă"
+    },
+    {
+     "w": "cartea",
+     "start": 5.974,
+     "end": 6.276,
+     "clean": "cartea"
+    },
+    {
+     "w": "asta",
+     "start": 6.298,
+     "end": 6.474,
+     "clean": "asta"
+    },
+    {
+     "w": "pe",
+     "start": 6.52,
+     "end": 6.6,
+     "clean": "pe"
+    },
+    {
+     "w": "ținta",
+     "start": 6.636,
+     "end": 6.914,
+     "clean": "ținta"
+    },
+    {
+     "w": "asta.",
+     "start": 6.95,
+     "end": 7.413,
+     "clean": "asta"
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "text": "Modelul calculează tot pe loc și răspunde cu o listă de evenimente. Cartea a fost jucată. Gaper a luat cinci damage. Gaper a murit.",
+   "src": "voice/s02/06.mp3",
+   "dur": 8.91,
+   "speechStart": 0.191,
+   "speechEnd": 8.655,
+   "words": [
+    {
+     "w": "Modelul",
+     "start": 0.191,
+     "end": 0.621,
+     "clean": "Modelul"
+    },
+    {
+     "w": "calculează",
+     "start": 0.679,
+     "end": 1.213,
+     "clean": "calculează"
+    },
+    {
+     "w": "tot",
+     "start": 1.259,
+     "end": 1.41,
+     "clean": "tot"
+    },
+    {
+     "w": "pe",
+     "start": 1.457,
+     "end": 1.538,
+     "clean": "pe"
+    },
+    {
+     "w": "loc",
+     "start": 1.573,
+     "end": 1.712,
+     "clean": "loc"
+    },
+    {
+     "w": "și",
+     "start": 1.77,
+     "end": 1.851,
+     "clean": "și"
+    },
+    {
+     "w": "răspunde",
+     "start": 1.898,
+     "end": 2.292,
+     "clean": "răspunde"
+    },
+    {
+     "w": "cu",
+     "start": 2.339,
+     "end": 2.42,
+     "clean": "cu"
+    },
+    {
+     "w": "o",
+     "start": 2.49,
+     "end": 2.513,
+     "clean": "o"
+    },
+    {
+     "w": "listă",
+     "start": 2.548,
+     "end": 2.803,
+     "clean": "listă"
+    },
+    {
+     "w": "de",
+     "start": 2.861,
+     "end": 2.919,
+     "clean": "de"
+    },
+    {
+     "w": "evenimente.",
+     "start": 2.954,
+     "end": 3.732,
+     "clean": "evenimente"
+    },
+    {
+     "w": "Cartea",
+     "start": 4.011,
+     "end": 4.394,
+     "clean": "Cartea"
+    },
+    {
+     "w": "a",
+     "start": 4.417,
+     "end": 4.44,
+     "clean": "a"
+    },
+    {
+     "w": "fost",
+     "start": 4.487,
+     "end": 4.707,
+     "clean": "fost"
+    },
+    {
+     "w": "jucată.",
+     "start": 4.765,
+     "end": 5.369,
+     "clean": "jucată"
+    },
+    {
+     "w": "Gaper",
+     "start": 5.694,
+     "end": 6.054,
+     "clean": "Gaper"
+    },
+    {
+     "w": "a",
+     "start": 6.112,
+     "end": 6.135,
+     "clean": "a"
+    },
+    {
+     "w": "luat",
+     "start": 6.182,
+     "end": 6.321,
+     "clean": "luat"
+    },
+    {
+     "w": "cinci",
+     "start": 6.391,
+     "end": 6.727,
+     "clean": "cinci"
+    },
+    {
+     "w": "damage.",
+     "start": 6.774,
+     "end": 7.401,
+     "clean": "damage"
+    },
+    {
+     "w": "Gaper",
+     "start": 7.61,
+     "end": 7.993,
+     "clean": "Gaper"
+    },
+    {
+     "w": "a",
+     "start": 8.051,
+     "end": 8.074,
+     "clean": "a"
+    },
+    {
+     "w": "murit.",
+     "start": 8.132,
+     "end": 8.655,
+     "clean": "murit"
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "text": "View-ul ia lista și o povestește pe ecran, eveniment cu eveniment.",
+   "src": "voice/s02/07.mp3",
+   "dur": 4.099,
+   "speechStart": 0.255,
+   "speechEnd": 3.959,
+   "words": [
+    {
+     "w": "View-ul",
+     "start": 0.255,
+     "end": 0.614,
+     "clean": "View-ul"
+    },
+    {
+     "w": "ia",
+     "start": 0.639,
+     "end": 0.742,
+     "clean": "ia"
+    },
+    {
+     "w": "lista",
+     "start": 0.8,
+     "end": 1.09,
+     "clean": "lista"
+    },
+    {
+     "w": "și",
+     "start": 1.184,
+     "end": 1.276,
+     "clean": "și"
+    },
+    {
+     "w": "o",
+     "start": 1.334,
+     "end": 1.37,
+     "clean": "o"
+    },
+    {
+     "w": "povestește",
+     "start": 1.416,
+     "end": 1.939,
+     "clean": "povestește"
+    },
+    {
+     "w": "pe",
+     "start": 1.985,
+     "end": 2.102,
+     "clean": "pe"
+    },
+    {
+     "w": "ecran,",
+     "start": 2.125,
+     "end": 2.52,
+     "clean": "ecran"
+    },
+    {
+     "w": "eveniment",
+     "start": 2.553,
+     "end": 3.087,
+     "clean": "eveniment"
+    },
+    {
+     "w": "cu",
+     "start": 3.123,
+     "end": 3.193,
+     "clean": "cu"
+    },
+    {
+     "w": "eveniment.",
+     "start": 3.239,
+     "end": 3.959,
+     "clean": "eveniment"
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "text": "De ce ne complicăm așa? Pentru că un Model fără grafică îl poți testa în câteva milisecunde.",
+   "src": "voice/s02/08.mp3",
+   "dur": 5.258,
+   "speechStart": 0.139,
+   "speechEnd": 5.096,
+   "words": [
+    {
+     "w": "De",
+     "start": 0.139,
+     "end": 0.255,
+     "clean": "De"
+    },
+    {
+     "w": "ce",
+     "start": 0.301,
+     "end": 0.371,
+     "clean": "ce"
+    },
+    {
+     "w": "ne",
+     "start": 0.429,
+     "end": 0.499,
+     "clean": "ne"
+    },
+    {
+     "w": "complicăm",
+     "start": 0.545,
+     "end": 0.986,
+     "clean": "complicăm"
+    },
+    {
+     "w": "așa?",
+     "start": 1.033,
+     "end": 1.474,
+     "clean": "așa"
+    },
+    {
+     "w": "Pentru",
+     "start": 1.683,
+     "end": 1.962,
+     "clean": "Pentru"
+    },
+    {
+     "w": "că",
+     "start": 1.996,
+     "end": 2.054,
+     "clean": "că"
+    },
+    {
+     "w": "un",
+     "start": 2.124,
+     "end": 2.194,
+     "clean": "un"
+    },
+    {
+     "w": "Model",
+     "start": 2.252,
+     "end": 2.507,
+     "clean": "Model"
+    },
+    {
+     "w": "fără",
+     "start": 2.565,
+     "end": 2.739,
+     "clean": "fără"
+    },
+    {
+     "w": "grafică",
+     "start": 2.786,
+     "end": 3.146,
+     "clean": "grafică"
+    },
+    {
+     "w": "îl",
+     "start": 3.169,
+     "end": 3.215,
+     "clean": "îl"
+    },
+    {
+     "w": "poți",
+     "start": 3.285,
+     "end": 3.506,
+     "clean": "poți"
+    },
+    {
+     "w": "testa",
+     "start": 3.529,
+     "end": 3.773,
+     "clean": "testa"
+    },
+    {
+     "w": "în",
+     "start": 3.819,
+     "end": 3.866,
+     "clean": "în"
+    },
+    {
+     "w": "câteva",
+     "start": 3.935,
+     "end": 4.26,
+     "clean": "câteva"
+    },
+    {
+     "w": "milisecunde.",
+     "start": 4.318,
+     "end": 5.096,
+     "clean": "milisecunde"
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "text": "Poți să joci sute de run-uri complete în consolă, fără să deschizi Unity. Revenim la asta mai târziu.",
+   "src": "voice/s02/09.mp3",
+   "dur": 6.612,
+   "speechStart": 0.163,
+   "speechEnd": 6.421,
+   "words": [
+    {
+     "w": "Poți",
+     "start": 0.163,
+     "end": 0.419,
+     "clean": "Poți"
+    },
+    {
+     "w": "să",
+     "start": 0.442,
+     "end": 0.535,
+     "clean": "să"
+    },
+    {
+     "w": "joci",
+     "start": 0.593,
+     "end": 0.825,
+     "clean": "joci"
+    },
+    {
+     "w": "sute",
+     "start": 0.848,
+     "end": 1.127,
+     "clean": "sute"
+    },
+    {
+     "w": "de",
+     "start": 1.172,
+     "end": 1.242,
+     "clean": "de"
+    },
+    {
+     "w": "run-uri",
+     "start": 1.312,
+     "end": 1.59,
+     "clean": "run-uri"
+    },
+    {
+     "w": "complete",
+     "start": 1.614,
+     "end": 2.021,
+     "clean": "complete"
+    },
+    {
+     "w": "în",
+     "start": 2.09,
+     "end": 2.148,
+     "clean": "în"
+    },
+    {
+     "w": "consolă,",
+     "start": 2.207,
+     "end": 2.799,
+     "clean": "consolă"
+    },
+    {
+     "w": "fără",
+     "start": 2.95,
+     "end": 3.252,
+     "clean": "fără"
+    },
+    {
+     "w": "să",
+     "start": 3.309,
+     "end": 3.401,
+     "clean": "să"
+    },
+    {
+     "w": "deschizi",
+     "start": 3.459,
+     "end": 3.832,
+     "clean": "deschizi"
+    },
+    {
+     "w": "Unity.",
+     "start": 3.913,
+     "end": 4.459,
+     "clean": "Unity"
+    },
+    {
+     "w": "Revenim",
+     "start": 4.968,
+     "end": 5.329,
+     "clean": "Revenim"
+    },
+    {
+     "w": "la",
+     "start": 5.398,
+     "end": 5.468,
+     "clean": "la"
+    },
+    {
+     "w": "asta",
+     "start": 5.492,
+     "end": 5.666,
+     "clean": "asta"
+    },
+    {
+     "w": "mai",
+     "start": 5.712,
+     "end": 5.828,
+     "clean": "mai"
+    },
+    {
+     "w": "târziu.",
+     "start": 5.875,
+     "end": 6.421,
+     "clean": "târziu"
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "text": "Și regula nu e doar o promisiune. Modelul stă într-un assembly separat, care n-are voie să vadă motorul. Dacă încerci să folosești ceva din Unity acolo, codul nu compilează.",
+   "src": "voice/s02/10.mp3",
+   "dur": 11.001,
+   "speechStart": 0.191,
+   "speechEnd": 11.001,
+   "words": [
+    {
+     "w": "Și",
+     "start": 0.191,
+     "end": 0.319,
+     "clean": "Și"
+    },
+    {
+     "w": "regula",
+     "start": 0.365,
+     "end": 0.667,
+     "clean": "regula"
+    },
+    {
+     "w": "nu",
+     "start": 0.714,
+     "end": 0.794,
+     "clean": "nu"
+    },
+    {
+     "w": "e",
+     "start": 0.852,
+     "end": 0.877,
+     "clean": "e"
+    },
+    {
+     "w": "doar",
+     "start": 0.922,
+     "end": 1.062,
+     "clean": "doar"
+    },
+    {
+     "w": "o",
+     "start": 1.108,
+     "end": 1.132,
+     "clean": "o"
+    },
+    {
+     "w": "promisiune.",
+     "start": 1.166,
+     "end": 1.91,
+     "clean": "promisiune"
+    },
+    {
+     "w": "Modelul",
+     "start": 2.292,
+     "end": 2.733,
+     "clean": "Modelul"
+    },
+    {
+     "w": "stă",
+     "start": 2.781,
+     "end": 2.897,
+     "clean": "stă"
+    },
+    {
+     "w": "într-un",
+     "start": 2.943,
+     "end": 3.221,
+     "clean": "într-un"
+    },
+    {
+     "w": "assembly",
+     "start": 3.279,
+     "end": 3.697,
+     "clean": "assembly"
+    },
+    {
+     "w": "separat,",
+     "start": 3.743,
+     "end": 4.255,
+     "clean": "separat"
+    },
+    {
+     "w": "care",
+     "start": 4.301,
+     "end": 4.534,
+     "clean": "care"
+    },
+    {
+     "w": "n-are",
+     "start": 4.603,
+     "end": 4.811,
+     "clean": "n-are"
+    },
+    {
+     "w": "voie",
+     "start": 4.859,
+     "end": 5.044,
+     "clean": "voie"
+    },
+    {
+     "w": "să",
+     "start": 5.091,
+     "end": 5.171,
+     "clean": "să"
+    },
+    {
+     "w": "vadă",
+     "start": 5.219,
+     "end": 5.392,
+     "clean": "vadă"
+    },
+    {
+     "w": "motorul.",
+     "start": 5.439,
+     "end": 6.019,
+     "clean": "motorul"
+    },
+    {
+     "w": "Dacă",
+     "start": 6.403,
+     "end": 6.647,
+     "clean": "Dacă"
+    },
+    {
+     "w": "încerci",
+     "start": 6.681,
+     "end": 6.984,
+     "clean": "încerci"
+    },
+    {
+     "w": "să",
+     "start": 7.007,
+     "end": 7.076,
+     "clean": "să"
+    },
+    {
+     "w": "folosești",
+     "start": 7.123,
+     "end": 7.576,
+     "clean": "folosești"
+    },
+    {
+     "w": "ceva",
+     "start": 7.609,
+     "end": 7.843,
+     "clean": "ceva"
+    },
+    {
+     "w": "din",
+     "start": 7.888,
+     "end": 8.016,
+     "clean": "din"
+    },
+    {
+     "w": "Unity",
+     "start": 8.097,
+     "end": 8.388,
+     "clean": "Unity"
+    },
+    {
+     "w": "acolo,",
+     "start": 8.434,
+     "end": 8.853,
+     "clean": "acolo"
+    },
+    {
+     "w": "codul",
+     "start": 8.969,
+     "end": 9.329,
+     "clean": "codul"
+    },
+    {
+     "w": "nu",
+     "start": 9.421,
+     "end": 9.561,
+     "clean": "nu"
+    },
+    {
+     "w": "compilează.",
+     "start": 9.618,
+     "end": 11.001,
+     "clean": "compilează"
+    }
+   ]
+  }
+ ]
+}

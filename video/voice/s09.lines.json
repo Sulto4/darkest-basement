@@ -1,0 +1,1937 @@
+{
+ "voice": "NKQBjfoAhInP7Bjx6P7l",
+ "model": "eleven_multilingual_v2",
+ "speed": 1.0,
+ "stability": 0.5,
+ "style": 0.2,
+ "lines": [
+  {
+   "n": 1,
+   "text": "Acum partea care face un joc să se simtă bine. Și e mai multă matematică decât ai crede.",
+   "src": "voice/s09/01.mp3",
+   "dur": 5.346,
+   "speechStart": 0.0,
+   "speechEnd": 5.224,
+   "words": [
+    {
+     "w": "Acum",
+     "start": 0.0,
+     "end": 0.372,
+     "clean": "Acum"
+    },
+    {
+     "w": "partea",
+     "start": 0.453,
+     "end": 0.72,
+     "clean": "partea"
+    },
+    {
+     "w": "care",
+     "start": 0.755,
+     "end": 0.929,
+     "clean": "care"
+    },
+    {
+     "w": "face",
+     "start": 0.975,
+     "end": 1.173,
+     "clean": "face"
+    },
+    {
+     "w": "un",
+     "start": 1.231,
+     "end": 1.3,
+     "clean": "un"
+    },
+    {
+     "w": "joc",
+     "start": 1.358,
+     "end": 1.544,
+     "clean": "joc"
+    },
+    {
+     "w": "să",
+     "start": 1.591,
+     "end": 1.66,
+     "clean": "să"
+    },
+    {
+     "w": "se",
+     "start": 1.718,
+     "end": 1.8,
+     "clean": "se"
+    },
+    {
+     "w": "simtă",
+     "start": 1.846,
+     "end": 2.125,
+     "clean": "simtă"
+    },
+    {
+     "w": "bine.",
+     "start": 2.171,
+     "end": 2.682,
+     "clean": "bine"
+    },
+    {
+     "w": "Și",
+     "start": 3.123,
+     "end": 3.262,
+     "clean": "Și"
+    },
+    {
+     "w": "e",
+     "start": 3.309,
+     "end": 3.332,
+     "clean": "e"
+    },
+    {
+     "w": "mai",
+     "start": 3.379,
+     "end": 3.483,
+     "clean": "mai"
+    },
+    {
+     "w": "multă",
+     "start": 3.518,
+     "end": 3.75,
+     "clean": "multă"
+    },
+    {
+     "w": "matematică",
+     "start": 3.796,
+     "end": 4.342,
+     "clean": "matematică"
+    },
+    {
+     "w": "decât",
+     "start": 4.389,
+     "end": 4.598,
+     "clean": "decât"
+    },
+    {
+     "w": "ai",
+     "start": 4.632,
+     "end": 4.69,
+     "clean": "ai"
+    },
+    {
+     "w": "crede.",
+     "start": 4.725,
+     "end": 5.224,
+     "clean": "crede"
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "text": "Totul pornește de la lerp. Interpolare liniară. a plus, b minus a, ori t.",
+   "src": "voice/s09/02.mp3",
+   "dur": 5.945,
+   "speechStart": 0.122,
+   "speechEnd": 5.858,
+   "words": [
+    {
+     "w": "Totul",
+     "start": 0.122,
+     "end": 0.505,
+     "clean": "Totul"
+    },
+    {
+     "w": "pornește",
+     "start": 0.575,
+     "end": 1.028,
+     "clean": "pornește"
+    },
+    {
+     "w": "de",
+     "start": 1.086,
+     "end": 1.156,
+     "clean": "de"
+    },
+    {
+     "w": "la",
+     "start": 1.202,
+     "end": 1.272,
+     "clean": "la"
+    },
+    {
+     "w": "lerp.",
+     "start": 1.341,
+     "end": 1.794,
+     "clean": "lerp"
+    },
+    {
+     "w": "Interpolare",
+     "start": 2.305,
+     "end": 2.99,
+     "clean": "Interpolare"
+    },
+    {
+     "w": "liniară.",
+     "start": 3.036,
+     "end": 3.652,
+     "clean": "liniară"
+    },
+    {
+     "w": "a",
+     "start": 3.803,
+     "end": 3.872,
+     "clean": "a"
+    },
+    {
+     "w": "plus,",
+     "start": 3.919,
+     "end": 4.267,
+     "clean": "plus"
+    },
+    {
+     "w": "b",
+     "start": 4.337,
+     "end": 4.453,
+     "clean": "b"
+    },
+    {
+     "w": "minus",
+     "start": 4.627,
+     "end": 4.952,
+     "clean": "minus"
+    },
+    {
+     "w": "a,",
+     "start": 5.01,
+     "end": 5.173,
+     "clean": "a"
+    },
+    {
+     "w": "ori",
+     "start": 5.219,
+     "end": 5.405,
+     "clean": "ori"
+    },
+    {
+     "w": "t.",
+     "start": 5.44,
+     "end": 5.858,
+     "clean": "t"
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "text": "Pentru t de la zero la unu mergi pe segment de la a la b. Dacă t crește uniform, mișcarea arată robotic. Pornește brusc și se oprește brusc.",
+   "src": "voice/s09/03.mp3",
+   "dur": 9.183,
+   "speechStart": 0.087,
+   "speechEnd": 8.991,
+   "words": [
+    {
+     "w": "Pentru",
+     "start": 0.087,
+     "end": 0.412,
+     "clean": "Pentru"
+    },
+    {
+     "w": "t",
+     "start": 0.458,
+     "end": 0.482,
+     "clean": "t"
+    },
+    {
+     "w": "de",
+     "start": 0.609,
+     "end": 0.679,
+     "clean": "de"
+    },
+    {
+     "w": "la",
+     "start": 0.725,
+     "end": 0.807,
+     "clean": "la"
+    },
+    {
+     "w": "zero",
+     "start": 0.876,
+     "end": 1.096,
+     "clean": "zero"
+    },
+    {
+     "w": "la",
+     "start": 1.154,
+     "end": 1.213,
+     "clean": "la"
+    },
+    {
+     "w": "unu",
+     "start": 1.294,
+     "end": 1.445,
+     "clean": "unu"
+    },
+    {
+     "w": "mergi",
+     "start": 1.491,
+     "end": 1.7,
+     "clean": "mergi"
+    },
+    {
+     "w": "pe",
+     "start": 1.735,
+     "end": 1.816,
+     "clean": "pe"
+    },
+    {
+     "w": "segment",
+     "start": 1.851,
+     "end": 2.234,
+     "clean": "segment"
+    },
+    {
+     "w": "de",
+     "start": 2.292,
+     "end": 2.385,
+     "clean": "de"
+    },
+    {
+     "w": "la",
+     "start": 2.443,
+     "end": 2.513,
+     "clean": "la"
+    },
+    {
+     "w": "a",
+     "start": 2.606,
+     "end": 2.652,
+     "clean": "a"
+    },
+    {
+     "w": "la",
+     "start": 2.722,
+     "end": 2.803,
+     "clean": "la"
+    },
+    {
+     "w": "b.",
+     "start": 2.861,
+     "end": 3.209,
+     "clean": "b"
+    },
+    {
+     "w": "Dacă",
+     "start": 3.593,
+     "end": 3.883,
+     "clean": "Dacă"
+    },
+    {
+     "w": "t",
+     "start": 3.941,
+     "end": 4.034,
+     "clean": "t"
+    },
+    {
+     "w": "crește",
+     "start": 4.057,
+     "end": 4.347,
+     "clean": "crește"
+    },
+    {
+     "w": "uniform,",
+     "start": 4.417,
+     "end": 4.928,
+     "clean": "uniform"
+    },
+    {
+     "w": "mișcarea",
+     "start": 4.963,
+     "end": 5.45,
+     "clean": "mișcarea"
+    },
+    {
+     "w": "arată",
+     "start": 5.473,
+     "end": 5.787,
+     "clean": "arată"
+    },
+    {
+     "w": "robotic.",
+     "start": 5.833,
+     "end": 6.53,
+     "clean": "robotic"
+    },
+    {
+     "w": "Pornește",
+     "start": 6.809,
+     "end": 7.319,
+     "clean": "Pornește"
+    },
+    {
+     "w": "brusc",
+     "start": 7.377,
+     "end": 7.668,
+     "clean": "brusc"
+    },
+    {
+     "w": "și",
+     "start": 7.749,
+     "end": 7.842,
+     "clean": "și"
+    },
+    {
+     "w": "se",
+     "start": 7.888,
+     "end": 7.97,
+     "clean": "se"
+    },
+    {
+     "w": "oprește",
+     "start": 8.028,
+     "end": 8.422,
+     "clean": "oprește"
+    },
+    {
+     "w": "brusc.",
+     "start": 8.469,
+     "end": 8.991,
+     "clean": "brusc"
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "text": "Trucul e să treci t printr-o funcție de easing. O funcție de la zero, unu în zero, unu, cu f de zero egal cu zero și f de unu egal cu unu.",
+   "src": "voice/s09/04.mp3",
+   "dur": 10.268,
+   "speechStart": 0.191,
+   "speechEnd": 10.048,
+   "words": [
+    {
+     "w": "Trucul",
+     "start": 0.191,
+     "end": 0.551,
+     "clean": "Trucul"
+    },
+    {
+     "w": "e",
+     "start": 0.633,
+     "end": 0.656,
+     "clean": "e"
+    },
+    {
+     "w": "să",
+     "start": 0.702,
+     "end": 0.784,
+     "clean": "să"
+    },
+    {
+     "w": "treci",
+     "start": 0.842,
+     "end": 1.085,
+     "clean": "treci"
+    },
+    {
+     "w": "t",
+     "start": 1.133,
+     "end": 1.377,
+     "clean": "t"
+    },
+    {
+     "w": "printr-o",
+     "start": 1.434,
+     "end": 1.794,
+     "clean": "printr-o"
+    },
+    {
+     "w": "funcție",
+     "start": 1.828,
+     "end": 2.177,
+     "clean": "funcție"
+    },
+    {
+     "w": "de",
+     "start": 2.235,
+     "end": 2.316,
+     "clean": "de"
+    },
+    {
+     "w": "easing.",
+     "start": 2.409,
+     "end": 3.037,
+     "clean": "easing"
+    },
+    {
+     "w": "O",
+     "start": 3.419,
+     "end": 3.489,
+     "clean": "O"
+    },
+    {
+     "w": "funcție",
+     "start": 3.547,
+     "end": 3.883,
+     "clean": "funcție"
+    },
+    {
+     "w": "de",
+     "start": 3.941,
+     "end": 3.999,
+     "clean": "de"
+    },
+    {
+     "w": "la",
+     "start": 4.057,
+     "end": 4.139,
+     "clean": "la"
+    },
+    {
+     "w": "zero,",
+     "start": 4.208,
+     "end": 4.604,
+     "clean": "zero"
+    },
+    {
+     "w": "unu",
+     "start": 4.697,
+     "end": 4.905,
+     "clean": "unu"
+    },
+    {
+     "w": "în",
+     "start": 4.928,
+     "end": 4.976,
+     "clean": "în"
+    },
+    {
+     "w": "zero,",
+     "start": 5.034,
+     "end": 5.427,
+     "clean": "zero"
+    },
+    {
+     "w": "unu,",
+     "start": 5.497,
+     "end": 5.857,
+     "clean": "unu"
+    },
+    {
+     "w": "cu",
+     "start": 5.892,
+     "end": 6.078,
+     "clean": "cu"
+    },
+    {
+     "w": "f",
+     "start": 6.194,
+     "end": 6.31,
+     "clean": "f"
+    },
+    {
+     "w": "de",
+     "start": 6.426,
+     "end": 6.508,
+     "clean": "de"
+    },
+    {
+     "w": "zero",
+     "start": 6.566,
+     "end": 6.867,
+     "clean": "zero"
+    },
+    {
+     "w": "egal",
+     "start": 6.915,
+     "end": 7.169,
+     "clean": "egal"
+    },
+    {
+     "w": "cu",
+     "start": 7.238,
+     "end": 7.32,
+     "clean": "cu"
+    },
+    {
+     "w": "zero",
+     "start": 7.389,
+     "end": 7.726,
+     "clean": "zero"
+    },
+    {
+     "w": "și",
+     "start": 8.051,
+     "end": 8.226,
+     "clean": "și"
+    },
+    {
+     "w": "f",
+     "start": 8.319,
+     "end": 8.47,
+     "clean": "f"
+    },
+    {
+     "w": "de",
+     "start": 8.585,
+     "end": 8.667,
+     "clean": "de"
+    },
+    {
+     "w": "unu",
+     "start": 8.759,
+     "end": 8.992,
+     "clean": "unu"
+    },
+    {
+     "w": "egal",
+     "start": 9.05,
+     "end": 9.34,
+     "clean": "egal"
+    },
+    {
+     "w": "cu",
+     "start": 9.41,
+     "end": 9.56,
+     "clean": "cu"
+    },
+    {
+     "w": "unu.",
+     "start": 9.619,
+     "end": 10.048,
+     "clean": "unu"
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "text": "Ease out cubic pleacă repede și frânează moale. E unu minus, unu minus t, la puterea a treia.",
+   "src": "voice/s09/05.mp3",
+   "dur": 6.793,
+   "speechStart": 0.221,
+   "speechEnd": 6.572,
+   "words": [
+    {
+     "w": "Ease",
+     "start": 0.221,
+     "end": 0.465,
+     "clean": "Ease"
+    },
+    {
+     "w": "out",
+     "start": 0.488,
+     "end": 0.639,
+     "clean": "out"
+    },
+    {
+     "w": "cubic",
+     "start": 0.709,
+     "end": 1.046,
+     "clean": "cubic"
+    },
+    {
+     "w": "pleacă",
+     "start": 1.127,
+     "end": 1.406,
+     "clean": "pleacă"
+    },
+    {
+     "w": "repede",
+     "start": 1.452,
+     "end": 1.742,
+     "clean": "repede"
+    },
+    {
+     "w": "și",
+     "start": 1.812,
+     "end": 1.882,
+     "clean": "și"
+    },
+    {
+     "w": "frânează",
+     "start": 1.94,
+     "end": 2.38,
+     "clean": "frânează"
+    },
+    {
+     "w": "moale.",
+     "start": 2.438,
+     "end": 3.031,
+     "clean": "moale"
+    },
+    {
+     "w": "E",
+     "start": 3.355,
+     "end": 3.529,
+     "clean": "E"
+    },
+    {
+     "w": "unu",
+     "start": 3.645,
+     "end": 3.831,
+     "clean": "unu"
+    },
+    {
+     "w": "minus,",
+     "start": 3.877,
+     "end": 4.401,
+     "clean": "minus"
+    },
+    {
+     "w": "unu",
+     "start": 4.481,
+     "end": 4.656,
+     "clean": "unu"
+    },
+    {
+     "w": "minus",
+     "start": 4.703,
+     "end": 5.005,
+     "clean": "minus"
+    },
+    {
+     "w": "t,",
+     "start": 5.074,
+     "end": 5.398,
+     "clean": "t"
+    },
+    {
+     "w": "la",
+     "start": 5.55,
+     "end": 5.642,
+     "clean": "la"
+    },
+    {
+     "w": "puterea",
+     "start": 5.69,
+     "end": 6.026,
+     "clean": "puterea"
+    },
+    {
+     "w": "a",
+     "start": 6.048,
+     "end": 6.072,
+     "clean": "a"
+    },
+    {
+     "w": "treia.",
+     "start": 6.13,
+     "end": 6.572,
+     "clean": "treia"
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "text": "Ease out back trece puțin de unu și revine. De aici vine senzația de pop.",
+   "src": "voice/s09/06.mp3",
+   "dur": 5.404,
+   "speechStart": 0.221,
+   "speechEnd": 5.282,
+   "words": [
+    {
+     "w": "Ease",
+     "start": 0.221,
+     "end": 0.477,
+     "clean": "Ease"
+    },
+    {
+     "w": "out",
+     "start": 0.499,
+     "end": 0.697,
+     "clean": "out"
+    },
+    {
+     "w": "back",
+     "start": 0.789,
+     "end": 1.021,
+     "clean": "back"
+    },
+    {
+     "w": "trece",
+     "start": 1.114,
+     "end": 1.393,
+     "clean": "trece"
+    },
+    {
+     "w": "puțin",
+     "start": 1.439,
+     "end": 1.73,
+     "clean": "puțin"
+    },
+    {
+     "w": "de",
+     "start": 1.776,
+     "end": 1.846,
+     "clean": "de"
+    },
+    {
+     "w": "unu",
+     "start": 1.938,
+     "end": 2.136,
+     "clean": "unu"
+    },
+    {
+     "w": "și",
+     "start": 2.206,
+     "end": 2.298,
+     "clean": "și"
+    },
+    {
+     "w": "revine.",
+     "start": 2.356,
+     "end": 2.914,
+     "clean": "revine"
+    },
+    {
+     "w": "De",
+     "start": 3.425,
+     "end": 3.553,
+     "clean": "De"
+    },
+    {
+     "w": "aici",
+     "start": 3.575,
+     "end": 3.855,
+     "clean": "aici"
+    },
+    {
+     "w": "vine",
+     "start": 3.901,
+     "end": 4.099,
+     "clean": "vine"
+    },
+    {
+     "w": "senzația",
+     "start": 4.145,
+     "end": 4.655,
+     "clean": "senzația"
+    },
+    {
+     "w": "de",
+     "start": 4.713,
+     "end": 4.783,
+     "clean": "de"
+    },
+    {
+     "w": "pop.",
+     "start": 4.841,
+     "end": 5.282,
+     "clean": "pop"
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "text": "Când un erou atacă, întâi se trage puțin înapoi, ca un arc care se încarcă. Apoi sare spre țintă pe ease out cubic, într-o zecime de secundă, și se întoarce acasă lin.",
+   "src": "voice/s09/07.mp3",
+   "dur": 10.669,
+   "speechStart": 0.122,
+   "speechEnd": 10.478,
+   "words": [
+    {
+     "w": "Când",
+     "start": 0.122,
+     "end": 0.331,
+     "clean": "Când"
+    },
+    {
+     "w": "un",
+     "start": 0.401,
+     "end": 0.459,
+     "clean": "un"
+    },
+    {
+     "w": "erou",
+     "start": 0.517,
+     "end": 0.726,
+     "clean": "erou"
+    },
+    {
+     "w": "atacă,",
+     "start": 0.795,
+     "end": 1.236,
+     "clean": "atacă"
+    },
+    {
+     "w": "întâi",
+     "start": 1.294,
+     "end": 1.527,
+     "clean": "întâi"
+    },
+    {
+     "w": "se",
+     "start": 1.585,
+     "end": 1.678,
+     "clean": "se"
+    },
+    {
+     "w": "trage",
+     "start": 1.724,
+     "end": 1.98,
+     "clean": "trage"
+    },
+    {
+     "w": "puțin",
+     "start": 2.026,
+     "end": 2.305,
+     "clean": "puțin"
+    },
+    {
+     "w": "înapoi,",
+     "start": 2.363,
+     "end": 2.839,
+     "clean": "înapoi"
+    },
+    {
+     "w": "ca",
+     "start": 2.874,
+     "end": 2.99,
+     "clean": "ca"
+    },
+    {
+     "w": "un",
+     "start": 3.083,
+     "end": 3.187,
+     "clean": "un"
+    },
+    {
+     "w": "arc",
+     "start": 3.245,
+     "end": 3.442,
+     "clean": "arc"
+    },
+    {
+     "w": "care",
+     "start": 3.524,
+     "end": 3.733,
+     "clean": "care"
+    },
+    {
+     "w": "se",
+     "start": 3.779,
+     "end": 3.837,
+     "clean": "se"
+    },
+    {
+     "w": "încarcă.",
+     "start": 3.884,
+     "end": 4.545,
+     "clean": "încarcă"
+    },
+    {
+     "w": "Apoi",
+     "start": 4.871,
+     "end": 5.196,
+     "clean": "Apoi"
+    },
+    {
+     "w": "sare",
+     "start": 5.254,
+     "end": 5.497,
+     "clean": "sare"
+    },
+    {
+     "w": "spre",
+     "start": 5.532,
+     "end": 5.718,
+     "clean": "spre"
+    },
+    {
+     "w": "țintă",
+     "start": 5.776,
+     "end": 6.09,
+     "clean": "țintă"
+    },
+    {
+     "w": "pe",
+     "start": 6.148,
+     "end": 6.264,
+     "clean": "pe"
+    },
+    {
+     "w": "ease",
+     "start": 6.31,
+     "end": 6.519,
+     "clean": "ease"
+    },
+    {
+     "w": "out",
+     "start": 6.566,
+     "end": 6.693,
+     "clean": "out"
+    },
+    {
+     "w": "cubic,",
+     "start": 6.751,
+     "end": 7.204,
+     "clean": "cubic"
+    },
+    {
+     "w": "într-o",
+     "start": 7.262,
+     "end": 7.518,
+     "clean": "într-o"
+    },
+    {
+     "w": "zecime",
+     "start": 7.564,
+     "end": 7.901,
+     "clean": "zecime"
+    },
+    {
+     "w": "de",
+     "start": 7.947,
+     "end": 8.017,
+     "clean": "de"
+    },
+    {
+     "w": "secundă,",
+     "start": 8.063,
+     "end": 8.655,
+     "clean": "secundă"
+    },
+    {
+     "w": "și",
+     "start": 8.899,
+     "end": 9.015,
+     "clean": "și"
+    },
+    {
+     "w": "se",
+     "start": 9.062,
+     "end": 9.12,
+     "clean": "se"
+    },
+    {
+     "w": "întoarce",
+     "start": 9.166,
+     "end": 9.549,
+     "clean": "întoarce"
+    },
+    {
+     "w": "acasă",
+     "start": 9.584,
+     "end": 9.956,
+     "clean": "acasă"
+    },
+    {
+     "w": "lin.",
+     "start": 10.014,
+     "end": 10.478,
+     "clean": "lin"
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "text": "Pe deasupra se turtește și se lungește puțin. Iar când stă, respiră. Scara lui pe verticală urmează un sinus.",
+   "src": "voice/s09/08.mp3",
+   "dur": 7.675,
+   "speechStart": 0.191,
+   "speechEnd": 7.553,
+   "words": [
+    {
+     "w": "Pe",
+     "start": 0.191,
+     "end": 0.331,
+     "clean": "Pe"
+    },
+    {
+     "w": "deasupra",
+     "start": 0.365,
+     "end": 0.749,
+     "clean": "deasupra"
+    },
+    {
+     "w": "se",
+     "start": 0.796,
+     "end": 0.877,
+     "clean": "se"
+    },
+    {
+     "w": "turtește",
+     "start": 0.923,
+     "end": 1.422,
+     "clean": "turtește"
+    },
+    {
+     "w": "și",
+     "start": 1.492,
+     "end": 1.584,
+     "clean": "și"
+    },
+    {
+     "w": "se",
+     "start": 1.632,
+     "end": 1.702,
+     "clean": "se"
+    },
+    {
+     "w": "lungește",
+     "start": 1.748,
+     "end": 2.178,
+     "clean": "lungește"
+    },
+    {
+     "w": "puțin.",
+     "start": 2.224,
+     "end": 2.758,
+     "clean": "puțin"
+    },
+    {
+     "w": "Iar",
+     "start": 3.037,
+     "end": 3.245,
+     "clean": "Iar"
+    },
+    {
+     "w": "când",
+     "start": 3.315,
+     "end": 3.477,
+     "clean": "când"
+    },
+    {
+     "w": "stă,",
+     "start": 3.513,
+     "end": 3.873,
+     "clean": "stă"
+    },
+    {
+     "w": "respiră.",
+     "start": 3.989,
+     "end": 4.72,
+     "clean": "respiră"
+    },
+    {
+     "w": "Scara",
+     "start": 5.102,
+     "end": 5.416,
+     "clean": "Scara"
+    },
+    {
+     "w": "lui",
+     "start": 5.462,
+     "end": 5.602,
+     "clean": "lui"
+    },
+    {
+     "w": "pe",
+     "start": 5.66,
+     "end": 5.73,
+     "clean": "pe"
+    },
+    {
+     "w": "verticală",
+     "start": 5.764,
+     "end": 6.252,
+     "clean": "verticală"
+    },
+    {
+     "w": "urmează",
+     "start": 6.298,
+     "end": 6.681,
+     "clean": "urmează"
+    },
+    {
+     "w": "un",
+     "start": 6.74,
+     "end": 6.833,
+     "clean": "un"
+    },
+    {
+     "w": "sinus.",
+     "start": 6.903,
+     "end": 7.553,
+     "clean": "sinus"
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "text": "Camera folosește SmoothDamp. Gândește-te la un arc cu amortizare critică. Ajunge la țintă cât mai repede, fără să treacă de ea și fără să oscileze.",
+   "src": "voice/s09/09.mp3",
+   "dur": 9.555,
+   "speechStart": 0.122,
+   "speechEnd": 9.468,
+   "words": [
+    {
+     "w": "Camera",
+     "start": 0.122,
+     "end": 0.505,
+     "clean": "Camera"
+    },
+    {
+     "w": "folosește",
+     "start": 0.563,
+     "end": 1.074,
+     "clean": "folosește"
+    },
+    {
+     "w": "SmoothDamp.",
+     "start": 1.132,
+     "end": 2.014,
+     "clean": "SmoothDamp"
+    },
+    {
+     "w": "Gândește-te",
+     "start": 2.34,
+     "end": 2.874,
+     "clean": "Gândește-te"
+    },
+    {
+     "w": "la",
+     "start": 2.932,
+     "end": 3.001,
+     "clean": "la"
+    },
+    {
+     "w": "un",
+     "start": 3.117,
+     "end": 3.199,
+     "clean": "un"
+    },
+    {
+     "w": "arc",
+     "start": 3.268,
+     "end": 3.431,
+     "clean": "arc"
+    },
+    {
+     "w": "cu",
+     "start": 3.547,
+     "end": 3.628,
+     "clean": "cu"
+    },
+    {
+     "w": "amortizare",
+     "start": 3.686,
+     "end": 4.278,
+     "clean": "amortizare"
+    },
+    {
+     "w": "critică.",
+     "start": 4.313,
+     "end": 4.963,
+     "clean": "critică"
+    },
+    {
+     "w": "Ajunge",
+     "start": 5.347,
+     "end": 5.718,
+     "clean": "Ajunge"
+    },
+    {
+     "w": "la",
+     "start": 5.776,
+     "end": 5.846,
+     "clean": "la"
+    },
+    {
+     "w": "țintă",
+     "start": 5.904,
+     "end": 6.171,
+     "clean": "țintă"
+    },
+    {
+     "w": "cât",
+     "start": 6.217,
+     "end": 6.345,
+     "clean": "cât"
+    },
+    {
+     "w": "mai",
+     "start": 6.403,
+     "end": 6.508,
+     "clean": "mai"
+    },
+    {
+     "w": "repede,",
+     "start": 6.554,
+     "end": 6.925,
+     "clean": "repede"
+    },
+    {
+     "w": "fără",
+     "start": 6.984,
+     "end": 7.274,
+     "clean": "fără"
+    },
+    {
+     "w": "să",
+     "start": 7.332,
+     "end": 7.425,
+     "clean": "să"
+    },
+    {
+     "w": "treacă",
+     "start": 7.471,
+     "end": 7.75,
+     "clean": "treacă"
+    },
+    {
+     "w": "de",
+     "start": 7.808,
+     "end": 7.877,
+     "clean": "de"
+    },
+    {
+     "w": "ea",
+     "start": 7.901,
+     "end": 8.017,
+     "clean": "ea"
+    },
+    {
+     "w": "și",
+     "start": 8.11,
+     "end": 8.203,
+     "clean": "și"
+    },
+    {
+     "w": "fără",
+     "start": 8.284,
+     "end": 8.481,
+     "clean": "fără"
+    },
+    {
+     "w": "să",
+     "start": 8.539,
+     "end": 8.597,
+     "clean": "să"
+    },
+    {
+     "w": "oscileze.",
+     "start": 8.679,
+     "end": 9.468,
+     "clean": "oscileze"
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "text": "Pe hol, camera urmărește echipa cu un timp de netezire de zero virgulă douăzeci și doi de secunde. Ținta sare, camera nu.",
+   "src": "voice/s09/10.mp3",
+   "dur": 8.174,
+   "speechStart": 0.087,
+   "speechEnd": 8.098,
+   "words": [
+    {
+     "w": "Pe",
+     "start": 0.087,
+     "end": 0.215,
+     "clean": "Pe"
+    },
+    {
+     "w": "hol,",
+     "start": 0.273,
+     "end": 0.772,
+     "clean": "hol"
+    },
+    {
+     "w": "camera",
+     "start": 0.923,
+     "end": 1.26,
+     "clean": "camera"
+    },
+    {
+     "w": "urmărește",
+     "start": 1.318,
+     "end": 1.794,
+     "clean": "urmărește"
+    },
+    {
+     "w": "echipa",
+     "start": 1.817,
+     "end": 2.131,
+     "clean": "echipa"
+    },
+    {
+     "w": "cu",
+     "start": 2.165,
+     "end": 2.258,
+     "clean": "cu"
+    },
+    {
+     "w": "un",
+     "start": 2.316,
+     "end": 2.374,
+     "clean": "un"
+    },
+    {
+     "w": "timp",
+     "start": 2.432,
+     "end": 2.63,
+     "clean": "timp"
+    },
+    {
+     "w": "de",
+     "start": 2.676,
+     "end": 2.734,
+     "clean": "de"
+    },
+    {
+     "w": "netezire",
+     "start": 2.769,
+     "end": 3.221,
+     "clean": "netezire"
+    },
+    {
+     "w": "de",
+     "start": 3.279,
+     "end": 3.361,
+     "clean": "de"
+    },
+    {
+     "w": "zero",
+     "start": 3.442,
+     "end": 3.709,
+     "clean": "zero"
+    },
+    {
+     "w": "virgulă",
+     "start": 3.767,
+     "end": 4.197,
+     "clean": "virgulă"
+    },
+    {
+     "w": "douăzeci",
+     "start": 4.255,
+     "end": 4.812,
+     "clean": "douăzeci"
+    },
+    {
+     "w": "și",
+     "start": 4.87,
+     "end": 4.963,
+     "clean": "și"
+    },
+    {
+     "w": "doi",
+     "start": 5.021,
+     "end": 5.195,
+     "clean": "doi"
+    },
+    {
+     "w": "de",
+     "start": 5.242,
+     "end": 5.311,
+     "clean": "de"
+    },
+    {
+     "w": "secunde.",
+     "start": 5.358,
+     "end": 6.019,
+     "clean": "secunde"
+    },
+    {
+     "w": "Ținta",
+     "start": 6.228,
+     "end": 6.6,
+     "clean": "Ținta"
+    },
+    {
+     "w": "sare,",
+     "start": 6.681,
+     "end": 7.111,
+     "clean": "sare"
+    },
+    {
+     "w": "camera",
+     "start": 7.18,
+     "end": 7.61,
+     "clean": "camera"
+    },
+    {
+     "w": "nu.",
+     "start": 7.726,
+     "end": 8.098,
+     "clean": "nu"
+    }
+   ]
+  },
+  {
+   "n": 11,
+   "text": "Și shake-ul. Fiecare lovitură adaugă trauma, un număr între zero și unu care scade în timp.",
+   "src": "voice/s09/11.mp3",
+   "dur": 6.263,
+   "speechStart": 0.075,
+   "speechEnd": 6.042,
+   "words": [
+    {
+     "w": "Și",
+     "start": 0.075,
+     "end": 0.225,
+     "clean": "Și"
+    },
+    {
+     "w": "shake-ul.",
+     "start": 0.284,
+     "end": 0.852,
+     "clean": "shake-ul"
+    },
+    {
+     "w": "Fiecare",
+     "start": 1.294,
+     "end": 1.793,
+     "clean": "Fiecare"
+    },
+    {
+     "w": "lovitură",
+     "start": 1.828,
+     "end": 2.257,
+     "clean": "lovitură"
+    },
+    {
+     "w": "adaugă",
+     "start": 2.292,
+     "end": 2.71,
+     "clean": "adaugă"
+    },
+    {
+     "w": "trauma,",
+     "start": 2.756,
+     "end": 3.279,
+     "clean": "trauma"
+    },
+    {
+     "w": "un",
+     "start": 3.36,
+     "end": 3.476,
+     "clean": "un"
+    },
+    {
+     "w": "număr",
+     "start": 3.511,
+     "end": 3.767,
+     "clean": "număr"
+    },
+    {
+     "w": "între",
+     "start": 3.825,
+     "end": 4.057,
+     "clean": "între"
+    },
+    {
+     "w": "zero",
+     "start": 4.115,
+     "end": 4.428,
+     "clean": "zero"
+    },
+    {
+     "w": "și",
+     "start": 4.521,
+     "end": 4.614,
+     "clean": "și"
+    },
+    {
+     "w": "unu",
+     "start": 4.73,
+     "end": 4.904,
+     "clean": "unu"
+    },
+    {
+     "w": "care",
+     "start": 4.951,
+     "end": 5.137,
+     "clean": "care"
+    },
+    {
+     "w": "scade",
+     "start": 5.171,
+     "end": 5.45,
+     "clean": "scade"
+    },
+    {
+     "w": "în",
+     "start": 5.485,
+     "end": 5.543,
+     "clean": "în"
+    },
+    {
+     "w": "timp.",
+     "start": 5.601,
+     "end": 6.042,
+     "clean": "timp"
+    }
+   ]
+  },
+  {
+   "n": 12,
+   "text": "Camera nu tremură cu trauma, ci cu trauma la pătrat. Loviturile mici abia se simt, cele mari se simt mult.",
+   "src": "voice/s09/12.mp3",
+   "dur": 6.994,
+   "speechStart": 0.221,
+   "speechEnd": 6.803,
+   "words": [
+    {
+     "w": "Camera",
+     "start": 0.221,
+     "end": 0.569,
+     "clean": "Camera"
+    },
+    {
+     "w": "nu",
+     "start": 0.65,
+     "end": 0.731,
+     "clean": "nu"
+    },
+    {
+     "w": "tremură",
+     "start": 0.789,
+     "end": 1.15,
+     "clean": "tremură"
+    },
+    {
+     "w": "cu",
+     "start": 1.197,
+     "end": 1.278,
+     "clean": "cu"
+    },
+    {
+     "w": "trauma,",
+     "start": 1.323,
+     "end": 1.754,
+     "clean": "trauma"
+    },
+    {
+     "w": "ci",
+     "start": 1.776,
+     "end": 1.88,
+     "clean": "ci"
+    },
+    {
+     "w": "cu",
+     "start": 1.939,
+     "end": 2.031,
+     "clean": "cu"
+    },
+    {
+     "w": "trauma",
+     "start": 2.09,
+     "end": 2.45,
+     "clean": "trauma"
+    },
+    {
+     "w": "la",
+     "start": 2.507,
+     "end": 2.578,
+     "clean": "la"
+    },
+    {
+     "w": "pătrat.",
+     "start": 2.624,
+     "end": 3.204,
+     "clean": "pătrat"
+    },
+    {
+     "w": "Loviturile",
+     "start": 3.715,
+     "end": 4.272,
+     "clean": "Loviturile"
+    },
+    {
+     "w": "mici",
+     "start": 4.319,
+     "end": 4.528,
+     "clean": "mici"
+    },
+    {
+     "w": "abia",
+     "start": 4.562,
+     "end": 4.76,
+     "clean": "abia"
+    },
+    {
+     "w": "se",
+     "start": 4.806,
+     "end": 4.912,
+     "clean": "se"
+    },
+    {
+     "w": "simt,",
+     "start": 4.969,
+     "end": 5.352,
+     "clean": "simt"
+    },
+    {
+     "w": "cele",
+     "start": 5.41,
+     "end": 5.665,
+     "clean": "cele"
+    },
+    {
+     "w": "mari",
+     "start": 5.724,
+     "end": 5.932,
+     "clean": "mari"
+    },
+    {
+     "w": "se",
+     "start": 5.956,
+     "end": 6.049,
+     "clean": "se"
+    },
+    {
+     "w": "simt",
+     "start": 6.096,
+     "end": 6.34,
+     "clean": "simt"
+    },
+    {
+     "w": "mult.",
+     "start": 6.397,
+     "end": 6.803,
+     "clean": "mult"
+    }
+   ]
+  },
+  {
+   "n": 13,
+   "text": "Direcția vine din zgomot Perlin, nu din random. Zgomotul e continuu, așa că imaginea tremură, nu sare dintr-un loc în altul.",
+   "src": "voice/s09/13.mp3",
+   "dur": 8.209,
+   "speechStart": 0.192,
+   "speechEnd": 8.017,
+   "words": [
+    {
+     "w": "Direcția",
+     "start": 0.192,
+     "end": 0.668,
+     "clean": "Direcția"
+    },
+    {
+     "w": "vine",
+     "start": 0.715,
+     "end": 0.912,
+     "clean": "vine"
+    },
+    {
+     "w": "din",
+     "start": 0.959,
+     "end": 1.121,
+     "clean": "din"
+    },
+    {
+     "w": "zgomot",
+     "start": 1.168,
+     "end": 1.527,
+     "clean": "zgomot"
+    },
+    {
+     "w": "Perlin,",
+     "start": 1.62,
+     "end": 2.143,
+     "clean": "Perlin"
+    },
+    {
+     "w": "nu",
+     "start": 2.189,
+     "end": 2.329,
+     "clean": "nu"
+    },
+    {
+     "w": "din",
+     "start": 2.387,
+     "end": 2.561,
+     "clean": "din"
+    },
+    {
+     "w": "random.",
+     "start": 2.654,
+     "end": 3.281,
+     "clean": "random"
+    },
+    {
+     "w": "Zgomotul",
+     "start": 3.791,
+     "end": 4.233,
+     "clean": "Zgomotul"
+    },
+    {
+     "w": "e",
+     "start": 4.279,
+     "end": 4.302,
+     "clean": "e"
+    },
+    {
+     "w": "continuu,",
+     "start": 4.349,
+     "end": 4.848,
+     "clean": "continuu"
+    },
+    {
+     "w": "așa",
+     "start": 4.883,
+     "end": 5.08,
+     "clean": "așa"
+    },
+    {
+     "w": "că",
+     "start": 5.127,
+     "end": 5.208,
+     "clean": "că"
+    },
+    {
+     "w": "imaginea",
+     "start": 5.266,
+     "end": 5.695,
+     "clean": "imaginea"
+    },
+    {
+     "w": "tremură,",
+     "start": 5.765,
+     "end": 6.276,
+     "clean": "tremură"
+    },
+    {
+     "w": "nu",
+     "start": 6.357,
+     "end": 6.52,
+     "clean": "nu"
+    },
+    {
+     "w": "sare",
+     "start": 6.578,
+     "end": 6.822,
+     "clean": "sare"
+    },
+    {
+     "w": "dintr-un",
+     "start": 6.868,
+     "end": 7.205,
+     "clean": "dintr-un"
+    },
+    {
+     "w": "loc",
+     "start": 7.251,
+     "end": 7.402,
+     "clean": "loc"
+    },
+    {
+     "w": "în",
+     "start": 7.46,
+     "end": 7.507,
+     "clean": "în"
+    },
+    {
+     "w": "altul.",
+     "start": 7.576,
+     "end": 8.017,
+     "clean": "altul"
+    }
+   ]
+  },
+  {
+   "n": 14,
+   "text": "Pune peste asta un hit-stop, timpul înghețat câteva zeci de milisecunde, și creierul citește lovitura ca având greutate.",
+   "src": "voice/s09/14.mp3",
+   "dur": 7.309,
+   "speechStart": 0.192,
+   "speechEnd": 7.309,
+   "words": [
+    {
+     "w": "Pune",
+     "start": 0.192,
+     "end": 0.435,
+     "clean": "Pune"
+    },
+    {
+     "w": "peste",
+     "start": 0.47,
+     "end": 0.702,
+     "clean": "peste"
+    },
+    {
+     "w": "asta",
+     "start": 0.737,
+     "end": 0.946,
+     "clean": "asta"
+    },
+    {
+     "w": "un",
+     "start": 1.004,
+     "end": 1.086,
+     "clean": "un"
+    },
+    {
+     "w": "hit-stop,",
+     "start": 1.132,
+     "end": 1.689,
+     "clean": "hit-stop"
+    },
+    {
+     "w": "timpul",
+     "start": 1.712,
+     "end": 2.049,
+     "clean": "timpul"
+    },
+    {
+     "w": "înghețat",
+     "start": 2.107,
+     "end": 2.537,
+     "clean": "înghețat"
+    },
+    {
+     "w": "câteva",
+     "start": 2.583,
+     "end": 2.908,
+     "clean": "câteva"
+    },
+    {
+     "w": "zeci",
+     "start": 2.966,
+     "end": 3.164,
+     "clean": "zeci"
+    },
+    {
+     "w": "de",
+     "start": 3.199,
+     "end": 3.257,
+     "clean": "de"
+    },
+    {
+     "w": "milisecunde,",
+     "start": 3.303,
+     "end": 4.127,
+     "clean": "milisecunde"
+    },
+    {
+     "w": "și",
+     "start": 4.336,
+     "end": 4.464,
+     "clean": "și"
+    },
+    {
+     "w": "creierul",
+     "start": 4.511,
+     "end": 4.917,
+     "clean": "creierul"
+    },
+    {
+     "w": "citește",
+     "start": 4.963,
+     "end": 5.335,
+     "clean": "citește"
+    },
+    {
+     "w": "lovitura",
+     "start": 5.381,
+     "end": 5.811,
+     "clean": "lovitura"
+    },
+    {
+     "w": "ca",
+     "start": 5.857,
+     "end": 5.973,
+     "clean": "ca"
+    },
+    {
+     "w": "având",
+     "start": 5.997,
+     "end": 6.229,
+     "clean": "având"
+    },
+    {
+     "w": "greutate.",
+     "start": 6.275,
+     "end": 7.309,
+     "clean": "greutate"
+    }
+   ]
+  }
+ ]
+}

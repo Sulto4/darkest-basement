@@ -1,0 +1,133 @@
+{
+ "scene": "s09",
+ "voice": "NKQBjfoAhInP7Bjx6P7l",
+ "model": "eleven_multilingual_v2",
+ "lines": [
+  {
+   "n": 1,
+   "text": "Acum partea care face un joc să se simtă bine. Și e mai multă matematică decât ai crede.",
+   "whisper_ro": "Acum partea care face un joc să se simtă bine. Și e mai multă matematică decât ai crede.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 2,
+   "text": "Totul pornește de la lerp. Interpolare liniară. a plus, b minus a, ori t.",
+   "whisper_ro": "Totul pornește de la lerp. Interpolare liniară. A plus B minus A ori T.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 3,
+   "text": "Pentru t de la zero la unu mergi pe segment de la a la b. Dacă t crește uniform, mișcarea arată robotic. Pornește brusc și se oprește brusc.",
+   "whisper_ro": "Pentru T de la 0 la 1 mergi pe segment de la A la B. Dacă T crește uniform, mișcarea arată robotic. Pornește brusc și se oprește brusc.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 4,
+   "text": "Trucul e să treci t printr-o funcție de easing. O funcție de la zero, unu în zero, unu, cu f de zero egal cu zero și f de unu egal cu unu.",
+   "whisper_ro": "Trucul e să treci T printr-o funcție de easing. O funcție de la 0, 1 în 0, 1 cu f de 0 egal cu 0 și f de 1 egal cu 1.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 5,
+   "text": "Ease out cubic pleacă repede și frânează moale. E unu minus, unu minus t, la puterea a treia.",
+   "whisper_ro": "IZOUT cubic pleacă repede și frânează moale. E 1 minus 1 minus T, la puterea a treia.",
+   "whisper_en": "Ease out cubic goes fast and stops softly. It's 1 minus 1 minus T, at power 3.",
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 6,
+   "text": "Ease out back trece puțin de unu și revine. De aici vine senzația de pop.",
+   "whisper_ro": "Ease Out Back trece puțin de 1 și revine. De aici vine senzația de pop.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 7,
+   "text": "Când un erou atacă, întâi se trage puțin înapoi, ca un arc care se încarcă. Apoi sare spre țintă pe ease out cubic, într-o zecime de secundă, și se întoarce acasă lin.",
+   "whisper_ro": "Când un erou atacă, întâi se trage puțin înapoi, ca un arc care se încarcă. Apoi sare spre țintă pe ease-out cubic, într-o zecime de secundă, și se întoarce acasă lin.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 8,
+   "text": "Pe deasupra se turtește și se lungește puțin. Iar când stă, respiră. Scara lui pe verticală urmează un sinus.",
+   "whisper_ro": "Pe deasupra se turtește și se lungește puțin, iar când stă, respiră. Scara lui pe verticală urmează un sinus.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 9,
+   "text": "Camera folosește SmoothDamp. Gândește-te la un arc cu amortizare critică. Ajunge la țintă cât mai repede, fără să treacă de ea și fără să oscileze.",
+   "whisper_ro": "Camera folosește Smooth Damp. Gândește-te la un arc cu amortizare critică. Ajunge la țintă cât mai repede, fără să treacă de ea și fără să oscileze.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 10,
+   "text": "Pe hol, camera urmărește echipa cu un timp de netezire de zero virgulă douăzeci și doi de secunde. Ținta sare, camera nu.",
+   "whisper_ro": "Pe hol, camera urmărește echipa cu un timp de netezire de 0,22 de secunde. Ținta sare, camera nu.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 11,
+   "text": "Și shake-ul. Fiecare lovitură adaugă trauma, un număr între zero și unu care scade în timp.",
+   "whisper_ro": "și shake-ul. Fiecare lovitură adaugă trauma, un număr între 0 și 1 care scade în timp.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 12,
+   "text": "Camera nu tremură cu trauma, ci cu trauma la pătrat. Loviturile mici abia se simt, cele mari se simt mult.",
+   "whisper_ro": "Camera nu tremură cu trauma, ci cu trauma la pătrat. Loviturile mici abia se simt, cele mari se simt mult.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 13,
+   "text": "Direcția vine din zgomot Perlin, nu din random. Zgomotul e continuu, așa că imaginea tremură, nu sare dintr-un loc în altul.",
+   "whisper_ro": "Direcția vine din zgomot perlin, nu din random. Zgomotul e continuu, așa că imaginea tremură, nu sare dintr-un loc în altul.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 14,
+   "text": "Pune peste asta un hit-stop, timpul înghețat câteva zeci de milisecunde, și creierul citește lovitura ca având greutate.",
+   "whisper_ro": "Pune peste asta un hit stop, timpul înghețat câteva zeci de milisecunde, și creierul citește lovitura ca având greutate.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  }
+ ]
+}

@@ -1,0 +1,1285 @@
+{
+ "voice": "NKQBjfoAhInP7Bjx6P7l",
+ "model": "eleven_multilingual_v2",
+ "speed": 1.0,
+ "stability": 0.5,
+ "style": 0.2,
+ "lines": [
+  {
+   "n": 1,
+   "text": "Harta unui etaj e un graf. Camerele sunt noduri pe o grilă de cinci pe patru, iar holurile sunt muchiile.",
+   "src": "voice/s04/01.mp3",
+   "dur": 7.662,
+   "speechStart": 0.0,
+   "speechEnd": 7.361,
+   "words": [
+    {
+     "w": "Harta",
+     "start": 0.0,
+     "end": 0.418,
+     "clean": "Harta"
+    },
+    {
+     "w": "unui",
+     "start": 0.499,
+     "end": 0.731,
+     "clean": "unui"
+    },
+    {
+     "w": "etaj",
+     "start": 0.755,
+     "end": 1.068,
+     "clean": "etaj"
+    },
+    {
+     "w": "e",
+     "start": 1.103,
+     "end": 1.138,
+     "clean": "e"
+    },
+    {
+     "w": "un",
+     "start": 1.219,
+     "end": 1.3,
+     "clean": "un"
+    },
+    {
+     "w": "graf.",
+     "start": 1.358,
+     "end": 1.95,
+     "clean": "graf"
+    },
+    {
+     "w": "Camerele",
+     "start": 2.229,
+     "end": 2.728,
+     "clean": "Camerele"
+    },
+    {
+     "w": "sunt",
+     "start": 2.775,
+     "end": 3.007,
+     "clean": "sunt"
+    },
+    {
+     "w": "noduri",
+     "start": 3.123,
+     "end": 3.495,
+     "clean": "noduri"
+    },
+    {
+     "w": "pe",
+     "start": 3.518,
+     "end": 3.611,
+     "clean": "pe"
+    },
+    {
+     "w": "o",
+     "start": 3.657,
+     "end": 3.68,
+     "clean": "o"
+    },
+    {
+     "w": "grilă",
+     "start": 3.727,
+     "end": 3.994,
+     "clean": "grilă"
+    },
+    {
+     "w": "de",
+     "start": 4.04,
+     "end": 4.11,
+     "clean": "de"
+    },
+    {
+     "w": "cinci",
+     "start": 4.156,
+     "end": 4.4,
+     "clean": "cinci"
+    },
+    {
+     "w": "pe",
+     "start": 4.435,
+     "end": 4.516,
+     "clean": "pe"
+    },
+    {
+     "w": "patru,",
+     "start": 4.563,
+     "end": 5.05,
+     "clean": "patru"
+    },
+    {
+     "w": "iar",
+     "start": 5.259,
+     "end": 5.457,
+     "clean": "iar"
+    },
+    {
+     "w": "holurile",
+     "start": 5.538,
+     "end": 6.037,
+     "clean": "holurile"
+    },
+    {
+     "w": "sunt",
+     "start": 6.095,
+     "end": 6.362,
+     "clean": "sunt"
+    },
+    {
+     "w": "muchiile.",
+     "start": 6.478,
+     "end": 7.361,
+     "clean": "muchiile"
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "text": "Cum o generăm? Pornim dintr-o cameră aleasă la întâmplare.",
+   "src": "voice/s04/02.mp3",
+   "dur": 4.325,
+   "speechStart": 0.302,
+   "speechEnd": 4.238,
+   "words": [
+    {
+     "w": "Cum",
+     "start": 0.302,
+     "end": 0.523,
+     "clean": "Cum"
+    },
+    {
+     "w": "o",
+     "start": 0.593,
+     "end": 0.616,
+     "clean": "o"
+    },
+    {
+     "w": "generăm?",
+     "start": 0.674,
+     "end": 1.277,
+     "clean": "generăm"
+    },
+    {
+     "w": "Pornim",
+     "start": 1.88,
+     "end": 2.276,
+     "clean": "Pornim"
+    },
+    {
+     "w": "dintr-o",
+     "start": 2.334,
+     "end": 2.59,
+     "clean": "dintr-o"
+    },
+    {
+     "w": "cameră",
+     "start": 2.636,
+     "end": 2.938,
+     "clean": "cameră"
+    },
+    {
+     "w": "aleasă",
+     "start": 2.984,
+     "end": 3.309,
+     "clean": "aleasă"
+    },
+    {
+     "w": "la",
+     "start": 3.379,
+     "end": 3.437,
+     "clean": "la"
+    },
+    {
+     "w": "întâmplare.",
+     "start": 3.484,
+     "end": 4.238,
+     "clean": "întâmplare"
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "text": "La fiecare pas ne uităm la locurile libere de lângă camerele deja puse. Alegem unul la întâmplare și îl legăm de vecinul lui.",
+   "src": "voice/s04/03.mp3",
+   "dur": 7.598,
+   "speechStart": 0.087,
+   "speechEnd": 7.378,
+   "words": [
+    {
+     "w": "La",
+     "start": 0.087,
+     "end": 0.18,
+     "clean": "La"
+    },
+    {
+     "w": "fiecare",
+     "start": 0.227,
+     "end": 0.598,
+     "clean": "fiecare"
+    },
+    {
+     "w": "pas",
+     "start": 0.645,
+     "end": 0.819,
+     "clean": "pas"
+    },
+    {
+     "w": "ne",
+     "start": 0.9,
+     "end": 0.958,
+     "clean": "ne"
+    },
+    {
+     "w": "uităm",
+     "start": 0.993,
+     "end": 1.26,
+     "clean": "uităm"
+    },
+    {
+     "w": "la",
+     "start": 1.318,
+     "end": 1.376,
+     "clean": "la"
+    },
+    {
+     "w": "locurile",
+     "start": 1.434,
+     "end": 1.863,
+     "clean": "locurile"
+    },
+    {
+     "w": "libere",
+     "start": 1.921,
+     "end": 2.27,
+     "clean": "libere"
+    },
+    {
+     "w": "de",
+     "start": 2.328,
+     "end": 2.397,
+     "clean": "de"
+    },
+    {
+     "w": "lângă",
+     "start": 2.444,
+     "end": 2.664,
+     "clean": "lângă"
+    },
+    {
+     "w": "camerele",
+     "start": 2.723,
+     "end": 3.141,
+     "clean": "camerele"
+    },
+    {
+     "w": "deja",
+     "start": 3.199,
+     "end": 3.431,
+     "clean": "deja"
+    },
+    {
+     "w": "puse.",
+     "start": 3.477,
+     "end": 3.953,
+     "clean": "puse"
+    },
+    {
+     "w": "Alegem",
+     "start": 4.278,
+     "end": 4.661,
+     "clean": "Alegem"
+    },
+    {
+     "w": "unul",
+     "start": 4.731,
+     "end": 4.905,
+     "clean": "unul"
+    },
+    {
+     "w": "la",
+     "start": 4.963,
+     "end": 5.045,
+     "clean": "la"
+    },
+    {
+     "w": "întâmplare",
+     "start": 5.091,
+     "end": 5.671,
+     "clean": "întâmplare"
+    },
+    {
+     "w": "și",
+     "start": 5.741,
+     "end": 5.846,
+     "clean": "și"
+    },
+    {
+     "w": "îl",
+     "start": 5.915,
+     "end": 6.02,
+     "clean": "îl"
+    },
+    {
+     "w": "legăm",
+     "start": 6.078,
+     "end": 6.356,
+     "clean": "legăm"
+    },
+    {
+     "w": "de",
+     "start": 6.415,
+     "end": 6.473,
+     "clean": "de"
+    },
+    {
+     "w": "vecinul",
+     "start": 6.519,
+     "end": 6.937,
+     "clean": "vecinul"
+    },
+    {
+     "w": "lui.",
+     "start": 6.983,
+     "end": 7.378,
+     "clean": "lui"
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "text": "Fiecare cameră nouă vine cu exact o muchie. Deci n camere au n minus unu muchii și totul e conectat. Adică un arbore de acoperire.",
+   "src": "voice/s04/04.mp3",
+   "dur": 8.917,
+   "speechStart": 0.221,
+   "speechEnd": 8.697,
+   "words": [
+    {
+     "w": "Fiecare",
+     "start": 0.221,
+     "end": 0.697,
+     "clean": "Fiecare"
+    },
+    {
+     "w": "cameră",
+     "start": 0.744,
+     "end": 1.056,
+     "clean": "cameră"
+    },
+    {
+     "w": "nouă",
+     "start": 1.114,
+     "end": 1.323,
+     "clean": "nouă"
+    },
+    {
+     "w": "vine",
+     "start": 1.358,
+     "end": 1.544,
+     "clean": "vine"
+    },
+    {
+     "w": "cu",
+     "start": 1.59,
+     "end": 1.695,
+     "clean": "cu"
+    },
+    {
+     "w": "exact",
+     "start": 1.765,
+     "end": 2.195,
+     "clean": "exact"
+    },
+    {
+     "w": "o",
+     "start": 2.288,
+     "end": 2.311,
+     "clean": "o"
+    },
+    {
+     "w": "muchie.",
+     "start": 2.381,
+     "end": 2.983,
+     "clean": "muchie"
+    },
+    {
+     "w": "Deci",
+     "start": 3.367,
+     "end": 3.669,
+     "clean": "Deci"
+    },
+    {
+     "w": "n",
+     "start": 3.762,
+     "end": 3.797,
+     "clean": "n"
+    },
+    {
+     "w": "camere",
+     "start": 3.867,
+     "end": 4.192,
+     "clean": "camere"
+    },
+    {
+     "w": "au",
+     "start": 4.227,
+     "end": 4.366,
+     "clean": "au"
+    },
+    {
+     "w": "n",
+     "start": 4.482,
+     "end": 4.54,
+     "clean": "n"
+    },
+    {
+     "w": "minus",
+     "start": 4.61,
+     "end": 4.864,
+     "clean": "minus"
+    },
+    {
+     "w": "unu",
+     "start": 4.947,
+     "end": 5.085,
+     "clean": "unu"
+    },
+    {
+     "w": "muchii",
+     "start": 5.131,
+     "end": 5.468,
+     "clean": "muchii"
+    },
+    {
+     "w": "și",
+     "start": 5.55,
+     "end": 5.654,
+     "clean": "și"
+    },
+    {
+     "w": "totul",
+     "start": 5.712,
+     "end": 6.026,
+     "clean": "totul"
+    },
+    {
+     "w": "e",
+     "start": 6.073,
+     "end": 6.096,
+     "clean": "e"
+    },
+    {
+     "w": "conectat.",
+     "start": 6.142,
+     "end": 6.826,
+     "clean": "conectat"
+    },
+    {
+     "w": "Adică",
+     "start": 6.909,
+     "end": 7.221,
+     "clean": "Adică"
+    },
+    {
+     "w": "un",
+     "start": 7.314,
+     "end": 7.396,
+     "clean": "un"
+    },
+    {
+     "w": "arbore",
+     "start": 7.454,
+     "end": 7.814,
+     "clean": "arbore"
+    },
+    {
+     "w": "de",
+     "start": 7.861,
+     "end": 7.93,
+     "clean": "de"
+    },
+    {
+     "w": "acoperire.",
+     "start": 7.977,
+     "end": 8.697,
+     "clean": "acoperire"
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "text": "Doar că într-un arbore, între două camere există un singur drum. N-ai ce alege. Așa că mai adăugăm una sau două muchii. Apar bucle, deci apar alegeri.",
+   "src": "voice/s04/05.mp3",
+   "dur": 10.205,
+   "speechStart": 0.221,
+   "speechEnd": 10.043,
+   "words": [
+    {
+     "w": "Doar",
+     "start": 0.221,
+     "end": 0.419,
+     "clean": "Doar"
+    },
+    {
+     "w": "că",
+     "start": 0.477,
+     "end": 0.558,
+     "clean": "că"
+    },
+    {
+     "w": "într-un",
+     "start": 0.639,
+     "end": 0.918,
+     "clean": "într-un"
+    },
+    {
+     "w": "arbore,",
+     "start": 0.988,
+     "end": 1.394,
+     "clean": "arbore"
+    },
+    {
+     "w": "între",
+     "start": 1.44,
+     "end": 1.649,
+     "clean": "între"
+    },
+    {
+     "w": "două",
+     "start": 1.696,
+     "end": 1.916,
+     "clean": "două"
+    },
+    {
+     "w": "camere",
+     "start": 1.951,
+     "end": 2.323,
+     "clean": "camere"
+    },
+    {
+     "w": "există",
+     "start": 2.358,
+     "end": 2.706,
+     "clean": "există"
+    },
+    {
+     "w": "un",
+     "start": 2.764,
+     "end": 2.845,
+     "clean": "un"
+    },
+    {
+     "w": "singur",
+     "start": 2.903,
+     "end": 3.275,
+     "clean": "singur"
+    },
+    {
+     "w": "drum.",
+     "start": 3.344,
+     "end": 3.762,
+     "clean": "drum"
+    },
+    {
+     "w": "N-ai",
+     "start": 3.971,
+     "end": 4.157,
+     "clean": "N-ai"
+    },
+    {
+     "w": "ce",
+     "start": 4.203,
+     "end": 4.296,
+     "clean": "ce"
+    },
+    {
+     "w": "alege.",
+     "start": 4.343,
+     "end": 4.877,
+     "clean": "alege"
+    },
+    {
+     "w": "Așa",
+     "start": 5.26,
+     "end": 5.515,
+     "clean": "Așa"
+    },
+    {
+     "w": "că",
+     "start": 5.55,
+     "end": 5.62,
+     "clean": "că"
+    },
+    {
+     "w": "mai",
+     "start": 5.678,
+     "end": 5.806,
+     "clean": "mai"
+    },
+    {
+     "w": "adăugăm",
+     "start": 5.829,
+     "end": 6.27,
+     "clean": "adăugăm"
+    },
+    {
+     "w": "una",
+     "start": 6.386,
+     "end": 6.549,
+     "clean": "una"
+    },
+    {
+     "w": "sau",
+     "start": 6.607,
+     "end": 6.781,
+     "clean": "sau"
+    },
+    {
+     "w": "două",
+     "start": 6.839,
+     "end": 7.047,
+     "clean": "două"
+    },
+    {
+     "w": "muchii.",
+     "start": 7.083,
+     "end": 7.605,
+     "clean": "muchii"
+    },
+    {
+     "w": "Apar",
+     "start": 7.884,
+     "end": 8.197,
+     "clean": "Apar"
+    },
+    {
+     "w": "bucle,",
+     "start": 8.29,
+     "end": 8.788,
+     "clean": "bucle"
+    },
+    {
+     "w": "deci",
+     "start": 8.846,
+     "end": 9.032,
+     "clean": "deci"
+    },
+    {
+     "w": "apar",
+     "start": 9.056,
+     "end": 9.3,
+     "clean": "apar"
+    },
+    {
+     "w": "alegeri.",
+     "start": 9.358,
+     "end": 10.043,
+     "clean": "alegeri"
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "text": "Cu o condiție. O muchie nouă intră doar dacă rămân măcar două fundături, pentru că ne trebuie locuri pentru boss și pentru comoară.",
+   "src": "voice/s04/06.mp3",
+   "dur": 7.734,
+   "speechStart": 0.163,
+   "speechEnd": 7.513,
+   "words": [
+    {
+     "w": "Cu",
+     "start": 0.163,
+     "end": 0.303,
+     "clean": "Cu"
+    },
+    {
+     "w": "o",
+     "start": 0.384,
+     "end": 0.407,
+     "clean": "o"
+    },
+    {
+     "w": "condiție.",
+     "start": 0.454,
+     "end": 1.197,
+     "clean": "condiție"
+    },
+    {
+     "w": "O",
+     "start": 1.58,
+     "end": 1.649,
+     "clean": "O"
+    },
+    {
+     "w": "muchie",
+     "start": 1.742,
+     "end": 2.079,
+     "clean": "muchie"
+    },
+    {
+     "w": "nouă",
+     "start": 2.137,
+     "end": 2.358,
+     "clean": "nouă"
+    },
+    {
+     "w": "intră",
+     "start": 2.416,
+     "end": 2.706,
+     "clean": "intră"
+    },
+    {
+     "w": "doar",
+     "start": 2.752,
+     "end": 2.903,
+     "clean": "doar"
+    },
+    {
+     "w": "dacă",
+     "start": 2.961,
+     "end": 3.159,
+     "clean": "dacă"
+    },
+    {
+     "w": "rămân",
+     "start": 3.194,
+     "end": 3.403,
+     "clean": "rămân"
+    },
+    {
+     "w": "măcar",
+     "start": 3.461,
+     "end": 3.716,
+     "clean": "măcar"
+    },
+    {
+     "w": "două",
+     "start": 3.797,
+     "end": 4.018,
+     "clean": "două"
+    },
+    {
+     "w": "fundături,",
+     "start": 4.053,
+     "end": 4.61,
+     "clean": "fundături"
+    },
+    {
+     "w": "pentru",
+     "start": 4.633,
+     "end": 4.889,
+     "clean": "pentru"
+    },
+    {
+     "w": "că",
+     "start": 4.924,
+     "end": 4.982,
+     "clean": "că"
+    },
+    {
+     "w": "ne",
+     "start": 5.028,
+     "end": 5.098,
+     "clean": "ne"
+    },
+    {
+     "w": "trebuie",
+     "start": 5.133,
+     "end": 5.4,
+     "clean": "trebuie"
+    },
+    {
+     "w": "locuri",
+     "start": 5.446,
+     "end": 5.725,
+     "clean": "locuri"
+    },
+    {
+     "w": "pentru",
+     "start": 5.748,
+     "end": 6.027,
+     "clean": "pentru"
+    },
+    {
+     "w": "boss",
+     "start": 6.073,
+     "end": 6.328,
+     "clean": "boss"
+    },
+    {
+     "w": "și",
+     "start": 6.41,
+     "end": 6.514,
+     "clean": "și"
+    },
+    {
+     "w": "pentru",
+     "start": 6.561,
+     "end": 6.828,
+     "clean": "pentru"
+    },
+    {
+     "w": "comoară.",
+     "start": 6.874,
+     "end": 7.513,
+     "clean": "comoară"
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "text": "Acum, unde punem boss-ul? Cât mai departe de start.",
+   "src": "voice/s04/07.mp3",
+   "dur": 3.587,
+   "speechStart": 0.221,
+   "speechEnd": 3.425,
+   "words": [
+    {
+     "w": "Acum,",
+     "start": 0.221,
+     "end": 0.615,
+     "clean": "Acum"
+    },
+    {
+     "w": "unde",
+     "start": 0.673,
+     "end": 0.883,
+     "clean": "unde"
+    },
+    {
+     "w": "punem",
+     "start": 0.928,
+     "end": 1.172,
+     "clean": "punem"
+    },
+    {
+     "w": "boss-ul?",
+     "start": 1.23,
+     "end": 1.73,
+     "clean": "boss-ul"
+    },
+    {
+     "w": "Cât",
+     "start": 1.938,
+     "end": 2.136,
+     "clean": "Cât"
+    },
+    {
+     "w": "mai",
+     "start": 2.206,
+     "end": 2.322,
+     "clean": "mai"
+    },
+    {
+     "w": "departe",
+     "start": 2.368,
+     "end": 2.739,
+     "clean": "departe"
+    },
+    {
+     "w": "de",
+     "start": 2.797,
+     "end": 2.867,
+     "clean": "de"
+    },
+    {
+     "w": "start.",
+     "start": 2.913,
+     "end": 3.425,
+     "clean": "start"
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "text": "Aici intră BFS-ul. Startul are distanța zero, vecinii lui unu, vecinii vecinilor doi, și tot așa, cu o coadă.",
+   "src": "voice/s04/08.mp3",
+   "dur": 7.68,
+   "speechStart": 0.162,
+   "speechEnd": 7.488,
+   "words": [
+    {
+     "w": "Aici",
+     "start": 0.162,
+     "end": 0.487,
+     "clean": "Aici"
+    },
+    {
+     "w": "intră",
+     "start": 0.522,
+     "end": 0.743,
+     "clean": "intră"
+    },
+    {
+     "w": "BFS-ul.",
+     "start": 0.789,
+     "end": 1.613,
+     "clean": "BFS-ul"
+    },
+    {
+     "w": "Startul",
+     "start": 1.939,
+     "end": 2.345,
+     "clean": "Startul"
+    },
+    {
+     "w": "are",
+     "start": 2.391,
+     "end": 2.531,
+     "clean": "are"
+    },
+    {
+     "w": "distanța",
+     "start": 2.577,
+     "end": 3.041,
+     "clean": "distanța"
+    },
+    {
+     "w": "zero,",
+     "start": 3.134,
+     "end": 3.483,
+     "clean": "zero"
+    },
+    {
+     "w": "vecinii",
+     "start": 3.529,
+     "end": 3.901,
+     "clean": "vecinii"
+    },
+    {
+     "w": "lui",
+     "start": 3.947,
+     "end": 4.133,
+     "clean": "lui"
+    },
+    {
+     "w": "unu,",
+     "start": 4.249,
+     "end": 4.528,
+     "clean": "unu"
+    },
+    {
+     "w": "vecinii",
+     "start": 4.597,
+     "end": 4.957,
+     "clean": "vecinii"
+    },
+    {
+     "w": "vecinilor",
+     "start": 5.004,
+     "end": 5.514,
+     "clean": "vecinilor"
+    },
+    {
+     "w": "doi,",
+     "start": 5.584,
+     "end": 5.909,
+     "clean": "doi"
+    },
+    {
+     "w": "și",
+     "start": 5.979,
+     "end": 6.083,
+     "clean": "și"
+    },
+    {
+     "w": "tot",
+     "start": 6.141,
+     "end": 6.281,
+     "clean": "tot"
+    },
+    {
+     "w": "așa,",
+     "start": 6.35,
+     "end": 6.664,
+     "clean": "așa"
+    },
+    {
+     "w": "cu",
+     "start": 6.699,
+     "end": 6.816,
+     "clean": "cu"
+    },
+    {
+     "w": "o",
+     "start": 6.884,
+     "end": 6.908,
+     "clean": "o"
+    },
+    {
+     "w": "coadă.",
+     "start": 6.966,
+     "end": 7.488,
+     "clean": "coadă"
+    }
+   ]
+  },
+  {
+   "n": 9,
+   "text": "Camera cu distanța cea mai mare devine boss-ul. La egalitate alegem o fundătură, ca să nu dai peste boss în drum spre altceva.",
+   "src": "voice/s04/09.mp3",
+   "dur": 7.871,
+   "speechStart": 0.192,
+   "speechEnd": 7.68,
+   "words": [
+    {
+     "w": "Camera",
+     "start": 0.192,
+     "end": 0.54,
+     "clean": "Camera"
+    },
+    {
+     "w": "cu",
+     "start": 0.586,
+     "end": 0.668,
+     "clean": "cu"
+    },
+    {
+     "w": "distanța",
+     "start": 0.714,
+     "end": 1.155,
+     "clean": "distanța"
+    },
+    {
+     "w": "cea",
+     "start": 1.213,
+     "end": 1.341,
+     "clean": "cea"
+    },
+    {
+     "w": "mai",
+     "start": 1.387,
+     "end": 1.515,
+     "clean": "mai"
+    },
+    {
+     "w": "mare",
+     "start": 1.573,
+     "end": 1.805,
+     "clean": "mare"
+    },
+    {
+     "w": "devine",
+     "start": 1.852,
+     "end": 2.154,
+     "clean": "devine"
+    },
+    {
+     "w": "boss-ul.",
+     "start": 2.223,
+     "end": 2.85,
+     "clean": "boss-ul"
+    },
+    {
+     "w": "La",
+     "start": 3.233,
+     "end": 3.373,
+     "clean": "La"
+    },
+    {
+     "w": "egalitate",
+     "start": 3.396,
+     "end": 3.942,
+     "clean": "egalitate"
+    },
+    {
+     "w": "alegem",
+     "start": 4.0,
+     "end": 4.325,
+     "clean": "alegem"
+    },
+    {
+     "w": "o",
+     "start": 4.394,
+     "end": 4.418,
+     "clean": "o"
+    },
+    {
+     "w": "fundătură,",
+     "start": 4.464,
+     "end": 5.068,
+     "clean": "fundătură"
+    },
+    {
+     "w": "ca",
+     "start": 5.091,
+     "end": 5.196,
+     "clean": "ca"
+    },
+    {
+     "w": "să",
+     "start": 5.254,
+     "end": 5.323,
+     "clean": "să"
+    },
+    {
+     "w": "nu",
+     "start": 5.381,
+     "end": 5.463,
+     "clean": "nu"
+    },
+    {
+     "w": "dai",
+     "start": 5.509,
+     "end": 5.648,
+     "clean": "dai"
+    },
+    {
+     "w": "peste",
+     "start": 5.695,
+     "end": 5.962,
+     "clean": "peste"
+    },
+    {
+     "w": "boss",
+     "start": 6.02,
+     "end": 6.252,
+     "clean": "boss"
+    },
+    {
+     "w": "în",
+     "start": 6.368,
+     "end": 6.415,
+     "clean": "în"
+    },
+    {
+     "w": "drum",
+     "start": 6.473,
+     "end": 6.705,
+     "clean": "drum"
+    },
+    {
+     "w": "spre",
+     "start": 6.774,
+     "end": 6.995,
+     "clean": "spre"
+    },
+    {
+     "w": "altceva.",
+     "start": 7.018,
+     "end": 7.68,
+     "clean": "altceva"
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "text": "Comoara merge în altă fundătură. Restul camerelor se împart în lupte, un pat pentru odihnă și un curio.",
+   "src": "voice/s04/10.mp3",
+   "dur": 7.285,
+   "speechStart": 0.192,
+   "speechEnd": 7.285,
+   "words": [
+    {
+     "w": "Comoara",
+     "start": 0.192,
+     "end": 0.668,
+     "clean": "Comoara"
+    },
+    {
+     "w": "merge",
+     "start": 0.749,
+     "end": 1.04,
+     "clean": "merge"
+    },
+    {
+     "w": "în",
+     "start": 1.075,
+     "end": 1.144,
+     "clean": "în"
+    },
+    {
+     "w": "altă",
+     "start": 1.225,
+     "end": 1.458,
+     "clean": "altă"
+    },
+    {
+     "w": "fundătură.",
+     "start": 1.504,
+     "end": 2.258,
+     "clean": "fundătură"
+    },
+    {
+     "w": "Restul",
+     "start": 2.7,
+     "end": 3.047,
+     "clean": "Restul"
+    },
+    {
+     "w": "camerelor",
+     "start": 3.106,
+     "end": 3.629,
+     "clean": "camerelor"
+    },
+    {
+     "w": "se",
+     "start": 3.687,
+     "end": 3.755,
+     "clean": "se"
+    },
+    {
+     "w": "împart",
+     "start": 3.791,
+     "end": 4.105,
+     "clean": "împart"
+    },
+    {
+     "w": "în",
+     "start": 4.198,
+     "end": 4.243,
+     "clean": "în"
+    },
+    {
+     "w": "lupte,",
+     "start": 4.314,
+     "end": 4.732,
+     "clean": "lupte"
+    },
+    {
+     "w": "un",
+     "start": 4.848,
+     "end": 4.952,
+     "clean": "un"
+    },
+    {
+     "w": "pat",
+     "start": 5.022,
+     "end": 5.172,
+     "clean": "pat"
+    },
+    {
+     "w": "pentru",
+     "start": 5.231,
+     "end": 5.52,
+     "clean": "pentru"
+    },
+    {
+     "w": "odihnă",
+     "start": 5.556,
+     "end": 5.996,
+     "clean": "odihnă"
+    },
+    {
+     "w": "și",
+     "start": 6.078,
+     "end": 6.171,
+     "clean": "și"
+    },
+    {
+     "w": "un",
+     "start": 6.229,
+     "end": 6.299,
+     "clean": "un"
+    },
+    {
+     "w": "curio.",
+     "start": 6.368,
+     "end": 7.285,
+     "clean": "curio"
+    }
+   ]
+  }
+ ]
+}

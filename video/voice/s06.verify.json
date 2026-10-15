@@ -1,0 +1,88 @@
+{
+ "scene": "s06",
+ "voice": "NKQBjfoAhInP7Bjx6P7l",
+ "model": "eleven_multilingual_v2",
+ "lines": [
+  {
+   "n": 1,
+   "text": "Lupta. Fiecare rundă începe cu inițiativa. Fiecare personaj aruncă un zar de la zero la trei și îl adună la viteza lui.",
+   "whisper_ro": "Lupta. Fiecare rundă începe cu inițiativa. Fiecare personaj aruncă un zar de la 0 la 3 și îl adună la viteza lui.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 2,
+   "text": "Apoi sortăm descrescător. Asta e toată ordinea turelor. O sortare.",
+   "whisper_ro": "Apoi sortăm descrescător. Asta e toată ordinea turelor. O sortare.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 3,
+   "text": "La egalitate merg întâi eroii, iar dacă tot e egal, decide id-ul. Comparatorul trebuie să fie o ordine totală, pentru că sortarea din C sharp nu e stabilă. Altfel aceeași rundă ar putea ieși diferit.",
+   "whisper_ro": "La egalitate merg întâi eroii, iar dacă tot e egal, decide idul. Comparatorul trebuie să fie o ordine totală, pentru că sortarea din C-sharp nu e stabilă. Altfel, aceeași rundă ar putea ieși diferit.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 4,
+   "text": "Damage-ul e o compunere de funcții. Pornești de la baza cărții și aduni Strength-ul.",
+   "whisper_ro": "Damage-ul e o compunere de funcții. Pornești de la baza cărții și aduni strength-ul.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 5,
+   "text": "Dacă atacatorul e slăbit, înmulțești cu zero virgulă șaptezeci și cinci. Dacă ținta e marcată, cu unu virgulă cinci. Crit-ul, încă o dată unu virgulă cinci.",
+   "whisper_ro": "Dacă atacatorul e slăbit, înmulțești cu 0,75. Dacă ținta e marcată, cu 1,5. Critul, încă o dată 1,5.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 6,
+   "text": "Rotunjești în jos, și abia la final scazi Block-ul.",
+   "whisper_ro": "Rotunjești în jos și abia la final scazi blocul.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 7,
+   "text": "Fiecare pas e o funcție mică. Le poți testa separat, dar nu le poți muta oricum, pentru că rotunjirea nu comută cu înmulțirea.",
+   "whisper_ro": "Fiecare pas e o funcție mică. Le poți testa separat, dar nu le poți muta oricum, pentru că rotunjirea nu comută cu înmulțirea.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 8,
+   "text": "Statusurile sunt doar opt numere într-un vector. Block, Bleed, Poison, Stun și celelalte. Cele mai multe scad cu unu pe tură.",
+   "whisper_ro": "Statusurile sunt doar 8 numere într-un vector Block, bleed, poison, stun și celelalte Cele mai multe scad cu unul pe tură",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 9,
+   "text": "Iar inamicii își arată intenția de la începutul rundei. Știi dinainte pe cine vrea Gaper să muște. Asta transformă lupta într-un puzzle.",
+   "whisper_ro": "iar inamicii își arată intenția de la începutul rundei. Știi dinainte pe cine vrea Gapăr să muște. Asta transformă lupta într-un puzzle.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  }
+ ]
+}

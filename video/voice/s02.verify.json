@@ -1,0 +1,97 @@
+{
+ "scene": "s02",
+ "voice": "NKQBjfoAhInP7Bjx6P7l",
+ "model": "eleven_multilingual_v2",
+ "lines": [
+  {
+   "n": 1,
+   "text": "Prima decizie e și cea mai importantă. Jocul are două lumi separate.",
+   "whisper_ro": "Prima decizie e și cea mai importantă. Jocul are două lumi separate.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 2,
+   "text": "Prima lume e Modelul. El e creierul. Știe regulile, ține minte câtă viață are fiecare și ce cărți are în mână.",
+   "whisper_ro": "Prima lume e modelul, el e creierul. Știe regulile, ține minte câtă viață are fiecare și ce cărți are în mână.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 3,
+   "text": "Modelul nu știe că există Unity. N-are sprite-uri, n-are cameră, n-are sunet. E C sharp curat, doar numere și liste.",
+   "whisper_ro": "Modelul nu știe că există Unity. N-are spraituri, n-are cameră, n-are sunet. E C-sharp curat, doar numere și liste.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 4,
+   "text": "A doua lume e View-ul. Ăsta e teatrul de păpuși. Desenează, animă, cântă și ascultă ce face jucătorul.",
+   "whisper_ro": "A doua lume e viul. Ăsta e teatrul de păpuși. Desenează, animă, cântă și ascultă ce face jucătorul.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 5,
+   "text": "Între ele circulă două feluri de mesaje. View-ul trimite comenzi. De exemplu, joacă cartea asta pe ținta asta.",
+   "whisper_ro": "Între ele circulă două feluri de mesaje. View-ul trimite comenzi. De exemplu, joacă cartea asta pe ținta asta.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 6,
+   "text": "Modelul calculează tot pe loc și răspunde cu o listă de evenimente. Cartea a fost jucată. Gaper a luat cinci damage. Gaper a murit.",
+   "whisper_ro": "Modelul calculează tot pe loc și răspunde cu o listă de evenimente. Cartea a fost jucată. Gaper a luat 5 damage. Gaper a murit.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 7,
+   "text": "View-ul ia lista și o povestește pe ecran, eveniment cu eveniment.",
+   "whisper_ro": "View-ul ia lista și o povestește pe ecran, eveniment cu eveniment.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 8,
+   "text": "De ce ne complicăm așa? Pentru că un Model fără grafică îl poți testa în câteva milisecunde.",
+   "whisper_ro": "De ce ne complicăm așa? Pentru că un model fără grafică îl poți testa în câteva milisecunde.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 9,
+   "text": "Poți să joci sute de run-uri complete în consolă, fără să deschizi Unity. Revenim la asta mai târziu.",
+   "whisper_ro": "Poți să joci sute de run-uri complete în consolă, fără să deschizi Unity. Revenim la asta mai târziu.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 10,
+   "text": "Și regula nu e doar o promisiune. Modelul stă într-un assembly separat, care n-are voie să vadă motorul. Dacă încerci să folosești ceva din Unity acolo, codul nu compilează.",
+   "whisper_ro": "Și regula nu e doar o promisiune. Modelul stă într-un assembly separat, care n-are voie să vadă motorul. Dacă încerci să folosești ceva din Unity acolo, codul nu compilează.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  }
+ ]
+}

@@ -1,0 +1,1273 @@
+{
+ "voice": "NKQBjfoAhInP7Bjx6P7l",
+ "model": "eleven_multilingual_v2",
+ "speed": 1.0,
+ "stability": 0.5,
+ "style": 0.2,
+ "lines": [
+  {
+   "n": 1,
+   "text": "Holul e 3D adevărat, dar personajele sunt plate. Sunt billboard-uri. Un dreptunghi cu sprite-ul pe el.",
+   "src": "voice/s10/01.mp3",
+   "dur": 6.705,
+   "speechStart": 0.0,
+   "speechEnd": 6.618,
+   "words": [
+    {
+     "w": "Holul",
+     "start": 0.0,
+     "end": 0.406,
+     "clean": "Holul"
+    },
+    {
+     "w": "e",
+     "start": 0.488,
+     "end": 0.511,
+     "clean": "e"
+    },
+    {
+     "w": "3D",
+     "start": 0.627,
+     "end": 0.871,
+     "clean": "3D"
+    },
+    {
+     "w": "adevărat,",
+     "start": 0.987,
+     "end": 1.486,
+     "clean": "adevărat"
+    },
+    {
+     "w": "dar",
+     "start": 1.509,
+     "end": 1.649,
+     "clean": "dar"
+    },
+    {
+     "w": "personajele",
+     "start": 1.718,
+     "end": 2.334,
+     "clean": "personajele"
+    },
+    {
+     "w": "sunt",
+     "start": 2.392,
+     "end": 2.589,
+     "clean": "sunt"
+    },
+    {
+     "w": "plate.",
+     "start": 2.659,
+     "end": 3.17,
+     "clean": "plate"
+    },
+    {
+     "w": "Sunt",
+     "start": 3.32,
+     "end": 3.506,
+     "clean": "Sunt"
+    },
+    {
+     "w": "billboard-uri.",
+     "start": 3.587,
+     "end": 4.4,
+     "clean": "billboard-uri"
+    },
+    {
+     "w": "Un",
+     "start": 4.783,
+     "end": 4.957,
+     "clean": "Un"
+    },
+    {
+     "w": "dreptunghi",
+     "start": 4.992,
+     "end": 5.515,
+     "clean": "dreptunghi"
+    },
+    {
+     "w": "cu",
+     "start": 5.561,
+     "end": 5.654,
+     "clean": "cu"
+    },
+    {
+     "w": "sprite-ul",
+     "start": 5.7,
+     "end": 6.142,
+     "clean": "sprite-ul"
+    },
+    {
+     "w": "pe",
+     "start": 6.2,
+     "end": 6.327,
+     "clean": "pe"
+    },
+    {
+     "w": "el.",
+     "start": 6.351,
+     "end": 6.618,
+     "clean": "el"
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "text": "La fiecare frame îl rotim după cameră. Iei direcția în care se uită camera, pui componenta verticală pe zero, ca să rămână drept, și îl aliniezi cu ea.",
+   "src": "voice/s10/02.mp3",
+   "dur": 9.52,
+   "speechStart": 0.0,
+   "speechEnd": 9.52,
+   "words": [
+    {
+     "w": "La",
+     "start": 0.0,
+     "end": 0.116,
+     "clean": "La"
+    },
+    {
+     "w": "fiecare",
+     "start": 0.163,
+     "end": 0.569,
+     "clean": "fiecare"
+    },
+    {
+     "w": "frame",
+     "start": 0.615,
+     "end": 0.882,
+     "clean": "frame"
+    },
+    {
+     "w": "îl",
+     "start": 0.906,
+     "end": 0.952,
+     "clean": "îl"
+    },
+    {
+     "w": "rotim",
+     "start": 1.033,
+     "end": 1.3,
+     "clean": "rotim"
+    },
+    {
+     "w": "după",
+     "start": 1.347,
+     "end": 1.533,
+     "clean": "după"
+    },
+    {
+     "w": "cameră.",
+     "start": 1.579,
+     "end": 2.125,
+     "clean": "cameră"
+    },
+    {
+     "w": "Iei",
+     "start": 2.45,
+     "end": 2.67,
+     "clean": "Iei"
+    },
+    {
+     "w": "direcția",
+     "start": 2.717,
+     "end": 3.123,
+     "clean": "direcția"
+    },
+    {
+     "w": "în",
+     "start": 3.158,
+     "end": 3.204,
+     "clean": "în"
+    },
+    {
+     "w": "care",
+     "start": 3.262,
+     "end": 3.448,
+     "clean": "care"
+    },
+    {
+     "w": "se",
+     "start": 3.495,
+     "end": 3.576,
+     "clean": "se"
+    },
+    {
+     "w": "uită",
+     "start": 3.611,
+     "end": 3.843,
+     "clean": "uită"
+    },
+    {
+     "w": "camera,",
+     "start": 3.889,
+     "end": 4.354,
+     "clean": "camera"
+    },
+    {
+     "w": "pui",
+     "start": 4.447,
+     "end": 4.679,
+     "clean": "pui"
+    },
+    {
+     "w": "componenta",
+     "start": 4.748,
+     "end": 5.306,
+     "clean": "componenta"
+    },
+    {
+     "w": "verticală",
+     "start": 5.352,
+     "end": 5.851,
+     "clean": "verticală"
+    },
+    {
+     "w": "pe",
+     "start": 5.898,
+     "end": 6.002,
+     "clean": "pe"
+    },
+    {
+     "w": "zero,",
+     "start": 6.049,
+     "end": 6.455,
+     "clean": "zero"
+    },
+    {
+     "w": "ca",
+     "start": 6.571,
+     "end": 6.687,
+     "clean": "ca"
+    },
+    {
+     "w": "să",
+     "start": 6.757,
+     "end": 6.827,
+     "clean": "să"
+    },
+    {
+     "w": "rămână",
+     "start": 6.873,
+     "end": 7.152,
+     "clean": "rămână"
+    },
+    {
+     "w": "drept,",
+     "start": 7.187,
+     "end": 7.605,
+     "clean": "drept"
+    },
+    {
+     "w": "și",
+     "start": 7.814,
+     "end": 7.953,
+     "clean": "și"
+    },
+    {
+     "w": "îl",
+     "start": 8.011,
+     "end": 8.139,
+     "clean": "îl"
+    },
+    {
+     "w": "aliniezi",
+     "start": 8.197,
+     "end": 8.638,
+     "clean": "aliniezi"
+    },
+    {
+     "w": "cu",
+     "start": 8.661,
+     "end": 8.754,
+     "clean": "cu"
+    },
+    {
+     "w": "ea.",
+     "start": 8.789,
+     "end": 9.52,
+     "clean": "ea"
+    }
+   ],
+   "regen": true
+  },
+  {
+   "n": 3,
+   "text": "Atenție, nu se uită spre cameră. E paralel cu planul ei. Așa sprite-urile de pe margini nu se deformează.",
+   "src": "voice/s10/03.mp3",
+   "dur": 6.659,
+   "speechStart": 0.059,
+   "speechEnd": 6.466,
+   "words": [
+    {
+     "w": "Atenție,",
+     "start": 0.059,
+     "end": 0.546,
+     "clean": "Atenție"
+    },
+    {
+     "w": "nu",
+     "start": 0.581,
+     "end": 0.674,
+     "clean": "nu"
+    },
+    {
+     "w": "se",
+     "start": 0.732,
+     "end": 0.802,
+     "clean": "se"
+    },
+    {
+     "w": "uită",
+     "start": 0.836,
+     "end": 1.045,
+     "clean": "uită"
+    },
+    {
+     "w": "spre",
+     "start": 1.079,
+     "end": 1.254,
+     "clean": "spre"
+    },
+    {
+     "w": "cameră.",
+     "start": 1.289,
+     "end": 1.707,
+     "clean": "cameră"
+    },
+    {
+     "w": "E",
+     "start": 1.742,
+     "end": 1.858,
+     "clean": "E"
+    },
+    {
+     "w": "paralel",
+     "start": 1.951,
+     "end": 2.392,
+     "clean": "paralel"
+    },
+    {
+     "w": "cu",
+     "start": 2.45,
+     "end": 2.532,
+     "clean": "cu"
+    },
+    {
+     "w": "planul",
+     "start": 2.578,
+     "end": 2.915,
+     "clean": "planul"
+    },
+    {
+     "w": "ei.",
+     "start": 2.995,
+     "end": 3.332,
+     "clean": "ei"
+    },
+    {
+     "w": "Așa",
+     "start": 3.774,
+     "end": 4.076,
+     "clean": "Așa"
+    },
+    {
+     "w": "sprite-urile",
+     "start": 4.11,
+     "end": 4.691,
+     "clean": "sprite-urile"
+    },
+    {
+     "w": "de",
+     "start": 4.736,
+     "end": 4.794,
+     "clean": "de"
+    },
+    {
+     "w": "pe",
+     "start": 4.841,
+     "end": 4.922,
+     "clean": "pe"
+    },
+    {
+     "w": "margini",
+     "start": 4.97,
+     "end": 5.318,
+     "clean": "margini"
+    },
+    {
+     "w": "nu",
+     "start": 5.376,
+     "end": 5.504,
+     "clean": "nu"
+    },
+    {
+     "w": "se",
+     "start": 5.55,
+     "end": 5.631,
+     "clean": "se"
+    },
+    {
+     "w": "deformează.",
+     "start": 5.678,
+     "end": 6.466,
+     "clean": "deformează"
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "text": "Când intri în luptă, camera iese din spatele echipei pe un arc, ca o macara. Unghiul și raza se interpolează separat, iar înălțimea mai primește un sinus care o ridică la mijloc.",
+   "src": "voice/s10/04.mp3",
+   "dur": 10.205,
+   "speechStart": 0.192,
+   "speechEnd": 10.014,
+   "words": [
+    {
+     "w": "Când",
+     "start": 0.192,
+     "end": 0.401,
+     "clean": "Când"
+    },
+    {
+     "w": "intri",
+     "start": 0.482,
+     "end": 0.726,
+     "clean": "intri"
+    },
+    {
+     "w": "în",
+     "start": 0.761,
+     "end": 0.808,
+     "clean": "în"
+    },
+    {
+     "w": "luptă,",
+     "start": 0.854,
+     "end": 1.168,
+     "clean": "luptă"
+    },
+    {
+     "w": "camera",
+     "start": 1.191,
+     "end": 1.503,
+     "clean": "camera"
+    },
+    {
+     "w": "iese",
+     "start": 1.55,
+     "end": 1.747,
+     "clean": "iese"
+    },
+    {
+     "w": "din",
+     "start": 1.794,
+     "end": 1.91,
+     "clean": "din"
+    },
+    {
+     "w": "spatele",
+     "start": 1.945,
+     "end": 2.328,
+     "clean": "spatele"
+    },
+    {
+     "w": "echipei",
+     "start": 2.363,
+     "end": 2.7,
+     "clean": "echipei"
+    },
+    {
+     "w": "pe",
+     "start": 2.747,
+     "end": 2.828,
+     "clean": "pe"
+    },
+    {
+     "w": "un",
+     "start": 2.898,
+     "end": 2.991,
+     "clean": "un"
+    },
+    {
+     "w": "arc,",
+     "start": 3.037,
+     "end": 3.268,
+     "clean": "arc"
+    },
+    {
+     "w": "ca",
+     "start": 3.293,
+     "end": 3.409,
+     "clean": "ca"
+    },
+    {
+     "w": "o",
+     "start": 3.454,
+     "end": 3.477,
+     "clean": "o"
+    },
+    {
+     "w": "macara.",
+     "start": 3.547,
+     "end": 4.174,
+     "clean": "macara"
+    },
+    {
+     "w": "Unghiul",
+     "start": 4.5,
+     "end": 4.848,
+     "clean": "Unghiul"
+    },
+    {
+     "w": "și",
+     "start": 4.905,
+     "end": 4.988,
+     "clean": "și"
+    },
+    {
+     "w": "raza",
+     "start": 5.034,
+     "end": 5.29,
+     "clean": "raza"
+    },
+    {
+     "w": "se",
+     "start": 5.348,
+     "end": 5.428,
+     "clean": "se"
+    },
+    {
+     "w": "interpolează",
+     "start": 5.474,
+     "end": 6.102,
+     "clean": "interpolează"
+    },
+    {
+     "w": "separat,",
+     "start": 6.16,
+     "end": 6.706,
+     "clean": "separat"
+    },
+    {
+     "w": "iar",
+     "start": 6.752,
+     "end": 6.927,
+     "clean": "iar"
+    },
+    {
+     "w": "înălțimea",
+     "start": 6.973,
+     "end": 7.413,
+     "clean": "înălțimea"
+    },
+    {
+     "w": "mai",
+     "start": 7.46,
+     "end": 7.587,
+     "clean": "mai"
+    },
+    {
+     "w": "primește",
+     "start": 7.634,
+     "end": 8.04,
+     "clean": "primește"
+    },
+    {
+     "w": "un",
+     "start": 8.11,
+     "end": 8.203,
+     "clean": "un"
+    },
+    {
+     "w": "sinus",
+     "start": 8.261,
+     "end": 8.575,
+     "clean": "sinus"
+    },
+    {
+     "w": "care",
+     "start": 8.622,
+     "end": 8.806,
+     "clean": "care"
+    },
+    {
+     "w": "o",
+     "start": 8.877,
+     "end": 8.899,
+     "clean": "o"
+    },
+    {
+     "w": "ridică",
+     "start": 8.934,
+     "end": 9.236,
+     "clean": "ridică"
+    },
+    {
+     "w": "la",
+     "start": 9.282,
+     "end": 9.364,
+     "clean": "la"
+    },
+    {
+     "w": "mijloc.",
+     "start": 9.422,
+     "end": 10.014,
+     "clean": "mijloc"
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "text": "Acum pixelii. Treizeci și doi de pixeli de artă fac o unitate în lume. Interfața e desenată la șase sute patruzeci pe trei sute șaizeci.",
+   "src": "voice/s10/05.mp3",
+   "dur": 8.771,
+   "speechStart": 0.192,
+   "speechEnd": 8.712,
+   "words": [
+    {
+     "w": "Acum",
+     "start": 0.192,
+     "end": 0.505,
+     "clean": "Acum"
+    },
+    {
+     "w": "pixelii.",
+     "start": 0.575,
+     "end": 1.282,
+     "clean": "pixelii"
+    },
+    {
+     "w": "Treizeci",
+     "start": 1.666,
+     "end": 2.13,
+     "clean": "Treizeci"
+    },
+    {
+     "w": "și",
+     "start": 2.166,
+     "end": 2.246,
+     "clean": "și"
+    },
+    {
+     "w": "doi",
+     "start": 2.304,
+     "end": 2.456,
+     "clean": "doi"
+    },
+    {
+     "w": "de",
+     "start": 2.502,
+     "end": 2.559,
+     "clean": "de"
+    },
+    {
+     "w": "pixeli",
+     "start": 2.606,
+     "end": 2.955,
+     "clean": "pixeli"
+    },
+    {
+     "w": "de",
+     "start": 2.989,
+     "end": 3.059,
+     "clean": "de"
+    },
+    {
+     "w": "artă",
+     "start": 3.083,
+     "end": 3.291,
+     "clean": "artă"
+    },
+    {
+     "w": "fac",
+     "start": 3.349,
+     "end": 3.511,
+     "clean": "fac"
+    },
+    {
+     "w": "o",
+     "start": 3.581,
+     "end": 3.605,
+     "clean": "o"
+    },
+    {
+     "w": "unitate",
+     "start": 3.675,
+     "end": 4.105,
+     "clean": "unitate"
+    },
+    {
+     "w": "în",
+     "start": 4.139,
+     "end": 4.185,
+     "clean": "în"
+    },
+    {
+     "w": "lume.",
+     "start": 4.243,
+     "end": 4.662,
+     "clean": "lume"
+    },
+    {
+     "w": "Interfața",
+     "start": 4.812,
+     "end": 5.382,
+     "clean": "Interfața"
+    },
+    {
+     "w": "e",
+     "start": 5.416,
+     "end": 5.44,
+     "clean": "e"
+    },
+    {
+     "w": "desenată",
+     "start": 5.486,
+     "end": 5.95,
+     "clean": "desenată"
+    },
+    {
+     "w": "la",
+     "start": 5.996,
+     "end": 6.066,
+     "clean": "la"
+    },
+    {
+     "w": "șase",
+     "start": 6.182,
+     "end": 6.484,
+     "clean": "șase"
+    },
+    {
+     "w": "sute",
+     "start": 6.542,
+     "end": 6.785,
+     "clean": "sute"
+    },
+    {
+     "w": "patruzeci",
+     "start": 6.843,
+     "end": 7.365,
+     "clean": "patruzeci"
+    },
+    {
+     "w": "pe",
+     "start": 7.401,
+     "end": 7.483,
+     "clean": "pe"
+    },
+    {
+     "w": "trei",
+     "start": 7.541,
+     "end": 7.737,
+     "clean": "trei"
+    },
+    {
+     "w": "sute",
+     "start": 7.784,
+     "end": 8.039,
+     "clean": "sute"
+    },
+    {
+     "w": "șaizeci.",
+     "start": 8.098,
+     "end": 8.712,
+     "clean": "șaizeci"
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "text": "Apoi o mărim cu un factor întreg. Pe Full HD, ori trei. Fiecare pixel devine un pătrat perfect de trei pe trei.",
+   "src": "voice/s10/06.mp3",
+   "dur": 7.129,
+   "speechStart": 0.058,
+   "speechEnd": 7.024,
+   "words": [
+    {
+     "w": "Apoi",
+     "start": 0.058,
+     "end": 0.372,
+     "clean": "Apoi"
+    },
+    {
+     "w": "o",
+     "start": 0.407,
+     "end": 0.43,
+     "clean": "o"
+    },
+    {
+     "w": "mărim",
+     "start": 0.476,
+     "end": 0.685,
+     "clean": "mărim"
+    },
+    {
+     "w": "cu",
+     "start": 0.743,
+     "end": 0.813,
+     "clean": "cu"
+    },
+    {
+     "w": "un",
+     "start": 0.894,
+     "end": 0.952,
+     "clean": "un"
+    },
+    {
+     "w": "factor",
+     "start": 1.022,
+     "end": 1.335,
+     "clean": "factor"
+    },
+    {
+     "w": "întreg.",
+     "start": 1.394,
+     "end": 1.811,
+     "clean": "întreg"
+    },
+    {
+     "w": "Pe",
+     "start": 1.928,
+     "end": 2.055,
+     "clean": "Pe"
+    },
+    {
+     "w": "Full",
+     "start": 2.09,
+     "end": 2.253,
+     "clean": "Full"
+    },
+    {
+     "w": "HD,",
+     "start": 2.311,
+     "end": 2.752,
+     "clean": "HD"
+    },
+    {
+     "w": "ori",
+     "start": 2.798,
+     "end": 2.972,
+     "clean": "ori"
+    },
+    {
+     "w": "trei.",
+     "start": 3.019,
+     "end": 3.507,
+     "clean": "trei"
+    },
+    {
+     "w": "Fiecare",
+     "start": 3.89,
+     "end": 4.342,
+     "clean": "Fiecare"
+    },
+    {
+     "w": "pixel",
+     "start": 4.377,
+     "end": 4.679,
+     "clean": "pixel"
+    },
+    {
+     "w": "devine",
+     "start": 4.737,
+     "end": 4.981,
+     "clean": "devine"
+    },
+    {
+     "w": "un",
+     "start": 5.016,
+     "end": 5.074,
+     "clean": "un"
+    },
+    {
+     "w": "pătrat",
+     "start": 5.132,
+     "end": 5.457,
+     "clean": "pătrat"
+    },
+    {
+     "w": "perfect",
+     "start": 5.527,
+     "end": 5.91,
+     "clean": "perfect"
+    },
+    {
+     "w": "de",
+     "start": 5.979,
+     "end": 6.072,
+     "clean": "de"
+    },
+    {
+     "w": "trei",
+     "start": 6.142,
+     "end": 6.374,
+     "clean": "trei"
+    },
+    {
+     "w": "pe",
+     "start": 6.421,
+     "end": 6.537,
+     "clean": "pe"
+    },
+    {
+     "w": "trei.",
+     "start": 6.595,
+     "end": 7.024,
+     "clean": "trei"
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "text": "Cu un factor ca doi și jumătate, unele coloane ar ieși mai late decât altele, și se vede imediat. De asta doar numere întregi, iar ce rămâne pe margini e bandă neagră.",
+   "src": "voice/s10/07.mp3",
+   "dur": 10.217,
+   "speechStart": 0.0,
+   "speechEnd": 10.217,
+   "words": [
+    {
+     "w": "Cu",
+     "start": 0.0,
+     "end": 0.197,
+     "clean": "Cu"
+    },
+    {
+     "w": "un",
+     "start": 0.232,
+     "end": 0.29,
+     "clean": "un"
+    },
+    {
+     "w": "factor",
+     "start": 0.36,
+     "end": 0.697,
+     "clean": "factor"
+    },
+    {
+     "w": "ca",
+     "start": 0.755,
+     "end": 0.894,
+     "clean": "ca"
+    },
+    {
+     "w": "doi",
+     "start": 0.964,
+     "end": 1.115,
+     "clean": "doi"
+    },
+    {
+     "w": "și",
+     "start": 1.161,
+     "end": 1.242,
+     "clean": "și"
+    },
+    {
+     "w": "jumătate,",
+     "start": 1.3,
+     "end": 1.869,
+     "clean": "jumătate"
+    },
+    {
+     "w": "unele",
+     "start": 1.939,
+     "end": 2.194,
+     "clean": "unele"
+    },
+    {
+     "w": "coloane",
+     "start": 2.241,
+     "end": 2.566,
+     "clean": "coloane"
+    },
+    {
+     "w": "ar",
+     "start": 2.589,
+     "end": 2.67,
+     "clean": "ar"
+    },
+    {
+     "w": "ieși",
+     "start": 2.705,
+     "end": 2.902,
+     "clean": "ieși"
+    },
+    {
+     "w": "mai",
+     "start": 2.972,
+     "end": 3.111,
+     "clean": "mai"
+    },
+    {
+     "w": "late",
+     "start": 3.193,
+     "end": 3.413,
+     "clean": "late"
+    },
+    {
+     "w": "decât",
+     "start": 3.46,
+     "end": 3.704,
+     "clean": "decât"
+    },
+    {
+     "w": "altele,",
+     "start": 3.762,
+     "end": 4.226,
+     "clean": "altele"
+    },
+    {
+     "w": "și",
+     "start": 4.307,
+     "end": 4.423,
+     "clean": "și"
+    },
+    {
+     "w": "se",
+     "start": 4.481,
+     "end": 4.551,
+     "clean": "se"
+    },
+    {
+     "w": "vede",
+     "start": 4.598,
+     "end": 4.783,
+     "clean": "vede"
+    },
+    {
+     "w": "imediat.",
+     "start": 4.865,
+     "end": 5.584,
+     "clean": "imediat"
+    },
+    {
+     "w": "De",
+     "start": 6.026,
+     "end": 6.13,
+     "clean": "De"
+    },
+    {
+     "w": "asta",
+     "start": 6.177,
+     "end": 6.385,
+     "clean": "asta"
+    },
+    {
+     "w": "doar",
+     "start": 6.432,
+     "end": 6.594,
+     "clean": "doar"
+    },
+    {
+     "w": "numere",
+     "start": 6.664,
+     "end": 6.954,
+     "clean": "numere"
+    },
+    {
+     "w": "întregi,",
+     "start": 7.012,
+     "end": 7.43,
+     "clean": "întregi"
+    },
+    {
+     "w": "iar",
+     "start": 7.477,
+     "end": 7.663,
+     "clean": "iar"
+    },
+    {
+     "w": "ce",
+     "start": 7.721,
+     "end": 7.825,
+     "clean": "ce"
+    },
+    {
+     "w": "rămâne",
+     "start": 7.86,
+     "end": 8.127,
+     "clean": "rămâne"
+    },
+    {
+     "w": "pe",
+     "start": 8.162,
+     "end": 8.255,
+     "clean": "pe"
+    },
+    {
+     "w": "margini",
+     "start": 8.301,
+     "end": 8.696,
+     "clean": "margini"
+    },
+    {
+     "w": "e",
+     "start": 8.731,
+     "end": 8.754,
+     "clean": "e"
+    },
+    {
+     "w": "bandă",
+     "start": 8.847,
+     "end": 9.218,
+     "clean": "bandă"
+    },
+    {
+     "w": "neagră.",
+     "start": 9.288,
+     "end": 10.217,
+     "clean": "neagră"
+    }
+   ],
+   "regen": true
+  },
+  {
+   "n": 8,
+   "text": "Chiar și camera de luptă e calculată așa. Vede exact zece unități în lățime, deci fiecare pixel de artă iese doi pe doi.",
+   "src": "voice/s10/08.mp3",
+   "dur": 7.754,
+   "speechStart": 0.139,
+   "speechEnd": 7.754,
+   "words": [
+    {
+     "w": "Chiar",
+     "start": 0.139,
+     "end": 0.325,
+     "clean": "Chiar"
+    },
+    {
+     "w": "și",
+     "start": 0.395,
+     "end": 0.487,
+     "clean": "și"
+    },
+    {
+     "w": "camera",
+     "start": 0.534,
+     "end": 0.836,
+     "clean": "camera"
+    },
+    {
+     "w": "de",
+     "start": 0.894,
+     "end": 0.952,
+     "clean": "de"
+    },
+    {
+     "w": "luptă",
+     "start": 0.987,
+     "end": 1.23,
+     "clean": "luptă"
+    },
+    {
+     "w": "e",
+     "start": 1.277,
+     "end": 1.3,
+     "clean": "e"
+    },
+    {
+     "w": "calculată",
+     "start": 1.347,
+     "end": 1.846,
+     "clean": "calculată"
+    },
+    {
+     "w": "așa.",
+     "start": 1.869,
+     "end": 2.31,
+     "clean": "așa"
+    },
+    {
+     "w": "Vede",
+     "start": 2.519,
+     "end": 2.751,
+     "clean": "Vede"
+    },
+    {
+     "w": "exact",
+     "start": 2.809,
+     "end": 3.158,
+     "clean": "exact"
+    },
+    {
+     "w": "zece",
+     "start": 3.251,
+     "end": 3.564,
+     "clean": "zece"
+    },
+    {
+     "w": "unități",
+     "start": 3.622,
+     "end": 4.017,
+     "clean": "unități"
+    },
+    {
+     "w": "în",
+     "start": 4.063,
+     "end": 4.11,
+     "clean": "în"
+    },
+    {
+     "w": "lățime,",
+     "start": 4.168,
+     "end": 4.632,
+     "clean": "lățime"
+    },
+    {
+     "w": "deci",
+     "start": 4.679,
+     "end": 4.864,
+     "clean": "deci"
+    },
+    {
+     "w": "fiecare",
+     "start": 4.899,
+     "end": 5.364,
+     "clean": "fiecare"
+    },
+    {
+     "w": "pixel",
+     "start": 5.41,
+     "end": 5.782,
+     "clean": "pixel"
+    },
+    {
+     "w": "de",
+     "start": 5.84,
+     "end": 5.898,
+     "clean": "de"
+    },
+    {
+     "w": "artă",
+     "start": 5.933,
+     "end": 6.176,
+     "clean": "artă"
+    },
+    {
+     "w": "iese",
+     "start": 6.223,
+     "end": 6.42,
+     "clean": "iese"
+    },
+    {
+     "w": "doi",
+     "start": 6.478,
+     "end": 6.629,
+     "clean": "doi"
+    },
+    {
+     "w": "pe",
+     "start": 6.676,
+     "end": 6.78,
+     "clean": "pe"
+    },
+    {
+     "w": "doi.",
+     "start": 6.815,
+     "end": 7.755,
+     "clean": "doi"
+    }
+   ]
+  }
+ ]
+}

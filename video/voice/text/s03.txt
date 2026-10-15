@@ -1,0 +1,7 @@
+Bun. Cum curge jocul de la meniu până la final?
+Gândește-te la el ca la un automat finit, ca la cursul de limbaje formale.
+La orice moment ești într-o singură stare. Meniu, hartă, hol, cameră, luptă, recompensă.
+Fiecare stare e o corutină. O joci de la cap la coadă, iar la final ea spune care e starea următoare.
+Din hartă pleci pe hol. De pe hol intri în cameră. După luptă iei recompensa și te întorci pe hartă.
+Toată bucla asta e un while cu un switch. Atât conduce un run întreg.
+Și GameFlow nu decide nimic. Modelul spune ce e în cameră și cine moare. GameFlow doar pune în scenă și așteaptă alegerea ta.

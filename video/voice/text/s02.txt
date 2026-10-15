@@ -1,0 +1,10 @@
+Prima decizie e și cea mai importantă. Jocul are două lumi separate.
+Prima lume e Modelul. El e creierul. Știe regulile, ține minte câtă viață are fiecare și ce cărți are în mână.
+Modelul nu știe că există Unity. N-are sprite-uri, n-are cameră, n-are sunet. E C sharp curat, doar numere și liste.
+A doua lume e View-ul. Ăsta e teatrul de păpuși. Desenează, animă, cântă și ascultă ce face jucătorul.
+Între ele circulă două feluri de mesaje. View-ul trimite comenzi. De exemplu, joacă cartea asta pe ținta asta.
+Modelul calculează tot pe loc și răspunde cu o listă de evenimente. Cartea a fost jucată. Gaper a luat cinci damage. Gaper a murit.
+View-ul ia lista și o povestește pe ecran, eveniment cu eveniment.
+De ce ne complicăm așa? Pentru că un Model fără grafică îl poți testa în câteva milisecunde.
+Poți să joci sute de run-uri complete în consolă, fără să deschizi Unity. Revenim la asta mai târziu.
+Și regula nu e doar o promisiune. Modelul stă într-un assembly separat, care n-are voie să vadă motorul. Dacă încerci să folosești ceva din Unity acolo, codul nu compilează.

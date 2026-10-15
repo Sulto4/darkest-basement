@@ -1,0 +1,97 @@
+{
+ "scene": "s05",
+ "voice": "NKQBjfoAhInP7Bjx6P7l",
+ "model": "eleven_multilingual_v2",
+ "lines": [
+  {
+   "n": 1,
+   "text": "Acum, norocul. Un roguelike trebuie să fie altfel la fiecare run, dar noi vrem să-l putem și repeta.",
+   "whisper_ro": "Acum, norocul. Un roglaic trebuie să fie altfel la fiecare ran, dar noi vrem să-l putem și repeta.",
+   "whisper_en": "Now, luck. A roguelike should be different for each run, but we want to be able to repeat it.",
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 2,
+   "text": "Soluția e un seed. Un singur număr de la care pornește tot. Același seed înseamnă același run, pas cu pas.",
+   "whisper_ro": "Soluția e un seed, un singur număr de la care pornește tot. Același seed înseamnă același ran, pas cu pas.",
+   "whisper_en": "The solution is a seed, a single number from which everything starts. The same seed means the same run, step by step.",
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 3,
+   "text": "Asta te salvează la teste. Dacă un bug apare pe seed-ul șapte, îl reproduci de câte ori vrei.",
+   "whisper_ro": "Asta te salvează la teste. Dacă un bug apare pe sidul 7, îl reproduci de câte ori vrei.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 4,
+   "text": "În spate e un generator pseudo-aleator foarte mic. Ia un număr pe treizeci și doi de biți și îl amestecă cu trei deplasări de biți și sau exclusiv.",
+   "whisper_ro": "În spate e un generator pseudo-aleator foarte mic. Ia un număr pe 32 de biți și îl amestecă cu 3 deplasări de biți și sau exclusiv.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 5,
+   "text": "Nu e aleator de-adevăratelea. E o funcție deterministă care doar arată aleator.",
+   "whisper_ro": "Nu e aleator de adevăratelea. E o funcție deterministă care doar arată aleator.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 6,
+   "text": "Un detaliu fin. Ca să alegi un număr între zero și n, nu iei pur și simplu restul împărțirii, pentru că unele resturi ar ieși mai des. Codul aruncă câteva valori și mai încearcă o dată.",
+   "whisper_ro": "Un detaliu fin. Ca să alegi un număr între 0 și N, nu iei pur și simplu restul împărțirii, pentru că unele resturi ar ieși mai des. Codul aruncă câteva valori și mai încearcă odată.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 7,
+   "text": "Apoi, fluxuri separate. Din seed-ul principal facem trei generatoare. Unul pentru hartă, unul pentru luptă și unul pentru recompense.",
+   "whisper_ro": "Apoi fluxuri separate. Din sidul principal facem 3 generatoare. Unul pentru hartă, unul pentru luptă și unul pentru recompense.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 8,
+   "text": "Așa, dacă se schimbă ceva în luptă, harta rămâne la fel. Altfel o singură aruncare de zar în plus ar muta tot restul run-ului.",
+   "whisper_ro": "Așa, dacă se schimbă ceva în luptă, harta rămâne la fel. Altfel, o singură aruncare de zar în plus ar muta tot restul ranului.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": true
+  },
+  {
+   "n": 9,
+   "text": "Pentru pachetul de cărți folosim Fisher-Yates. Mergi de la ultima carte spre prima. Pentru fiecare poziție i alegi un j între zero și i, și le schimbi între ele.",
+   "whisper_ro": "Pentru pachetul de cărți folosim Fisher-Yates. Mergi de la ultima carte spre prima. Pentru fiecare poziție îi alegi un J între 0 și I și le schimbi între ele.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 10,
+   "text": "Toate cele o sută douăzeci de permutări ale celor cinci cărți ies cu aceeași probabilitate. Și sunt trei rânduri de cod.",
+   "whisper_ro": "Toate cele 120 de permutări ale celor 5 cărți ies cu aceeași probabilitate. Și sunt trei rânduri de cod.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": true
+  }
+ ]
+}

@@ -1,0 +1,1461 @@
+{
+ "voice": "NKQBjfoAhInP7Bjx6P7l",
+ "model": "eleven_multilingual_v2",
+ "speed": 1.0,
+ "stability": 0.5,
+ "style": 0.2,
+ "lines": [
+  {
+   "n": 1,
+   "text": "Acum, norocul. Un roguelike trebuie să fie altfel la fiecare run, dar noi vrem să-l putem și repeta.",
+   "src": "voice/s05/01.mp3",
+   "dur": 6.507,
+   "speechStart": 0.0,
+   "speechEnd": 6.42,
+   "words": [
+    {
+     "w": "Acum,",
+     "start": 0.0,
+     "end": 0.615,
+     "clean": "Acum"
+    },
+    {
+     "w": "norocul.",
+     "start": 0.824,
+     "end": 1.649,
+     "clean": "norocul"
+    },
+    {
+     "w": "Un",
+     "start": 1.974,
+     "end": 2.148,
+     "clean": "Un"
+    },
+    {
+     "w": "roguelike",
+     "start": 2.218,
+     "end": 2.659,
+     "clean": "roguelike"
+    },
+    {
+     "w": "trebuie",
+     "start": 2.694,
+     "end": 2.949,
+     "clean": "trebuie"
+    },
+    {
+     "w": "să",
+     "start": 2.995,
+     "end": 3.065,
+     "clean": "să"
+    },
+    {
+     "w": "fie",
+     "start": 3.123,
+     "end": 3.274,
+     "clean": "fie"
+    },
+    {
+     "w": "altfel",
+     "start": 3.309,
+     "end": 3.611,
+     "clean": "altfel"
+    },
+    {
+     "w": "la",
+     "start": 3.669,
+     "end": 3.738,
+     "clean": "la"
+    },
+    {
+     "w": "fiecare",
+     "start": 3.785,
+     "end": 4.214,
+     "clean": "fiecare"
+    },
+    {
+     "w": "run,",
+     "start": 4.284,
+     "end": 4.505,
+     "clean": "run"
+    },
+    {
+     "w": "dar",
+     "start": 4.528,
+     "end": 4.69,
+     "clean": "dar"
+    },
+    {
+     "w": "noi",
+     "start": 4.76,
+     "end": 4.899,
+     "clean": "noi"
+    },
+    {
+     "w": "vrem",
+     "start": 4.934,
+     "end": 5.132,
+     "clean": "vrem"
+    },
+    {
+     "w": "să-l",
+     "start": 5.19,
+     "end": 5.317,
+     "clean": "să-l"
+    },
+    {
+     "w": "putem",
+     "start": 5.364,
+     "end": 5.608,
+     "clean": "putem"
+    },
+    {
+     "w": "și",
+     "start": 5.677,
+     "end": 5.759,
+     "clean": "și"
+    },
+    {
+     "w": "repeta.",
+     "start": 5.805,
+     "end": 6.42,
+     "clean": "repeta"
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "text": "Soluția e un seed. Un singur număr de la care pornește tot. Același seed înseamnă același run, pas cu pas.",
+   "src": "voice/s05/02.mp3",
+   "dur": 7.408,
+   "speechStart": 0.087,
+   "speechEnd": 7.332,
+   "words": [
+    {
+     "w": "Soluția",
+     "start": 0.087,
+     "end": 0.61,
+     "clean": "Soluția"
+    },
+    {
+     "w": "e",
+     "start": 0.656,
+     "end": 0.714,
+     "clean": "e"
+    },
+    {
+     "w": "un",
+     "start": 0.807,
+     "end": 0.912,
+     "clean": "un"
+    },
+    {
+     "w": "seed.",
+     "start": 0.993,
+     "end": 1.492,
+     "clean": "seed"
+    },
+    {
+     "w": "Un",
+     "start": 1.736,
+     "end": 1.922,
+     "clean": "Un"
+    },
+    {
+     "w": "singur",
+     "start": 1.991,
+     "end": 2.363,
+     "clean": "singur"
+    },
+    {
+     "w": "număr",
+     "start": 2.444,
+     "end": 2.723,
+     "clean": "număr"
+    },
+    {
+     "w": "de",
+     "start": 2.804,
+     "end": 2.862,
+     "clean": "de"
+    },
+    {
+     "w": "la",
+     "start": 2.909,
+     "end": 2.978,
+     "clean": "la"
+    },
+    {
+     "w": "care",
+     "start": 3.025,
+     "end": 3.222,
+     "clean": "care"
+    },
+    {
+     "w": "pornește",
+     "start": 3.257,
+     "end": 3.698,
+     "clean": "pornește"
+    },
+    {
+     "w": "tot.",
+     "start": 3.745,
+     "end": 4.186,
+     "clean": "tot"
+    },
+    {
+     "w": "Același",
+     "start": 4.43,
+     "end": 4.882,
+     "clean": "Același"
+    },
+    {
+     "w": "seed",
+     "start": 4.906,
+     "end": 5.115,
+     "clean": "seed"
+    },
+    {
+     "w": "înseamnă",
+     "start": 5.173,
+     "end": 5.521,
+     "clean": "înseamnă"
+    },
+    {
+     "w": "același",
+     "start": 5.567,
+     "end": 5.997,
+     "clean": "același"
+    },
+    {
+     "w": "run,",
+     "start": 6.032,
+     "end": 6.392,
+     "clean": "run"
+    },
+    {
+     "w": "pas",
+     "start": 6.45,
+     "end": 6.647,
+     "clean": "pas"
+    },
+    {
+     "w": "cu",
+     "start": 6.717,
+     "end": 6.81,
+     "clean": "cu"
+    },
+    {
+     "w": "pas.",
+     "start": 6.856,
+     "end": 7.332,
+     "clean": "pas"
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "text": "Asta te salvează la teste. Dacă un bug apare pe seed-ul șapte, îl reproduci de câte ori vrei.",
+   "src": "voice/s05/03.mp3",
+   "dur": 5.962,
+   "speechStart": 0.075,
+   "speechEnd": 5.799,
+   "words": [
+    {
+     "w": "Asta",
+     "start": 0.075,
+     "end": 0.389,
+     "clean": "Asta"
+    },
+    {
+     "w": "te",
+     "start": 0.435,
+     "end": 0.516,
+     "clean": "te"
+    },
+    {
+     "w": "salvează",
+     "start": 0.563,
+     "end": 0.992,
+     "clean": "salvează"
+    },
+    {
+     "w": "la",
+     "start": 1.04,
+     "end": 1.108,
+     "clean": "la"
+    },
+    {
+     "w": "teste.",
+     "start": 1.166,
+     "end": 1.689,
+     "clean": "teste"
+    },
+    {
+     "w": "Dacă",
+     "start": 2.014,
+     "end": 2.305,
+     "clean": "Dacă"
+    },
+    {
+     "w": "un",
+     "start": 2.363,
+     "end": 2.433,
+     "clean": "un"
+    },
+    {
+     "w": "bug",
+     "start": 2.514,
+     "end": 2.677,
+     "clean": "bug"
+    },
+    {
+     "w": "apare",
+     "start": 2.745,
+     "end": 3.002,
+     "clean": "apare"
+    },
+    {
+     "w": "pe",
+     "start": 3.047,
+     "end": 3.152,
+     "clean": "pe"
+    },
+    {
+     "w": "seed-ul",
+     "start": 3.198,
+     "end": 3.488,
+     "clean": "seed-ul"
+    },
+    {
+     "w": "șapte,",
+     "start": 3.546,
+     "end": 4.0,
+     "clean": "șapte"
+    },
+    {
+     "w": "îl",
+     "start": 4.035,
+     "end": 4.186,
+     "clean": "îl"
+    },
+    {
+     "w": "reproduci",
+     "start": 4.267,
+     "end": 4.79,
+     "clean": "reproduci"
+    },
+    {
+     "w": "de",
+     "start": 4.835,
+     "end": 4.905,
+     "clean": "de"
+    },
+    {
+     "w": "câte",
+     "start": 4.951,
+     "end": 5.149,
+     "clean": "câte"
+    },
+    {
+     "w": "ori",
+     "start": 5.218,
+     "end": 5.346,
+     "clean": "ori"
+    },
+    {
+     "w": "vrei.",
+     "start": 5.392,
+     "end": 5.799,
+     "clean": "vrei"
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "text": "În spate e un generator pseudo-aleator foarte mic. Ia un număr pe treizeci și doi de biți și îl amestecă cu trei deplasări de biți și sau exclusiv.",
+   "src": "voice/s05/04.mp3",
+   "dur": 9.496,
+   "speechStart": 0.163,
+   "speechEnd": 9.241,
+   "words": [
+    {
+     "w": "În",
+     "start": 0.163,
+     "end": 0.302,
+     "clean": "În"
+    },
+    {
+     "w": "spate",
+     "start": 0.325,
+     "end": 0.616,
+     "clean": "spate"
+    },
+    {
+     "w": "e",
+     "start": 0.639,
+     "end": 0.697,
+     "clean": "e"
+    },
+    {
+     "w": "un",
+     "start": 0.767,
+     "end": 0.848,
+     "clean": "un"
+    },
+    {
+     "w": "generator",
+     "start": 0.893,
+     "end": 1.474,
+     "clean": "generator"
+    },
+    {
+     "w": "pseudo-aleator",
+     "start": 1.532,
+     "end": 2.485,
+     "clean": "pseudo-aleator"
+    },
+    {
+     "w": "foarte",
+     "start": 2.578,
+     "end": 2.971,
+     "clean": "foarte"
+    },
+    {
+     "w": "mic.",
+     "start": 3.03,
+     "end": 3.483,
+     "clean": "mic"
+    },
+    {
+     "w": "Ia",
+     "start": 3.634,
+     "end": 3.796,
+     "clean": "Ia"
+    },
+    {
+     "w": "un",
+     "start": 3.843,
+     "end": 3.913,
+     "clean": "un"
+    },
+    {
+     "w": "număr",
+     "start": 3.948,
+     "end": 4.18,
+     "clean": "număr"
+    },
+    {
+     "w": "pe",
+     "start": 4.238,
+     "end": 4.319,
+     "clean": "pe"
+    },
+    {
+     "w": "treizeci",
+     "start": 4.366,
+     "end": 4.806,
+     "clean": "treizeci"
+    },
+    {
+     "w": "și",
+     "start": 4.852,
+     "end": 4.945,
+     "clean": "și"
+    },
+    {
+     "w": "doi",
+     "start": 5.003,
+     "end": 5.154,
+     "clean": "doi"
+    },
+    {
+     "w": "de",
+     "start": 5.212,
+     "end": 5.282,
+     "clean": "de"
+    },
+    {
+     "w": "biți",
+     "start": 5.34,
+     "end": 5.596,
+     "clean": "biți"
+    },
+    {
+     "w": "și",
+     "start": 5.654,
+     "end": 5.747,
+     "clean": "și"
+    },
+    {
+     "w": "îl",
+     "start": 5.805,
+     "end": 5.91,
+     "clean": "îl"
+    },
+    {
+     "w": "amestecă",
+     "start": 5.968,
+     "end": 6.409,
+     "clean": "amestecă"
+    },
+    {
+     "w": "cu",
+     "start": 6.466,
+     "end": 6.572,
+     "clean": "cu"
+    },
+    {
+     "w": "trei",
+     "start": 6.64,
+     "end": 6.838,
+     "clean": "trei"
+    },
+    {
+     "w": "deplasări",
+     "start": 6.896,
+     "end": 7.395,
+     "clean": "deplasări"
+    },
+    {
+     "w": "de",
+     "start": 7.43,
+     "end": 7.512,
+     "clean": "de"
+    },
+    {
+     "w": "biți",
+     "start": 7.57,
+     "end": 7.86,
+     "clean": "biți"
+    },
+    {
+     "w": "și",
+     "start": 7.942,
+     "end": 8.058,
+     "clean": "și"
+    },
+    {
+     "w": "sau",
+     "start": 8.116,
+     "end": 8.302,
+     "clean": "sau"
+    },
+    {
+     "w": "exclusiv.",
+     "start": 8.37,
+     "end": 9.241,
+     "clean": "exclusiv"
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "text": "Nu e aleator de-adevăratelea. E o funcție deterministă care doar arată aleator.",
+   "src": "voice/s05/05.mp3",
+   "dur": 5.584,
+   "speechStart": 0.256,
+   "speechEnd": 5.48,
+   "words": [
+    {
+     "w": "Nu",
+     "start": 0.256,
+     "end": 0.442,
+     "clean": "Nu"
+    },
+    {
+     "w": "e",
+     "start": 0.5,
+     "end": 0.523,
+     "clean": "e"
+    },
+    {
+     "w": "aleator",
+     "start": 0.591,
+     "end": 1.114,
+     "clean": "aleator"
+    },
+    {
+     "w": "de-adevăratelea.",
+     "start": 1.184,
+     "end": 2.148,
+     "clean": "de-adevăratelea"
+    },
+    {
+     "w": "E",
+     "start": 2.392,
+     "end": 2.508,
+     "clean": "E"
+    },
+    {
+     "w": "o",
+     "start": 2.588,
+     "end": 2.613,
+     "clean": "o"
+    },
+    {
+     "w": "funcție",
+     "start": 2.647,
+     "end": 2.961,
+     "clean": "funcție"
+    },
+    {
+     "w": "deterministă",
+     "start": 3.019,
+     "end": 3.715,
+     "clean": "deterministă"
+    },
+    {
+     "w": "care",
+     "start": 3.761,
+     "end": 3.959,
+     "clean": "care"
+    },
+    {
+     "w": "doar",
+     "start": 4.005,
+     "end": 4.179,
+     "clean": "doar"
+    },
+    {
+     "w": "arată",
+     "start": 4.249,
+     "end": 4.55,
+     "clean": "arată"
+    },
+    {
+     "w": "aleator.",
+     "start": 4.633,
+     "end": 5.48,
+     "clean": "aleator"
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "text": "Un detaliu fin. Ca să alegi un număr între zero și n, nu iei pur și simplu restul împărțirii, pentru că unele resturi ar ieși mai des. Codul aruncă câteva valori și mai încearcă o dată.",
+   "src": "voice/s05/06.mp3",
+   "dur": 11.438,
+   "speechStart": 0.105,
+   "speechEnd": 11.275,
+   "words": [
+    {
+     "w": "Un",
+     "start": 0.105,
+     "end": 0.245,
+     "clean": "Un"
+    },
+    {
+     "w": "detaliu",
+     "start": 0.279,
+     "end": 0.628,
+     "clean": "detaliu"
+    },
+    {
+     "w": "fin.",
+     "start": 0.686,
+     "end": 1.08,
+     "clean": "fin"
+    },
+    {
+     "w": "Ca",
+     "start": 1.464,
+     "end": 1.626,
+     "clean": "Ca"
+    },
+    {
+     "w": "să",
+     "start": 1.673,
+     "end": 1.754,
+     "clean": "să"
+    },
+    {
+     "w": "alegi",
+     "start": 1.812,
+     "end": 2.056,
+     "clean": "alegi"
+    },
+    {
+     "w": "un",
+     "start": 2.102,
+     "end": 2.16,
+     "clean": "un"
+    },
+    {
+     "w": "număr",
+     "start": 2.218,
+     "end": 2.474,
+     "clean": "număr"
+    },
+    {
+     "w": "între",
+     "start": 2.52,
+     "end": 2.752,
+     "clean": "între"
+    },
+    {
+     "w": "zero",
+     "start": 2.81,
+     "end": 3.077,
+     "clean": "zero"
+    },
+    {
+     "w": "și",
+     "start": 3.147,
+     "end": 3.286,
+     "clean": "și"
+    },
+    {
+     "w": "n,",
+     "start": 3.31,
+     "end": 3.67,
+     "clean": "n"
+    },
+    {
+     "w": "nu",
+     "start": 3.913,
+     "end": 4.076,
+     "clean": "nu"
+    },
+    {
+     "w": "iei",
+     "start": 4.122,
+     "end": 4.273,
+     "clean": "iei"
+    },
+    {
+     "w": "pur",
+     "start": 4.32,
+     "end": 4.459,
+     "clean": "pur"
+    },
+    {
+     "w": "și",
+     "start": 4.517,
+     "end": 4.61,
+     "clean": "și"
+    },
+    {
+     "w": "simplu",
+     "start": 4.656,
+     "end": 4.97,
+     "clean": "simplu"
+    },
+    {
+     "w": "restul",
+     "start": 5.016,
+     "end": 5.307,
+     "clean": "restul"
+    },
+    {
+     "w": "împărțirii,",
+     "start": 5.365,
+     "end": 5.887,
+     "clean": "împărțirii"
+    },
+    {
+     "w": "pentru",
+     "start": 5.922,
+     "end": 6.177,
+     "clean": "pentru"
+    },
+    {
+     "w": "că",
+     "start": 6.224,
+     "end": 6.305,
+     "clean": "că"
+    },
+    {
+     "w": "unele",
+     "start": 6.398,
+     "end": 6.665,
+     "clean": "unele"
+    },
+    {
+     "w": "resturi",
+     "start": 6.712,
+     "end": 7.072,
+     "clean": "resturi"
+    },
+    {
+     "w": "ar",
+     "start": 7.095,
+     "end": 7.176,
+     "clean": "ar"
+    },
+    {
+     "w": "ieși",
+     "start": 7.223,
+     "end": 7.432,
+     "clean": "ieși"
+    },
+    {
+     "w": "mai",
+     "start": 7.501,
+     "end": 7.641,
+     "clean": "mai"
+    },
+    {
+     "w": "des.",
+     "start": 7.699,
+     "end": 8.14,
+     "clean": "des"
+    },
+    {
+     "w": "Codul",
+     "start": 8.465,
+     "end": 8.802,
+     "clean": "Codul"
+    },
+    {
+     "w": "aruncă",
+     "start": 8.848,
+     "end": 9.185,
+     "clean": "aruncă"
+    },
+    {
+     "w": "câteva",
+     "start": 9.231,
+     "end": 9.568,
+     "clean": "câteva"
+    },
+    {
+     "w": "valori",
+     "start": 9.614,
+     "end": 9.951,
+     "clean": "valori"
+    },
+    {
+     "w": "și",
+     "start": 9.986,
+     "end": 10.079,
+     "clean": "și"
+    },
+    {
+     "w": "mai",
+     "start": 10.137,
+     "end": 10.253,
+     "clean": "mai"
+    },
+    {
+     "w": "încearcă",
+     "start": 10.276,
+     "end": 10.659,
+     "clean": "încearcă"
+    },
+    {
+     "w": "o",
+     "start": 10.717,
+     "end": 10.752,
+     "clean": "o"
+    },
+    {
+     "w": "dată.",
+     "start": 10.81,
+     "end": 11.275,
+     "clean": "dată"
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "text": "Apoi, fluxuri separate. Din seed-ul principal facem trei generatoare. Unul pentru hartă, unul pentru luptă și unul pentru recompense.",
+   "src": "voice/s05/07.mp3",
+   "dur": 9.217,
+   "speechStart": 0.163,
+   "speechEnd": 8.998,
+   "words": [
+    {
+     "w": "Apoi,",
+     "start": 0.163,
+     "end": 0.649,
+     "clean": "Apoi"
+    },
+    {
+     "w": "fluxuri",
+     "start": 0.719,
+     "end": 1.148,
+     "clean": "fluxuri"
+    },
+    {
+     "w": "separate.",
+     "start": 1.172,
+     "end": 1.962,
+     "clean": "separate"
+    },
+    {
+     "w": "Din",
+     "start": 2.344,
+     "end": 2.542,
+     "clean": "Din"
+    },
+    {
+     "w": "seed-ul",
+     "start": 2.588,
+     "end": 2.855,
+     "clean": "seed-ul"
+    },
+    {
+     "w": "principal",
+     "start": 2.902,
+     "end": 3.401,
+     "clean": "principal"
+    },
+    {
+     "w": "facem",
+     "start": 3.459,
+     "end": 3.749,
+     "clean": "facem"
+    },
+    {
+     "w": "trei",
+     "start": 3.831,
+     "end": 4.029,
+     "clean": "trei"
+    },
+    {
+     "w": "generatoare.",
+     "start": 4.075,
+     "end": 4.98,
+     "clean": "generatoare"
+    },
+    {
+     "w": "Unul",
+     "start": 5.258,
+     "end": 5.514,
+     "clean": "Unul"
+    },
+    {
+     "w": "pentru",
+     "start": 5.55,
+     "end": 5.828,
+     "clean": "pentru"
+    },
+    {
+     "w": "hartă,",
+     "start": 5.886,
+     "end": 6.268,
+     "clean": "hartă"
+    },
+    {
+     "w": "unul",
+     "start": 6.316,
+     "end": 6.524,
+     "clean": "unul"
+    },
+    {
+     "w": "pentru",
+     "start": 6.571,
+     "end": 6.849,
+     "clean": "pentru"
+    },
+    {
+     "w": "luptă",
+     "start": 6.895,
+     "end": 7.221,
+     "clean": "luptă"
+    },
+    {
+     "w": "și",
+     "start": 7.303,
+     "end": 7.395,
+     "clean": "și"
+    },
+    {
+     "w": "unul",
+     "start": 7.477,
+     "end": 7.685,
+     "clean": "unul"
+    },
+    {
+     "w": "pentru",
+     "start": 7.731,
+     "end": 8.023,
+     "clean": "pentru"
+    },
+    {
+     "w": "recompense.",
+     "start": 8.069,
+     "end": 8.998,
+     "clean": "recompense"
+    }
+   ]
+  },
+  {
+   "n": 8,
+   "text": "Așa, dacă se schimbă ceva în luptă, harta rămâne la fel. Altfel o singură aruncare de zar în plus ar muta tot restul run-ului.",
+   "src": "voice/s05/08.mp3",
+   "dur": 7.895,
+   "speechStart": 0.0,
+   "speechEnd": 7.895,
+   "words": [
+    {
+     "w": "Așa,",
+     "start": 0.0,
+     "end": 0.441,
+     "clean": "Așa"
+    },
+    {
+     "w": "dacă",
+     "start": 0.488,
+     "end": 0.731,
+     "clean": "dacă"
+    },
+    {
+     "w": "se",
+     "start": 0.778,
+     "end": 0.859,
+     "clean": "se"
+    },
+    {
+     "w": "schimbă",
+     "start": 0.894,
+     "end": 1.231,
+     "clean": "schimbă"
+    },
+    {
+     "w": "ceva",
+     "start": 1.265,
+     "end": 1.486,
+     "clean": "ceva"
+    },
+    {
+     "w": "în",
+     "start": 1.533,
+     "end": 1.579,
+     "clean": "în"
+    },
+    {
+     "w": "luptă,",
+     "start": 1.649,
+     "end": 2.02,
+     "clean": "luptă"
+    },
+    {
+     "w": "harta",
+     "start": 2.067,
+     "end": 2.415,
+     "clean": "harta"
+    },
+    {
+     "w": "rămâne",
+     "start": 2.473,
+     "end": 2.775,
+     "clean": "rămâne"
+    },
+    {
+     "w": "la",
+     "start": 2.821,
+     "end": 2.891,
+     "clean": "la"
+    },
+    {
+     "w": "fel.",
+     "start": 2.949,
+     "end": 3.379,
+     "clean": "fel"
+    },
+    {
+     "w": "Altfel",
+     "start": 3.704,
+     "end": 4.063,
+     "clean": "Altfel"
+    },
+    {
+     "w": "o",
+     "start": 4.122,
+     "end": 4.145,
+     "clean": "o"
+    },
+    {
+     "w": "singură",
+     "start": 4.203,
+     "end": 4.551,
+     "clean": "singură"
+    },
+    {
+     "w": "aruncare",
+     "start": 4.586,
+     "end": 5.05,
+     "clean": "aruncare"
+    },
+    {
+     "w": "de",
+     "start": 5.097,
+     "end": 5.166,
+     "clean": "de"
+    },
+    {
+     "w": "zar",
+     "start": 5.224,
+     "end": 5.387,
+     "clean": "zar"
+    },
+    {
+     "w": "în",
+     "start": 5.445,
+     "end": 5.492,
+     "clean": "în"
+    },
+    {
+     "w": "plus",
+     "start": 5.55,
+     "end": 5.747,
+     "clean": "plus"
+    },
+    {
+     "w": "ar",
+     "start": 5.817,
+     "end": 5.909,
+     "clean": "ar"
+    },
+    {
+     "w": "muta",
+     "start": 5.968,
+     "end": 6.2,
+     "clean": "muta"
+    },
+    {
+     "w": "tot",
+     "start": 6.281,
+     "end": 6.49,
+     "clean": "tot"
+    },
+    {
+     "w": "restul",
+     "start": 6.56,
+     "end": 6.896,
+     "clean": "restul"
+    },
+    {
+     "w": "run-ului.",
+     "start": 6.978,
+     "end": 7.895,
+     "clean": "run-ului"
+    }
+   ],
+   "regen": true
+  },
+  {
+   "n": 9,
+   "text": "Pentru pachetul de cărți folosim Fisher-Yates. Mergi de la ultima carte spre prima. Pentru fiecare poziție i alegi un j între zero și i, și le schimbi între ele.",
+   "src": "voice/s05/09.mp3",
+   "dur": 10.6,
+   "speechStart": 0.192,
+   "speechEnd": 10.408,
+   "words": [
+    {
+     "w": "Pentru",
+     "start": 0.192,
+     "end": 0.493,
+     "clean": "Pentru"
+    },
+    {
+     "w": "pachetul",
+     "start": 0.54,
+     "end": 0.9,
+     "clean": "pachetul"
+    },
+    {
+     "w": "de",
+     "start": 0.946,
+     "end": 1.016,
+     "clean": "de"
+    },
+    {
+     "w": "cărți",
+     "start": 1.062,
+     "end": 1.341,
+     "clean": "cărți"
+    },
+    {
+     "w": "folosim",
+     "start": 1.364,
+     "end": 1.805,
+     "clean": "folosim"
+    },
+    {
+     "w": "Fisher-Yates.",
+     "start": 1.887,
+     "end": 3.001,
+     "clean": "Fisher-Yates"
+    },
+    {
+     "w": "Mergi",
+     "start": 3.21,
+     "end": 3.535,
+     "clean": "Mergi"
+    },
+    {
+     "w": "de",
+     "start": 3.593,
+     "end": 3.675,
+     "clean": "de"
+    },
+    {
+     "w": "la",
+     "start": 3.721,
+     "end": 3.791,
+     "clean": "la"
+    },
+    {
+     "w": "ultima",
+     "start": 3.849,
+     "end": 4.197,
+     "clean": "ultima"
+    },
+    {
+     "w": "carte",
+     "start": 4.255,
+     "end": 4.545,
+     "clean": "carte"
+    },
+    {
+     "w": "spre",
+     "start": 4.592,
+     "end": 4.801,
+     "clean": "spre"
+    },
+    {
+     "w": "prima.",
+     "start": 4.836,
+     "end": 5.404,
+     "clean": "prima"
+    },
+    {
+     "w": "Pentru",
+     "start": 5.648,
+     "end": 5.927,
+     "clean": "Pentru"
+    },
+    {
+     "w": "fiecare",
+     "start": 5.973,
+     "end": 6.356,
+     "clean": "fiecare"
+    },
+    {
+     "w": "poziție",
+     "start": 6.403,
+     "end": 6.867,
+     "clean": "poziție"
+    },
+    {
+     "w": "i",
+     "start": 6.914,
+     "end": 6.983,
+     "clean": "i"
+    },
+    {
+     "w": "alegi",
+     "start": 7.053,
+     "end": 7.331,
+     "clean": "alegi"
+    },
+    {
+     "w": "un",
+     "start": 7.378,
+     "end": 7.447,
+     "clean": "un"
+    },
+    {
+     "w": "j",
+     "start": 7.54,
+     "end": 7.749,
+     "clean": "j"
+    },
+    {
+     "w": "între",
+     "start": 7.784,
+     "end": 8.028,
+     "clean": "între"
+    },
+    {
+     "w": "zero",
+     "start": 8.086,
+     "end": 8.353,
+     "clean": "zero"
+    },
+    {
+     "w": "și",
+     "start": 8.423,
+     "end": 8.55,
+     "clean": "și"
+    },
+    {
+     "w": "i,",
+     "start": 8.597,
+     "end": 8.968,
+     "clean": "i"
+    },
+    {
+     "w": "și",
+     "start": 9.084,
+     "end": 9.2,
+     "clean": "și"
+    },
+    {
+     "w": "le",
+     "start": 9.258,
+     "end": 9.328,
+     "clean": "le"
+    },
+    {
+     "w": "schimbi",
+     "start": 9.363,
+     "end": 9.688,
+     "clean": "schimbi"
+    },
+    {
+     "w": "între",
+     "start": 9.723,
+     "end": 9.955,
+     "clean": "între"
+    },
+    {
+     "w": "ele.",
+     "start": 10.013,
+     "end": 10.408,
+     "clean": "ele"
+    }
+   ]
+  },
+  {
+   "n": 10,
+   "text": "Toate cele o sută douăzeci de permutări ale celor cinci cărți ies cu aceeași probabilitate. Și sunt trei rânduri de cod.",
+   "src": "voice/s05/10.mp3",
+   "dur": 7.523,
+   "speechStart": 0.08,
+   "speechEnd": 7.523,
+   "words": [
+    {
+     "w": "Toate",
+     "start": 0.08,
+     "end": 0.337,
+     "clean": "Toate"
+    },
+    {
+     "w": "cele",
+     "start": 0.383,
+     "end": 0.592,
+     "clean": "cele"
+    },
+    {
+     "w": "o",
+     "start": 0.65,
+     "end": 0.697,
+     "clean": "o"
+    },
+    {
+     "w": "sută",
+     "start": 0.755,
+     "end": 1.022,
+     "clean": "sută"
+    },
+    {
+     "w": "douăzeci",
+     "start": 1.08,
+     "end": 1.602,
+     "clean": "douăzeci"
+    },
+    {
+     "w": "de",
+     "start": 1.637,
+     "end": 1.695,
+     "clean": "de"
+    },
+    {
+     "w": "permutări",
+     "start": 1.741,
+     "end": 2.241,
+     "clean": "permutări"
+    },
+    {
+     "w": "ale",
+     "start": 2.264,
+     "end": 2.392,
+     "clean": "ale"
+    },
+    {
+     "w": "celor",
+     "start": 2.438,
+     "end": 2.717,
+     "clean": "celor"
+    },
+    {
+     "w": "cinci",
+     "start": 2.763,
+     "end": 3.019,
+     "clean": "cinci"
+    },
+    {
+     "w": "cărți",
+     "start": 3.053,
+     "end": 3.32,
+     "clean": "cărți"
+    },
+    {
+     "w": "ies",
+     "start": 3.355,
+     "end": 3.576,
+     "clean": "ies"
+    },
+    {
+     "w": "cu",
+     "start": 3.634,
+     "end": 3.704,
+     "clean": "cu"
+    },
+    {
+     "w": "aceeași",
+     "start": 3.773,
+     "end": 4.145,
+     "clean": "aceeași"
+    },
+    {
+     "w": "probabilitate.",
+     "start": 4.191,
+     "end": 5.143,
+     "clean": "probabilitate"
+    },
+    {
+     "w": "Și",
+     "start": 5.526,
+     "end": 5.666,
+     "clean": "Și"
+    },
+    {
+     "w": "sunt",
+     "start": 5.712,
+     "end": 5.979,
+     "clean": "sunt"
+    },
+    {
+     "w": "trei",
+     "start": 6.049,
+     "end": 6.269,
+     "clean": "trei"
+    },
+    {
+     "w": "rânduri",
+     "start": 6.304,
+     "end": 6.676,
+     "clean": "rânduri"
+    },
+    {
+     "w": "de",
+     "start": 6.699,
+     "end": 6.78,
+     "clean": "de"
+    },
+    {
+     "w": "cod.",
+     "start": 6.827,
+     "end": 7.523,
+     "clean": "cod"
+    }
+   ],
+   "regen": true
+  }
+ ]
+}

@@ -1,0 +1,97 @@
+{
+ "scene": "s04",
+ "voice": "NKQBjfoAhInP7Bjx6P7l",
+ "model": "eleven_multilingual_v2",
+ "lines": [
+  {
+   "n": 1,
+   "text": "Harta unui etaj e un graf. Camerele sunt noduri pe o grilă de cinci pe patru, iar holurile sunt muchiile.",
+   "whisper_ro": "Harta unui etaj e un graf. Camerele sunt noduri pe o grillă de 5x4, iar holurile sunt muchiile.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 2,
+   "text": "Cum o generăm? Pornim dintr-o cameră aleasă la întâmplare.",
+   "whisper_ro": "Cum o generăm? Pornim dintr-o cameră aleasă la întâmplare.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 3,
+   "text": "La fiecare pas ne uităm la locurile libere de lângă camerele deja puse. Alegem unul la întâmplare și îl legăm de vecinul lui.",
+   "whisper_ro": "La fiecare pas ne uităm la locurile libere de lângă camerele deja puse. Alegem unul la întâmplare și îl legăm de vecinul lui.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 4,
+   "text": "Fiecare cameră nouă vine cu exact o muchie. Deci n camere au n minus unu muchii și totul e conectat. Adică un arbore de acoperire.",
+   "whisper_ro": "Fiecare cameră nouă vine cu exact o muchie. Deci N camere au N-1 muchii și totul e conectat, adică un arbore de acoperire.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 5,
+   "text": "Doar că într-un arbore, între două camere există un singur drum. N-ai ce alege. Așa că mai adăugăm una sau două muchii. Apar bucle, deci apar alegeri.",
+   "whisper_ro": "Doar că într-un arbore, între două camere, există un singur drum. N-ai ce alege. Așa că mai adăugăm una sau două muchii. Apar bucle, deci apar alegeri.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 6,
+   "text": "Cu o condiție. O muchie nouă intră doar dacă rămân măcar două fundături, pentru că ne trebuie locuri pentru boss și pentru comoară.",
+   "whisper_ro": "Cu o condiție. O muchie nouă intră doar dacă rămân măcar două fundături, pentru că ne trebuie locuri pentru bos și pentru comoară.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 7,
+   "text": "Acum, unde punem boss-ul? Cât mai departe de start.",
+   "whisper_ro": "Acum, unde punem BOS-ul? Cât mai departe de Start.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 8,
+   "text": "Aici intră BFS-ul. Startul are distanța zero, vecinii lui unu, vecinii vecinilor doi, și tot așa, cu o coadă.",
+   "whisper_ro": "Aici intră BFS-ul. Startul are distanța 0, vecinii lui 1, vecinii vecinilor 2. Și tot așa, cu o coadă.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 9,
+   "text": "Camera cu distanța cea mai mare devine boss-ul. La egalitate alegem o fundătură, ca să nu dai peste boss în drum spre altceva.",
+   "whisper_ro": "Camera cu distanța cea mai mare devine boss-ul. La egalitate alegem o fundătură, ca să nu dai peste boss în drum spre altceva.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 10,
+   "text": "Comoara merge în altă fundătură. Restul camerelor se împart în lupte, un pat pentru odihnă și un curio.",
+   "whisper_ro": "Comoara merge în altă fundătură. Restul camerelor se împart în lupte, un pat pentru odihnă și un curio.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  }
+ ]
+}

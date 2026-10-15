@@ -1,0 +1,61 @@
+{
+ "scene": "s07",
+ "voice": "NKQBjfoAhInP7Bjx6P7l",
+ "model": "eleven_multilingual_v2",
+ "lines": [
+  {
+   "n": 1,
+   "text": "Când joci o carte, Modelul rezolvă totul pe loc. Damage, morți, mutări, statusuri. Într-o fracțiune de milisecundă.",
+   "whisper_ro": "Când joci o carte, modelul rezolvă totul pe loc. Damage, morți, mutări, statusuri. Într-o fracțiune de milisecundă.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 2,
+   "text": "Dar dacă le-ai arăta pe toate deodată, n-ai înțelege nimic. Așa că View-ul le pune la coadă.",
+   "whisper_ro": "Dar dacă le-ai arăta pe toate deodată, n-ai înțelege nimic. Așa că view-ul le pune la coadă.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 3,
+   "text": "Ia primul eveniment, îl animă, așteaptă să se termine, apoi trece la următorul.",
+   "whisper_ro": "Ia primul eveniment, îl animă, așteaptă să se termine, apoi trece la următorul.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 4,
+   "text": "În Unity asta se face cu corutine. O funcție care face yield return se oprește acolo și continuă când e gata animația.",
+   "whisper_ro": "În Unity asta se face cu corutine. O funcție care face yield return se oprește acolo și continuă când e gata animația.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 5,
+   "text": "Un switch alege animația pentru fiecare tip de eveniment. Damaged înseamnă un număr care sare, o clipire albă, puțin sânge și un shake.",
+   "whisper_ro": "Un switch alege animația pentru fiecare tip de eveniment. Damaged înseamnă un număr care sare, o clipire albă, puțin sânge și un shake.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 6,
+   "text": "Și încă ceva. Dacă o animație aruncă o excepție, lupta merge mai departe. Fiecare pas e învelit într-un try. Un bug vizual n-are voie să-ți blocheze jocul.",
+   "whisper_ro": "Și încă ceva. Dacă o animație aruncă o excepție, lupta merge mai departe. Fiecare pas e învelit într-un trai. Un bug vizual n-are voie să-ți blocheze jocul.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  }
+ ]
+}

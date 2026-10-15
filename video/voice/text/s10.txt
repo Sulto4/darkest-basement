@@ -1,0 +1,8 @@
+Holul e 3D adevărat, dar personajele sunt plate. Sunt billboard-uri. Un dreptunghi cu sprite-ul pe el.
+La fiecare frame îl rotim după cameră. Iei direcția în care se uită camera, pui componenta verticală pe zero, ca să rămână drept, și îl aliniezi cu ea.
+Atenție, nu se uită spre cameră. E paralel cu planul ei. Așa sprite-urile de pe margini nu se deformează.
+Când intri în luptă, camera iese din spatele echipei pe un arc, ca o macara. Unghiul și raza se interpolează separat, iar înălțimea mai primește un sinus care o ridică la mijloc.
+Acum pixelii. Treizeci și doi de pixeli de artă fac o unitate în lume. Interfața e desenată la șase sute patruzeci pe trei sute șaizeci.
+Apoi o mărim cu un factor întreg. Pe Full HD, ori trei. Fiecare pixel devine un pătrat perfect de trei pe trei.
+Cu un factor ca doi și jumătate, unele coloane ar ieși mai late decât altele, și se vede imediat. De asta doar numere întregi, iar ce rămâne pe margini e bandă neagră.
+Chiar și camera de luptă e calculată așa. Vede exact zece unități în lățime, deci fiecare pixel de artă iese doi pe doi.

@@ -1,0 +1,79 @@
+{
+ "scene": "s08",
+ "voice": "NKQBjfoAhInP7Bjx6P7l",
+ "model": "eleven_multilingual_v2",
+ "lines": [
+  {
+   "n": 1,
+   "text": "Cum știi dacă jocul e prea greu? Nu-l joci tu de o mie de ori. Îl pui pe calculator să-l joace.",
+   "whisper_ro": "Cum știi dacă jocul e prea greu? Nu-l joci tu de o mie de ori. Îl pui pe calculator să-l joace.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 2,
+   "text": "AutoPlayer e un jucător simplu și lacom. Dă damage unde contează, se vindecă atunci când e jos și pune Block când vede că vine o lovitură.",
+   "whisper_ro": "Auto Player e un jucător simplu și lacom. Dă damage unde contează, se vindecă atunci când e jos și pune block când vede că vine o lovitură.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 3,
+   "text": "Pentru că Modelul nu depinde de Unity, simulatorul joacă cinci sute de run-uri complete în câteva secunde.",
+   "whisper_ro": "Pentru că modelul nu depinde de Unity, simulatorul joacă 500 de run-uri complete în câteva secunde.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 4,
+   "text": "Asta e metoda Monte Carlo. Nu calculezi probabilitatea exact. O estimezi din foarte multe încercări.",
+   "whisper_ro": "Asta e metoda Monte Carlo. Nu calculezi probabilitatea exact. O estimezi din foarte multe încercări.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 5,
+   "text": "Prima versiune a dat zero victorii din cinci sute. Luptele se terminau în două runde și ceva. Prea brutal.",
+   "whisper_ro": "Prima versiune a dat 0 victorii din 500. Luptele se terminau în două runde și ceva. Prea brutal.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 6,
+   "text": "Am crescut viața inamicilor cu vreo cincizeci la sută și am scăzut damage-ul. Acum botul câștigă două sute nouăsprezece din cinci sute. Adică patruzeci și trei virgulă opt la sută.",
+   "whisper_ro": "Am crescut viața inamicilor cu vreo 50% și am scăzut damage-ul. Acum botul câștigă 219 din 500, adică 40 și 3,8%.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 7,
+   "text": "O luptă normală ține în medie trei runde și jumătate, iar una cu boss aproape șapte. Exact cât ne-am propus.",
+   "whisper_ro": "O luptă normală ține în medie 3 runde și jumătate, iar una cu boss aproape 7. Exact cât ne-am propus.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 8,
+   "text": "Cu cinci sute de run-uri, eroarea e de câteva procente. De asta am verificat și pe alte seed-uri. A ieșit cam cincizeci la sută, tot în țintă.",
+   "whisper_ro": "Cu 500 de ranuri, eroarea e de câteva procente. De asta am verificat și pe alte siduri. A ieșit cam 50%, tot în țintă.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  }
+ ]
+}

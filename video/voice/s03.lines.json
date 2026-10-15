@@ -1,0 +1,769 @@
+{
+ "voice": "NKQBjfoAhInP7Bjx6P7l",
+ "model": "eleven_multilingual_v2",
+ "speed": 1.0,
+ "stability": 0.5,
+ "style": 0.2,
+ "lines": [
+  {
+   "n": 1,
+   "text": "Bun. Cum curge jocul de la meniu până la final?",
+   "src": "voice/s03/01.mp3",
+   "dur": 3.413,
+   "speechStart": 0.0,
+   "speechEnd": 3.158,
+   "words": [
+    {
+     "w": "Bun.",
+     "start": 0.0,
+     "end": 0.406,
+     "clean": "Bun"
+    },
+    {
+     "w": "Cum",
+     "start": 0.848,
+     "end": 1.08,
+     "clean": "Cum"
+    },
+    {
+     "w": "curge",
+     "start": 1.149,
+     "end": 1.428,
+     "clean": "curge"
+    },
+    {
+     "w": "jocul",
+     "start": 1.486,
+     "end": 1.753,
+     "clean": "jocul"
+    },
+    {
+     "w": "de",
+     "start": 1.8,
+     "end": 1.858,
+     "clean": "de"
+    },
+    {
+     "w": "la",
+     "start": 1.904,
+     "end": 1.974,
+     "clean": "la"
+    },
+    {
+     "w": "meniu",
+     "start": 2.02,
+     "end": 2.264,
+     "clean": "meniu"
+    },
+    {
+     "w": "până",
+     "start": 2.322,
+     "end": 2.496,
+     "clean": "până"
+    },
+    {
+     "w": "la",
+     "start": 2.531,
+     "end": 2.601,
+     "clean": "la"
+    },
+    {
+     "w": "final?",
+     "start": 2.647,
+     "end": 3.158,
+     "clean": "final"
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "text": "Gândește-te la el ca la un automat finit, ca la cursul de limbaje formale.",
+   "src": "voice/s03/02.mp3",
+   "dur": 4.952,
+   "speechStart": 0.256,
+   "speechEnd": 4.76,
+   "words": [
+    {
+     "w": "Gândește-te",
+     "start": 0.256,
+     "end": 0.835,
+     "clean": "Gândește-te"
+    },
+    {
+     "w": "la",
+     "start": 0.894,
+     "end": 0.976,
+     "clean": "la"
+    },
+    {
+     "w": "el",
+     "start": 1.067,
+     "end": 1.196,
+     "clean": "el"
+    },
+    {
+     "w": "ca",
+     "start": 1.277,
+     "end": 1.381,
+     "clean": "ca"
+    },
+    {
+     "w": "la",
+     "start": 1.439,
+     "end": 1.51,
+     "clean": "la"
+    },
+    {
+     "w": "un",
+     "start": 1.603,
+     "end": 1.684,
+     "clean": "un"
+    },
+    {
+     "w": "automat",
+     "start": 1.753,
+     "end": 2.253,
+     "clean": "automat"
+    },
+    {
+     "w": "finit,",
+     "start": 2.311,
+     "end": 2.752,
+     "clean": "finit"
+    },
+    {
+     "w": "ca",
+     "start": 2.822,
+     "end": 2.938,
+     "clean": "ca"
+    },
+    {
+     "w": "la",
+     "start": 2.984,
+     "end": 3.053,
+     "clean": "la"
+    },
+    {
+     "w": "cursul",
+     "start": 3.122,
+     "end": 3.471,
+     "clean": "cursul"
+    },
+    {
+     "w": "de",
+     "start": 3.54,
+     "end": 3.598,
+     "clean": "de"
+    },
+    {
+     "w": "limbaje",
+     "start": 3.646,
+     "end": 4.051,
+     "clean": "limbaje"
+    },
+    {
+     "w": "formale.",
+     "start": 4.109,
+     "end": 4.76,
+     "clean": "formale"
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "text": "La orice moment ești într-o singură stare. Meniu, hartă, hol, cameră, luptă, recompensă.",
+   "src": "voice/s03/03.mp3",
+   "dur": 6.483,
+   "speechStart": 0.192,
+   "speechEnd": 6.321,
+   "words": [
+    {
+     "w": "La",
+     "start": 0.192,
+     "end": 0.331,
+     "clean": "La"
+    },
+    {
+     "w": "orice",
+     "start": 0.412,
+     "end": 0.679,
+     "clean": "orice"
+    },
+    {
+     "w": "moment",
+     "start": 0.726,
+     "end": 1.062,
+     "clean": "moment"
+    },
+    {
+     "w": "ești",
+     "start": 1.12,
+     "end": 1.306,
+     "clean": "ești"
+    },
+    {
+     "w": "într-o",
+     "start": 1.329,
+     "end": 1.538,
+     "clean": "într-o"
+    },
+    {
+     "w": "singură",
+     "start": 1.585,
+     "end": 1.945,
+     "clean": "singură"
+    },
+    {
+     "w": "stare.",
+     "start": 1.979,
+     "end": 2.467,
+     "clean": "stare"
+    },
+    {
+     "w": "Meniu,",
+     "start": 2.583,
+     "end": 3.117,
+     "clean": "Meniu"
+    },
+    {
+     "w": "hartă,",
+     "start": 3.175,
+     "end": 3.675,
+     "clean": "hartă"
+    },
+    {
+     "w": "hol,",
+     "start": 3.733,
+     "end": 4.139,
+     "clean": "hol"
+    },
+    {
+     "w": "cameră,",
+     "start": 4.185,
+     "end": 4.754,
+     "clean": "cameră"
+    },
+    {
+     "w": "luptă,",
+     "start": 4.812,
+     "end": 5.311,
+     "clean": "luptă"
+    },
+    {
+     "w": "recompensă.",
+     "start": 5.381,
+     "end": 6.321,
+     "clean": "recompensă"
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "text": "Fiecare stare e o corutină. O joci de la cap la coadă, iar la final ea spune care e starea următoare.",
+   "src": "voice/s03/04.mp3",
+   "dur": 7.031,
+   "speechStart": 0.162,
+   "speechEnd": 6.839,
+   "words": [
+    {
+     "w": "Fiecare",
+     "start": 0.162,
+     "end": 0.674,
+     "clean": "Fiecare"
+    },
+    {
+     "w": "stare",
+     "start": 0.721,
+     "end": 1.091,
+     "clean": "stare"
+    },
+    {
+     "w": "e",
+     "start": 1.114,
+     "end": 1.162,
+     "clean": "e"
+    },
+    {
+     "w": "o",
+     "start": 1.22,
+     "end": 1.255,
+     "clean": "o"
+    },
+    {
+     "w": "corutină.",
+     "start": 1.313,
+     "end": 2.043,
+     "clean": "corutină"
+    },
+    {
+     "w": "O",
+     "start": 2.368,
+     "end": 2.45,
+     "clean": "O"
+    },
+    {
+     "w": "joci",
+     "start": 2.566,
+     "end": 2.752,
+     "clean": "joci"
+    },
+    {
+     "w": "de",
+     "start": 2.798,
+     "end": 2.845,
+     "clean": "de"
+    },
+    {
+     "w": "la",
+     "start": 2.903,
+     "end": 2.973,
+     "clean": "la"
+    },
+    {
+     "w": "cap",
+     "start": 3.031,
+     "end": 3.182,
+     "clean": "cap"
+    },
+    {
+     "w": "la",
+     "start": 3.252,
+     "end": 3.321,
+     "clean": "la"
+    },
+    {
+     "w": "coadă,",
+     "start": 3.379,
+     "end": 3.879,
+     "clean": "coadă"
+    },
+    {
+     "w": "iar",
+     "start": 4.053,
+     "end": 4.239,
+     "clean": "iar"
+    },
+    {
+     "w": "la",
+     "start": 4.307,
+     "end": 4.377,
+     "clean": "la"
+    },
+    {
+     "w": "final",
+     "start": 4.423,
+     "end": 4.726,
+     "clean": "final"
+    },
+    {
+     "w": "ea",
+     "start": 4.772,
+     "end": 4.854,
+     "clean": "ea"
+    },
+    {
+     "w": "spune",
+     "start": 4.9,
+     "end": 5.249,
+     "clean": "spune"
+    },
+    {
+     "w": "care",
+     "start": 5.341,
+     "end": 5.655,
+     "clean": "care"
+    },
+    {
+     "w": "e",
+     "start": 5.69,
+     "end": 5.713,
+     "clean": "e"
+    },
+    {
+     "w": "starea",
+     "start": 5.748,
+     "end": 6.06,
+     "clean": "starea"
+    },
+    {
+     "w": "următoare.",
+     "start": 6.118,
+     "end": 6.839,
+     "clean": "următoare"
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "text": "Din hartă pleci pe hol. De pe hol intri în cameră. După luptă iei recompensa și te întorci pe hartă.",
+   "src": "voice/s03/05.mp3",
+   "dur": 6.931,
+   "speechStart": 0.191,
+   "speechEnd": 6.739,
+   "words": [
+    {
+     "w": "Din",
+     "start": 0.191,
+     "end": 0.4,
+     "clean": "Din"
+    },
+    {
+     "w": "hartă",
+     "start": 0.47,
+     "end": 0.737,
+     "clean": "hartă"
+    },
+    {
+     "w": "pleci",
+     "start": 0.795,
+     "end": 1.027,
+     "clean": "pleci"
+    },
+    {
+     "w": "pe",
+     "start": 1.05,
+     "end": 1.132,
+     "clean": "pe"
+    },
+    {
+     "w": "hol.",
+     "start": 1.178,
+     "end": 1.561,
+     "clean": "hol"
+    },
+    {
+     "w": "De",
+     "start": 1.886,
+     "end": 2.014,
+     "clean": "De"
+    },
+    {
+     "w": "pe",
+     "start": 2.06,
+     "end": 2.165,
+     "clean": "pe"
+    },
+    {
+     "w": "hol",
+     "start": 2.2,
+     "end": 2.42,
+     "clean": "hol"
+    },
+    {
+     "w": "intri",
+     "start": 2.502,
+     "end": 2.757,
+     "clean": "intri"
+    },
+    {
+     "w": "în",
+     "start": 2.804,
+     "end": 2.85,
+     "clean": "în"
+    },
+    {
+     "w": "cameră.",
+     "start": 2.92,
+     "end": 3.512,
+     "clean": "cameră"
+    },
+    {
+     "w": "După",
+     "start": 3.686,
+     "end": 3.941,
+     "clean": "După"
+    },
+    {
+     "w": "luptă",
+     "start": 3.976,
+     "end": 4.278,
+     "clean": "luptă"
+    },
+    {
+     "w": "iei",
+     "start": 4.348,
+     "end": 4.499,
+     "clean": "iei"
+    },
+    {
+     "w": "recompensa",
+     "start": 4.545,
+     "end": 5.207,
+     "clean": "recompensa"
+    },
+    {
+     "w": "și",
+     "start": 5.288,
+     "end": 5.381,
+     "clean": "și"
+    },
+    {
+     "w": "te",
+     "start": 5.439,
+     "end": 5.52,
+     "clean": "te"
+    },
+    {
+     "w": "întorci",
+     "start": 5.578,
+     "end": 5.985,
+     "clean": "întorci"
+    },
+    {
+     "w": "pe",
+     "start": 6.031,
+     "end": 6.112,
+     "clean": "pe"
+    },
+    {
+     "w": "hartă.",
+     "start": 6.17,
+     "end": 6.739,
+     "clean": "hartă"
+    }
+   ]
+  },
+  {
+   "n": 6,
+   "text": "Toată bucla asta e un while cu un switch. Atât conduce un run întreg.",
+   "src": "voice/s03/06.mp3",
+   "dur": 5.017,
+   "speechStart": 0.192,
+   "speechEnd": 4.824,
+   "words": [
+    {
+     "w": "Toată",
+     "start": 0.192,
+     "end": 0.586,
+     "clean": "Toată"
+    },
+    {
+     "w": "bucla",
+     "start": 0.644,
+     "end": 0.981,
+     "clean": "bucla"
+    },
+    {
+     "w": "asta",
+     "start": 1.004,
+     "end": 1.225,
+     "clean": "asta"
+    },
+    {
+     "w": "e",
+     "start": 1.271,
+     "end": 1.318,
+     "clean": "e"
+    },
+    {
+     "w": "un",
+     "start": 1.411,
+     "end": 1.538,
+     "clean": "un"
+    },
+    {
+     "w": "while",
+     "start": 1.62,
+     "end": 1.91,
+     "clean": "while"
+    },
+    {
+     "w": "cu",
+     "start": 1.945,
+     "end": 2.061,
+     "clean": "cu"
+    },
+    {
+     "w": "un",
+     "start": 2.119,
+     "end": 2.212,
+     "clean": "un"
+    },
+    {
+     "w": "switch.",
+     "start": 2.27,
+     "end": 2.792,
+     "clean": "switch"
+    },
+    {
+     "w": "Atât",
+     "start": 2.966,
+     "end": 3.291,
+     "clean": "Atât"
+    },
+    {
+     "w": "conduce",
+     "start": 3.349,
+     "end": 3.779,
+     "clean": "conduce"
+    },
+    {
+     "w": "un",
+     "start": 3.849,
+     "end": 3.918,
+     "clean": "un"
+    },
+    {
+     "w": "run",
+     "start": 4.034,
+     "end": 4.197,
+     "clean": "run"
+    },
+    {
+     "w": "întreg.",
+     "start": 4.278,
+     "end": 4.824,
+     "clean": "întreg"
+    }
+   ]
+  },
+  {
+   "n": 7,
+   "text": "Și GameFlow nu decide nimic. Modelul spune ce e în cameră și cine moare. GameFlow doar pune în scenă și așteaptă alegerea ta.",
+   "src": "voice/s03/07.mp3",
+   "dur": 8.388,
+   "speechStart": 0.191,
+   "speechEnd": 8.388,
+   "words": [
+    {
+     "w": "Și",
+     "start": 0.191,
+     "end": 0.319,
+     "clean": "Și"
+    },
+    {
+     "w": "GameFlow",
+     "start": 0.388,
+     "end": 0.806,
+     "clean": "GameFlow"
+    },
+    {
+     "w": "nu",
+     "start": 0.876,
+     "end": 0.98,
+     "clean": "nu"
+    },
+    {
+     "w": "decide",
+     "start": 1.039,
+     "end": 1.364,
+     "clean": "decide"
+    },
+    {
+     "w": "nimic.",
+     "start": 1.41,
+     "end": 1.991,
+     "clean": "nimic"
+    },
+    {
+     "w": "Modelul",
+     "start": 2.269,
+     "end": 2.745,
+     "clean": "Modelul"
+    },
+    {
+     "w": "spune",
+     "start": 2.803,
+     "end": 3.152,
+     "clean": "spune"
+    },
+    {
+     "w": "ce",
+     "start": 3.21,
+     "end": 3.349,
+     "clean": "ce"
+    },
+    {
+     "w": "e",
+     "start": 3.372,
+     "end": 3.395,
+     "clean": "e"
+    },
+    {
+     "w": "în",
+     "start": 3.511,
+     "end": 3.57,
+     "clean": "în"
+    },
+    {
+     "w": "cameră",
+     "start": 3.639,
+     "end": 4.011,
+     "clean": "cameră"
+    },
+    {
+     "w": "și",
+     "start": 4.057,
+     "end": 4.138,
+     "clean": "și"
+    },
+    {
+     "w": "cine",
+     "start": 4.185,
+     "end": 4.394,
+     "clean": "cine"
+    },
+    {
+     "w": "moare.",
+     "start": 4.44,
+     "end": 4.916,
+     "clean": "moare"
+    },
+    {
+     "w": "GameFlow",
+     "start": 5.195,
+     "end": 5.717,
+     "clean": "GameFlow"
+    },
+    {
+     "w": "doar",
+     "start": 5.764,
+     "end": 5.926,
+     "clean": "doar"
+    },
+    {
+     "w": "pune",
+     "start": 5.996,
+     "end": 6.193,
+     "clean": "pune"
+    },
+    {
+     "w": "în",
+     "start": 6.228,
+     "end": 6.275,
+     "clean": "în"
+    },
+    {
+     "w": "scenă",
+     "start": 6.344,
+     "end": 6.635,
+     "clean": "scenă"
+    },
+    {
+     "w": "și",
+     "start": 6.704,
+     "end": 6.774,
+     "clean": "și"
+    },
+    {
+     "w": "așteaptă",
+     "start": 6.82,
+     "end": 7.227,
+     "clean": "așteaptă"
+    },
+    {
+     "w": "alegerea",
+     "start": 7.261,
+     "end": 7.668,
+     "clean": "alegerea"
+    },
+    {
+     "w": "ta.",
+     "start": 7.726,
+     "end": 8.388,
+     "clean": "ta"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,10 @@
+Acum, norocul. Un roguelike trebuie să fie altfel la fiecare run, dar noi vrem să-l putem și repeta.
+Soluția e un seed. Un singur număr de la care pornește tot. Același seed înseamnă același run, pas cu pas.
+Asta te salvează la teste. Dacă un bug apare pe seed-ul șapte, îl reproduci de câte ori vrei.
+În spate e un generator pseudo-aleator foarte mic. Ia un număr pe treizeci și doi de biți și îl amestecă cu trei deplasări de biți și sau exclusiv.
+Nu e aleator de-adevăratelea. E o funcție deterministă care doar arată aleator.
+Un detaliu fin. Ca să alegi un număr între zero și n, nu iei pur și simplu restul împărțirii, pentru că unele resturi ar ieși mai des. Codul aruncă câteva valori și mai încearcă o dată.
+Apoi, fluxuri separate. Din seed-ul principal facem trei generatoare. Unul pentru hartă, unul pentru luptă și unul pentru recompense.
+Așa, dacă se schimbă ceva în luptă, harta rămâne la fel. Altfel o singură aruncare de zar în plus ar muta tot restul run-ului.
+Pentru pachetul de cărți folosim Fisher-Yates. Mergi de la ultima carte spre prima. Pentru fiecare poziție i alegi un j între zero și i, și le schimbi între ele.
+Toate cele o sută douăzeci de permutări ale celor cinci cărți ies cu aceeași probabilitate. Și sunt trei rânduri de cod.

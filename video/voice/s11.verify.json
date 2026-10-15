@@ -1,0 +1,88 @@
+{
+ "scene": "s11",
+ "voice": "NKQBjfoAhInP7Bjx6P7l",
+ "model": "eleven_multilingual_v2",
+ "lines": [
+  {
+   "n": 1,
+   "text": "Bun. Dacă ar fi să pornești de la zero, în ce ordine ai învăța?",
+   "whisper_ro": "Bun, dacă ar fi să pornești de la zero, în ce ordine ai învăța?",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": true
+  },
+  {
+   "n": 2,
+   "text": "Unu. C sharp simplu, fără Unity. Clase, liste, dicționare. Scrie o luptă în consolă, cu doi eroi și un inamic. Exact ce face simulatorul.",
+   "whisper_ro": "1. C-Sharp simplu, fără Unity. Clase, liste, dicționare. Scrie o luptă în consolă cu doi eroi și un inamic. Exact ce face simulatorul.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 3,
+   "text": "Doi. Unity de bază. Ce e un GameObject, ce e o componentă, ce face Update. Pune un sprite care respiră cu un sinus.",
+   "whisper_ro": "2. Unity de bază Ce e un GameObject? Ce e o componentă? Ce face update? Pune un sprite care respiră cu un sinus.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 4,
+   "text": "Trei. Leagă cele două lumi cu o coadă de evenimente. Lupta ta din consolă produce evenimente, iar o corutină le animă una câte una.",
+   "whisper_ro": "3. Leagă cele două lumi cu o coadă de evenimente Lupta ta din consolă produce evenimente, iar o corutină le animă una câte una.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 5,
+   "text": "Patru. Interfața. Un Canvas, câteva butoane, o carte care se ridică atunci când treci cu mouse-ul peste ea.",
+   "whisper_ro": "4. Interfața. Un canvas. Câteva butoane. O carte care se ridică atunci când treci cu mouse-ul peste ea.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 6,
+   "text": "Cinci. Camera și mișcarea. Lerp, easing, SmoothDamp. Fă holul văzut din spate și tranziția în lateral.",
+   "whisper_ro": "5. Camera și mișcarea. Lerp, easing, smooth damp. Fă holul văzut din spate și tranziția în lateral.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 7,
+   "text": "Șase. Harta. BFS și arborele de acoperire, desenate pe o grilă.",
+   "whisper_ro": "6. Harta. BFS și arborele de acoperire, desenate pe o grillă.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 8,
+   "text": "Șapte. Echilibrarea. Lași un bot să joace, strângi statistici și ajustezi cifrele.",
+   "whisper_ro": "7. Echilibrarea Lași un bot să joace, strângi statistici și ajustezi cifrele.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 9,
+   "text": "Regula care leagă totul e simplă. Fiecare pas se poate testa singur. Așa rămâne un proiect mare sub control.",
+   "whisper_ro": "Regula care leagă totul e simplă. Fiecare pas se poate testa singur. Așa rămâne un proiect mare sub control.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  }
+ ]
+}

@@ -1,0 +1,12 @@
+# Ieșirile mari (cadre, segmente MP4, WAV, MP4 final, asset-uri copiate) stau pe SSD, în afara repo-ului:
+# out -> /Volumes/Dock & Hub 2TB/work/darkest-basement-video-out (symlink; vezi README).
+out
+out/
+node_modules/
+__pycache__/
+*.log
+voice/**/take.wav
+# înregistrarea întreagă a fiecărei scene rămâne pe disc (pentru re-tăiere fără credite), dar nu intră în git; replicile tăiate da
+voice/*/take.mp3
+voice/_takes/
+package-lock.json

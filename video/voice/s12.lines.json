@@ -1,0 +1,515 @@
+{
+ "voice": "NKQBjfoAhInP7Bjx6P7l",
+ "model": "eleven_multilingual_v2",
+ "speed": 1.0,
+ "stability": 0.5,
+ "style": 0.2,
+ "lines": [
+  {
+   "n": 1,
+   "text": "Ca să-l faci al tău, trei exerciții.",
+   "src": "voice/s12/01.mp3",
+   "dur": 2.397,
+   "speechStart": 0.0,
+   "speechEnd": 2.206,
+   "words": [
+    {
+     "w": "Ca",
+     "start": 0.0,
+     "end": 0.186,
+     "clean": "Ca"
+    },
+    {
+     "w": "să-l",
+     "start": 0.232,
+     "end": 0.36,
+     "clean": "să-l"
+    },
+    {
+     "w": "faci",
+     "start": 0.406,
+     "end": 0.604,
+     "clean": "faci"
+    },
+    {
+     "w": "al",
+     "start": 0.639,
+     "end": 0.708,
+     "clean": "al"
+    },
+    {
+     "w": "tău,",
+     "start": 0.766,
+     "end": 1.057,
+     "clean": "tău"
+    },
+    {
+     "w": "trei",
+     "start": 1.091,
+     "end": 1.347,
+     "clean": "trei"
+    },
+    {
+     "w": "exerciții.",
+     "start": 1.382,
+     "end": 2.206,
+     "clean": "exerciții"
+    }
+   ]
+  },
+  {
+   "n": 2,
+   "text": "Unu. Adaugă o carte nouă în CardDatabase și joac-o. Textul ei se scrie singur din efecte, fără nicio linie nouă de interfață.",
+   "src": "voice/s12/02.mp3",
+   "dur": 8.887,
+   "speechStart": 0.192,
+   "speechEnd": 8.724,
+   "words": [
+    {
+     "w": "Unu.",
+     "start": 0.192,
+     "end": 0.714,
+     "clean": "Unu"
+    },
+    {
+     "w": "Adaugă",
+     "start": 1.039,
+     "end": 1.481,
+     "clean": "Adaugă"
+    },
+    {
+     "w": "o",
+     "start": 1.515,
+     "end": 1.55,
+     "clean": "o"
+    },
+    {
+     "w": "carte",
+     "start": 1.607,
+     "end": 1.899,
+     "clean": "carte"
+    },
+    {
+     "w": "nouă",
+     "start": 1.957,
+     "end": 2.176,
+     "clean": "nouă"
+    },
+    {
+     "w": "în",
+     "start": 2.212,
+     "end": 2.269,
+     "clean": "în"
+    },
+    {
+     "w": "CardDatabase",
+     "start": 2.34,
+     "end": 3.152,
+     "clean": "CardDatabase"
+    },
+    {
+     "w": "și",
+     "start": 3.21,
+     "end": 3.303,
+     "clean": "și"
+    },
+    {
+     "w": "joac-o.",
+     "start": 3.362,
+     "end": 3.942,
+     "clean": "joac-o"
+    },
+    {
+     "w": "Textul",
+     "start": 4.266,
+     "end": 4.684,
+     "clean": "Textul"
+    },
+    {
+     "w": "ei",
+     "start": 4.777,
+     "end": 4.848,
+     "clean": "ei"
+    },
+    {
+     "w": "se",
+     "start": 4.894,
+     "end": 4.987,
+     "clean": "se"
+    },
+    {
+     "w": "scrie",
+     "start": 5.021,
+     "end": 5.3,
+     "clean": "scrie"
+    },
+    {
+     "w": "singur",
+     "start": 5.357,
+     "end": 5.706,
+     "clean": "singur"
+    },
+    {
+     "w": "din",
+     "start": 5.776,
+     "end": 5.892,
+     "clean": "din"
+    },
+    {
+     "w": "efecte,",
+     "start": 5.926,
+     "end": 6.369,
+     "clean": "efecte"
+    },
+    {
+     "w": "fără",
+     "start": 6.438,
+     "end": 6.705,
+     "clean": "fără"
+    },
+    {
+     "w": "nicio",
+     "start": 6.763,
+     "end": 7.077,
+     "clean": "nicio"
+    },
+    {
+     "w": "linie",
+     "start": 7.135,
+     "end": 7.448,
+     "clean": "linie"
+    },
+    {
+     "w": "nouă",
+     "start": 7.517,
+     "end": 7.75,
+     "clean": "nouă"
+    },
+    {
+     "w": "de",
+     "start": 7.785,
+     "end": 7.855,
+     "clean": "de"
+    },
+    {
+     "w": "interfață.",
+     "start": 7.913,
+     "end": 8.724,
+     "clean": "interfață"
+    }
+   ]
+  },
+  {
+   "n": 3,
+   "text": "Doi. Schimbă curba de easing de la tranziția camerei. Pune ease out back sau chiar liniar, și simte diferența.",
+   "src": "voice/s12/03.mp3",
+   "dur": 7.658,
+   "speechStart": 0.162,
+   "speechEnd": 7.536,
+   "words": [
+    {
+     "w": "Doi.",
+     "start": 0.162,
+     "end": 0.732,
+     "clean": "Doi"
+    },
+    {
+     "w": "Schimbă",
+     "start": 1.056,
+     "end": 1.441,
+     "clean": "Schimbă"
+    },
+    {
+     "w": "curba",
+     "start": 1.487,
+     "end": 1.789,
+     "clean": "curba"
+    },
+    {
+     "w": "de",
+     "start": 1.847,
+     "end": 1.905,
+     "clean": "de"
+    },
+    {
+     "w": "easing",
+     "start": 1.95,
+     "end": 2.264,
+     "clean": "easing"
+    },
+    {
+     "w": "de",
+     "start": 2.346,
+     "end": 2.404,
+     "clean": "de"
+    },
+    {
+     "w": "la",
+     "start": 2.45,
+     "end": 2.52,
+     "clean": "la"
+    },
+    {
+     "w": "tranziția",
+     "start": 2.567,
+     "end": 3.101,
+     "clean": "tranziția"
+    },
+    {
+     "w": "camerei.",
+     "start": 3.159,
+     "end": 3.809,
+     "clean": "camerei"
+    },
+    {
+     "w": "Pune",
+     "start": 4.133,
+     "end": 4.471,
+     "clean": "Pune"
+    },
+    {
+     "w": "ease",
+     "start": 4.54,
+     "end": 4.749,
+     "clean": "ease"
+    },
+    {
+     "w": "out",
+     "start": 4.772,
+     "end": 4.923,
+     "clean": "out"
+    },
+    {
+     "w": "back",
+     "start": 5.016,
+     "end": 5.191,
+     "clean": "back"
+    },
+    {
+     "w": "sau",
+     "start": 5.26,
+     "end": 5.411,
+     "clean": "sau"
+    },
+    {
+     "w": "chiar",
+     "start": 5.446,
+     "end": 5.643,
+     "clean": "chiar"
+    },
+    {
+     "w": "liniar,",
+     "start": 5.69,
+     "end": 6.188,
+     "clean": "liniar"
+    },
+    {
+     "w": "și",
+     "start": 6.246,
+     "end": 6.386,
+     "clean": "și"
+    },
+    {
+     "w": "simte",
+     "start": 6.444,
+     "end": 6.734,
+     "clean": "simte"
+    },
+    {
+     "w": "diferența.",
+     "start": 6.781,
+     "end": 7.536,
+     "clean": "diferența"
+    }
+   ]
+  },
+  {
+   "n": 4,
+   "text": "Trei. Dublează viața lui Monstro, rulează simulatorul și citește noua rată de victorie.",
+   "src": "voice/s12/04.mp3",
+   "dur": 6.06,
+   "speechStart": 0.122,
+   "speechEnd": 5.869,
+   "words": [
+    {
+     "w": "Trei.",
+     "start": 0.122,
+     "end": 0.702,
+     "clean": "Trei"
+    },
+    {
+     "w": "Dublează",
+     "start": 1.143,
+     "end": 1.666,
+     "clean": "Dublează"
+    },
+    {
+     "w": "viața",
+     "start": 1.724,
+     "end": 2.037,
+     "clean": "viața"
+    },
+    {
+     "w": "lui",
+     "start": 2.072,
+     "end": 2.177,
+     "clean": "lui"
+    },
+    {
+     "w": "Monstro,",
+     "start": 2.246,
+     "end": 2.699,
+     "clean": "Monstro"
+    },
+    {
+     "w": "rulează",
+     "start": 2.722,
+     "end": 3.082,
+     "clean": "rulează"
+    },
+    {
+     "w": "simulatorul",
+     "start": 3.129,
+     "end": 3.756,
+     "clean": "simulatorul"
+    },
+    {
+     "w": "și",
+     "start": 3.825,
+     "end": 3.918,
+     "clean": "și"
+    },
+    {
+     "w": "citește",
+     "start": 3.965,
+     "end": 4.383,
+     "clean": "citește"
+    },
+    {
+     "w": "noua",
+     "start": 4.475,
+     "end": 4.742,
+     "clean": "noua"
+    },
+    {
+     "w": "rată",
+     "start": 4.8,
+     "end": 5.021,
+     "clean": "rată"
+    },
+    {
+     "w": "de",
+     "start": 5.067,
+     "end": 5.126,
+     "clean": "de"
+    },
+    {
+     "w": "victorie.",
+     "start": 5.172,
+     "end": 5.869,
+     "clean": "victorie"
+    }
+   ]
+  },
+  {
+   "n": 5,
+   "text": "Dacă știi să explici de ce s-a schimbat cifra, ai înțeles jocul. Spor la coborât.",
+   "src": "voice/s12/05.mp3",
+   "dur": 5.602,
+   "speechStart": 0.192,
+   "speechEnd": 5.602,
+   "words": [
+    {
+     "w": "Dacă",
+     "start": 0.192,
+     "end": 0.482,
+     "clean": "Dacă"
+    },
+    {
+     "w": "știi",
+     "start": 0.528,
+     "end": 0.703,
+     "clean": "știi"
+    },
+    {
+     "w": "să",
+     "start": 0.761,
+     "end": 0.842,
+     "clean": "să"
+    },
+    {
+     "w": "explici",
+     "start": 0.9,
+     "end": 1.295,
+     "clean": "explici"
+    },
+    {
+     "w": "de",
+     "start": 1.341,
+     "end": 1.411,
+     "clean": "de"
+    },
+    {
+     "w": "ce",
+     "start": 1.457,
+     "end": 1.55,
+     "clean": "ce"
+    },
+    {
+     "w": "s-a",
+     "start": 1.597,
+     "end": 1.713,
+     "clean": "s-a"
+    },
+    {
+     "w": "schimbat",
+     "start": 1.747,
+     "end": 2.154,
+     "clean": "schimbat"
+    },
+    {
+     "w": "cifra,",
+     "start": 2.2,
+     "end": 2.676,
+     "clean": "cifra"
+    },
+    {
+     "w": "ai",
+     "start": 2.711,
+     "end": 2.85,
+     "clean": "ai"
+    },
+    {
+     "w": "înțeles",
+     "start": 2.874,
+     "end": 3.292,
+     "clean": "înțeles"
+    },
+    {
+     "w": "jocul.",
+     "start": 3.408,
+     "end": 3.965,
+     "clean": "jocul"
+    },
+    {
+     "w": "Spor",
+     "start": 4.244,
+     "end": 4.615,
+     "clean": "Spor"
+    },
+    {
+     "w": "la",
+     "start": 4.685,
+     "end": 4.766,
+     "clean": "la"
+    },
+    {
+     "w": "coborât.",
+     "start": 4.824,
+     "end": 5.602,
+     "clean": "coborât"
+    }
+   ]
+  }
+ ]
+}

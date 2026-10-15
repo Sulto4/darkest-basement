@@ -1,0 +1,9 @@
+Lupta. Fiecare rundă începe cu inițiativa. Fiecare personaj aruncă un zar de la zero la trei și îl adună la viteza lui.
+Apoi sortăm descrescător. Asta e toată ordinea turelor. O sortare.
+La egalitate merg întâi eroii, iar dacă tot e egal, decide id-ul. Comparatorul trebuie să fie o ordine totală, pentru că sortarea din C sharp nu e stabilă. Altfel aceeași rundă ar putea ieși diferit.
+Damage-ul e o compunere de funcții. Pornești de la baza cărții și aduni Strength-ul.
+Dacă atacatorul e slăbit, înmulțești cu zero virgulă șaptezeci și cinci. Dacă ținta e marcată, cu unu virgulă cinci. Crit-ul, încă o dată unu virgulă cinci.
+Rotunjești în jos, și abia la final scazi Block-ul.
+Fiecare pas e o funcție mică. Le poți testa separat, dar nu le poți muta oricum, pentru că rotunjirea nu comută cu înmulțirea.
+Statusurile sunt doar opt numere într-un vector. Block, Bleed, Poison, Stun și celelalte. Cele mai multe scad cu unu pe tură.
+Iar inamicii își arată intenția de la începutul rundei. Știi dinainte pe cine vrea Gaper să muște. Asta transformă lupta într-un puzzle.

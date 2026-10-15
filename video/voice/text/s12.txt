@@ -1,0 +1,5 @@
+Ca să-l faci al tău, trei exerciții.
+Unu. Adaugă o carte nouă în CardDatabase și joac-o. Textul ei se scrie singur din efecte, fără nicio linie nouă de interfață.
+Doi. Schimbă curba de easing de la tranziția camerei. Pune ease out back sau chiar liniar, și simte diferența.
+Trei. Dublează viața lui Monstro, rulează simulatorul și citește noua rată de victorie.
+Dacă știi să explici de ce s-a schimbat cifra, ai înțeles jocul. Spor la coborât.

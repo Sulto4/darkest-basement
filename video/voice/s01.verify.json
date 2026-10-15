@@ -1,0 +1,70 @@
+{
+ "scene": "s01",
+ "voice": "NKQBjfoAhInP7Bjx6P7l",
+ "model": "eleven_multilingual_v2",
+ "lines": [
+  {
+   "n": 1,
+   "text": "Asta e Darkest Basement.",
+   "whisper_ro": "Asta e Darkest Basement.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 2,
+   "text": "Un joc pe ture în care cobori cu patru eroi într-un subsol plin de monștri.",
+   "whisper_ro": "Un joc pe ture în care cobori cu patru eroi într-un subsol plin de monștri.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 3,
+   "text": "Alegi o cameră pe hartă, mergi pe hol, deschizi ușa și te bați cu cărți.",
+   "whisper_ro": "Alegi o cameră pe hartă, mergi pe hol, deschizi ușa și te bați cu cărți.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 4,
+   "text": "Fiecare erou are pachetul lui. Câștigi o luptă, primești o carte nouă și cobori mai jos.",
+   "whisper_ro": "Fiecare erou are pachetul lui. Câștigi o luptă, primești o carte nouă și cobori mai jos.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 5,
+   "text": "Trei etaje, trei boși, iar la final te așteaptă Mom.",
+   "whisper_ro": "Trei etaje, trei boși, iar la final te așteaptă mom.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  },
+  {
+   "n": 6,
+   "text": "În video-ul ăsta îl desfacem bucată cu bucată. Cum e gândit, ce matematică stă în spate și cum l-ai putea construi tu de la zero.",
+   "whisper_ro": "În videoul ăsta îl desfacem bucată cu bucată. Cum e gândit ce matematică stă în spate și cum l-ai putea construi tu de la zero?",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": true
+  },
+  {
+   "n": 7,
+   "text": "O să vezi că aproape fiecare piesă e o idee pe care o știi deja de la facultate. Doar că pusă la treabă.",
+   "whisper_ro": "O să vezi că aproape fiecare piesă e o idee pe care o știi deja de la facultate, doar că pusă la treabă.",
+   "whisper_en": null,
+   "missing": [],
+   "ok": true,
+   "regen": false
+  }
+ ]
+}
