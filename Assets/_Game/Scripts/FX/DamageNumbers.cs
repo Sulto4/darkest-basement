@@ -49,16 +49,17 @@ namespace DarkestBasement.FX
             }
 
             bool crit = style == NumberStyle.Crit;
-            int mult = crit ? 3 : style == NumberStyle.Info || style == NumberStyle.Blocked ? 1 : 2;
-            var label = CombatUi.Outlined(_layer, text, pos, new Vector2(120, 30), UiFont.Label, color ?? ColorOf(style), mult);
+            // Mărimi întregi ale fontului pixel: damage ×3, crit ×4, restul ×2 (personajele sunt ×2 pe ecran).
+            int mult = crit ? 4 : style == NumberStyle.Damage ? 3 : 2;
+            var label = CombatUi.Outlined(_layer, text, pos, new Vector2(160, 40), UiFont.LabelBold, color ?? ColorOf(style), mult);
             var rt = label.Rect;
             // Mici decalaje: numerele succesive „urcă” în trepte și nu stau exact pe aceeași coloană.
-            Vector2 start = pos + new Vector2((stack % 2 == 0 ? 1 : -1) * Mathf.Min(stack, 3) * 6f, stack * 11f);
+            Vector2 start = pos + new Vector2((stack % 2 == 0 ? 1 : -1) * Mathf.Min(stack, 3) * 8f, stack * 16f);
             if (style == NumberStyle.Blocked) start += new Vector2(-16f, -6f);
             rt.anchoredPosition = CombatUi.Snap(start);
             rt.localScale = Vector3.zero;
 
-            float rise = crit ? 18f : 12f;
+            float rise = crit ? 22f : 16f;
             float popScale = crit ? 1.25f : 1f;
             // 1) pop cu depășire (OutBack), 2) plutește, 3) cade puțin și dispare.
             Tween.Value(0.18f, k =>

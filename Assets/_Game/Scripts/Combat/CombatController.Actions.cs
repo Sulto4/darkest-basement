@@ -136,12 +136,13 @@ namespace DarkestBasement.Combat
                         far.y = origin.y + (far.y - origin.y) * 0.3f;
                         AudioManager.Play("brimstone_beam");
                         BeamFx.Fire(origin, far, s.Beam);
-                        FxVolume.Chromatic(s.Big ? 1f : 0.7f, s.Beam.Duration + 0.2f);
+                        FxVolume.Chromatic(s.Big ? 0.55f : 0.4f, s.Beam.Duration + 0.2f);
                         actor.Hold(actor.Frames.Attack[actor.Frames.Attack.Length - 1], s.Beam.Duration);
                         actor.StartCoroutine(actor.Recoil(0.18f));
                         CombatCamera.PunchIn((origin + far) * 0.5f, s.Big ? 0.16f : 0.12f, s.Beam.Duration + 0.15f);
                         ctx.PunchedIn = true;
                         ScreenShake.Add(s.Big ? 0.5f : 0.3f);
+                        Emit(actor.IsBoss ? "boss_impact" : "beam");
                         yield return Wait(0.06f);
                     }
                     break;
@@ -152,7 +153,7 @@ namespace DarkestBasement.Combat
                         ctx.Lunged = true;
                         yield return actor.Leap(target.Feet, s.LeapHeight, s.Big ? 0.42f : 0.32f, actor.HalfWidth + target.HalfWidth);
                         Particles.Burst(actor.Feet, ParticleKind.Dust, s.Big ? 22 : 10, Vector3.up, 1.2f, 1f);
-                        if (actor.IsBoss) { AudioManager.Play("monstro_land"); ScreenShake.Add(0.45f); }
+                        if (actor.IsBoss) { AudioManager.Play("monstro_land"); ScreenShake.Add(0.45f); Emit("boss_impact"); }
                     }
                     break;
 
@@ -239,12 +240,13 @@ namespace DarkestBasement.Combat
             mom.Squash(1.15f, 0.85f);
             AudioManager.Play("mom_stomp");
             ScreenShake.Add(0.75f);
-            ScreenFlash.Flash(new Color(1f, 0.9f, 0.8f), 0.25f, 0.12f);
+            ScreenFlash.Flash(new Color(1f, 0.9f, 0.8f), 0.15f, 0.12f);
             CombatCamera.PunchIn(center + Vector3.up, 0.16f, 0.5f);
             ctx.PunchedIn = true;
             Particles.Burst(center, ParticleKind.Dust, 30, Vector3.up, 1.6f, 1f);
             Decals.BloodSplat(center, 1.8f, CombatStage.Right(_stage));
             ctx.Stomped = true;
+            Emit("boss_impact");
         }
 
         IEnumerator MomStompReturn(UnitView mom)
@@ -293,6 +295,7 @@ namespace DarkestBasement.Combat
             }
             if (frames != null && frames.Length > 1) sr.sprite = frames[1];
             ScreenShake.Add(0.4f);
+            Emit("boss_impact");
         }
 
         // Ultima coloană de pixeli a mâinii (mâneca), ca sprite separat; o calculăm o singură dată.
@@ -326,7 +329,13 @@ namespace DarkestBasement.Combat
         IEnumerator ShowMomEye(ActionContext ctx)
         {
             var frames = ctx.Actor.Frames.Extra("eye");
-            Vector3 pos = _stage.Center + CombatStage.Right(_stage) * 4.6f + CombatStage.Depth(_stage) * 1.2f;
+            // Piciorul se ridică din cadru și lasă la vedere ușa din spatele lui, unde se deschide ochiul.
+            var mom = ctx.Actor;
+            mom.Hold(mom.Frames.Attack[0], 3f);
+            mom.SetOrderBoost(20);
+            yield return mom.TweenOffset(mom.Offset, Vector3.up * 7f, 0.22f, Ease.InQuad);
+            ctx.Stomped = true;   // la final piciorul trebuie să coboare la loc (MomStompReturn)
+            Vector3 pos = CombatStage.Point(_stage, false, CombatStage.BossCenter) + CombatStage.Depth(_stage) * 1.4f;
             var go = new GameObject("MomEye");
             go.transform.SetParent(transform, true);
             var sr = go.AddComponent<SpriteRenderer>();
@@ -348,6 +357,7 @@ namespace DarkestBasement.Combat
             AudioManager.Play(ctx.AbilityId == "moms_eye" ? "debuff" : "door_open");
             Particles.Burst(ctx.CastOrigin, ctx.Style.CastParticles, 16, Vector3.up, 1.2f, 1f);
             CombatCamera.PunchIn(ctx.CastOrigin, 0.1f, 0.4f);
+            Emit("boss_impact");
             yield return Wait(0.25f);
         }
 
@@ -359,7 +369,11 @@ namespace DarkestBasement.Combat
             if (ctx == null) yield break;
             if (ctx.Style.Delivery == Delivery.Stomp && ctx.Stomped && ctx.Actor != null && !ctx.Actor.Dead) yield return MomStompReturn(ctx.Actor);
             else if (ctx.Style.Delivery == Delivery.Hand) yield return MomHandReturn(ctx);
-            else if (ctx.Style.Delivery == Delivery.Eye && ctx.Prop != null) StartCoroutine(HideProp(ctx.Prop));
+            else if (ctx.Style.Delivery == Delivery.Eye)
+            {
+                if (ctx.Prop != null) StartCoroutine(HideProp(ctx.Prop));
+                if (ctx.Stomped && ctx.Actor != null && !ctx.Actor.Dead) yield return MomStompReturn(ctx.Actor);
+            }
             if (ctx.Actor != null && ctx.Actor.Incubus != null) StartCoroutine(ctx.Actor.Incubus.Return());
             if (ctx.Actor != null && !ctx.Actor.Dead) yield return ctx.Actor.ReturnHome(ctx.Lunged ? 0.24f : 0.12f);
         }
@@ -464,7 +478,20 @@ namespace DarkestBasement.Combat
         // deci doar „se așază”; inamicii cad de sus, cu praf.
         IEnumerator Intro()
         {
-            foreach (var v in _views.Values) if (!v.IsHero) v.SetOffset(Vector3.up * (v.IsBoss ? 9f : 4f));
+            // Camera face push-in din vederea laterală largă spre încadrarea de luptă (×2).
+            StartCoroutine(CombatCamera.EnterCombatFraming(_stage, 0.6f));
+            Vector3 right = CombatStage.Right(_stage);
+            foreach (var v in _views.Values)
+            {
+                if (!v.IsHero) { v.SetOffset(Vector3.up * (v.IsBoss ? 9f : 4f)); continue; }
+                // Echipa de explorare (W) s-a oprit pe PartyFormation.StagePosition; eroii noștri pleacă de acolo
+                // și pășesc în sloturile luptei, ca predarea să nu „sară” (azi pozițiile coincid, deci nu se mișcă).
+                var info = _state.Unit(v.Id);
+                if (info == null) continue;
+                Vector3 party = Exploration.PartyFormation.StagePosition(_stage, info.Rank);
+                Vector3 delta = party - v.Home; delta.y = 0f;
+                v.SetOffset(delta);
+            }
             int i = 0;
             foreach (var v in _views.Values)
             {
@@ -480,13 +507,19 @@ namespace DarkestBasement.Combat
             yield return Wait(delay);
             if (v.IsHero)
             {
-                v.Squash(0.9f, 1.12f);
+                if (v.Offset.sqrMagnitude > 1e-4f)
+                {
+                    v.Squash(0.9f, 1.1f);
+                    yield return v.TweenOffset(v.Offset, Vector3.zero, 0.45f, Ease.OutCubic);
+                }
+                v.Squash(1.12f, 0.9f);
                 Particles.Burst(v.Feet, ParticleKind.Dust, 4, Vector3.up, 0.6f, 1f);
             }
             else
             {
                 yield return v.TweenOffset(v.Offset, Vector3.zero, v.IsBoss ? 0.5f : 0.35f, Ease.InQuad);
                 v.Squash(1.3f, 0.72f);
+                _hud.UnitHud(v.Id)?.PopIn();
                 Particles.Burst(v.Feet, ParticleKind.Dust, v.IsBoss ? 30 : 10, Vector3.up, 1.2f, 1f);
                 if (v.IsBoss) { AudioManager.Play("monster_roar"); ScreenShake.Add(0.6f); CombatCamera.PunchIn(v.Center, 0.12f, 0.6f); }
                 else ScreenShake.Add(0.08f);

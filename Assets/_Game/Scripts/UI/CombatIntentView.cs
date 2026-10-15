@@ -37,6 +37,8 @@ namespace DarkestBasement.UI
         public static CombatIntentView Create(Transform parent, CombatController c, UnitView view)
         {
             var rt = UiKit.Rect(parent, "Intent " + view.Id, Vector2.zero, Vector2.zero);
+            // Totul ×2 (scară întreagă = pixeli curați): intenția trebuie citită dintr-o privire, lângă personaje mari.
+            rt.localScale = Vector3.one * 2f;
             var v = rt.gameObject.AddComponent<CombatIntentView>();
             v._c = c; v._view = view; v._rt = rt;
             v._arrowLayer = UiKit.Rect(parent, "IntentArrows " + view.Id, Vector2.zero, Vector2.zero);
@@ -61,7 +63,8 @@ namespace DarkestBasement.UI
             var s = _slots[index];
             s.Active = true; s.Kind = kind; s.Predicted = predicted; s.Hits = Mathf.Max(1, hits); s.Name = name;
             s.Targets.Clear(); if (targets != null) s.Targets.AddRange(targets);
-            s.Icon.sprite = CombatUi.IntentIcon(kind);
+            // Host închis („Closed Shell”) se apără: scutul spune asta mai clar decât semnul întrebării.
+            s.Icon.sprite = CombatUi.IntentIcon(name == "Closed Shell" ? IntentKind.Block : kind);
             s.Text.Text = Label(s);
             s.Root.gameObject.SetActive(true);
             s.Pop = 1f;
@@ -121,6 +124,7 @@ namespace DarkestBasement.UI
                 string who = TargetNames(s);
                 string what = s.Kind == IntentKind.Attack || s.Kind == IntentKind.AttackAll
                     ? (s.Predicted > 0 ? (s.Hits > 1 ? (s.Predicted / s.Hits) + " damage x" + s.Hits : s.Predicted + " damage") : "Attack")
+                    : s.Name == "Closed Shell" ? "Hides in its shell: takes 75% less damage" : s.Name == "Reposition" ? "Moves forward"
                     : s.Kind == IntentKind.Block ? "Gains Block" : s.Kind == IntentKind.Debuff ? "Curses your party" : s.Kind == IntentKind.Buff ? "Buffs itself"
                     : s.Kind == IntentKind.Summon ? "Summons allies" : "Something strange";
                 parts.Add(s.Name + ": " + what + (string.IsNullOrEmpty(who) ? "" : " to " + who) + ".");
@@ -144,7 +148,7 @@ namespace DarkestBasement.UI
         {
             if (!s.Active) return;
             SetArrows(true);
-            CombatTooltip.Show(this, _view.DisplayName.ToUpperInvariant(), Describe(), CombatUi.Snap(_rt.anchoredPosition + new Vector2(0, 12)), s.Icon.sprite);
+            CombatTooltip.Show(this, _view.DisplayName.ToUpperInvariant(), Describe(), CombatUi.Snap(_rt.anchoredPosition + new Vector2(0, 16)), s.Icon.sprite);
         }
 
         void LateUpdate()
@@ -153,9 +157,9 @@ namespace DarkestBasement.UI
             // Deasupra capului, cu o legănare de 1 pixel (atrage privirea fără să obosească).
             Vector2 head = CombatCamera.WorldToUI(_view.Home + Vector3.up * (_view.TopHeight + 0.15f));
             // Boss-ii foarte înalți (piciorul lui Mom coboară din tavan): intenția rămâne sub bara de sus.
-            head.y = Mathf.Min(head.y, 262f);
+            head.y = Mathf.Min(head.y, 270f);
             float bob = Mathf.Round(Mathf.Sin(Time.unscaledTime * 3f + _view.Home.x) * 1f);
-            _rt.anchoredPosition = CombatUi.Snap(head + new Vector2(0f, 4f + bob));
+            _rt.anchoredPosition = CombatUi.Snap(head + new Vector2(0f, 16f + bob * 2f));
             int active = (_slots[0].Active ? 1 : 0) + (_slots[1].Active ? 1 : 0);
             int shown = 0;
             for (int i = 0; i < 2; i++)
@@ -177,7 +181,7 @@ namespace DarkestBasement.UI
         void DrawArrows()
         {
             int dot = 0;
-            Vector2 a = _rt.anchoredPosition + new Vector2(-6f, 2f);
+            Vector2 a = _rt.anchoredPosition + new Vector2(-12f, 4f);
             foreach (var s in _slots)
             {
                 if (!s.Active) continue;

@@ -124,15 +124,23 @@ namespace DarkestBasement.Combat
                 {
                     var rt = RenderTexture.GetTemporary(tex.width, tex.height, 0, RenderTextureFormat.ARGB32, RenderTextureReadWrite.Linear);
                     var prev = RenderTexture.active;
-                    Graphics.Blit(tex, rt);
-                    RenderTexture.active = rt;
-                    var read = new Texture2D(w, h, TextureFormat.RGBA32, false);
-                    read.ReadPixels(new Rect(x0, y0, w, h), 0, 0, false);
-                    read.Apply(false);
-                    RenderTexture.active = prev;
-                    RenderTexture.ReleaseTemporary(rt);
-                    px = read.GetPixels32();
-                    Object.Destroy(read);
+                    Texture2D read = null;
+                    try
+                    {
+                        Graphics.Blit(tex, rt);
+                        RenderTexture.active = rt;
+                        read = new Texture2D(w, h, TextureFormat.RGBA32, false);
+                        read.ReadPixels(new Rect(x0, y0, w, h), 0, 0, false);
+                        read.Apply(false);
+                        px = read.GetPixels32();
+                    }
+                    finally
+                    {
+                        // Orice s-ar întâmpla, ținta de randare revine la cea veche și textura temporară se eliberează.
+                        RenderTexture.active = prev;
+                        RenderTexture.ReleaseTemporary(rt);
+                        if (read != null) Object.Destroy(read);
+                    }
                 }
             }
             catch (System.Exception e)

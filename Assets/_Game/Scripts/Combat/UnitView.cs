@@ -139,8 +139,9 @@ namespace DarkestBasement.Combat
 
         public Vector3 Center => Feet + Vector3.up * TopHeight * 0.5f;
         public Vector3 Head => Feet + Vector3.up * TopHeight;
-        // De unde pleacă lacrimile: la nivelul ochilor, puțin în față.
-        public Vector3 Muzzle => Feet + Vector3.up * TopHeight * 0.62f + FrontDir * HalfWidth * 0.6f;
+        // De unde pleacă lacrimile: la nivelul ochilor, puțin în față. Gurdy și Monstro trag din gură, mai jos.
+        public Vector3 Muzzle => Feet + Vector3.up * TopHeight * MuzzleHeight + FrontDir * HalfWidth * 0.6f;
+        float MuzzleHeight => DefId == "gurdy" || DefId == "monstro" ? 0.45f : 0.62f;
 
         // Dreptunghiul unității în UI (pentru hover și drop de cărți).
         public Rect ScreenRectUI()
@@ -194,6 +195,10 @@ namespace DarkestBasement.Combat
         }
 
         // ---------- efecte instant ----------
+
+        // Albul clipirii e puțin sub 1: post-procesarea lui W (expunere +0,35) l-ar împinge peste pragul de Bloom,
+        // iar silueta albă a unui boss uriaș ar umple tot ecranul de ceață luminoasă.
+        static readonly Color HitWhite = new Color(0.82f, 0.8f, 0.78f);
 
         public void Flash(Color color, float seconds)
         {
@@ -303,7 +308,7 @@ namespace DarkestBasement.Combat
         {
             if (Dead) return;
             Hold(Frames.Hurt[0], big ? 0.38f : 0.28f);
-            Flash(Color.white, big ? 0.11f : 0.08f);
+            Flash(HitWhite, big ? 0.11f : 0.08f);
             Squash(1.18f, 0.84f);
             Vector3 push = fromDir.sqrMagnitude > 1e-4f ? fromDir.normalized : -FrontDir;
             push.y = 0f;
@@ -321,7 +326,7 @@ namespace DarkestBasement.Combat
         {
             Dead = true;
             _ring.enabled = false;
-            Flash(Color.white, 0.12f);
+            Flash(HitWhite, 0.12f);
             Hold(Frames.Hurt[0], 0.12f);
             Squash(1.3f, 0.7f);
             yield return Wait(0.12f);
@@ -443,7 +448,8 @@ namespace DarkestBasement.Combat
                 _flashTime -= Time.unscaledDeltaTime;
                 _flash.enabled = true;
                 _flash.sprite = white;
-                var fc = _flashColor; fc.a = Mathf.Clamp01(_flashTime / _flashDuration) * _alpha;
+                // La boss-i clipirea e mai slabă: suprafața albă e de 4–6 ori mai mare decât la un personaj obișnuit.
+                var fc = _flashColor; fc.a = Mathf.Clamp01(_flashTime / _flashDuration) * _alpha * (IsBoss ? 0.6f : 1f);
                 _flash.color = fc;
             }
             else _flash.enabled = false;

@@ -133,7 +133,8 @@ namespace DarkestBasement.Combat
                 case "spit_glob": return new ActionStyle { Delivery = Delivery.Projectile, Projectile = ProjectileKind.BloodGlob, ProjectileSize = 1.5f, Voice = "monster_roar", PunchIn = true };
                 case "spawn": return new ActionStyle { Delivery = Delivery.Summon, Voice = "monster_roar" };
                 case "bile_rain": return new ActionStyle { Delivery = Delivery.Rain, Projectile = ProjectileKind.Bile, Voice = "monster_roar" };
-                case "mouth_beam": return new ActionStyle { Delivery = Delivery.Beam, Beam = BeamStyle.Bile, PunchIn = true, Shake = 0.3f, Big = true, Voice = "monster_roar" };
+                // Raza lui Gurdy e desenată roșie în cadrul lui de atac: o continuăm cu o rază Brimstone, nu cu bilă.
+                case "mouth_beam": return new ActionStyle { Delivery = Delivery.Beam, Beam = BeamStyle.Brimstone, PunchIn = true, Shake = 0.3f, Big = true, Voice = "monster_roar" };
                 case "moms_foot": return new ActionStyle { Delivery = Delivery.Stomp, PunchIn = true, Big = true, Shake = 0.3f };
                 case "moms_hand": return new ActionStyle { Delivery = Delivery.Hand, PunchIn = true, Big = true };
                 case "moms_eye": return new ActionStyle { Delivery = Delivery.Eye, CastParticles = ParticleKind.Hex, CastColor = Purple };
@@ -151,8 +152,15 @@ namespace DarkestBasement.Combat
     // Geometria scenei: unde stă fiecare rang.
     public static class CombatStage
     {
-        public const float CenterGap = 0.8f;     // rangul 1 al fiecărei părți, față de centru (= PartyFormation.StagePosition)
-        public const float RankSpacing = 1.6f;   // distanța dintre ranguri
+        // În pixeli de ecran (la 64 px/unitate): rangul 1 la 44 px de centru, apoi câte 74 px pe rang.
+        // Cele 8 unități încap pe 640 px; personajele late (Mulligan, Azazel cu aripi) se suprapun puțin, ca în DD.
+        public const float CenterGap = 0.6875f;  // 44 px
+        public const float RankSpacing = 1.15625f; // 74 px
+        // Boss-ul stă în mijlocul părții inamicilor; minionii lui (rangurile 2–4) stau în fața lui, pe sloturile obișnuite.
+        public const float BossCenter = CenterGap + 1.5f * RankSpacing;
+
+        // Unde stă o unitate obișnuită pe rangul dat (echipa W poate folosi asta pentru PartyFormation.StagePosition).
+        public static Vector3 RankPosition(CombatStageInfo s, bool hero, int rank) => Point(s, hero, CenterGap + (rank - 1) * RankSpacing);
 
         public static Vector3 Right(CombatStageInfo s) => s.Right.sqrMagnitude > 1e-4f ? s.Right.normalized : Vector3.right;
 

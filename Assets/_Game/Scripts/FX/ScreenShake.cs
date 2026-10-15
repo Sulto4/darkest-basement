@@ -9,7 +9,7 @@ namespace DarkestBasement.FX
     // - Direcția vine din zgomot Perlin, nu din Random: zgomotul e continuu, deci camera „tremură”, nu „sare”.
     public static class ScreenShake
     {
-        public static float MaxOffset = 0.28f;  // unități de lume la trauma 1 (~9 px la 32 px/unitate)
+        public static float MaxOffset = 0.15f;  // unități de lume la trauma 1 (~10 px la 64 px/unitate în luptă)
         public static float MaxAngle = 2.2f;    // grade de rotație la trauma 1
         public static float Frequency = 18f;    // cât de repede se plimbă zgomotul
         public static float Decay = 1.5f;       // trauma pierdută pe secundă

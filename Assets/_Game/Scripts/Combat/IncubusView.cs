@@ -18,7 +18,7 @@ namespace DarkestBasement.Combat
         float _alpha = 1f;
 
         // Locul lui obișnuit: deasupra umărului, puțin în fața lui Lilith.
-        Vector3 Rest => _owner.Feet + Vector3.up * 1.3f + _owner.FrontDir * 0.5f;
+        Vector3 Rest => _owner.Feet + Vector3.up * 1.15f + _owner.FrontDir * 0.55f;
         public Vector3 Position => transform.position;
         public Vector3 Muzzle => transform.position + _owner.FrontDir * 0.3f + Vector3.up * 0.3f;
 

@@ -125,7 +125,7 @@ namespace DarkestBasement.FX
             Particles.Burst(at, ParticleKind.Dust, 8, Vector3.up, 1f, 1f);
             AudioManager.Play("bomb_explode", green ? 0.7f : 1f, green ? 1.2f : 1f);
             ScreenShake.Add(green ? 0.25f : 0.4f);
-            ScreenFlash.Flash(green ? new Color(0.6f, 1f, 0.4f) : new Color(1f, 0.85f, 0.5f), 0.18f, 0.12f);
+            ScreenFlash.Flash(green ? new Color(0.6f, 1f, 0.4f) : new Color(1f, 0.85f, 0.5f), 0.12f, 0.1f);
         }
 
         // Rulează o animație din cadre într-un punct din lume și se distruge la final.

@@ -1,3 +1,5 @@
+using System.Collections;
+using DarkestBasement.Core;
 using DarkestBasement.Exploration;
 using DarkestBasement.UI;
 using UnityEngine;
@@ -36,9 +38,30 @@ namespace DarkestBasement.Combat
 
         internal static void SetFallback(CombatSandboxCamera cam) { _fallback = cam; }
 
+        // ---------- încadrarea luptei ----------
+        // Vederea laterală a lui W (CameraRig.SidePose) arată 10 unități în lățime pe planul scenei:
+        // 640 px / 10 = 64 px pe unitate, adică fiecare pixel de artă devine exact 2×2 pixeli. Scară ÎNTREAGĂ = pixel art curat.
+        // Camera de rezervă a sandbox-ului folosește exact aceeași poză, ca lupta să arate la fel cu sau fără W.
+        public static float Fov => CameraRig.SideFov;
+        public static Pose CombatPose(CombatStageInfo stage) => CameraRig.SidePose(stage);
+
+        // Centrul scenei curente: punch-in-urile sunt trase spre el, ca eroul de pe rangul 4 să nu iasă din cadru.
+        public static Vector3? StageFocus;
+
+        // Cu rig-ul lui W nu facem nimic: GoToSideView a adus deja camera aici. Camera de rezervă sare direct.
+        public static IEnumerator EnterCombatFraming(CombatStageInfo stage, float duration)
+        {
+            if (Rig == null && _fallback != null) _fallback.SetPose(CombatPose(stage), Fov);
+            yield break;
+        }
+
         // Zoom cinematic scurt pe un moment important (crit, Brimstone, atac de boss). Revine singur.
         public static void PunchIn(Vector3 worldFocus, float amount = 0.12f, float duration = 0.35f)
         {
+            // Punch-in discret: cel mult ~7% zoom, cu focusul tras spre centrul scenei.
+            // Altfel, la un atac pe un erou din spate, camera s-ar roti și l-ar scoate pe cel de pe rangul 4 din cadru.
+            amount = Mathf.Min(amount, 0.07f);
+            if (StageFocus.HasValue) worldFocus = Vector3.Lerp(StageFocus.Value, worldFocus, 0.35f);
             var rig = Rig;
             if (rig != null) rig.PunchIn(worldFocus, amount, duration);
             else if (_fallback != null) _fallback.PunchIn(worldFocus, amount, duration);

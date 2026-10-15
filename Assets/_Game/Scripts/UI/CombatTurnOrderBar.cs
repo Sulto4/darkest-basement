@@ -39,6 +39,8 @@ namespace DarkestBasement.UI
             bar._rt = rt;
             bar._panel = CombatUi.Panel(rt, "panel_dark", new Vector2(320, Y), new Vector2(60, 40));
             bar._round = CombatUi.Outlined(rt, "", new Vector2(320, Y), new Vector2(70, 10), UiFont.LabelBold, Palette.Gold, 1, TMPro.TextAlignmentOptions.Right);
+            // Până la prima rundă nu avem ordine: nu arătăm un panou gol.
+            rt.gameObject.SetActive(false);
             return bar;
         }
 
@@ -57,6 +59,9 @@ namespace DarkestBasement.UI
                 _slots.Add(s);
             }
             _round.Text = "ROUND " + _c.State.Round;
+            gameObject.SetActive(true);
+            // Panoul sare direct la lățimea nouă; doar portretele alunecă (altfel ar ieși din panou o clipă).
+            _panelWidth = Mathf.Max(40f, order.Count * Spacing + 10f);
         }
 
         Slot MakeSlot(string id)

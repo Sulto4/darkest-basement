@@ -22,6 +22,8 @@ namespace DarkestBasement.UI
         RectTransform _statusRow;
         readonly Dictionary<Status, StatusIcon> _icons = new Dictionary<Status, StatusIcon>();
         int _barWidth;
+        bool _boss;
+        static readonly Vector2 BossAnchor = new Vector2(540, 336);
         float _shownHp, _lagHp, _lagDelay, _shake, _alpha = 1f;
         bool _dead;
         CanvasGroup _group;
@@ -51,8 +53,16 @@ namespace DarkestBasement.UI
         {
             _group = gameObject.AddComponent<CanvasGroup>();
             _group.blocksRaycasts = true;
-            _barWidth = _view.IsBoss ? 64 : 34;
-            // Coordonate față de punctul de sub picioarele unității (0,0).
+            // Boss-ii au bara lor sus-dreapta (ca în Darkest Dungeon): sub ei stau minionii, cu barele lor.
+            _boss = _view.IsBoss;
+            // Bara crește odată cu personajele (×2 pe ecran): 44 px la unitățile obișnuite, 150 la boss.
+            _barWidth = _boss ? 150 : 44;
+            if (_boss)
+            {
+                CombatUi.Panel(_rt, "panel_dark", new Vector2(0, -8), new Vector2(_barWidth + 26, 46));
+                CombatUi.Outlined(_rt, _view.DisplayName.ToUpperInvariant(), new Vector2(0, 7), new Vector2(_barWidth, 10), UiFont.LabelBold, Palette.Gold);
+            }
+            // Coordonate față de punctul de sub picioarele unității (0,0) sau, la boss, față de colțul lui.
             _frame = CombatUi.Panel(_rt, "hpbar_frame", new Vector2(0, -6.5f), new Vector2(_barWidth, 7));
             _lag = CombatUi.Panel(_rt, "hpbar_fill_lag", new Vector2(0, -6.5f), new Vector2(_barWidth - 4, 3));
             _fill = CombatUi.Panel(_rt, "hpbar_fill", new Vector2(0, -6.5f), new Vector2(_barWidth - 4, 3));
@@ -143,6 +153,33 @@ namespace DarkestBasement.UI
             if (_icons.TryGetValue(s, out var icon)) { icon.Pop = 1f; icon.Root.localScale = Vector3.one * 1.7f; }
         }
 
+        bool _destroyWhenFaded;
+        bool _waiting;      // ascuns până când unitatea și-a terminat intrarea în scenă
+        float _popScale = 1f;
+
+        // Inamicii cad din tavan la începutul luptei: HUD-ul lor apare abia după aterizare, cu un mic „pop”.
+        public void HideUntilPop()
+        {
+            _waiting = true;
+            _group.alpha = 0f;
+            _group.blocksRaycasts = false;
+        }
+
+        public void PopIn()
+        {
+            if (!_waiting) return;
+            _waiting = false;
+            _group.alpha = 1f;
+            _group.blocksRaycasts = true;
+            _popScale = 1.4f;
+        }
+        public void FadeAndDestroy()
+        {
+            // Dacă s-a stins deja (și s-a dezactivat), LateUpdate nu mai rulează: îl distrugem pe loc.
+            if (!gameObject.activeSelf || _alpha <= 0f) { Destroy(gameObject); return; }
+            _dead = true; _destroyWhenFaded = true;
+        }
+
         public void SetDead(bool dead)
         {
             _dead = dead;
@@ -153,18 +190,26 @@ namespace DarkestBasement.UI
         {
             if (_view == null) { Destroy(gameObject); return; }
             float dt = Time.unscaledDeltaTime;
+            if (_waiting) return;
             if (_dead)
             {
                 _alpha -= dt * 3f;
                 _group.alpha = Mathf.Max(0f, _alpha);
                 _group.blocksRaycasts = false;
-                if (_alpha <= 0f) { gameObject.SetActive(false); return; }
+                if (_alpha <= 0f)
+                {
+                    if (_destroyWhenFaded) Destroy(gameObject);
+                    else gameObject.SetActive(false);
+                    return;
+                }
             }
             // HUD-ul stă la slot (Home), nu urmează lunge-ul: altfel ar sări prin ecran la fiecare atac.
-            Vector2 feet = CombatCamera.WorldToUI(_view.Home);
+            Vector2 feet = _boss ? BossAnchor : CombatCamera.WorldToUI(_view.Home);
             Vector2 shake = _shake > 0f ? new Vector2(Mathf.Round(Mathf.Sin(Time.unscaledTime * 70f) * 2f * _shake), 0f) : Vector2.zero;
             _shake = Mathf.Max(0f, _shake - dt * 4f);
             _rt.anchoredPosition = CombatUi.Snap(feet + shake);
+            _popScale = Mathf.Lerp(_popScale, 1f, 1f - Mathf.Exp(-14f * dt));
+            _rt.localScale = new Vector3(1f, _popScale > 1.01f ? _popScale : 1f, 1f);
 
             var info = Info;
             if (info == null) return;

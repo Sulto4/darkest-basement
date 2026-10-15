@@ -16,9 +16,6 @@ namespace DarkestBasement.Combat
         public Camera Camera { get; private set; }
         public Transform ShakeRoot { get; private set; }
 
-        // Încadrarea: la linia scenei vrem ~32 px pe unitate (sprite-urile la 1:1)
-        // și picioarele unităților la ~122 px de jos (sub ele încap barele de HP și mâna).
-        const float Distance = 9.7f, Height = 3.2f, Pitch = 8f, Fov = 58.7f;
 
         RenderTexture _rt;
         RawImage _view;
@@ -39,17 +36,15 @@ namespace DarkestBasement.Combat
 
         void Build(CombatStageInfo stage)
         {
-            Vector3 right = stage.Right.sqrMagnitude > 1e-4f ? stage.Right.normalized : Vector3.right;
-            Vector3 forward = Vector3.Cross(right, Vector3.up);
-            transform.position = stage.Center - forward * Distance + Vector3.up * Height;
-            transform.rotation = Quaternion.LookRotation(forward, Vector3.up) * Quaternion.Euler(Pitch, 0f, 0f);
+            var pose = CombatCamera.CombatPose(stage);
+            transform.SetPositionAndRotation(pose.position, pose.rotation);
 
             ShakeRoot = new GameObject("ShakeRoot").transform;
             ShakeRoot.SetParent(transform, false);
             var camGo = new GameObject("Camera");
             camGo.transform.SetParent(ShakeRoot, false);
             Camera = camGo.AddComponent<Camera>();
-            Camera.fieldOfView = Fov;
+            Camera.fieldOfView = CombatCamera.Fov;
             Camera.nearClipPlane = 0.1f;
             Camera.farClipPlane = 80f;
             Camera.clearFlags = CameraClearFlags.SolidColor;
@@ -90,6 +85,12 @@ namespace DarkestBasement.Combat
             var color = profile.Add<ColorAdjustments>(true);
             if (color != null) { color.contrast.Override(8f); color.saturation.Override(-6f); color.colorFilter.Override(new Color(1f, 0.93f, 0.86f)); color.postExposure.Override(0f); color.hueShift.Override(0f); }
             volume.sharedProfile = profile;
+        }
+
+        public void SetPose(Pose pose, float fov)
+        {
+            transform.SetPositionAndRotation(pose.position, pose.rotation);
+            if (Camera != null) Camera.fieldOfView = fov;
         }
 
         public void AddTorch(SpriteRenderer sr, Sprite[] frames)

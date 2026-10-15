@@ -76,7 +76,11 @@ namespace DarkestBasement.UI
             // 3) Se întoarce: spatele se strânge pe orizontală până la 0, apoi fața crește din 0.
             AudioManager.Play("card_flip_reward");
             if (rare) AudioManager.Play("card_reward_rare");
-            ScreenFlash.Flash(rare ? Palette.Gold : Color.white, rare ? 0.45f : 0.25f, 0.25f);
+            // Flash-ul lumii (ScreenFlash) stă sub ecranul de recompensă: aici avem flash-ul nostru, peste pachet.
+            var flash = UiKit.Fill(root, rare ? Palette.Gold : Color.white, new Vector2(320, 180), new Vector2(UIRoot.RefWidth, UIRoot.RefHeight));
+            // Spațiu de culoare liniar: alfa ridicat la 2,2 (vezi ScreenFlash).
+            float peak = Mathf.Pow(rare ? 0.45f : 0.3f, QualitySettings.activeColorSpace == ColorSpace.Linear ? 2.2f : 1f);
+            FxHost.Run(Animate(0.3f, k => { if (flash != null) { var c = flash.color; c.a = peak * (1f - k); flash.color = c; } }));
             yield return Animate(0.12f, k => packRt.localScale = new Vector3(2f * (1f - k), 2f, 1f));
             UnityEngine.Object.Destroy(pack.gameObject);
 

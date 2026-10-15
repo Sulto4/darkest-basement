@@ -66,7 +66,29 @@ namespace DarkestBasement.Combat
         Action _command;
         bool _momFurious;
 
-        bool _finished;
+        bool _finished, _lastStand;
+        const int MaxCorpses = 5;
+        readonly Queue<UnitView> _corpses = new Queue<UnitView>();
+
+        // Într-o luptă lungă cu invocări (Gurdy, Mom) cadavrele s-ar aduna: păstrăm ultimele câteva, cele vechi se sting.
+        void KeepCorpse(UnitView corpse)
+        {
+            _corpses.Enqueue(corpse);
+            while (_corpses.Count > MaxCorpses)
+            {
+                var old = _corpses.Dequeue();
+                if (old == null) continue;
+                _views.Remove(old.Id);
+                StartCoroutine(FadeAway(old));
+            }
+        }
+
+        static IEnumerator FadeAway(UnitView v)
+        {
+            float t = 0f;
+            while (t < 0.6f && v != null) { t += Time.deltaTime; v.Alpha = 1f - t / 0.6f; yield return null; }
+            if (v != null) Destroy(v.gameObject);
+        }
 
         public CombatEngine Engine => _engine;
         public CombatViewState State => _state;
@@ -98,10 +120,13 @@ namespace DarkestBasement.Combat
             FxHost.Ensure();
             _state = new CombatViewState(engine.State);
             FxHost.Stage = transform;
+            CombatCamera.StageFocus = stage.Center + Vector3.up;
             Particles.FloorY = stage.Center.y;
             // Petele de sânge aparțin camerei: când W distruge camera, dispar și ele.
             Decals.Clear();
             Decals.AttachTo(FindRoom(stage.Center));
+            // "-combat-fast" (QA, sandbox): luptele lungi (boss-ii) se văd la viteză ×2.
+            if (CommandLine.Has("-combat-fast")) Fast = true;
             HitStop.BaseTimeScale = Fast ? 2f : 1f;
             // QA-ul automat (echipa W) nu are mâini: eroii sunt jucați de AutoPlayer, cu toate animațiile.
             if (QA.QaHooks.Active) AutoPlay = true;
@@ -109,7 +134,8 @@ namespace DarkestBasement.Combat
             foreach (var u in _state.Units.Values) if (!u.Dead) SpawnView(u);
             foreach (var v in _views.Values) v.Home = HomeOf(v.Id);
             _hud = CombatHud.Create(this);
-            foreach (var v in _views.Values) _hud.AddUnit(v);
+            foreach (var v in _views.Values) _hud.AddUnit(v, hidden: !v.IsHero);
+            if (_state.LivingCount(true) == 1) { _lastStand = true; _hud.SetLastStand(true); }
 
             AudioManager.PlayMusic(stage.IsBoss ? "music_boss" : "music_combat");
             StartCoroutine(Run());
@@ -139,7 +165,8 @@ namespace DarkestBasement.Combat
             return null;
         }
 
-        public UnitView View(string id) => id != null && _views.TryGetValue(id, out var v) ? v : null;
+        // `v != null` folosește verificarea Unity: un obiect distrus devine null adevărat, deci `?.` e sigur după.
+        public UnitView View(string id) => id != null && _views.TryGetValue(id, out var v) && v != null ? v : null;
 
         public Unit ModelUnit(string id)
         {
@@ -149,38 +176,41 @@ namespace DarkestBasement.Combat
 
         // ---------- așezarea pe ranguri ----------
 
-        // Fiecare unitate ocupă cel puțin un rang (1,6 unități); boss-ii mari ocupă mai mult,
-        // ca Monstro sau Mom să nu calce peste eroi. Parcurgem rangurile 1..4 și adunăm lățimile.
+        // Fiecare rang are slotul lui (CombatStage.RankPosition). Boss-ii sunt prea lați pentru un slot:
+        // stau în mijlocul părții lor, desenați în spatele minionilor (ca marii boss-i din Darkest Dungeon).
         Vector3 HomeOf(string id)
         {
             var target = _state.Unit(id);
             if (target == null) return _stage.Center;
-            float start = CombatStage.CenterGap - CombatStage.RankSpacing / 2f;
-            for (int rank = 1; rank <= 4; rank++)
-            {
-                var at = _state.AtRank(target.IsHero, rank);
-                float width = at != null && _views.TryGetValue(at.Id, out var v) ? Footprint(v) : CombatStage.RankSpacing;
-                if (at != null && at.Id == id) return CombatStage.Point(_stage, target.IsHero, start + width / 2f);
-                start += width;
-            }
-            return _views.TryGetValue(id, out var self) ? self.Home : _stage.Center;
+            if (target.IsBoss) return CombatStage.Point(_stage, false, BossDistance(id));
+            if (target.Dead && _views.TryGetValue(id, out var corpse)) return corpse.Home;
+            return CombatStage.RankPosition(_stage, target.IsHero, target.Rank);
         }
 
-        static float Footprint(UnitView v) => Mathf.Max(CombatStage.RankSpacing, v.HalfWidth * 2f + 0.3f);
+        // Boss-ul stă în mijlocul părții lui, dar marginea lui stângă rămâne la cel puțin ~60 px de centru
+        // (Gurdy e foarte lat: altfel aproape atinge eroul de pe rangul 1). Nici nu iese din cadru în dreapta.
+        float BossDistance(string id)
+        {
+            float half = _views.TryGetValue(id, out var v) && v != null ? v.HalfWidth : 1.2f;
+            float d = Mathf.Max(CombatStage.BossCenter, 0.95f + half);
+            return Mathf.Min(d, 4.85f - half);
+        }
 
         // ---------- bucla principală ----------
 
         IEnumerator Run()
         {
-            yield return Intro();
+            yield return Safe(Intro());
             _engine.StartCombat();
             yield return Play(Take());
             while (!_engine.IsOver)
             {
                 var hero = _engine.CurrentActor as HeroUnit;
                 if (hero == null) { Debug.LogError("[Combat] modelul nu așteaptă niciun erou; opresc lupta."); break; }
-                if (AutoPlay) yield return AutoTurn(hero);
-                else yield return PlayerTurn(hero);
+                if (AutoPlay) yield return Safe(AutoTurn(hero));
+                else yield return Safe(PlayerTurn(hero));
+                // Un frame liber: dacă o tură ar crăpa instant, bucla nu blochează jocul.
+                yield return null;
             }
             yield return Wait(0.2f);
             Finish();
@@ -199,7 +229,7 @@ namespace DarkestBasement.Combat
             _command = null;
             InputHero = hero;
             AcceptingInput = true;
-            _hud.BeginInput(hero);
+            _hud.BeginInput(hero, Hopeless());
             if (!TutorialHintShown) _hud.ShowHint("Drag a card onto an enemy");
             Emit("input");
             while (_command == null) yield return null;
@@ -263,6 +293,45 @@ namespace DarkestBasement.Combat
             return false;
         }
 
+        // Renunțarea: doar când lupta e cu adevărat fără ieșire (vezi Hopeless). Evenimentele se redau normal (înfrângere).
+        public void RequestGiveUp()
+        {
+            if (!CanRequest || !Hopeless()) return;
+            AudioManager.Play("ui_click");
+            _hud.Hand.DiscardAll();
+            _command = () => _engine.Concede();
+        }
+
+        // Plasă de siguranță: eroii vii nu mai pot răni pe nimeni — nicio carte ofensivă în tot pachetul care să se poată
+        // juca din vreun rang la care pot ajunge (sau din orice rang, în Last Stand) și niciun Bleed/Poison pe inamici.
+        public bool Hopeless()
+        {
+            foreach (var e in _engine.State.Living(false))
+                if (e.Statuses.Has(Status.Bleed) || e.Statuses.Has(Status.Poison)) return false;
+            var living = _engine.State.Living(true);
+            foreach (var u in living)
+            {
+                var hero = u as HeroUnit;
+                if (hero == null) continue;
+                bool anyRank = _engine.IsLastStand(hero);
+                foreach (var pile in new[] { hero.Deck.Hand, hero.Deck.DrawPile, hero.Deck.DiscardPile })
+                    foreach (var card in pile)
+                    {
+                        if (!Offensive(card.Def)) continue;
+                        if (anyRank) return false;
+                        for (int rank = 1; rank <= living.Count; rank++) if (card.Def.CanUseRank(rank)) return false;
+                    }
+            }
+            return true;
+        }
+
+        static bool Offensive(CardDef def)
+        {
+            foreach (var fx in def.Effects)
+                if (fx.Kind == EffectKind.Damage || (fx.Kind == EffectKind.ApplyStatus && (fx.Status == Status.Bleed || fx.Status == Status.Poison))) return true;
+            return false;
+        }
+
         public void RequestEndTurn()
         {
             if (!CanRequest) return;
@@ -307,7 +376,7 @@ namespace DarkestBasement.Combat
                 }
                 yield return Safe(PlayOne(events[i]));
             }
-            yield return EndAction();
+            yield return Safe(EndAction());
             _state.SettleInFlight();
             _hud.RefreshAll();
         }
@@ -406,10 +475,14 @@ namespace DarkestBasement.Combat
             {
                 AudioManager.Play("turn_start");
                 _hud.ShowHero(e.UnitId);
-                Emit("hero_turn");
                 yield return Wait(0.25f);
             }
-            else yield return Wait(0.18f);
+            else
+            {
+                // În tura inamicilor panoul eroului (lacrimi, pachete) nu are ce arăta.
+                _hud.ClearHero();
+                yield return Wait(0.18f);
+            }
         }
 
         IEnumerator OnShuffled(Shuffled e)
@@ -438,6 +511,8 @@ namespace DarkestBasement.Combat
             }
             _hud.RefreshPiles(false);
             yield return Wait(n * 0.08f + 0.12f);
+            // Captura QA „tura eroului” se face când mâna e completă, nu în clipa în care tura începe.
+            if (_state.Active == e.HeroId) Emit("hero_turn");
         }
 
         static CardInstance FindCard(HeroUnit hero, string uid)
@@ -465,7 +540,8 @@ namespace DarkestBasement.Combat
             var target = View(e.TargetId);
             var style = AbilityFx.ForCard(e.CardId);
             AudioManager.Play("card_play");
-            _hud.Hand.PlayOut(e.CardUid, target != null ? target.Head : (hero != null ? hero.Head : _stage.Center));
+            // Cartea e „absorbită” de erou: el o folosește, apoi atacul pleacă spre țintă.
+            _hud.Hand.PlayOut(e.CardUid, hero != null ? hero.Center : (target != null ? target.Head : _stage.Center));
             if (CombatViewState.DiscardsHand(e.CardId)) _hud.Hand.DiscardAll();
             _hud.RefreshPiles(false);
             if (!TutorialHintShown) { TutorialHintShown = true; _hud.HideHint(); }
@@ -541,8 +617,8 @@ namespace DarkestBasement.Combat
                 ctx.PunchedIn = true;
                 CombatCamera.PunchIn((ctx.Actor.Center + target.Center) * 0.5f, e.Crit ? 0.15f : 0.11f, 0.4f);
             }
-            if (e.Crit) ScreenFlash.Flash(Color.white, 0.18f, 0.1f);
-            else if (ctx != null && ctx.Actor != null && ctx.Actor.IsBoss && ctx.Hits == 1) ScreenFlash.Flash(new Color(0.8f, 0.1f, 0.1f), 0.12f, 0.15f);
+            if (e.Crit) ScreenFlash.Flash(Color.white, 0.18f, 0.08f);
+            else if (ctx != null && ctx.Actor != null && ctx.Actor.IsBoss && ctx.Hits == 1) ScreenFlash.Flash(new Color(0.8f, 0.1f, 0.1f), 0.18f, 0.12f);
 
             _hud.UnitHud(e.TargetId)?.OnDamaged(e.Amount, e.Blocked);
             Emit(e.Crit ? "crit" : "hit");
@@ -676,7 +752,7 @@ namespace DarkestBasement.Combat
             Decals.BloodSplat(t.Feet, t.IsBoss ? 2.2f : 1.4f, right);
             Decals.BloodSplat(t.Feet + right * UnityEngine.Random.Range(-0.7f, 0.7f), 0.8f, right);
             ScreenShake.Add(t.IsBoss ? 0.8f : 0.32f);
-            if (t.IsBoss) { ScreenFlash.Flash(Color.white, 0.35f, 0.3f); CombatCamera.PunchIn(t.Center, 0.18f, 0.7f); HitStop.Freeze(0.25f); }
+            if (t.IsBoss) { ScreenFlash.Flash(new Color(0.85f, 0.8f, 0.75f), 0.2f, 0.3f); CombatCamera.PunchIn(t.Center, 0.18f, 0.7f); HitStop.Freeze(0.25f); }
             if (!revives)
             {
                 // Globin se reface imediat și își păstrează intenția; numai moartea definitivă o șterge.
@@ -689,7 +765,19 @@ namespace DarkestBasement.Combat
             {
                 // Cadavrul rămâne pe jos, desenat sub cei vii (supraviețuitorii trec prin fața lui).
                 t.SetOrderBoost(-7);
+                _hud.RemoveUnit(t.Id);
+                if (!t.IsHero) KeepCorpse(t);
                 Emit("kill");
+                if (t.IsHero && _state.LivingCount(true) == 1 && !_lastStand)
+                {
+                    // Ultimul erou rămas poate juca orice carte din orice rang (regula Last Stand din model).
+                    _lastStand = true;
+                    AudioManager.Play("buff");
+                    _hud.Banner("LAST STAND", Palette.Blood, true);
+                    _hud.SetLastStand(true);
+                    Emit("last_stand");
+                    yield return Wait(0.6f);
+                }
             }
             yield return Wait(revives ? 0.15f : 0.3f);
         }
@@ -726,10 +814,11 @@ namespace DarkestBasement.Combat
             // Invocatorul: Gurdy / Mulligan (cadavrul) / ușa lui Mom.
             var source = View(e.SourceId);
             Vector3 from = _action != null && _action.HasCastOrigin ? _action.CastOrigin : source != null ? source.Center : v.Home + Vector3.up * 3f;
-            _hud.AddUnit(v);
+            _hud.AddUnit(v, hidden: true);
             AudioManager.Play(info.DefId == "fly" || info.DefId == "pooter" ? "fly_buzz" : "gaper_groan", 0.8f);
             Particles.Burst(from, ParticleKind.Smoke, 10, Vector3.up, 1f, 1f);
             yield return v.PopIn(from);
+            _hud.UnitHud(v.Id)?.PopIn();
             yield return Wait(0.08f);
         }
 
@@ -763,6 +852,7 @@ namespace DarkestBasement.Combat
         void Finish()
         {
             _finished = true;
+            CombatCamera.StageFocus = null;
             if (Active == this) Active = null;
             HitStop.Reset();
             HitStop.BaseTimeScale = 1f;
@@ -790,7 +880,7 @@ namespace DarkestBasement.Combat
             {
                 Fast = !Fast;
                 HitStop.BaseTimeScale = Fast ? 2f : 1f;
-                _hud?.ShowSpeed(Fast);
+                if (_hud != null) _hud.ShowSpeed(Fast);
             }
         }
 
@@ -799,6 +889,7 @@ namespace DarkestBasement.Combat
         {
             if (FxHost.Stage == transform) FxHost.Stage = null;
             if (_finished) return;
+            CombatCamera.StageFocus = null;
             if (Active == this) Active = null;
             HitStop.Reset();
             ScreenShake.Clear();

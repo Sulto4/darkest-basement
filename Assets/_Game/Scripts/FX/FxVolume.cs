@@ -64,12 +64,16 @@ namespace DarkestBasement.FX
             if (UIRoot.Instance == null) return;
             if (_image == null)
             {
-                _image = UiKit.Image(UIRoot.Instance.Overlay, PixelSprites.Pixel, new Vector2(CombatUi.W / 2f, CombatUi.H / 2f), new Vector2(CombatUi.W, CombatUi.H), "ScreenFlash");
+                // Flash-ul acoperă doar lumea (stratul Backdrop), nu și HUD-ul: cifrele și cărțile rămân lizibile.
+                _image = UiKit.Image(UIRoot.Instance.Backdrop, PixelSprites.Pixel, new Vector2(CombatUi.W / 2f, CombatUi.H / 2f), new Vector2(CombatUi.W, CombatUi.H), "ScreenFlash");
                 _image.raycastTarget = false;
             }
-            _image.transform.SetAsFirstSibling();
+            _image.transform.SetAsLastSibling();
             var img = _image;
             Tween.KillAll(img);
+            // Proiectul e în spațiu de culoare liniar: UI-ul amestecă alfa în valori liniare, deci 8% alb peste negru
+            // apare pe ecran ca ~31% gri (ceață). Ridicăm alfa la puterea 2,2 ca „alpha” să însemne ce vede ochiul.
+            if (QualitySettings.activeColorSpace == ColorSpace.Linear) alpha = Mathf.Pow(Mathf.Clamp01(alpha), 2.2f);
             color.a = alpha;
             img.color = color;
             img.enabled = true;

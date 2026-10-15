@@ -48,7 +48,16 @@ namespace DarkestBasement.UI
         public int Count => _cards.Count;
 
         // Cartea care decide ce ținte se aprind: cea trasă > cea selectată > cea de sub mouse (dacă se poate juca).
-        public CardView FocusCard => _dragged ?? _selected ?? (_hovered != null && _hovered.Playable && _interactive ? _hovered : null);
+        public CardView FocusCard
+        {
+            get
+            {
+                // Fără `??`: operatorul ăsta nu știe că un obiect Unity distrus e „null”.
+                if (_dragged != null) return _dragged;
+                if (_selected != null) return _selected;
+                return _hovered != null && _hovered.Playable && _interactive ? _hovered : null;
+            }
+        }
         public bool IsValidTarget(string unitId) => _validTargets.Contains(unitId);
         public bool IsDragging => _dragged != null;
 
@@ -75,28 +84,30 @@ namespace DarkestBasement.UI
             var card = Find(uid);
             if (card == null) return;
             Detach(card);
-            Vector2 target = CombatCamera.WorldToUI(worldTarget);
-            target.y = Mathf.Clamp(target.y + 30f, 150f, 300f);
-            target.x = Mathf.Clamp(target.x, 60f, 580f);
+            // Cartea zboară spre erou, se micșorează și se stinge în ~0,2 s: a dispărut înainte de impact.
+            Vector2 aim = CombatCamera.WorldToUI(worldTarget);
+            Vector2 target = Vector2.Lerp(card.Rect.anchoredPosition, aim, 0.55f);
             Vector2 from = card.Rect.anchoredPosition;
             float fromRot = card.Rect.localEulerAngles.z;
             var rt = card.Rect;
             card.SetGlow(CardGlow.Selected);
-            Tween.Value(0.16f, k =>
+            Tween.Value(0.08f, k =>
             {
                 if (rt == null) return;
                 rt.anchoredPosition = CombatUi.Snap(Vector2.LerpUnclamped(from, target, k));
                 rt.localRotation = Quaternion.Euler(0f, 0f, Mathf.LerpAngle(fromRot, 0f, k));
-                rt.localScale = Vector3.one * Mathf.Lerp(1.15f, 1f, k);
+                rt.localScale = Vector3.one * Mathf.Lerp(1.15f, 0.9f, k);
             }, Ease.OutCubic, () =>
             {
                 if (rt == null) return;
-                Tween.Value(0.18f, k =>
+                Vector2 start = rt.anchoredPosition;
+                Tween.Value(0.12f, k =>
                 {
                     if (rt == null) return;
-                    rt.localScale = Vector3.one * Mathf.Lerp(1f, 0.2f, k);
-                    card.Alpha = 1f - k;
-                }, Ease.InQuad, () => { if (rt != null) Destroy(rt.gameObject); }, 0.05f, true, rt);
+                    rt.anchoredPosition = CombatUi.Snap(Vector2.Lerp(start, aim, k));
+                    rt.localScale = Vector3.one * Mathf.Lerp(0.9f, 0.1f, k);
+                    card.Alpha = 1f - k * k;
+                }, Ease.InQuad, () => { if (rt != null) Destroy(rt.gameObject); }, 0f, true, rt);
             }, 0f, true, rt);
         }
 
@@ -312,7 +323,7 @@ namespace DarkestBasement.UI
             int n = _cards.Count;
             float mid = (n - 1) / 2f;
             float spacing = n <= 4 ? 56f : Mathf.Max(30f, 230f / Mathf.Max(1, n - 1));
-            var focus = _dragged == null ? (_selected ?? _hovered) : null;
+            var focus = _dragged != null ? null : _selected != null ? _selected : _hovered != null ? _hovered : null;
             int focusIndex = focus != null ? _cards.IndexOf(focus) : -1;
             float k = 1f - Mathf.Exp(-16f * dt);
             for (int i = 0; i < n; i++)

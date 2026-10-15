@@ -33,11 +33,12 @@ namespace DarkestBasement.UI
         Image _drawPile, _discardPile;
         OutlinedText _drawCount, _discardCount;
         // Butoane.
-        Button _endTurn, _moveBack, _moveFront;
+        Button _endTurn, _giveUp, _moveBack, _moveFront;
+        OutlinedText _lastStand;
         RectTransform _moveRoot;
         // Texte mari.
-        OutlinedText _hint, _banner, _speed;
-        Image _bannerBand;
+        OutlinedText _hint, _speed;
+        RectTransform _bannerRoot;
         TweenHandle _bannerTween;
         bool _input;
         UnitView _hoveredUnit;
@@ -66,10 +67,8 @@ namespace DarkestBasement.UI
             BuildButtons();
             Hand = CombatHand.Create(_hud, _c);
 
-            _hint = CombatUi.Outlined(_overlay, "", new Vector2(320, 268), new Vector2(300, 12), UiFont.Body, Palette.Parchment);
+            _hint = CombatUi.Outlined(_overlay, "", new Vector2(320, 303), new Vector2(300, 12), UiFont.Body, Palette.Parchment);
             _hint.Rect.gameObject.SetActive(false);
-            _bannerBand = UiKit.Fill(_overlay, new Color(0.04f, 0.02f, 0.02f, 0.8f), new Vector2(320, 210), new Vector2(UIRoot.RefWidth * 2, 44));
-            _bannerBand.gameObject.SetActive(false);
             _speed = CombatUi.Outlined(_overlay, ">> x2", new Vector2(608, 300), new Vector2(50, 10), UiFont.LabelBold, CombatUi.Gold);
             _speed.Rect.gameObject.SetActive(CombatController.Fast);
             SetPanelVisible(false);
@@ -135,7 +134,20 @@ namespace DarkestBasement.UI
             CombatHoverTrigger.On(_moveFront.gameObject, () => MoveTooltip(-1), () => CombatTooltip.Hide(this));
             _moveRoot.gameObject.SetActive(false);
             _endTurn.interactable = false;
+            _endTurn.gameObject.SetActive(false);
+            _giveUp = CombatUi.Button(_hud, "GIVE UP", new Vector2(596, 46), new Vector2(76, 16), () => _c.RequestGiveUp(), UiFont.Label);
+            CombatHoverTrigger.On(_giveUp.gameObject, () => CombatTooltip.Show(this, "GIVE UP", "Nobody left can hurt the enemy. End this fight as a defeat.", new Vector2(596, 56)), () => CombatTooltip.Hide(this));
+            _giveUp.gameObject.SetActive(false);
+            // Last Stand: o insignă deasupra panoului eroului, cât timp a rămas un singur erou.
+            _lastStand = CombatUi.Outlined(_hud, "LAST STAND", new Vector2(64, 62), new Vector2(110, 10), UiFont.LabelBold, Palette.Blood);
+            _lastStand.Rect.gameObject.SetActive(false);
+            var standHit = UiKit.Fill(_lastStand.Rect, new Color(0f, 0f, 0f, 0f), new Vector2(55, 5), new Vector2(80, 10), null, true);
+            CombatHoverTrigger.On(standHit.gameObject, () => CombatTooltip.Show(this, "LAST STAND", "The last hero standing can play cards from any rank.", new Vector2(64, 70)), () => CombatTooltip.Hide(this));
         }
+
+        bool _lastStandOn;
+        // Insigna stă deasupra panoului eroului: o arătăm doar cât timp se vede și panoul.
+        public void SetLastStand(bool on) { _lastStandOn = on; _lastStand.Rect.gameObject.SetActive(on && HandHero != null); }
 
         void MoveTooltip(int direction)
         {
@@ -152,22 +164,31 @@ namespace DarkestBasement.UI
 
         // ---------- unități ----------
 
-        public void AddUnit(UnitView v)
+        public void AddUnit(UnitView v, bool hidden = false)
         {
             if (_units.ContainsKey(v.Id)) return;
             _units[v.Id] = CombatUnitHud.Create(_world, v, _c.State);
+            if (hidden) _units[v.Id].HideUntilPop();
             if (!v.IsHero) _intents[v.Id] = CombatIntentView.Create(_world, _c, v);
             DamageNumbers.BringToFront();
         }
 
-        public CombatUnitHud UnitHud(string id) => id != null && _units.TryGetValue(id, out var h) ? h : null;
-        public CombatIntentView Intent(string id) => id != null && _intents.TryGetValue(id, out var i) ? i : null;
+        // O unitate moartă definitiv: HUD-ul se stinge și se distruge, intenția (cu săgețile ei) dispare imediat.
+        public void RemoveUnit(string id)
+        {
+            if (_units.TryGetValue(id, out var h)) { _units.Remove(id); if (h != null) h.FadeAndDestroy(); }
+            if (_intents.TryGetValue(id, out var i)) { _intents.Remove(id); if (i != null) Destroy(i.gameObject); }
+        }
+
+        // Verificarea Unity (`!= null`) transformă un obiect distrus în null adevărat: apelurile cu `?.` rămân sigure.
+        public CombatUnitHud UnitHud(string id) => id != null && _units.TryGetValue(id, out var h) && h != null ? h : null;
+        public CombatIntentView Intent(string id) => id != null && _intents.TryGetValue(id, out var i) && i != null ? i : null;
 
         public void ClearIntents() { foreach (var i in _intents.Values) if (i != null) i.Clear(); }
 
         public void RefreshAll()
         {
-            foreach (var h in _units.Values) if (h != null) h.Refresh();
+            foreach (var h in _units.Values) if (h != null && h.isActiveAndEnabled) h.Refresh();
             RefreshPiles(false);
             RefreshEnergy(0);
         }
@@ -190,11 +211,19 @@ namespace DarkestBasement.UI
             RefreshPiles(false);
         }
 
+        public void ClearHero()
+        {
+            if (HandHero == null) return;
+            HandHero = null;
+            SetPanelVisible(false);
+        }
+
         void SetPanelVisible(bool on)
         {
             foreach (var g in new Graphic[] { _panel, _portraitFrame, _portrait, _drawPile, _discardPile }) g.gameObject.SetActive(on);
             foreach (var t in new[] { _heroName, _tearsLabel, _drawCount, _discardCount }) t.Rect.gameObject.SetActive(on);
             foreach (var p in _pips) p.gameObject.SetActive(on);
+            if (_lastStand != null) _lastStand.Rect.gameObject.SetActive(on && _lastStandOn);
         }
 
         public void RefreshEnergy(int delta)
@@ -238,12 +267,17 @@ namespace DarkestBasement.UI
 
         // ---------- input ----------
 
-        public void BeginInput(HeroUnit hero)
+        public void BeginInput(HeroUnit hero, bool hopeless)
         {
             _input = true;
             ShowHero(hero.Id);
             Hand.BeginInput(hero);
             _moveRoot.gameObject.SetActive(true);
+            // End Turn apare doar în tura jucătorului, cu un mic „pop”: e semnalul că acum e rândul tău.
+            _endTurn.gameObject.SetActive(true);
+            var rt = (RectTransform)_endTurn.transform;
+            Tween.Value(0.18f, k => { if (rt != null) rt.localScale = Vector3.one * Mathf.LerpUnclamped(0.6f, 1f, k); }, Ease.OutBack, null, 0f, true, rt);
+            _giveUp.gameObject.SetActive(hopeless);
             RefreshButtons();
         }
 
@@ -253,6 +287,8 @@ namespace DarkestBasement.UI
             Hand.EndInput();
             _moveRoot.gameObject.SetActive(false);
             _endTurn.interactable = false;
+            _endTurn.gameObject.SetActive(false);
+            _giveUp.gameObject.SetActive(false);
             CombatTooltip.HideAll();
         }
 
@@ -289,32 +325,30 @@ namespace DarkestBasement.UI
             AudioManager.Play("ui_click");
         }
 
-        // big = VICTORY / DEFEAT (font gotic ×3, bandă închisă); altfel o etichetă scurtă (ROUND 2).
+        // big = VICTORY / DEFEAT / LAST STAND (font gotic ×3 pe o bandă închisă); altfel o etichetă scurtă (ROUND 2).
+        // Tot bannerul (banda + textul) stă într-un singur container care se animă și apoi se distruge.
         public void Banner(string text, Color color, bool big)
         {
             _bannerTween?.Kill();
-            // Bannerul se refă de fiecare dată: conturul de 1 px trebuie să crească odată cu fontul (×2 sau ×3).
-            if (_banner != null) Destroy(_banner.Rect.gameObject);
-            _banner = big
-                ? CombatUi.Outlined(_overlay, text, new Vector2(320, 210), new Vector2(480, 44), UiFont.Title, color, 3)
-                : CombatUi.Outlined(_overlay, text, new Vector2(320, 292), new Vector2(240, 20), UiFont.LabelBold, color, 2);
-            var banner = _banner;
-            var rt = banner.Rect;
-            _bannerBand.gameObject.SetActive(big);
-            _bannerBand.transform.SetAsLastSibling();
-            rt.SetAsLastSibling();
-            var band = _bannerBand;
+            if (_bannerRoot != null) Destroy(_bannerRoot.gameObject);
+            var root = UiKit.Rect(_overlay, "Banner " + text, big ? new Vector2(320, 210) : new Vector2(320, 287), new Vector2(UIRoot.RefWidth, big ? 48 : 20));
+            _bannerRoot = root;
+            if (big) UiKit.Fill(root, new Color(0.04f, 0.02f, 0.02f, 0.82f), new Vector2(UIRoot.RefWidth / 2f, 24), new Vector2(UIRoot.RefWidth * 2, 48));
+            var label = big
+                // Title = Silkscreen Bold 16 px: ×2 (32 px) încape și „MOM IS FURIOUS” pe lățimea ecranului.
+                ? CombatUi.Outlined(root, text, new Vector2(UIRoot.RefWidth / 2f, 24), new Vector2(560, 44), UiFont.Title, color, 2)
+                : CombatUi.Outlined(root, text, new Vector2(UIRoot.RefWidth / 2f, 10), new Vector2(240, 20), UiFont.LabelBold, color, 2);
+            var group = root.gameObject.AddComponent<CanvasGroup>();
+            group.blocksRaycasts = false;
             float hold = big ? 1.4f : 0.5f;
             _bannerTween = Tween.Value(hold + 0.45f, k =>
             {
-                if (rt == null) return;
+                if (root == null) return;
                 float t = k * (hold + 0.45f);
                 float scale = t < 0.15f ? Easing.Evaluate(Ease.OutBack, t / 0.15f) : 1f;
-                float alpha = t < hold + 0.15f ? 1f : 1f - (t - hold - 0.15f) / 0.3f;
-                rt.localScale = new Vector3(1f, Mathf.Max(0.01f, scale), 1f);
-                banner.Alpha = alpha;
-                if (band != null) { var c = band.color; c.a = 0.8f * alpha; band.color = c; band.rectTransform.localScale = new Vector3(1f, Mathf.Max(0.01f, scale), 1f); }
-            }, Ease.Linear, () => { if (rt != null) Destroy(rt.gameObject); if (band != null) band.gameObject.SetActive(false); }, 0f, true, rt);
+                root.localScale = new Vector3(1f, Mathf.Max(0.01f, scale), 1f);
+                group.alpha = t < hold + 0.15f ? 1f : 1f - (t - hold - 0.15f) / 0.3f;
+            }, Ease.Linear, () => { if (root != null) Destroy(root.gameObject); }, 0f, true, root);
         }
 
         // ---------- fiecare frame ----------
