@@ -383,13 +383,13 @@ namespace DarkestBasement.UI
 
         void Update()
         {
-            float dt = Time.unscaledDeltaTime;
+            float dt = Core.GameTime.UnscaledDelta;
             var kb = Keyboard.current;
             if (_input && kb != null && kb.spaceKey.wasPressedThisFrame && !GameFlow.Paused) _c.RequestEndTurn();
 
             foreach (var p in _pips) p.rectTransform.localScale = Vector3.Lerp(p.rectTransform.localScale, Vector3.one, 1f - Mathf.Exp(-10f * dt));
             _drawPile.rectTransform.localScale = Vector3.Lerp(_drawPile.rectTransform.localScale, Vector3.one, 1f - Mathf.Exp(-10f * dt));
-            if (_hint.Rect.gameObject.activeSelf) _hint.Alpha = 0.65f + 0.35f * Mathf.Sin(Time.unscaledTime * 3f);
+            if (_hint.Rect.gameObject.activeSelf) _hint.Alpha = 0.65f + 0.35f * Mathf.Sin(Core.GameTime.Unscaled * 3f);
 
             if (_input) PlaceMoveButtons();
             UpdateHover();

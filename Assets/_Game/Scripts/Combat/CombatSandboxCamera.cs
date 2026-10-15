@@ -105,13 +105,13 @@ namespace DarkestBasement.Combat
             _punchFocus = worldFocus;
             _punchAmount = Mathf.Clamp(amount, 0f, 0.4f);
             _punchDuration = Mathf.Max(0.05f, duration);
-            _punchStart = Time.unscaledTime;
+            _punchStart = Core.GameTime.Unscaled;
         }
 
         void LateUpdate()
         {
             if (Camera == null) return;
-            float k = _punchDuration > 0f ? (Time.unscaledTime - _punchStart) / _punchDuration : 1f;
+            float k = _punchDuration > 0f ? (Core.GameTime.Unscaled - _punchStart) / _punchDuration : 1f;
             Vector3 offset = Vector3.zero;
             if (k < 1f)
             {

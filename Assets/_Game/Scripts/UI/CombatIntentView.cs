@@ -170,7 +170,7 @@ namespace DarkestBasement.UI
             Vector2 head = CombatCamera.WorldToUI(_view.Home + Vector3.up * (_view.TopHeight + 0.15f));
             // Boss-ii foarte înalți (piciorul lui Mom coboară din tavan): intenția rămâne sub bara de sus.
             head.y = Mathf.Min(head.y, 270f);
-            float bob = Mathf.Round(Mathf.Sin(Time.unscaledTime * 3f + _view.Home.x) * 1f);
+            float bob = Mathf.Round(Mathf.Sin(Core.GameTime.Unscaled * 3f + _view.Home.x) * 1f);
             _rt.anchoredPosition = CombatUi.Snap(head + new Vector2(0f, 16f + bob * 2f));
             int active = (_slots[0].Active ? 1 : 0) + (_slots[1].Active ? 1 : 0);
             int shown = 0;
@@ -182,7 +182,7 @@ namespace DarkestBasement.UI
                 float x = active == 2 ? (shown == 0 ? -width / 2f - 2f : width / 2f + 2f) : 0f;
                 // Rădăcina are 30 px cu pivot la mijloc; conținutul (iconiță + cifră) începe la marginea ei stângă.
                 s.Root.anchoredPosition = CombatUi.Snap(new Vector2(x + 15f - width / 2f, 0f));
-                s.Root.localScale = Vector3.Lerp(s.Root.localScale, Vector3.one, 1f - Mathf.Exp(-12f * Time.unscaledDeltaTime));
+                s.Root.localScale = Vector3.Lerp(s.Root.localScale, Vector3.one, 1f - Mathf.Exp(-12f * Core.GameTime.UnscaledDelta));
                 shown++;
             }
             if (_arrows) DrawArrows();
@@ -210,7 +210,7 @@ namespace DarkestBasement.UI
                     Vector2 b = CombatCamera.WorldToUI(v.Home + Vector3.up * (v.TopHeight + 0.1f));
                     Vector2 c = (a + b) * 0.5f + Vector2.up * (30f + Mathf.Abs(a.x - b.x) * 0.15f);
                     int steps = Mathf.Clamp(Mathf.RoundToInt(Vector2.Distance(a, b) / 9f), 6, 22);
-                    float phase = (Time.unscaledTime * 2.5f) % 1f;
+                    float phase = (Core.GameTime.Unscaled * 2.5f) % 1f;
                     for (int i = 1; i <= steps; i++)
                     {
                         float t = (i - 1 + phase) / steps;

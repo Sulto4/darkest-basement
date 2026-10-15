@@ -166,7 +166,7 @@ namespace DarkestBasement.Core
             float waited = 0f;
             while (take == null)
             {
-                waited += Time.unscaledDeltaTime;
+                waited += Core.GameTime.UnscaledDelta;
                 // În QA, dacă ecranul nu răspunde (nu are încă AutoDecide), alege politica AutoPlayer.
                 if (QaHooks.Active && !QaHooks.ManualInput && waited > 15f)
                 {

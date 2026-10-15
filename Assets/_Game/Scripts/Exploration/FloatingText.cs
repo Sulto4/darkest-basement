@@ -29,7 +29,7 @@ namespace DarkestBasement.Exploration
 
             Ticker.Attach(rt.gameObject, () =>
             {
-                age += Time.unscaledDeltaTime;
+                age += Core.GameTime.UnscaledDelta;
                 if (age < 0f) return;
                 // Urcă 22 px încetinind, "pop" la apariție, apoi se stinge în ultima treime.
                 float rise = Easing.Evaluate(Ease.OutCubic, age / life) * 22f;

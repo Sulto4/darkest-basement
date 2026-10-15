@@ -51,11 +51,11 @@ namespace DarkestBasement.FX
 
             float shake = Trauma * Trauma;
             // Timp real: shake-ul continuă și în timpul hit-stop-ului (arată foarte bine împreună).
-            float t = Time.unscaledTime * Frequency;
+            float t = Core.GameTime.Unscaled * Frequency;
             root.localPosition = new Vector3(MaxOffset * shake * Noise(0, t), MaxOffset * shake * Noise(1, t), 0f);
             root.localRotation = Quaternion.Euler(0f, 0f, MaxAngle * shake * Noise(2, t));
             _dirty = true;
-            Trauma = Mathf.Max(0f, Trauma - Decay * Time.unscaledDeltaTime);
+            Trauma = Mathf.Max(0f, Trauma - Decay * Core.GameTime.UnscaledDelta);
         }
 
         // PerlinNoise dă 0..1; îl mutăm în -1..1. Fiecare canal citește alt „rând” din zgomot.

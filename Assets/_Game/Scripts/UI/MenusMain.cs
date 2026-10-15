@@ -52,7 +52,7 @@ namespace DarkestBasement.UI
             group.alpha = 0f;
             Ticker.Attach(Root.gameObject, () =>
             {
-                age += Time.unscaledDeltaTime;
+                age += Core.GameTime.UnscaledDelta;
                 group.alpha = Mathf.Clamp01((age - 0.3f) / 0.8f);
                 logo.anchoredPosition = logoHome + new Vector2(0f, Mathf.Round(Mathf.Sin(age * 1.1f) * 2f));
             });

@@ -21,7 +21,7 @@ namespace DarkestBasement.FX
             }
         }
 
-        public static bool IsFrozen => _until > 0f && Time.unscaledTime < _until;
+        public static bool IsFrozen => _until > 0f && Core.GameTime.Unscaled < _until;
 
         public static void Freeze(float seconds)
         {
@@ -29,7 +29,7 @@ namespace DarkestBasement.FX
             FxHost.Ensure();
             // La viteză ×2 și pauzele sunt mai scurte, altfel lupta rapidă ar părea sacadată.
             float real = seconds / Mathf.Max(1f, _base);
-            _until = Mathf.Max(_until, Time.unscaledTime + real);
+            _until = Mathf.Max(_until, Core.GameTime.Unscaled + real);
             Time.timeScale = 0f;
         }
 
@@ -43,7 +43,7 @@ namespace DarkestBasement.FX
 
         internal static void Tick()
         {
-            if (_until > 0f && Time.unscaledTime >= _until)
+            if (_until > 0f && Core.GameTime.Unscaled >= _until)
             {
                 _until = 0f;
                 if (!Core.GameFlow.Paused) Time.timeScale = _base;

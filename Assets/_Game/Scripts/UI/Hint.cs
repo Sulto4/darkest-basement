@@ -40,7 +40,7 @@ namespace DarkestBasement.UI
             float age = 0f;
             Ticker.Attach(root.gameObject, () =>
             {
-                age += Time.unscaledDeltaTime;
+                age += Core.GameTime.UnscaledDelta;
                 group.alpha = Mathf.Clamp01(age / 0.3f) * Mathf.Clamp01((seconds - age) / 0.5f);
                 pointer.rectTransform.anchoredPosition = new Vector2(0f, -15f + Mathf.Round(Mathf.Abs(Mathf.Sin(age * 5f)) * 3f));
                 if (age >= seconds) Hide(id);

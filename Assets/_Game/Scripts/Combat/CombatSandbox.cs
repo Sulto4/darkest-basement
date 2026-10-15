@@ -58,7 +58,7 @@ namespace DarkestBasement.Combat
                 while (!done) yield return null;
             }
             float t = 0f;
-            while (t < 1.2f) { t += Time.unscaledDeltaTime; yield return null; }
+            while (t < 1.2f) { t += Core.GameTime.UnscaledDelta; yield return null; }
             if (!CommandLine.Has("-combat-once")) Run(seed + 1, id);
         }
 

@@ -268,7 +268,7 @@ namespace DarkestBasement.UI
 
         void Update()
         {
-            _age += Time.unscaledDeltaTime;
+            _age += Core.GameTime.UnscaledDelta;
             // Pulsul auriu al camerelor în care poți merge; camera curentă are rama plină.
             float pulse = 0.35f + 0.65f * (0.5f + 0.5f * Mathf.Sin(_age * 5f));
             foreach (var c in _cells.Values)

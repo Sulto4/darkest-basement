@@ -348,7 +348,7 @@ namespace DarkestBasement.UI
 
         void Update()
         {
-            float dt = Time.unscaledDeltaTime;
+            float dt = Core.GameTime.UnscaledDelta;
             Vector2 mouse = CombatUi.MouseUI();
             if (_interactive && !GameFlow.Paused) HandleInput(mouse);
             Layout(mouse, dt);
@@ -470,7 +470,7 @@ namespace DarkestBasement.UI
             // B(t) = (1−t)²·A + 2(1−t)t·C + t²·B, cu punctul de control C ridicat deasupra mijlocului.
             Vector2 c = (a + b) * 0.5f + new Vector2((a.x - b.x) * 0.15f, 18f + Mathf.Abs(a.x - b.x) * 0.12f);
             int steps = Mathf.Clamp(Mathf.RoundToInt(Vector2.Distance(a, b) / 7f), 4, 40);
-            float phase = (Time.unscaledTime * 2.5f) % 1f;
+            float phase = (Core.GameTime.Unscaled * 2.5f) % 1f;
             int dot = 0;
             for (int i = 0; i < steps; i++)
             {

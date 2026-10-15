@@ -115,7 +115,7 @@ namespace DarkestBasement.UI
             float time = 0f;
             while (choice == null)
             {
-                time += Time.unscaledDeltaTime;
+                time += Core.GameTime.UnscaledDelta;
                 // Strălucirea respiră; cartea plutește 1 px.
                 var c = glow.color; c.a = 0.55f + 0.35f * Mathf.Sin(time * 3f); glow.color = c;
                 cardRt.anchoredPosition = CombatUi.Snap(CardPos + new Vector2(0, Mathf.Sin(time * 2f) * 1.5f));
@@ -188,7 +188,7 @@ namespace DarkestBasement.UI
             float t = 0f;
             while (t < duration)
             {
-                t += Time.unscaledDeltaTime;
+                t += Core.GameTime.UnscaledDelta;
                 f(Mathf.Clamp01(t / duration));
                 yield return null;
             }
@@ -198,7 +198,7 @@ namespace DarkestBasement.UI
         static IEnumerator Wait(float seconds)
         {
             float t = 0f;
-            while (t < seconds) { t += Time.unscaledDeltaTime; yield return null; }
+            while (t < seconds) { t += Core.GameTime.UnscaledDelta; yield return null; }
         }
 
         // Scântei UI (plus-uri de 3×3) care zboară din centru și cad.
@@ -223,7 +223,7 @@ namespace DarkestBasement.UI
             foreach (var p in parts) { pos.Add(p.rt.anchoredPosition); vel.Add(p.vel); }
             while (t < 0.9f)
             {
-                float dt = Time.unscaledDeltaTime;
+                float dt = Core.GameTime.UnscaledDelta;
                 t += dt;
                 for (int i = 0; i < parts.Count; i++)
                 {

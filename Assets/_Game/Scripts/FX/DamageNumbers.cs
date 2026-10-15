@@ -43,7 +43,7 @@ namespace DarkestBasement.FX
             int stack = 0;
             if (stackKey != null)
             {
-                float now = Time.unscaledTime;
+                float now = Core.GameTime.Unscaled;
                 if (LastTime.TryGetValue(stackKey, out var last) && now - last < 0.45f) stack = StackCount[stackKey] + 1;
                 LastTime[stackKey] = now; StackCount[stackKey] = stack;
             }

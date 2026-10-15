@@ -115,7 +115,7 @@ namespace DarkestBasement.Core
                 // Obiectul animat a fost distrus: tween-ul moare odată cu el.
                 if (h.Owner == null && !ReferenceEquals(h.Owner, null)) { h.IsDone = true; continue; }
 
-                float dt = h.Unscaled ? Time.unscaledDeltaTime : Time.deltaTime;
+                float dt = h.Unscaled ? Core.GameTime.UnscaledDelta : Time.deltaTime;
                 if (h.Delay > 0f) { h.Delay -= dt; continue; }
 
                 h.Elapsed += dt;

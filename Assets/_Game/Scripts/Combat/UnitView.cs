@@ -446,7 +446,7 @@ namespace DarkestBasement.Combat
             var white = SpriteSilhouette.Of(frame)?.White;
             if (_flashTime > 0f && white != null)
             {
-                _flashTime -= Time.unscaledDeltaTime;
+                _flashTime -= Core.GameTime.UnscaledDelta;
                 _flash.enabled = true;
                 _flash.sprite = white;
                 // La boss-i clipirea e mai slabă: suprafața albă e de 4–6 ori mai mare decât la un personaj obișnuit.
@@ -462,14 +462,14 @@ namespace DarkestBasement.Combat
                 _outline[i].enabled = outline;
                 if (!outline) continue;
                 _outline[i].sprite = white;
-                float pulse = _hovered ? 1f : 0.55f + 0.45f * Mathf.Sin(Time.unscaledTime * 7f);
+                float pulse = _hovered ? 1f : 0.55f + 0.45f * Mathf.Sin(Core.GameTime.Unscaled * 7f);
                 var gc = _targetable ? _glow : Color.white; gc.a = pulse * _alpha;
                 _outline[i].color = gc;
             }
 
             if (_ring.enabled)
             {
-                float p = 0.6f + 0.4f * Mathf.Sin(Time.unscaledTime * 5f);
+                float p = 0.6f + 0.4f * Mathf.Sin(Core.GameTime.Unscaled * 5f);
                 _ring.color = new Color(Palette.Gold.r, Palette.Gold.g, Palette.Gold.b, p);
             }
             var sc = _shadow.color; sc.a = _alpha; _shadow.color = sc;

@@ -55,7 +55,8 @@ pull() {
       | tar -xf - -C "$ROOT/Assets" 2>/dev/null || true
   fi
   mkdir -p "$ROOT/Logs"
-  rsync -a "$HOST:$RDIR/Logs/" "$ROOT/Logs/" 2>/dev/null || true
+  # Cadrele capturate pentru video (Logs/qa/*/frames, GB întregi) rămân pe Forge: le taie video/tools/capture.sh acolo.
+  rsync -a --exclude="qa/*/frames/" "$HOST:$RDIR/Logs/" "$ROOT/Logs/" 2>/dev/null || true
 }
 
 # Un pas pe Forge, în cușca de resurse: o singură instanță odată (flock), memorie/CPU/timp plafonate.

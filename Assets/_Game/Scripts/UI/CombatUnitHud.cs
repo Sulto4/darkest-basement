@@ -197,7 +197,7 @@ namespace DarkestBasement.UI
         void LateUpdate()
         {
             if (_view == null) { Destroy(gameObject); return; }
-            float dt = Time.unscaledDeltaTime;
+            float dt = Core.GameTime.UnscaledDelta;
             if (_waiting) return;
             if (_dead)
             {
@@ -213,7 +213,7 @@ namespace DarkestBasement.UI
             }
             // HUD-ul stă la slot (Home), nu urmează lunge-ul: altfel ar sări prin ecran la fiecare atac.
             Vector2 feet = _boss ? BossAnchor : CombatCamera.WorldToUI(_view.Home);
-            Vector2 shake = _shake > 0f ? new Vector2(Mathf.Round(Mathf.Sin(Time.unscaledTime * 70f) * 2f * _shake), 0f) : Vector2.zero;
+            Vector2 shake = _shake > 0f ? new Vector2(Mathf.Round(Mathf.Sin(Core.GameTime.Unscaled * 70f) * 2f * _shake), 0f) : Vector2.zero;
             _shake = Mathf.Max(0f, _shake - dt * 4f);
             _rt.anchoredPosition = CombatUi.Snap(feet + shake);
             _popScale = Mathf.Lerp(_popScale, 1f, 1f - Mathf.Exp(-14f * dt));

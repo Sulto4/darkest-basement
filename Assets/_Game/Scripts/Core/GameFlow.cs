@@ -162,7 +162,7 @@ namespace DarkestBasement.Core
 
         void Update()
         {
-            if (RunActive && !Paused) RunSeconds += Time.unscaledDeltaTime;
+            if (RunActive && !Paused) RunSeconds += Core.GameTime.UnscaledDelta;
             if (GameInput.PausePressed) TogglePause();
             if (!Paused && GameInput.MapPressed) ToggleMap();
         }

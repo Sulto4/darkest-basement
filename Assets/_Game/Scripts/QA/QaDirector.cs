@@ -21,6 +21,8 @@ namespace DarkestBasement.QA
     // cu codul 0 (curat) sau 1 (erori, blocaj, timeout).
     //
     // Argumente: -qa <folder> [-seed N] [-qa-script tour|full|combat|input] [-capture-fps 30] [-combat-sandbox [id]] [-qa-timeout s]
+    //   captură țintită pentru video (cu -capture-fps): -capture-moments tag1,tag2 [-capture-pre s] [-capture-post s]
+    //   [-capture-max n] [-capture-jpg] [-capture-quit] — vezi „Captura țintită” mai jos
     //   tour   — etajul 1 cu camerele speciale, boss, trapa, cartonașul etajului 2, ecranul de final
     //   full   — un run întreg până la victorie sau moarte
     //   combat — prima luptă, cu multe capturi (pentru echipa C)
@@ -59,6 +61,7 @@ namespace DarkestBasement.QA
             // Un run complet are ~18 lupte animate (×2) și ~50 de holuri: ~45 de minute pe Forge.
             _manual = _script == "input";
             float defaultTimeout = _script == "full" ? 5200f : _script == "tour" || _manual ? 1500f : 900f;
+            if (_captureFps > 0) defaultTimeout *= 8f; // pașii ficși de captură sunt mult mai lenți decât timpul real (vezi Watchdog)
             _timeout = CommandLine.Float("-qa-timeout", defaultTimeout);
             _maxPerTag = _script == "combat" || _script == "sandbox" ? 40 : _script == "full" ? 2 : 3;
             _maxShots = _script == "full" ? 220 : 140;
@@ -72,6 +75,7 @@ namespace DarkestBasement.QA
                  + " screen=" + Screen.width + "x" + Screen.height + " gfx=" + SystemInfo.graphicsDeviceType);
 
             if (_captureFps > 0) Time.captureFramerate = _captureFps;
+            ConfigureTargetedCapture();
             // Scriptul "input" ține singur tasta W, la viteza reală de mers.
             QaHooks.ManualInput = _manual;
             GameInput.AutoWalk = !_manual;
@@ -112,6 +116,7 @@ namespace DarkestBasement.QA
 
         void OnMoment(string tag)
         {
+            CaptureMoment(tag); // înaintea limitelor de capturi: ferestrele video au limita lor (-capture-max)
             if (_shot >= _maxShots) return;
             // Scriptul "input" își face singur capturile, la fiecare pas (Shot); momentele automate ar umple folderul.
             if (_manual && tag != "stall") return;
@@ -128,7 +133,8 @@ namespace DarkestBasement.QA
             while (true)
             {
                 yield return endOfFrame;
-                if (_captureFps > 0) Save(Path.Combine(_dir, "frames", "frame_" + (_frame++).ToString("00000") + ".png"));
+                if (_captureFps > 0 && _captureTags != null) CaptureFrame();
+                else if (_captureFps > 0) Save(Path.Combine(_dir, "frames", "frame_" + (_frame++).ToString("00000") + ".png"));
                 if (_pending.Count > 0)
                 {
                     string tag = _pending.Dequeue();
@@ -144,6 +150,72 @@ namespace DarkestBasement.QA
             try { File.WriteAllBytes(path, tex.EncodeToPNG()); }
             finally { Destroy(tex); }
         }
+
+        // ---- Captura țintită (pentru clipurile din video) ----
+        // Un run capturat întreg nu încape pe disc (~2 MB pe cadru PNG, 30 de cadre pe secundă de joc). Cu -capture-moments,
+        // scriem doar ferestrele din jurul momentelor cerute: -capture-pre secunde înainte (dintr-un tampon în memorie) și
+        // -capture-post după. Time.captureFramerate rămâne fix tot timpul, deci mișcarea din clipuri e lină.
+        //   -capture-max n  — câte ferestre pe tag (implicit 1);  -capture-jpg — JPEG calitate 92 (~300 KB) în loc de PNG;
+        //   -capture-quit   — ieșim imediat ce toate tag-urile cerute au fost capturate (o luptă de boss nu trebuie jucată până la capăt).
+        // În qa-log.txt rămâne „fereastră <tag>: cadrele A–B” pentru fiecare fereastră, ca să știm ce tăiem.
+        HashSet<string> _captureTags;
+        readonly Dictionary<string, int> _captureCount = new Dictionary<string, int>();
+        readonly Queue<KeyValuePair<int, byte[]>> _preRoll = new Queue<KeyValuePair<int, byte[]>>();
+        int _preFrames, _postFrames, _captureMax, _windowEnd = -1, _windowStart;
+        string _windowTags = "";
+        bool _captureJpg, _captureQuit;
+
+        void ConfigureTargetedCapture()
+        {
+            string tags = CommandLine.Value("-capture-moments");
+            if (_captureFps <= 0 || string.IsNullOrEmpty(tags)) return;
+            _captureTags = new HashSet<string>(tags.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries), StringComparer.OrdinalIgnoreCase);
+            _preFrames = Mathf.RoundToInt(CommandLine.Float("-capture-pre", 1f) * _captureFps);
+            _postFrames = Mathf.RoundToInt(CommandLine.Float("-capture-post", 3f) * _captureFps);
+            _captureMax = Mathf.Max(1, CommandLine.Int("-capture-max", 1));
+            _captureJpg = CommandLine.Has("-capture-jpg");
+            _captureQuit = CommandLine.Has("-capture-quit");
+            Note("captură țintită: " + string.Join(",", _captureTags) + ", înainte " + _preFrames + " cadre, după " + _postFrames + ", max " + _captureMax
+                 + (_captureJpg ? ", jpg" : ", png") + (_captureQuit ? ", ies după ultima fereastră" : ""));
+        }
+
+        void CaptureMoment(string tag)
+        {
+            if (_captureTags == null || !_captureTags.Contains(tag)) return;
+            _captureCount.TryGetValue(tag, out int n);
+            if (n >= _captureMax) return;
+            _captureCount[tag] = n + 1;
+            // Momentul vine în timpul cadrului curent; CaptureLoop îl scrie la sfârșitul lui, apoi încă _postFrames.
+            if (_frame > _windowEnd) { _windowStart = _frame - _preRoll.Count; _windowTags = tag; }
+            else _windowTags += "+" + tag;
+            _windowEnd = Mathf.Max(_windowEnd, _frame + _postFrames);
+            Note("captură video: " + tag + " la cadrul " + _frame);
+            foreach (var f in _preRoll) WriteFrame(f.Key, f.Value);
+            _preRoll.Clear();
+        }
+
+        void CaptureFrame()
+        {
+            int frame = _frame++;
+            bool inWindow = frame <= _windowEnd;
+            if (inWindow || _preFrames > 0)
+            {
+                var tex = ScreenCapture.CaptureScreenshotAsTexture();
+                byte[] bytes;
+                try { bytes = _captureJpg ? tex.EncodeToJPG(92) : tex.EncodeToPNG(); }
+                finally { Destroy(tex); }
+                if (inWindow) WriteFrame(frame, bytes);
+                else { _preRoll.Enqueue(new KeyValuePair<int, byte[]>(frame, bytes)); while (_preRoll.Count > _preFrames) _preRoll.Dequeue(); }
+            }
+            if (frame != _windowEnd) return;
+            Note("fereastră " + _windowTags + ": cadrele " + _windowStart + "–" + _windowEnd);
+            bool all = true;
+            foreach (var t in _captureTags) { _captureCount.TryGetValue(t, out int c); if (c < _captureMax) all = false; }
+            if (_captureQuit && all) Finish("capture done");
+        }
+
+        void WriteFrame(int frame, byte[] bytes) =>
+            File.WriteAllBytes(Path.Combine(_dir, "frames", "frame_" + frame.ToString("00000") + (_captureJpg ? ".jpg" : ".png")), bytes);
 
         // ---- Pilotul ----
 
@@ -312,7 +384,7 @@ namespace DarkestBasement.QA
             float combatTimer = 0f, walkTimer = 0f;
             while (true)
             {
-                float dt = Time.unscaledDeltaTime;
+                float dt = Core.GameTime.UnscaledDelta;
                 if (_flow.State == FlowState.Combat)
                 {
                     combatTimer += dt;
@@ -344,7 +416,8 @@ namespace DarkestBasement.QA
                 }
                 // O luptă (mai ales de boss) poate sta minute întregi fără schimbare de stare; restul jocului, nu.
                 bool fighting = _flow.State == FlowState.Combat || _flow.State == FlowState.Reward;
-                float limit = fighting ? 900f : 150f;
+                // Cu -capture-fps, timpul jocului merge în pași ficși: sub llvmpipe (~3 cadre/s) asta e de ~10 ori mai lent decât realul.
+                float limit = (fighting ? 900f : 150f) * (_captureFps > 0 ? 12f : 1f);
                 if (now - _started > _timeout) { Debug.LogError("[QA] timeout global după " + _timeout + " s"); Finish("timeout"); yield break; }
                 if (now - _lastProgress > limit)
                 {
@@ -420,8 +493,8 @@ namespace DarkestBasement.QA
 
         static IEnumerator Seconds(float s)
         {
-            float end = Time.unscaledTime + s;
-            while (Time.unscaledTime < end) yield return null;
+            float end = Core.GameTime.Unscaled + s;
+            while (Core.GameTime.Unscaled < end) yield return null;
         }
 
         static IEnumerator Until(Func<bool> condition)

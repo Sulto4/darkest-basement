@@ -52,8 +52,8 @@ namespace DarkestBasement.UI
 
         static IEnumerator Wait(float seconds)
         {
-            float end = Time.unscaledTime + seconds;
-            while (Time.unscaledTime < end) yield return null;
+            float end = Core.GameTime.Unscaled + seconds;
+            while (Core.GameTime.Unscaled < end) yield return null;
         }
     }
 }

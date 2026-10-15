@@ -24,7 +24,7 @@ namespace DarkestBasement.UI
             float age = 0f;
             Ticker.Attach(root.gameObject, () =>
             {
-                age += Time.unscaledDeltaTime;
+                age += Core.GameTime.UnscaledDelta;
                 float pop = Easing.Evaluate(Ease.OutBack, Mathf.Clamp01(age / 0.28f));
                 title.Rect.localScale = Vector3.one * Mathf.LerpUnclamped(1.8f, 1f, pop);
                 group.alpha = Mathf.Clamp01(age / 0.12f) * Mathf.Clamp01((hold + 0.5f - age) / 0.5f);

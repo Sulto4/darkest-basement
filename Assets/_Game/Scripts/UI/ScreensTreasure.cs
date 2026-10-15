@@ -65,7 +65,7 @@ namespace DarkestBasement.UI
                 Tween.Value(0.45f, k => { if (slot != null) slot.anchoredPosition = Vector2.LerpUnclamped(home + new Vector2(0, -220), home, k); },
                     Ease.OutBack, null, 0.12f * i, true, slot);
                 float phase = i * 1.7f;
-                Ticker.Attach(glow.gameObject, () => glow.color = Palette.WithAlpha(glow.color, 0.55f + 0.35f * Mathf.Sin(Time.unscaledTime * 3f + phase)));
+                Ticker.Attach(glow.gameObject, () => glow.color = Palette.WithAlpha(glow.color, 0.55f + 0.35f * Mathf.Sin(Core.GameTime.Unscaled * 3f + phase)));
                 _slots.Add(slot);
             }
             AudioManager.Play("chest_open");

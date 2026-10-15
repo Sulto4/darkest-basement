@@ -116,7 +116,7 @@ namespace DarkestBasement.UI
 
         void LateUpdate()
         {
-            float dt = Time.unscaledDeltaTime;
+            float dt = Core.GameTime.UnscaledDelta;
             float k = 1f - Mathf.Exp(-12f * dt);
             int visible = 0;
             foreach (var s in _slots) if (!s.Leaving) visible++;
@@ -141,7 +141,7 @@ namespace DarkestBasement.UI
                 s.Group.alpha = s.Alpha;
                 s.Root.anchoredPosition = CombatUi.Snap(s.Pos);
                 s.Root.localScale = Vector3.one * (s.Leaving ? Mathf.Lerp(0.6f, 1f, s.Alpha) : s.Scale);
-                var frameColor = s.Id == _active ? Color.Lerp(Color.white, Palette.Gold, 0.3f + 0.3f * Mathf.Sin(Time.unscaledTime * 6f)) : Color.white;
+                var frameColor = s.Id == _active ? Color.Lerp(Color.white, Palette.Gold, 0.3f + 0.3f * Mathf.Sin(Core.GameTime.Unscaled * 6f)) : Color.white;
                 s.Frame.color = frameColor;
             }
             // Panoul se strânge odată cu portretele.

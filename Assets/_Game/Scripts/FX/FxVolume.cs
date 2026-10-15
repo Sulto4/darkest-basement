@@ -21,11 +21,11 @@ namespace DarkestBasement.FX
             if (!Ensure()) return;
             FxHost.Ensure();
             _peak = Mathf.Max(_peak * Remaining(), Mathf.Clamp01(intensity));
-            _start = Time.unscaledTime;
+            _start = Core.GameTime.Unscaled;
             _duration = Mathf.Max(0.05f, duration);
         }
 
-        static float Remaining() => _duration <= 0f ? 0f : Mathf.Clamp01(1f - (Time.unscaledTime - _start) / _duration);
+        static float Remaining() => _duration <= 0f ? 0f : Mathf.Clamp01(1f - (Core.GameTime.Unscaled - _start) / _duration);
 
         internal static void Tick()
         {
