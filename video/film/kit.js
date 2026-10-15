@@ -20,7 +20,8 @@ export function unit(ctx, I, id, x, y, t, o = {}) {
   else name = hero ? `${id}/side_dead_0` : `${id}/dead_0`;
   const img = I(name) || I(hero ? `${id}/side_idle_0` : `${id}/idle_0`);
   const br = pose === 'dead' ? 1 : breath(t, phase * 2.1);
-  if (shadow && img) { ctx.globalAlpha = 0.35 * alpha; rect(ctx, x - img.width * 0.28 * scale, y - 1, img.width * 0.56 * scale, 2, '#000'); ctx.globalAlpha = 1; }
+  const ga = ctx.globalAlpha; // alpha-ul primit de la scenă (fade) se păstrează: umbra nu-l are voie să-l reseteze
+  if (shadow && img) { ctx.globalAlpha = ga * 0.35 * alpha; rect(ctx, x - img.width * 0.28 * scale, y - 1, img.width * 0.56 * scale, 2, '#000'); ctx.globalAlpha = ga; }
   spr(ctx, img, x, y, { sx: sx * scale, sy: sy * br * scale, alpha, flash });
   return img;
 }

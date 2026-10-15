@@ -31,7 +31,7 @@ export default {
   duration: 1,
   fonts: ['700 40px "Pixelify Sans"', '600 40px "Pixelify Sans"', '400 30px "Silkscreen"', '400 30px "Micro5"', '500 26px "JetBrains Mono"', '700 26px "JetBrains Mono"', 'italic 500 26px "JetBrains Mono"', '600 30px "Inter"', '700 30px "Inter"', '500 30px "Inter"'],
   async preload(loadJSON) {
-    const d = await loadJSON({ assets: 'out/assets/index.json', ...Object.fromEntries(MODS.map((m) => [m.id, `voice/${m.id}.lines.json`])), sim: 'film/data/sim500.json', snippets: 'film/data/snippets.json' });
+    const d = await loadJSON({ assets: 'out/assets/index.json', ...Object.fromEntries(MODS.map((m) => [m.id, `voice/${m.id}.lines.json`])), sim: 'film/data/sim500.json', snippets: 'film/data/snippets.json', footage: 'footage.json' });
     ASSETS = d.assets;
     return d;
   },
@@ -59,7 +59,7 @@ export default {
   },
   sceneTimes() { return FILM.scenes.map((S) => ({ id: S.id, t0: S.t0, t1: S.t1, title: S.mod.title || S.id })); },
   segments() { return segs(FILM); },
-  scene(id) { const S = FILM.scenes.find((x) => x.id === id); return S && { t0: S.t0, t1: S.t1, lines: S.lines, slots: S.slots.map(({ id, t0, t1 }) => ({ id, t0, t1 })), marks: S.marks }; },
+  scene(id) { const S = FILM.scenes.find((x) => x.id === id); return S && { t0: S.t0, t1: S.t1, lines: S.lines, slots: S.slots.map(({ id, t0, t1, shots }) => ({ id, t0, t1, shots })), marks: S.marks }; },
   draw(t, stage) {
     const ctx = stage.ctx;
     const S = FILM.scenes.find((s) => t >= s.t0 && t < s.t1) || FILM.scenes[FILM.scenes.length - 1];
@@ -80,7 +80,11 @@ export default {
     const vo = [], sfx = [], music = [];
     for (const S of FILM.scenes) {
       for (const v of S.vo) vo.push({ ...v, at: v.at + S.t0 });
-      for (const c of S.mod.sfx ? S.mod.sfx(S) : []) if (c && c.t != null && c.t >= 0) sfx.push({ ...c, t: c.t + S.t0, src: ASSETS.sfx[c.id] || c.src });
+      // sloturile cu clip live (footage.json) au efectele lor, puse pe momentele din clip; cele ale scenei din interiorul slotului cad
+      const live = S.slots.filter((sl) => S.data.footage?.[sl.id]?.sfx);
+      const inLive = (t) => live.some((sl) => t >= sl.t0 - 0.02 && t < sl.t1);
+      for (const c of S.mod.sfx ? S.mod.sfx(S) : []) if (c && c.t != null && c.t >= 0 && !inLive(c.t) && (ASSETS.sfx[c.id] || c.src) && (c.gain ?? 1) > 0) sfx.push({ ...c, t: c.t + S.t0, src: ASSETS.sfx[c.id] || c.src });
+      for (const sl of live) for (const [t, id, gain] of S.data.footage[sl.id].sfx) if (ASSETS.sfx[id]) sfx.push({ t: sl.t0 + t + S.t0, id, gain, src: ASSETS.sfx[id] });
       for (const sl of S.slots) for (const c of sl.sfx || []) sfx.push({ ...c, t: c.t + S.t0, src: ASSETS.sfx[c.id] });
     }
     // un efect care cade peste vorbire coboară la jumătate: vocea rămâne deasupra

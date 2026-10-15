@@ -10,7 +10,7 @@ T = json.load(open(os.path.join(V, 'out/timings.json')))
 # Ce se vede, replică cu replică (n → descriere). Cifrele și codul vin din repo; nimic inventat.
 VIS = {
  's01': {
-  '_': 'Deschidere pe gameplay (capturi din rularea QA cu seed 7, Ken Burns; sloturi pentru clipuri live). Muzica: music_combat.',
+  '_': 'Deschidere pe gameplay: clipuri live din build-ul de QA, seed 7 (FOOTAGE.md), tăiate pe cuvinte; apoi logo-ul jocului apare pixel cu pixel, cu sânge care picură. Muzica: music_combat.',
   1: 'Meniul jocului (logo, câmpul SEED = 7).', 2: 'Holul văzut din spate, apoi vederea laterală cu monștrii (tăieturi pe „cobori” și „monștri”).',
   3: 'Harta → holul → ușa → mâna de cărți, câte o tăietură pe fiecare cuvânt-cheie.', 4: 'Cartea jucată, raza Brimstone, recompensa „NEW CARD”, trapa.',
   5: 'Monstro, Gurdy, piciorul lui Mom, lovitura lui Mom.', 6: 'Peretele subsolului, cei patru eroi și un Gaper intră în cadru; logo-ul se desface în 10 fâșii, din care ies simboluri: G=(V,E), BFS, seed, n!, sort, f∘g, ⌊x⌋, p̂, f(t), x².',
@@ -21,7 +21,7 @@ VIS = {
   3: 'Trei iconițe (sprite, cameră, sunet) tăiate cu roșu pe cuvintele lor.', 4: 'Cortina se trage; pe scenă Isaac și un Gaper respiră. Apar pe rând: desenează, animă, cântă, ascultă.',
   5: 'Două benzi între lumi („comenzi”, „evenimente”); bilețelul `PlayCard(isaac, tear, gaper)` zboară din View în Model.',
   6: '`gaper.Hp` devine 0; ies trei bilețele: `CardPlayed`, `Damaged 5`, `UnitDied`.', 7: 'View-ul consumă bilețelele pe rând: Isaac aruncă lacrima, Gaper clipește alb cu „5”, apoi moare (pată de sânge).',
-  'slot:s02-joc': 'Gameplay: cartea jucată, lovitura, moartea.', 8: 'View-ul pleacă; terminalul arată testele reale (`PASS …`, `Tests: 35 passed, 0 failed.`).',
+  'slot:s02-joc': 'Gameplay: Isaac joacă Tear, lacrima lovește, Gaper-ul moare.', 8: 'View-ul pleacă; terminalul arată testele reale (`PASS …`, `Tests: 35 passed, 0 failed.`).',
   9: 'Terminalul continuă cu simularea: `Runs=500`, `Wins=219 (43.8%)`.', 10: '`DarkestBasement.Model.asmdef` (evidențiat `"noEngineReferences": true`); o încercare `using UnityEngine;` în CombatEngine.cs → `error CS0246`.'},
  's03': {
   '_': 'Graful stărilor pe pergament (butoanele jocului), cu jetonul lui Isaac; în dreapta captura stării curente. Codul din GameFlow.cs.',
@@ -61,7 +61,7 @@ VIS = {
   1: 'Cartea intră în Model; ies instant 7 bilețele: EnergyChanged −2, CardPlayed, Damaged gaper 5, Damaged fly 4, UnitDied fly, UnitMoved pooter 3→2, StatusApplied Bleed 2; „≈ 0,02 ms”.',
   2: 'Toate animațiile deodată (haos, „?!”, shake), apoi bilețelele se aliniază într-o coadă.', 3: 'Capul cozii coboară pe scenă și își joacă animația; coada avansează.',
   4: '`IEnumerator Play(...)`: bucla `for` și `yield return Safe(PlayOne(events[i]))`.', 5: '`switch` din `PlayOne` cu `case Damaged ev`; pe Gaper: număr, clipire albă, sânge, shake (etichete pe cuvinte).',
-  'slot:s07-lovitura': 'Gameplay: lovitura, moartea, raza.', 6: '`Safe(...)` cu `try`/`catch`; un bilețel roșu „crapă”, iar coada merge mai departe.'},
+  'slot:s07-lovitura': 'Gameplay: două lovituri ale lui Lilith, fiecare cu clipire albă, număr și moarte în sânge.', 6: '`Safe(...)` cu `try`/`catch`; un bilețel roșu „crapă”, iar coada merge mai departe.'},
  's08': {
   '_': 'Grila de 500 de celule = seed-urile 1..500 jucate de AutoPlayer. Culorile sunt rezultatele reale (film/data/sim500.json, rulat cu tools/sim): victorie, mort în Caves, mort în Depths.',
   1: 'Grila goală.', 2: 'Cele trei reguli ale politicii, cu rândurile de scor din `AutoPlayer.Score`.', 3: 'Grila se umple seed cu seed; „câteva secunde, fără Unity”.',

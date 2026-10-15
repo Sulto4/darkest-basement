@@ -11,7 +11,7 @@
 #   bash tools/forge.sh render <scene…|all>     → segmente MP4 în out/seg/ pe Forge (o comandă < 9 min; împarte scenele pe apeluri)
 #   bash tools/forge.sh mix                     → plan de sunet + mix.wav pe Forge, afișează balanța vocii
 #   bash tools/forge.sh final <nume.mp4>        → lipește segmentele + mix.wav → out/<nume.mp4>, adus pe Mac
-#   bash tools/forge.sh finish <nume.mp4>       → plan + mix + lipire + mux, într-un singur pas cu lock
+#   bash tools/forge.sh finish <nume.mp4>       → plan + mix (cu stem-uri) + lipire + mux, într-un singur pas cu lock
 set -euo pipefail
 HERE="$(cd "$(dirname "$0")/.." && pwd -P)"            # video/
 HOST="${FORGE_HOST:-hp-forge}"
@@ -60,8 +60,10 @@ case "$CMD" in
   finish)  # plan + mix + concat + mux într-o singură luare a lock-ului (QA-ul îl reia repede între pași)
     NAME="${1:-darkest-basement-explainer-v1.mp4}"
     sync
-    cap 540 "bash -c 'node tools/render.mjs plan && node tools/mix.mjs out/plan.json out/mix.wav && node tools/render.mjs concat out/video.mp4 && ffmpeg -y -v error -i out/video.mp4 -i out/mix.wav -map 0:v -map 1:a -c:v copy -c:a aac -b:a 256k -ar 48000 -movflags +faststart -shortest out/$NAME && ffprobe -v error -show_entries format=duration,size -of default=nw=1 out/$NAME'"
+    cap 540 "bash -c 'node tools/render.mjs plan && node tools/mix.mjs out/plan.json out/mix.wav --stems && node tools/render.mjs concat out/video.mp4 && ffmpeg -y -v error -i out/video.mp4 -i out/mix.wav -map 0:v -map 1:a -c:v copy -c:a aac -b:a 256k -ar 48000 -movflags +faststart -shortest out/$NAME && ffprobe -v error -show_entries format=duration,size -of default=nw=1 out/$NAME'"
     rsync -a "$HOST:$RDIR/out/$NAME" "$HERE/out/$NAME"
-    rsync -a "$HOST:$RDIR/out/segments.json" "$HOST:$RDIR/out/plan.json" "$HERE/out/" ;;
+    rsync -a "$HOST:$RDIR/out/segments.json" "$HOST:$RDIR/out/plan.json" "$HERE/out/"
+    # stem-urile mixajului (voce, efecte, muzică), pentru verificarea sunetului: python3 tools/audio_qa.py out/<nume.mp4>
+    mkdir -p "$HERE/out/stems" && rsync -a "$HOST:$RDIR/out/vo.wav" "$HOST:$RDIR/out/sfx.wav" "$HOST:$RDIR/out/music.wav" "$HERE/out/stems/" ;;
   *) echo "comandă necunoscută: $CMD (sync|snap|sheet|render|mix|final|finish)"; exit 2 ;;
 esac

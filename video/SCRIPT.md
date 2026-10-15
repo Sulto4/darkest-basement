@@ -6,7 +6,7 @@ Codul arătat pe ecran e extras din repo după ancore (`tools/snippets.py` → `
 
 ## s01 · Jocul în 30 de secunde  (0:00.0–0:36.9, 37 s)
 
-*Deschidere pe gameplay (capturi din rularea QA cu seed 7, Ken Burns; sloturi pentru clipuri live). Muzica: music_combat.*
+*Deschidere pe gameplay: clipuri live din build-ul de QA, seed 7 (FOOTAGE.md), tăiate pe cuvinte; apoi logo-ul jocului apare pixel cu pixel, cu sânge care picură. Muzica: music_combat.*
 
 | # | timp | narațiune | pe ecran |
 |---|---|---|---|
@@ -31,7 +31,7 @@ Codul arătat pe ecran e extras din repo după ancore (`tools/snippets.py` → `
 | 5 | 1:06.3 | Între ele circulă două feluri de mesaje. View-ul trimite comenzi. De exemplu, joacă cartea asta pe ținta asta. | Două benzi între lumi („comenzi”, „evenimente”); bilețelul `PlayCard(isaac, tear, gaper)` zboară din View în Model. |
 | 6 | 1:14.0 | Modelul calculează tot pe loc și răspunde cu o listă de evenimente. Cartea a fost jucată. Gaper a luat cinci damage. Gaper a murit. | `gaper.Hp` devine 0; ies trei bilețele: `CardPlayed`, `Damaged 5`, `UnitDied`. |
 | 7 | 1:23.0 | View-ul ia lista și o povestește pe ecran, eveniment cu eveniment. | View-ul consumă bilețelele pe rând: Isaac aruncă lacrima, Gaper clipește alb cu „5”, apoi moare (pată de sânge). |
-| ▶ | 1:28.3 | *(gameplay, 4.2 s, slot `s02-joc`)* | Gameplay: cartea jucată, lovitura, moartea. |
+| ▶ | 1:28.3 | *(gameplay, 4.2 s, slot `s02-joc`)* | Gameplay: Isaac joacă Tear, lacrima lovește, Gaper-ul moare. |
 | 8 | 1:33.0 | De ce ne complicăm așa? Pentru că un Model fără grafică îl poți testa în câteva milisecunde. | View-ul pleacă; terminalul arată testele reale (`PASS …`, `Tests: 35 passed, 0 failed.`). |
 | 9 | 1:38.4 | Poți să joci sute de run-uri complete în consolă, fără să deschizi Unity. Revenim la asta mai târziu. | Terminalul continuă cu simularea: `Runs=500`, `Wins=219 (43.8%)`. |
 | 10 | 1:45.3 | Și regula nu e doar o promisiune. Modelul stă într-un assembly separat, care n-are voie să vadă motorul. Dacă încerci să folosești ceva din Unity acolo, codul nu compilează. | `DarkestBasement.Model.asmdef` (evidențiat `"noEngineReferences": true`); o încercare `using UnityEngine;` în CombatEngine.cs → `error CS0246`. |
@@ -113,7 +113,7 @@ Codul arătat pe ecran e extras din repo după ancore (`tools/snippets.py` → `
 | 3 | 7:21.9 | Ia primul eveniment, îl animă, așteaptă să se termine, apoi trece la următorul. | Capul cozii coboară pe scenă și își joacă animația; coada avansează. |
 | 4 | 7:29.1 | În Unity asta se face cu corutine. O funcție care face yield return se oprește acolo și continuă când e gata animația. | `IEnumerator Play(...)`: bucla `for` și `yield return Safe(PlayOne(events[i]))`. |
 | 5 | 7:36.9 | Un switch alege animația pentru fiecare tip de eveniment. Damaged înseamnă un număr care sare, o clipire albă, puțin sânge și un shake. | `switch` din `PlayOne` cu `case Damaged ev`; pe Gaper: număr, clipire albă, sânge, shake (etichete pe cuvinte). |
-| ▶ | 7:45.5 | *(gameplay, 4.2 s, slot `s07-lovitura`)* | Gameplay: lovitura, moartea, raza. |
+| ▶ | 7:45.5 | *(gameplay, 4.2 s, slot `s07-lovitura`)* | Gameplay: două lovituri ale lui Lilith, fiecare cu clipire albă, număr și moarte în sânge. |
 | 6 | 7:50.2 | Și încă ceva. Dacă o animație aruncă o excepție, lupta merge mai departe. Fiecare pas e învelit într-un try. Un bug vizual n-are voie să-ți blocheze jocul. | `Safe(...)` cu `try`/`catch`; un bilețel roșu „crapă”, iar coada merge mai departe. |
 
 ## s08 · Echilibrare prin simulare  (8:01.8–9:09.4, 68 s)

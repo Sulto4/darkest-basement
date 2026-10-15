@@ -11,7 +11,7 @@ const GX = 140, GY = 170, CS = 30, GAP = 4, COLS = 25; // grila: 25 × 20
 const COL = { win: '#e0b04a', f2: '#6d747c', f3: '#8a2f3a', loss: '#5c0d0d', none: 'rgba(232,220,196,0.12)' };
 
 export default {
-  id: 's08', num: 7, title: 'Echilibrare prin simulare', music: 'explore', musicFrom: 60,
+  id: 's08', num: 7, title: 'Echilibrare prin simulare', music: 'explore', musicFrom: 61.2,
   plan: [{ title: 2.6 }, { line: 1, gap: -0.5 }, { line: 2, gap: 0.5 }, { line: 3, gap: 0.5 }, { pause: 0.6 }, { line: 4, gap: 0.4 }, { pause: 0.4 }, { line: 5, gap: 0.6 }, { line: 6, gap: 0.5 }, { pause: 0.6 }, { line: 7, gap: 0.5 }, { line: 8, gap: 0.6 }],
   post: 1.4,
   setup(S) {

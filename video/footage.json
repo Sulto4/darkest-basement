@@ -1,0 +1,467 @@
+{
+  "_": "Clipurile live pentru sloturile de gameplay (tools/slots.py → out/footage/<slot>.mp4). pieces: clip = clip brut din out/footage/raw ('a+b' = ferestre lipite, cadre consecutive), from = secunda din clip, speed < 1 = încetinit, frame + at = un cadru ținut pe ecran, still = captură statică din out/assets/shots; z/f = zoom lent. dur în secunde; ultima bucată ia restul slotului. sfx = [secunda din slot, efect, volum], puse pe momentele din clip; înlocuiesc efectele scenei din interiorul slotului (film/film.js). Clipurile brute: seed 7, build-ul de QA cu -capture-moments (FOOTAGE.md).",
+  "s01-intro": {
+    "pieces": [
+      {
+        "clip": "combat-01",
+        "from": 0.33,
+        "speed": 0.5,
+        "dur": 3.66,
+        "_": "meniul, încetinit (animații de repaus)"
+      },
+      {
+        "clip": "combat-02",
+        "from": 3.0,
+        "dur": 2.42,
+        "_": "holul din spate, după ce dispare indiciul de tutorial"
+      },
+      {
+        "clip": "combat-07",
+        "from": 4.25,
+        "_": "vederea laterală cu monștrii, începutul rundei 2"
+      }
+    ],
+    "sfx": [
+      [
+        3.7,
+        "footstep_stone_1",
+        0.32
+      ],
+      [
+        6.1,
+        "gaper_groan",
+        0.32
+      ]
+    ]
+  },
+  "s01-bucla": {
+    "pieces": [
+      {
+        "clip": "combat-04",
+        "from": 0.75,
+        "dur": 1.62,
+        "_": "harta se deschide, apoi se stinge"
+      },
+      {
+        "clip": "combat-04",
+        "from": 3.2,
+        "dur": 0.82,
+        "_": "holul"
+      },
+      {
+        "clip": "combat-03",
+        "from": 1.2,
+        "dur": 0.95,
+        "_": "ușa de la capătul holului"
+      },
+      {
+        "clip": "combat-06",
+        "from": 10.35,
+        "_": "mâna lui Azazel urcă"
+      }
+    ],
+    "sfx": [
+      [
+        0.1,
+        "ui_click",
+        0.32
+      ],
+      [
+        1.7,
+        "footstep_stone_2",
+        0.32
+      ],
+      [
+        2.6,
+        "door_open",
+        0.32
+      ],
+      [
+        3.45,
+        "card_draw",
+        0.32
+      ]
+    ]
+  },
+  "s01-carti": {
+    "pieces": [
+      {
+        "clip": "combat-06",
+        "from": 13.2,
+        "dur": 2.49,
+        "_": "Lilith trage cărțile, joacă una: WEAK 2"
+      },
+      {
+        "clip": "combat-06",
+        "from": 11.5,
+        "dur": 0.98,
+        "_": "Brimstone"
+      },
+      {
+        "clip": "combat-08",
+        "from": 1.0,
+        "dur": 1.27,
+        "_": "NEW CARD"
+      },
+      {
+        "still": "trapdoor",
+        "z": [
+          1.0,
+          1.1
+        ],
+        "_": "trapa: nicio captură live (ar cere un etaj întreg capturat)"
+      }
+    ],
+    "sfx": [
+      [
+        0.2,
+        "card_draw",
+        0.3
+      ],
+      [
+        1.13,
+        "card_play",
+        0.35
+      ],
+      [
+        2.62,
+        "brimstone_beam",
+        0.45
+      ],
+      [
+        3.8,
+        "card_flip_reward",
+        0.35
+      ],
+      [
+        4.74,
+        "trapdoor_descend",
+        0.4
+      ]
+    ]
+  },
+  "s01-bosi": {
+    "pieces": [
+      {
+        "clip": "monstro2-01",
+        "from": 0.8,
+        "dur": 1.2,
+        "_": "Monstro scuipă sânge"
+      },
+      {
+        "clip": "gurdy2-01",
+        "from": 1.3,
+        "dur": 0.79,
+        "_": "Gurdy: Mouth Beam"
+      },
+      {
+        "clip": "mom2-02",
+        "from": 3.05,
+        "dur": 0.95,
+        "_": "piciorul lui Mom coboară"
+      },
+      {
+        "clip": "mom2-01",
+        "from": 1.05,
+        "_": "mâna lui Mom mătură echipa"
+      }
+    ],
+    "sfx": [
+      [
+        0.25,
+        "monster_roar",
+        0.45
+      ],
+      [
+        1.5,
+        "brimstone_beam",
+        0.4
+      ],
+      [
+        2.4,
+        "mom_stomp",
+        0.28
+      ],
+      [
+        3.2,
+        "hit_flesh_2",
+        0.22
+      ]
+    ]
+  },
+  "s02-joc": {
+    "pieces": [
+      {
+        "clip": "combat-07",
+        "from": 0.0,
+        "_": "Isaac joacă Tear: lacrima, lovitura, Gaper-ul moare; BLOCKED; runda 2"
+      }
+    ],
+    "sfx": [
+      [
+        0.6,
+        "card_play",
+        0.45
+      ],
+      [
+        0.72,
+        "tear_shot",
+        0.4
+      ],
+      [
+        1.05,
+        "tear_splash",
+        0.45
+      ],
+      [
+        1.6,
+        "enemy_death_splat",
+        0.5
+      ],
+      [
+        3.35,
+        "block_hit",
+        0.4
+      ],
+      [
+        3.85,
+        "turn_start",
+        0.35
+      ]
+    ]
+  },
+  "s04-harta": {
+    "pieces": [
+      {
+        "frame": "combat-02",
+        "at": 0.3,
+        "z": [
+          1.0,
+          1.35
+        ],
+        "f": [
+          0.5,
+          0.42
+        ],
+        "_": "panoul hărții, etajul 1 (în joc stă deschis o secundă)"
+      }
+    ],
+    "sfx": [
+      [
+        0.0,
+        "ui_click",
+        0.4
+      ]
+    ]
+  },
+  "s05-seed": {
+    "pieces": [
+      {
+        "clip": "combat-01",
+        "from": 0.33,
+        "speed": 0.4,
+        "dur": 4.29,
+        "z": [
+          1.15,
+          1.6
+        ],
+        "f": [
+          0.0,
+          0.85
+        ],
+        "_": "meniul cu SEED 7"
+      },
+      {
+        "still": "victory",
+        "z": [
+          1.1,
+          1.5
+        ],
+        "f": [
+          0.85,
+          0.12
+        ],
+        "_": "ecranul de final: nicio captură live (ar cere un run întreg)"
+      }
+    ],
+    "sfx": [
+      [
+        0.0,
+        "ui_click",
+        0.35
+      ]
+    ]
+  },
+  "s06-runda": {
+    "pieces": [
+      {
+        "clip": "combat-06",
+        "from": 2.7,
+        "_": "ROUND 1, bara de ordine, intențiile, primul atac, mâna lui Cain"
+      }
+    ],
+    "sfx": [
+      [
+        0.5,
+        "turn_start",
+        0.4
+      ],
+      [
+        2.3,
+        "hit_flesh_1",
+        0.45
+      ],
+      [
+        3.1,
+        "card_draw",
+        0.4
+      ]
+    ]
+  },
+  "s07-lovitura": {
+    "pieces": [
+      {
+        "clip": "showcase-01",
+        "from": 0.1,
+        "dur": 2.0,
+        "_": "Lilith lovește: număr, clipire albă, inamicul explodează în sânge"
+      },
+      {
+        "clip": "showcase-04",
+        "from": 0.0,
+        "_": "mai târziu în aceeași luptă: încă o lovitură, încă o moarte"
+      }
+    ],
+    "sfx": [
+      [
+        0.0,
+        "card_play",
+        0.4
+      ],
+      [
+        0.5,
+        "hit_flesh_1",
+        0.45
+      ],
+      [
+        0.72,
+        "enemy_death_splat",
+        0.5
+      ],
+      [
+        2.2,
+        "card_play",
+        0.4
+      ],
+      [
+        2.6,
+        "hit_flesh_2",
+        0.5
+      ],
+      [
+        3.0,
+        "enemy_death_splat",
+        0.5
+      ]
+    ]
+  },
+  "s09-atac": {
+    "pieces": [
+      {
+        "clip": "combat-06",
+        "from": 6.7,
+        "_": "Cain: carte, salt, lovitura cu număr, întoarcere; a doua oară omoară"
+      }
+    ],
+    "sfx": [
+      [
+        0.1,
+        "card_play",
+        0.4
+      ],
+      [
+        0.32,
+        "punch",
+        0.5
+      ],
+      [
+        1.3,
+        "card_play",
+        0.4
+      ],
+      [
+        1.72,
+        "punch",
+        0.5
+      ],
+      [
+        1.78,
+        "enemy_death_splat",
+        0.45
+      ]
+    ]
+  },
+  "s09-impact": {
+    "pieces": [
+      {
+        "clip": "showcase-03",
+        "from": 0.5,
+        "dur": 2.0,
+        "_": "Dr. Fetus: două lovituri critice (flash, număr galben cu !)"
+      },
+      {
+        "clip": "monstro2-02",
+        "from": 0.45,
+        "_": "Monstro sare și aterizează peste echipă"
+      }
+    ],
+    "sfx": [
+      [
+        0.1,
+        "bomb_explode",
+        0.45
+      ],
+      [
+        0.5,
+        "crit_hit",
+        0.55
+      ],
+      [
+        1.3,
+        "crit_hit",
+        0.5
+      ],
+      [
+        1.5,
+        "bomb_explode",
+        0.4
+      ],
+      [
+        2.55,
+        "monstro_land",
+        0.55
+      ]
+    ]
+  },
+  "s10-arc": {
+    "pieces": [
+      {
+        "clip": "combat-05+combat-06",
+        "from": 4.73,
+        "_": "camera din spatele echipei pe arc până în vederea laterală"
+      }
+    ],
+    "sfx": [
+      [
+        0.2,
+        "footstep_stone_1",
+        0.3
+      ],
+      [
+        3.3,
+        "gaper_groan",
+        0.35
+      ]
+    ]
+  }
+}
