@@ -14,7 +14,12 @@ namespace DarkestBasement.EditorTools
         public static void BuildWindows() => Build(BuildTarget.StandaloneWindows64, "Builds/win/DarkestBasement.exe");
 
         [MenuItem("Darkest Basement/Build macOS")]
-        public static void BuildMac() => Build(BuildTarget.StandaloneOSX, "Builds/mac/DarkestBasement.app");
+        public static void BuildMac()
+        {
+            // „Universal”: un singur .app care rulează nativ și pe Mac-urile cu Apple Silicon (M1–M4), și pe cele cu Intel.
+            EditorUserBuildSettings.SetPlatformSettings("OSXUniversal", "Architecture", "x64ARM64");
+            Build(BuildTarget.StandaloneOSX, "Builds/mac/DarkestBasement.app");
+        }
 
         [MenuItem("Darkest Basement/Build Linux (QA)")]
         public static void BuildLinux() => Build(BuildTarget.StandaloneLinux64, "Builds/linux/DarkestBasement.x86_64");

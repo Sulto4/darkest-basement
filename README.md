@@ -6,6 +6,12 @@ Proiect de facultate, fan game neoficial, necomercial.
 
 ![Meniul](docs/screenshots/01-meniu.jpg)
 
+## Descarcă
+
+| Windows | macOS |
+|---|---|
+| [**DarkestBasement-win.zip**](https://github.com/Sulto4/darkest-basement/releases/latest/download/DarkestBasement-win.zip) | [**DarkestBasement-mac.dmg**](https://github.com/Sulto4/darkest-basement/releases/latest/download/DarkestBasement-mac.dmg) |
+
 ## Joacă pe Windows (2 minute)
 
 1. **Descarcă jocul:** [DarkestBasement-win.zip](https://github.com/Sulto4/darkest-basement/releases/latest/download/DarkestBasement-win.zip) (44 MB).
@@ -15,7 +21,15 @@ Proiect de facultate, fan game neoficial, necomercial.
 
 Merge pe Windows 10/11, 64-bit, fără să instalezi nimic în plus. Un run complet durează 45–60 de minute.
 
-### Controale
+## Joacă pe Mac (macOS)
+
+1. **Descarcă jocul:** [DarkestBasement-mac.dmg](https://github.com/Sulto4/darkest-basement/releases/latest/download/DarkestBasement-mac.dmg) (58 MB). Merge și pe Mac-urile cu Apple Silicon (M1–M4), și pe cele cu Intel.
+2. Deschide fișierul `.dmg` și trage **DarkestBasement** peste **Applications**.
+3. Deschide jocul din Applications. Prima dată macOS spune că nu poate verifica aplicația, pentru că nu e semnată cu un cont Apple Developer plătit, ca orice proiect de facultate. Apasă **Done**, apoi:
+   - **System Settings** → **Privacy & Security** → jos de tot, la mesajul despre „DarkestBasement”, apasă **Open Anyway** și confirmă cu parola. Se face o singură dată.
+   - Sau, din Terminal: `xattr -dr com.apple.quarantine /Applications/DarkestBasement.app`, apoi îl deschizi normal.
+
+## Controale (Windows și Mac)
 
 | Ce faci | Cum |
 |---|---|
