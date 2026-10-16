@@ -23,11 +23,21 @@ Merge pe Windows 10/11, 64-bit, fără să instalezi nimic în plus. Un run comp
 
 ## Joacă pe Mac (macOS)
 
-1. **Descarcă jocul:** [DarkestBasement-mac.dmg](https://github.com/Sulto4/darkest-basement/releases/latest/download/DarkestBasement-mac.dmg) (58 MB). Merge și pe Mac-urile cu Apple Silicon (M1–M4), și pe cele cu Intel.
-2. Deschide fișierul `.dmg` și trage **DarkestBasement** peste **Applications**.
-3. Deschide jocul din Applications. Prima dată macOS spune că nu poate verifica aplicația, pentru că nu e semnată cu un cont Apple Developer plătit, ca orice proiect de facultate. Apasă **Done**, apoi:
-   - **System Settings** → **Privacy & Security** → jos de tot, la mesajul despre „DarkestBasement”, apasă **Open Anyway** și confirmă cu parola. Se face o singură dată.
-   - Sau, din Terminal: `xattr -dr com.apple.quarantine /Applications/DarkestBasement.app`, apoi îl deschizi normal.
+Merge pe Mac-urile cu Apple Silicon (M1–M4) și pe cele cu Intel.
+
+**Cel mai simplu: o singură comandă.** Deschide aplicația **Terminal**, lipește linia de mai jos și apasă Enter. Descarcă jocul, îl pune în Applications și îl pornește, fără niciun avertisment:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/Sulto4/darkest-basement/main/tools/install-mac.sh | bash
+```
+
+**Sau manual, cu DMG:**
+1. Descarcă [DarkestBasement-mac.dmg](https://github.com/Sulto4/darkest-basement/releases/latest/download/DarkestBasement-mac.dmg) (58 MB), deschide-l și trage **DarkestBasement** peste **Applications**.
+2. Prima dată macOS spune că „Apple cannot check it for malicious software”. Jocul nu e notarizat la Apple (asta cere un cont Apple Developer plătit). Ca să-l deschizi:
+   - pe macOS 14 sau mai vechi: în Applications, **Control + click** pe DarkestBasement → **Open** → **Open**;
+   - pe macOS 15 sau mai nou: **System Settings** → **Privacy & Security** → jos de tot, **Open Anyway**, apoi confirmi cu parola.
+   
+   Se face o singură dată.
 
 ## Controale (Windows și Mac)
 
